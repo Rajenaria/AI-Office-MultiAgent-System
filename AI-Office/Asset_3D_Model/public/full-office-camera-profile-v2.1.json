@@ -1,0 +1,32 @@
+{
+  "schema_version": "AI_OFFICE_CAMERA_PROFILE_V2_1",
+  "profile_id": "full-office-camera-profile-v2.1",
+  "layout_id": "AI_OFFICE_LAYOUT_A3_2_v1",
+  "projection_type": "OrthographicCamera",
+  "default_view": "full_office_cinematic",
+  "target_position": [16.0, 1.1, 13.0],
+  "default_position": [28.6, 25.3, -17.0],
+  "default_elevation": 36.64,
+  "default_azimuth": 22.78,
+  "minimum_elevation": 28.0,
+  "maximum_elevation": 46.0,
+  "azimuth_limits": [2.78, 42.78],
+  "min_zoom_factor": 0.88,
+  "max_zoom_factor": 1.65,
+  "focus_max_zoom_factor": 3.2,
+  "fit_padding": 0.08,
+  "pan_bounds": {
+    "minX": 5.0,
+    "maxX": 27.0,
+    "minY": 0.0,
+    "maxY": 2.4,
+    "minZ": 3.0,
+    "maxZ": 23.0
+  },
+  "default_cutaway_mode": "smart_cutaway",
+  "supported_cutaway_modes": [
+    "smart_cutaway",
+    "show_architecture",
+    "agent_visibility"
+  ]
+}

@@ -1,0 +1,1637 @@
+# AI OFFICE — ENGINEERING AGENT 02
+## BACKEND DEVELOPER — CHARACTER, ANIMATION & PRODUCTION ASSET V1
+### Strict Reference Fidelity | Premium Handcrafted Voxel | Hair Geometry & Material Quality | Independent GLB Export
+
+---
+
+# 0. YOUR ROLE
+
+You are a Senior Three.js Character Technical Artist, Voxel Character Designer, 3D Animation Engineer, React/TypeScript Developer, and GLB Production Pipeline Specialist.
+
+You are working inside the EXISTING:
+
+**AI Office — Modular Room Lab**
+
+This project contains multiple independently developed rooms and characters.
+
+Your task is to build ONLY:
+
+**Backend Developer — Engineering Agent 02**
+
+Deliver a complete Backend Developer character with:
+
+1. Accurate voxel appearance based on the attached character sheet.
+2. High-quality layered voxel hair geometry.
+3. Carefully controlled materials and textures.
+4. Same-world visual consistency with existing characters.
+5. Job-specific Backend Developer animations.
+6. Lightweight facial expressions.
+7. Appropriate developer accessories.
+8. Engineering workstation integration.
+9. Independent character simulation controls.
+10. Portable production GLB with real animation clips.
+11. Manifest, behavior JSON, preview and source compatibility.
+12. Independent reimport and regression testing.
+
+DO NOT rebuild the application.
+
+DO NOT redesign existing characters.
+
+DO NOT change the Engineering Room.
+
+DO NOT create the Database Developer character yet.
+
+---
+
+# 1. PRESERVE APPROVED PROJECT BASELINE
+
+Before editing:
+
+- Inspect the current source code.
+- Find the existing character builder implementations.
+- Inspect character animation infrastructure.
+- Inspect the current Engineering Room and its anchors.
+- Inspect existing asset export conventions.
+- Create a recoverable checkpoint.
+- Record the current stable asset IDs.
+
+Preserve:
+
+ROOMS:
+- PM & Strategy Room.
+- CEO Executive Brain Office.
+- UI/UX Design Studio.
+- Engineering & Development Studio.
+
+CHARACTERS:
+- Original Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer, if already implemented.
+
+SYSTEMS:
+- Room Selector.
+- Single Room mode.
+- Full Office mode.
+- A3.1 layout.
+- OfficeAssembler.
+- Existing animation controllers.
+- Existing simulation panels.
+- Existing GLB imports and exports.
+- Character behavior configurations.
+- Camera controls.
+- Source backup functionality.
+
+Do not modify the permanent Engineering furniture, windows, walls, materials, room layout, or doors.
+
+Do not alter Frontend character geometry or its animations.
+
+The global Full Office camera presentation is still under deferred owner review.
+
+DO NOT attempt to fix or redesign that camera in this task.
+
+---
+
+# 2. OFFICIAL CHARACTER IDENTITY
+
+Character ID:
+
+`backend_developer_agent`
+
+Display Name:
+
+`Backend Developer`
+
+Department:
+
+`Engineering`
+
+Room Affiliation:
+
+`AI_OFFICE_ROOM_ENGINEERING_v1`
+
+Agent Role:
+
+`BACKEND_ENGINEER`
+
+Primary functional identity:
+
+- API development.
+- Backend services.
+- Business logic implementation.
+- Server-side debugging.
+- Service architecture review.
+- API contract verification.
+- Backend testing.
+- Integration with Frontend.
+- Database dependency coordination.
+- Technical documentation.
+- Code review.
+- Handoff to QA or DevOps when appropriate.
+
+This character represents a Backend Engineer, not a DevOps infrastructure specialist.
+
+Do not give the character unrestricted deployment or system-administration authority through demo metadata.
+
+---
+
+# 3. AUTHORITATIVE REFERENCE PRIORITY
+
+Use three sources in this exact order.
+
+## REFERENCE A — ATTACHED BACKEND DEVELOPER CHARACTER SHEET
+
+This sheet defines the Backend Developer's visual identity.
+
+It includes:
+
+- Eight-direction turnaround.
+- Front, side and rear geometry.
+- Facial expressions.
+- Animation concepts.
+- Workstation variations.
+- Accessories.
+- Outfit alternatives.
+
+Follow this image for the character's appearance.
+
+## REFERENCE B — EXISTING WORKING CHARACTERS
+
+Use the ACTUAL current 3D characters for technical style matching:
+
+- Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer, if available.
+
+These characters define:
+
+- World-unit height.
+- Head-to-body proportions.
+- Mesh construction approach.
+- Voxel density.
+- Material appearance.
+- Face scale.
+- Arm and leg pivots.
+- Character movement style.
+- Animation technique.
+- Export conventions.
+
+## REFERENCE C — ENGINEERING ROOM
+
+The Engineering Room defines:
+
+- Environmental lighting.
+- Desk scale.
+- Chair height.
+- Workstation orientation.
+- Navigation constraints.
+- Appropriate character size.
+
+IMPORTANT:
+
+The reference sheet is a polished character illustration.
+
+The resulting live 3D model must match the technical art style of the existing Room-Native AI Office characters.
+
+Do not create a different art style simply because the reference image contains richer studio shading.
+
+---
+
+# 4. STRICT VISUAL DESIGN
+
+Target visual style:
+
+**Premium Cozy Handcrafted Voxel Character**
+
+The Backend Developer must be:
+
+- Compact.
+- Clearly voxel-based.
+- Geometrically intentional.
+- Visually expressive.
+- Professional.
+- Technically oriented.
+- Friendly.
+- Distinct from Frontend.
+
+The character must have:
+
+- Dark brown-black layered hair.
+- Thick black rectangular glasses.
+- Warm voxel skin.
+- Dark charcoal technical jacket or hoodie.
+- Light inner shirt.
+- White/silver headphones around the neck.
+- Dark trousers.
+- White/light-gray sneakers.
+- Dark technical backpack.
+
+Avoid:
+
+- Realistic anatomy.
+- Smooth anime-style hair.
+- Plastic-looking glossy materials.
+- Generic black cuboid hair.
+- Excessive microgeometry.
+- Oversized backpack.
+- Clothing that resembles the Frontend orange hoodie.
+- A black business suit like CEO or PM.
+
+The character must immediately read as:
+
+**Backend Developer — dark technical outfit, layered hair, glasses, headphones and laptop.**
+
+---
+
+# 5. CHARACTER SCALE
+
+Inspect the current actual character bounds.
+
+Use the existing AI Office character scale.
+
+The earlier Boss PM export was approximately 1.72 world units tall, but verify the current production baseline.
+
+Requirements:
+
+- Similar height to Frontend.
+- Same head/body proportion language.
+- Feet grounded at floor elevation.
+- Correct desk and chair scale.
+- No nonuniform character scaling.
+- Valid local character origin.
+- Stable orientation convention.
+
+Do not scale the head excessively to match the concept illustration.
+
+Do not shrink furniture.
+
+Keep proportions consistent with the existing cast.
+
+---
+
+# 6. CRITICAL PRIORITY — HAIR GEOMETRY AND SILHOUETTE
+
+THIS IS ONE OF THE MOST IMPORTANT PARTS OF THE TASK.
+
+The owner explicitly wants a visually refined hairstyle.
+
+The hairstyle must match the attached Backend character sheet.
+
+## 6.1 HAIR IDENTITY
+
+Use a short, thick, layered hairstyle.
+
+Color:
+
+- Dark chocolate brown.
+- Nearly black in deep shadow regions.
+- Restrained muted burgundy-brown variation.
+- Slightly lighter brown on selected upper surfaces.
+
+The hair should NOT be uniformly pure black.
+
+It should NOT use random colorful highlights.
+
+The hairstyle must be clearly different from Frontend's predominantly black hair and CEO's gray-highlighted senior hairstyle.
+
+## 6.2 HAIR GEOMETRY
+
+Build the hairstyle from intentionally layered voxel clusters.
+
+Recommended semantic groups:
+
+- Hair_Crown_Base
+- Hair_Crown_Layers
+- Hair_Front_Fringe
+- Hair_Left_Temple
+- Hair_Right_Temple
+- Hair_Side_Layers
+- Hair_Back_Volume
+- Hair_Back_Taper
+
+Adapt names to the current rig architecture.
+
+The visible silhouette must have:
+
+- A thick stepped upper crown.
+- Irregular but controlled block layering.
+- A gently asymmetric front hairline.
+- Angular front fringe sections.
+- Distinct side volume.
+- Compact layered rear geometry.
+- A well-defined hair-to-face boundary.
+
+Avoid a hairstyle made from one single rectangular cube.
+
+Avoid perfectly flat front edges.
+
+Avoid excessively random individual cubes.
+
+The character should look like a carefully sculpted voxel figure.
+
+## 6.3 FRONT VIEW
+
+From the front:
+
+- Hair crown has readable height.
+- Front fringe has multiple stepped layers.
+- Fringe frames the upper forehead.
+- Hair does not cover the eyes.
+- Glasses remain clearly visible.
+- Left/right silhouette may have subtle intentional asymmetry.
+
+Do not create a perfectly horizontal solid black hair block.
+
+## 6.4 SIDE VIEWS
+
+From either side:
+
+- Crown has meaningful volume.
+- Hair layers overlap naturally.
+- Temple geometry is distinct.
+- Hair transitions cleanly above the ear.
+- Side hair is not an undetailed flat wall.
+- Rear hair has a visible stepped continuation.
+
+Avoid clipping through the ear or glasses frame.
+
+## 6.5 BACK VIEW
+
+The rear hairstyle must be deliberately modeled.
+
+It must show:
+
+- Layered voxel structure.
+- A thicker upper back section.
+- Controlled lower tapering.
+- Small variations in block depth.
+- Consistent left/right overall mass.
+
+Do not leave the back as one featureless brown cube.
+
+The reference specifically includes rear turnaround views; use them.
+
+## 6.6 HAIR MATERIALS
+
+Use a small controlled palette rather than random materials.
+
+Suggested material relationships:
+
+Base:
+Dark chocolate brown.
+
+Shadow:
+Very dark brown with a muted reddish undertone.
+
+Midtone:
+Warm dark brown.
+
+Highlight:
+Slightly lighter muted brown.
+
+Material properties:
+
+- Mostly matte.
+- High roughness.
+- Low metallic response.
+- No glossy wet-hair appearance.
+- Crisp geometric edges.
+
+Use geometry and lighting to create volume.
+
+Do not rely on painted dark stripes over a single cubic hair mesh as the only source of layering.
+
+## 6.7 HAIR FLICKER PREVENTION
+
+Inspect:
+
+- Overlapping hair planes.
+- Coplanar layer surfaces.
+- Hair intersecting ears.
+- Hair intersecting glasses.
+- Hair intersecting the forehead.
+- Duplicate internal surfaces.
+
+Prefer clean geometric construction.
+
+Remove redundant coincident faces.
+
+Use intentional depth variation between layers.
+
+Do not apply a global polygonOffset workaround.
+
+## 6.8 REQUIRED HAIR INSPECTION
+
+Before considering the hairstyle complete, inspect:
+
+- Front.
+- Front-right.
+- Right.
+- Back-right.
+- Back.
+- Back-left.
+- Left.
+- Front-left.
+
+Compare the silhouette with the supplied character sheet.
+
+If the front view looks correct but the side or back becomes a flat cube, the hairstyle is NOT complete.
+
+Do not proceed to final visual approval until the hair is coherent in all views.
+
+---
+
+# 7. FACE AND GLASSES
+
+Use a compact voxel face consistent with PM, CEO and Frontend.
+
+Required geometry:
+
+- Warm beige face.
+- Dark rectangular eyes.
+- Small black pupils.
+- Simple brows.
+- Minimal nose.
+- Small mouth.
+- Subtle cheek coloration.
+- Correct cubic ears.
+
+## GLASSES
+
+Use thick black rectangular glasses.
+
+They must:
+
+- Have real 3D frames.
+- Fit the face correctly.
+- Remain attached to the head pivot.
+- Have correct temple arms where visible.
+- Preserve visible eyes.
+- Avoid face-plane overlap.
+- Not flicker during head movement.
+
+Do not use PM's opaque black sunglasses.
+
+The Backend character should remain facially expressive.
+
+---
+
+# 8. DEFAULT OUTFIT
+
+Follow the supplied Backend character sheet.
+
+## MAIN JACKET
+
+Use a dark charcoal technical jacket/hoodie.
+
+The jacket should feature:
+
+- Dark charcoal torso.
+- Slightly differentiated fabric panels.
+- Clean neckline.
+- Light inner shirt.
+- Layered sleeve construction.
+- Simple cuffs.
+- Subtle jacket folds expressed through voxel geometry.
+- Small restrained functional details.
+
+Do not make the torso a featureless dark rectangular box.
+
+Do not make it a formal executive suit.
+
+## HEADPHONES
+
+The white/silver headphones around the neck are mandatory.
+
+Include:
+
+- Recognizable headband.
+- Two ear cups.
+- Light gray/white material.
+- Small darker inner ear cup detail.
+- Correct placement over the jacket collar.
+
+The headphones should not float or intersect the face.
+
+They should remain stable during head and torso movement.
+
+## TROUSERS
+
+Dark charcoal or near-black.
+
+Simple voxel construction with restrained tonal variation.
+
+## SHOES
+
+White sneakers with:
+
+- Clear sole volume.
+- Light gray accents.
+- Small dark details.
+
+## BACKPACK
+
+Use the dark technical backpack shown in the reference.
+
+It should contain:
+
+- Compact rectangular main body.
+- Front pocket.
+- Shoulder straps.
+- Minimal dark panel variation.
+- One or two small orange accent details if consistent with the reference.
+
+Backpack silhouette must remain clearly visible from rear and three-quarter views.
+
+The backpack must not be too large.
+
+During seated work, allow the backpack to be hidden or handled by a controlled attachment policy if it would clip through the chair.
+
+Do not permanently remove it from the model.
+
+---
+
+# 9. TEXTURE AND MATERIAL QUALITY CONTROL
+
+The owner requires careful texture and material design.
+
+Use materials consistent with the actual room-native character system.
+
+Different surfaces should have controlled visual distinctions.
+
+## HAIR
+
+- Matte dark brown.
+- Layered tone variation.
+- Crisp geometry.
+- No realistic strands.
+
+## FACE
+
+- Warm matte skin.
+- Subtle geometric shadowing.
+- No shiny plastic skin.
+
+## JACKET
+
+- Dark charcoal fabric-like appearance.
+- Slight tonal contrast between layers.
+- No metallic surface.
+
+## HEADPHONES
+
+- Warm off-white or light gray.
+- Slightly different inner and outer surfaces.
+- Avoid pure glowing white.
+
+## BACKPACK
+
+- Matte dark navy/charcoal.
+- Structured outer panels.
+- Very restrained accent color.
+
+## SHOES
+
+- Clean off-white.
+- Gray sole details.
+- No excessive gloss.
+
+Use actual compatible glTF materials.
+
+Where possible, favor simple geometry and stable material colors over heavy image-texture dependence.
+
+If image textures or CanvasTextures are used:
+
+- Preserve correct color-space handling.
+- Verify embedded export compatibility.
+- Verify UV orientation.
+- Avoid mirrored details.
+- Avoid shimmer at camera distance.
+- Test the exported GLB.
+
+Do not globally change renderer material settings.
+
+Do not force the same texture filter on unrelated room materials.
+
+---
+
+# 10. RIG AND CHARACTER HIERARCHY
+
+Reuse the existing AI Office character animation conventions.
+
+Create an independent root:
+
+`BACKEND_AGENT_RUNTIME_ROOT`
+
+Suggested hierarchy:
+
+BACKEND_AGENT_RUNTIME_ROOT
+- NavigationRoot
+- OrientationRoot
+- CharacterModelRoot
+  - BodyPivot
+  - HeadPivot
+    - Face
+    - Hair
+    - Glasses
+  - LeftArmPivot
+  - RightArmPivot
+  - LeftLegPivot
+  - RightLegPivot
+  - Jacket
+  - InnerShirt
+  - Headphones
+  - Backpack
+  - AccessoryAttachments
+
+Use actual project naming conventions where appropriate.
+
+Requirements:
+
+- Stable arm rotation pivots.
+- Stable head rotation pivot.
+- Independent leg motion.
+- Proper body orientation.
+- No detached clothing.
+- No detached glasses.
+- No floating headphone geometry.
+- No detached backpack.
+- Stable handheld prop attachment points.
+
+Do not introduce a new incompatible rig system.
+
+Use existing AnimationMixer-compatible conventions.
+
+---
+
+# 11. ENGINEERING ROOM PLACEMENT
+
+The existing Engineering Studio is:
+
+`AI_OFFICE_ROOM_ENGINEERING_v1`
+
+Dimensions:
+
+8×16.
+
+Local origin:
+
+[0,0,0].
+
+Global A3.1 offset:
+
+[0,0,0].
+
+The room contains:
+
+- Frontend Workstation.
+- Backend Workstation.
+- Database Workstation.
+- Integration Hub.
+
+Only populate the Backend role with the NEW Backend character.
+
+Preserve the existing Frontend actor, if present.
+
+Do not create Database yet.
+
+Do not create a second Frontend actor.
+
+Do not place the Backend character permanently inside the Engineering room GLB.
+
+It must remain an independently exportable actor.
+
+---
+
+# 12. BACKEND WORKSTATION AND ANCHOR MAPPING
+
+Inspect the current Engineering anchors file.
+
+Reuse actual valid Backend anchors.
+
+Expected semantic anchors may include:
+
+- BE_WORKSTATION_APPROACH
+- BE_DESK_WORK
+- BE_CHAIR
+- BE_API_BOARD
+- ENG_INTEGRATION_TABLE
+- ENG_ARCHITECTURE_BOARD
+- ENG_DISCUSSION_POSITION
+- ENGINEERING_ROOM_SPAWN
+- ENGINEERING_ROOM_IDLE
+- ENGINEERING_EAST_EXIT
+
+These names are reference candidates, not guaranteed actual IDs.
+
+Read the real source.
+
+Do not invent final coordinates.
+
+Validate:
+
+- Character stands on floor.
+- Workstation chair is accessible.
+- Character faces the real monitor front.
+- Typing pose aligns with keyboard.
+- The character does not sit through the desk.
+- Backpack does not intersect the chair.
+- Routes do not cross furniture.
+- The Integration Hub remains accessible.
+- Navigation coordinates remain room-local.
+
+Do not reposition furniture without explicit need.
+
+---
+
+# 13. REQUIRED BACKEND ANIMATION SET
+
+Create genuine 3D animations with a distinct Backend identity.
+
+Animation behavior must not consist only of UI label updates.
+
+Use the existing character animation architecture.
+
+## 01 — Idle_Breathing
+
+Calm developer idle.
+
+Subtle breathing and head movement.
+
+Loopable.
+
+## 02 — Walk_Cycle
+
+Voxel walking animation.
+
+Natural alternating arm/leg movement.
+
+Stable feet.
+
+Reusable with navigation.
+
+## 03 — Work_Typing
+
+Walk to Backend workstation.
+
+Sit or enter the supported working pose.
+
+Face actual computer monitors.
+
+Animate keyboard work.
+
+Avoid intersection with furniture.
+
+## 04 — API_Development
+
+Distinct from ordinary typing.
+
+Show a code-focused activity:
+
+- Typing.
+- Pausing.
+- Reviewing main display.
+- Moving between keyboard and mouse.
+
+Represent API implementation visually.
+
+## 05 — Debug_Backend
+
+Character investigates a simulated service issue.
+
+Suggested gestures:
+
+- Lean toward monitor.
+- Pause.
+- Think.
+- Check secondary display.
+- Resume typing.
+
+Use an appropriate focused or concerned expression.
+
+Do not fake actual debugging evidence.
+
+## 06 — Review_Service_Logs
+
+Character inspects fictional service logs.
+
+Small head movement between display areas.
+
+Subtle pointer or keyboard interaction.
+
+## 07 — Inspect_API_Contract
+
+Review a documented API contract.
+
+Use a tablet, paper, or shared API board.
+
+This is visual preparation for future Frontend ↔ Backend coordination.
+
+Do not initiate real cross-agent communication.
+
+## 08 — Backend_Architecture_Review
+
+Walk to a technical board.
+
+Inspect service diagram.
+
+Make small pointing and explanatory gestures.
+
+Face the board correctly.
+
+## 09 — Technical_Discussion
+
+Reusable developer discussion pose.
+
+Natural hand gestures.
+
+Small head movement.
+
+Talking expression.
+
+May run without a second actor in demo mode.
+
+Do not claim a real discussion with Frontend occurred.
+
+## 10 — Database_Dependency_Review
+
+Demonstrate reviewing backend-to-database requirements.
+
+Use a shared architecture board or documentation prop.
+
+Do not create the Database agent yet.
+
+Do not invent real schema compatibility results.
+
+## 11 — Code_Review
+
+Review existing simulated backend code.
+
+Differentiate from API_Development with slower reading/inspection gestures.
+
+Optional notebook or tablet prop.
+
+## 12 — Read_Documentation
+
+Hold a technical document or tablet.
+
+Look down and read.
+
+Subtle page or hand movement where supported.
+
+## 13 — Think_Plan
+
+Professional thinking animation.
+
+Small head tilt.
+
+Hand-to-chin gesture if the rig supports it.
+
+Return to neutral smoothly.
+
+## 14 — Present_Architecture
+
+Walk to shared integration board.
+
+Explain API/service architecture with pointing gestures.
+
+Natural presentation posture.
+
+## 15 — Coffee_Break
+
+Use a coffee cup accessory.
+
+Short drinking gesture.
+
+Return to idle.
+
+## 16 — Waiting_Review
+
+Calm waiting state.
+
+Possibly standing near workstation or checking a screen.
+
+Do not imply approval has been granted.
+
+## 17 — Task_Completed
+
+Subtle positive developer reaction.
+
+Small nod or confident gesture.
+
+Return smoothly to idle.
+
+## OPTIONAL — Service_Handoff_Demo
+
+If the core animations are complete and stable, implement a visual handoff pose for transferring completed backend work to QA or DevOps.
+
+Do not perform an actual deployment.
+
+No real repository changes or external operations.
+
+---
+
+# 14. ANIMATION QUALITY
+
+Every animation should:
+
+- Use actual character joint/pivot movement.
+- Preserve proportions.
+- Work with the existing character hierarchy.
+- Avoid broken or detached limbs.
+- Avoid floating feet.
+- Avoid clipping through furniture.
+- Preserve headphone attachment.
+- Preserve backpack attachment.
+- Preserve glasses position.
+- Avoid pose snapping.
+- Restore neutral pose when complete.
+
+Navigation and local animation must be separate.
+
+Walking to an anchor should not be baked into one global fixed-coordinate character animation.
+
+Use animation clips for reusable movements.
+
+Use runtime navigation for moving between room anchors.
+
+For seated tasks:
+
+1. Navigate to desk approach.
+2. Stop walking.
+3. Align character with workstation.
+4. Transition into seated posture.
+5. Perform action.
+6. Return to standing before leaving.
+
+Do not animate typing while the character is still walking.
+
+---
+
+# 15. FACIAL EXPRESSIONS
+
+Use simple voxel-compatible expressions.
+
+Required:
+
+- Neutral.
+- Focused.
+- Happy.
+- Thinking.
+- Talking.
+- Concerned.
+- Confident.
+- Surprised.
+- Tired / Frustrated (subtle).
+
+Expressions should remain readable through glasses.
+
+Use:
+
+- Eye variations.
+- Eyebrow movement.
+- Mouth geometry changes.
+- Small head pose changes.
+
+Avoid realistic facial morphing.
+
+Avoid changing the entire head geometry for every expression.
+
+Prevent expression planes from flickering.
+
+Preserve clean attachment to the head pivot.
+
+---
+
+# 16. ACCESSORIES AND PROPS
+
+Use appropriate accessories from the character reference.
+
+## Permanent character accessories
+
+- Rectangular glasses.
+- White/silver headphones.
+- Dark backpack, subject to seated visibility policy.
+
+## Contextual props
+
+- Laptop.
+- Tablet.
+- Technical document.
+- Smartphone if required.
+- Coffee cup.
+- Notebook.
+- Technical clipboard.
+
+## Prop behavior
+
+Props must:
+
+- Attach to defined hand or body attachment points.
+- Appear only for appropriate actions.
+- Not float during movement.
+- Hide or return safely after the action.
+- Avoid duplicating permanent room furniture.
+
+Do not include server racks or complete workstation equipment permanently inside the character GLB.
+
+Those are room assets.
+
+---
+
+# 17. BACKEND DEMO STATE SYSTEM
+
+Prepare visual/demo states only.
+
+Suggested states:
+
+- IDLE
+- MOVING
+- WORKING
+- API_DEVELOPMENT
+- DEBUGGING
+- REVIEWING_LOGS
+- REVIEWING_API_CONTRACT
+- ARCHITECTURE_REVIEW
+- DISCUSSING
+- REVIEWING_DATABASE_DEPENDENCY
+- CODE_REVIEW
+- READING_DOCUMENTATION
+- THINKING
+- PRESENTING
+- COFFEE_BREAK
+- WAITING_REVIEW
+- COMPLETED
+- BLOCKED_DEMO
+
+Required mapping:
+
+ACTION
+→ VISUAL STATE
+→ TARGET ANCHOR
+→ ANIMATION CLIP
+→ EXPRESSION
+→ OPTIONAL PROP.
+
+This is not the final AI Office backend state system.
+
+Do not claim real work is happening.
+
+Do not introduce actual API or database connections.
+
+Real task status will later come from verified backend events.
+
+The renderer must not independently decide that a task succeeded.
+
+---
+
+# 18. BACKEND SIMULATION PANEL
+
+Reuse the current character simulation UI architecture.
+
+Title:
+
+**Backend Developer — Simulasi Aktivitas**
+
+Provide controls for:
+
+- Idle.
+- Walk.
+- Coding.
+- API Development.
+- Debug Backend.
+- Review Service Logs.
+- Review API Contract.
+- Architecture Review.
+- Technical Discussion.
+- Database Dependency Review.
+- Code Review.
+- Read Documentation.
+- Think.
+- Present Architecture.
+- Coffee Break.
+- Waiting Review.
+- Task Completed.
+
+All controls must execute real visible actions.
+
+Display:
+
+- Current demo state.
+- Active clip.
+- Current target anchor.
+- Character position.
+- Active facial expression.
+- Active accessory.
+- Simulation status.
+
+Mark clearly:
+
+SIMULASI / DEMO.
+
+Do not display fictional backend operations as verified real execution.
+
+---
+
+# 19. AUTOMATIC BACKEND DEMO
+
+Add a dedicated control:
+
+**Jalankan Demo Backend**
+
+Suggested sequence:
+
+Idle
+→ Walk to Backend Desk
+→ Work Typing
+→ API Development
+→ Debug Backend
+→ Review Service Logs
+→ Walk to Architecture Board
+→ Review API Contract
+→ Present Architecture
+→ Return to Desk
+→ Task Completed
+→ Return to Idle.
+
+Requirements:
+
+- Smooth transitions.
+- Valid room anchors.
+- Correct character orientation.
+- No teleportation during ordinary navigation.
+- No furniture intersection.
+- Stop/Reset support.
+- No duplicated timers.
+- No duplicated AnimationMixer instances.
+- No lingering props.
+- No broken poses.
+
+Keep this demo independent from Frontend, PM, CEO and UI/UX demos.
+
+---
+
+# 20. MULTI-AGENT PREPARATION — NO REAL COLLABORATION YET
+
+Backend shares Engineering with Frontend and the future Database agent.
+
+Prepare future collaboration interfaces without implementing live communication.
+
+Examples:
+
+- Frontend requests API compatibility review.
+- Backend requests Database schema information.
+- Backend reports an integration blocker to PM.
+- Backend provides review information to QA.
+- Backend requests deployment support from DevOps.
+
+These are future integration scenarios.
+
+Do not fake those events as real.
+
+Do not automatically move existing Frontend characters when a Backend demo begins.
+
+Do not create fake conversations between agents.
+
+Future multi-agent choreography will be implemented separately using real system events and shared navigation control.
+
+---
+
+# 21. CHARACTER EXPORT CONTRACT
+
+Follow the established:
+
+**AI OFFICE PRODUCTION ASSET STANDARD V1**
+
+Export a standalone character GLB.
+
+Filename:
+
+`backend_developer_agent.glb`
+
+The GLB must contain:
+
+- Complete Backend character geometry.
+- High-quality layered hair.
+- Glasses.
+- Face.
+- Jacket.
+- Inner shirt.
+- Headphones.
+- Trousers.
+- Sneakers.
+- Backpack.
+- Appropriate materials.
+- Stable animation hierarchy.
+- Genuine exported AnimationClips.
+
+Exclude:
+
+- Engineering Room geometry.
+- Workstations.
+- Chairs.
+- Walls.
+- Floors.
+- Cameras.
+- Lights.
+- UI.
+- Debug helpers.
+- Navigation markers.
+- Temporary reaction icons.
+
+The character must remain independent from the room.
+
+---
+
+# 22. ANIMATION EXPORT VALIDATION
+
+Use the existing GLTFExporter-compatible animation pipeline.
+
+Ensure clips have real transform keyframes.
+
+All animation tracks must reference actual exported nodes.
+
+Do not claim procedural JavaScript animations are automatically embedded.
+
+If an animation uses runtime logic that cannot be exported, keep the original controller source and document it separately.
+
+After export, inspect the resulting GLB.
+
+Verify:
+
+- Actual glTF animation count.
+- Animation clip names.
+- Keyframe data.
+- Track targets.
+- Looping behavior where appropriate.
+- Playback on a reimported model.
+
+Do not invent a clip count.
+
+---
+
+# 23. BACKEND MANIFEST JSON
+
+Export:
+
+`backend_developer_agent.manifest.json`
+
+Include:
+
+- schema_version
+- asset_id
+- display_name
+- department
+- role
+- compatible_room_id
+- glb_path
+- model_height
+- actual_bounds
+- root_origin_policy
+- local_forward_axis
+- default_scale
+- material_profile
+- hair_material_palette
+- supported_animation_clips
+- supported_expressions
+- accessory_definitions
+- export_version
+- validation_summary
+
+Use actual measured data.
+
+Do not invent file paths or geometry statistics.
+
+---
+
+# 24. BACKEND BEHAVIOR JSON
+
+Export:
+
+`backend_developer_agent.behavior.json`
+
+Include:
+
+- schema_version
+- character_id
+- default_state
+- default_idle_anchor
+- action_mappings
+- animation_clip_mapping
+- target_anchor_mapping
+- expression_mapping
+- prop_attachment_mapping
+- movement_configuration
+- animation_transition_policy
+- posture_transition_policy
+- demo_capabilities
+- future_external_event_contract
+
+Ensure compatibility with the existing character behavior schema.
+
+Do not create a separate incompatible JSON format for Backend.
+
+---
+
+# 25. PREVIEW AND SOURCE BACKUP
+
+Export:
+
+`backend_developer_agent_preview.png`
+
+Show a clean isometric three-quarter render.
+
+Also provide a turnaround preview if the existing export UI supports it.
+
+Preserve relevant source code:
+
+- Backend character builder.
+- Hair geometry generator.
+- Material definitions.
+- Animation clips.
+- Expression controller.
+- Prop controller.
+- Navigation integration.
+- Character simulation controller.
+- Export/reimport test logic.
+
+Use the existing full source project backup workflow.
+
+---
+
+# 26. PRODUCTION FOLDER STRUCTURE
+
+Logical production package:
+
+production/
+  characters/
+    backend_developer_agent/
+      backend_developer_agent.glb
+      backend_developer_agent.manifest.json
+      backend_developer_agent.behavior.json
+      backend_developer_agent_preview.png
+
+  rooms/
+    engineering/
+      engineering_room.glb
+      engineering_room.manifest.json
+      engineering_room.anchors.json
+
+  office/
+    office-layout-a3.1.json
+
+source/
+  modular-room-lab-source.zip
+
+Do not restructure the existing source project unnecessarily.
+
+The production asset package is the integration boundary.
+
+---
+
+# 27. CRITICAL VISUAL VALIDATION
+
+Before final export, compare the Backend character with:
+
+1. The attached Backend character sheet.
+2. The live Frontend character.
+3. The live PM character.
+4. The live CEO character.
+5. The UI/UX character.
+
+Check:
+
+- Overall height.
+- Head proportion.
+- Torso proportion.
+- Hair silhouette.
+- Glasses design.
+- Outfit geometry.
+- Material finish.
+- Character shadows.
+- Shoe scale.
+- Backpack size.
+
+Most importantly, inspect the HAIR in all directions.
+
+## HAIR ACCEPTANCE CONDITIONS
+
+[ ] Hair is visibly layered.
+
+[ ] Hair is not a single cube.
+
+[ ] Hair has dark brown tonal variation.
+
+[ ] Hair front fringe is recognizable.
+
+[ ] Hair sides have deliberate volume.
+
+[ ] Hair back is detailed and tapered.
+
+[ ] Glasses remain visible.
+
+[ ] Ears do not flicker.
+
+[ ] Hair does not intersect the forehead.
+
+[ ] No visible coplanar hair-face surfaces.
+
+[ ] Hairstyle looks correct from front and back.
+
+[ ] Hairstyle matches the attached concept identity.
+
+If these checks fail, refine the hairstyle rather than changing the entire character.
+
+---
+
+# 28. INDEPENDENT REIMPORT TEST
+
+Export the ACTUAL Backend character GLB.
+
+Load it using an independent GLTFLoader test scene.
+
+Use a new AnimationMixer for the reimported model.
+
+Verify:
+
+1. GLB parses correctly.
+2. Character root exists.
+3. Geometry is visible.
+4. Head and hair are complete.
+5. Glasses are correctly attached.
+6. Hair material colors survive export.
+7. Jacket materials survive export.
+8. Headphones remain correctly positioned.
+9. Backpack remains attached.
+10. Character height is correct.
+11. Feet remain grounded.
+12. Exported animation clips exist.
+13. Clip tracks resolve to valid nodes.
+14. Idle animation plays.
+15. Walk animation plays.
+16. Typing animation plays.
+17. Debugging animation plays.
+18. Architecture presentation plays.
+19. No detached limbs.
+20. No broken poses.
+21. No missing material.
+22. No exported room geometry.
+23. No debug helpers.
+24. No major new flickering.
+
+Distinguish live source behavior from GLB-exported behavior.
+
+Do not report PASS without actually executing the test.
+
+---
+
+# 29. REGRESSION VALIDATION
+
+Confirm:
+
+[ ] PM Room remains unchanged.
+
+[ ] Boss PM animations still function.
+
+[ ] CEO Room remains unchanged.
+
+[ ] CEO character still works.
+
+[ ] UI/UX Room remains unchanged.
+
+[ ] UI/UX character still works.
+
+[ ] Engineering Room geometry remains unchanged.
+
+[ ] Frontend character remains unchanged.
+
+[ ] Frontend simulation still works.
+
+[ ] Backend appears independently.
+
+[ ] Backend uses the correct workstation.
+
+[ ] Backend does not duplicate the Frontend actor.
+
+[ ] Room Selector works.
+
+[ ] Single Room works.
+
+[ ] Full Office still loads.
+
+[ ] Existing character GLB exports work.
+
+[ ] Existing room GLB exports work.
+
+[ ] No global camera changes were introduced.
+
+---
+
+# 30. IMPLEMENTATION ORDER
+
+PHASE A:
+Inspect current project and create checkpoint.
+
+PHASE B:
+Construct Backend character base geometry.
+
+PHASE C:
+Refine layered hairstyle and inspect 360-degree silhouette.
+
+PHASE D:
+Construct outfit, glasses, headphones, backpack, and materials.
+
+PHASE E:
+Compare proportions and rendering against existing characters.
+
+PHASE F:
+Create rig and basic Idle/Walk animations.
+
+PHASE G:
+Integrate Backend with verified Engineering workstation anchors.
+
+PHASE H:
+Implement Backend-specific job animations.
+
+PHASE I:
+Implement expressions and contextual props.
+
+PHASE J:
+Add dedicated Backend simulation controls and automatic demo.
+
+PHASE K:
+Export standalone Backend GLB and JSON package.
+
+PHASE L:
+Independently reimport and verify animations.
+
+PHASE M:
+Run complete regression checks.
+
+STOP AFTER BACKEND COMPLETION.
+
+Do not create Database Developer yet.
+
+---
+
+# 31. REQUIRED FINAL REPORT
+
+After completion, provide:
+
+1. Source files added or modified.
+2. Character geometry summary.
+3. Final height and dimensions.
+4. Detailed hairstyle construction summary.
+5. Hair palette and material information.
+6. Visual comparison to the supplied sheet.
+7. List of implemented animations.
+8. List of clips genuinely embedded in GLB.
+9. Any procedural-only animations.
+10. Expressions implemented.
+11. Accessories implemented.
+12. Engineering anchors used.
+13. Navigation test results.
+14. Exported filenames.
+15. GLB independent reimport results.
+16. Regression results.
+17. Known limitations.
+
+Do not invent successful validations.
+
+---
+
+# FINAL DIRECTIVE
+
+Create ONE Backend Developer character inside the EXISTING AI Office Modular Room Lab.
+
+Use the attached Backend Developer Voxel Character Sheet as the authoritative visual identity reference.
+
+Use existing Room-Native PM, CEO, UI/UX, and Frontend characters as technical style references.
+
+PRIORITIZE:
+
+1. Accurate dark brown layered voxel hair.
+2. High-quality 360-degree hairstyle silhouette.
+3. Stable matte materials and deliberate tonal variation.
+4. Correct black glasses and visible eyes.
+5. Dark charcoal technical jacket.
+6. White/silver headphones.
+7. Dark technical backpack.
+8. Consistent proportions and room scale.
+9. Real Backend-specific animations.
+10. Reliable Engineering workstation navigation.
+11. Portable GLB and JSON exports.
+12. Independent reimport verification.
+
+Do not modify existing characters, rooms, or the A3.1 office layout.
+
+Do not build Database Developer.
+
+Do not add real backend orchestration.
+
+Do not implement real agent-to-agent collaboration.
+
+Do not change the deferred Full Office camera.
+
+**COMPLETE THE BACKEND DEVELOPER CHARACTER, ANIMATION SYSTEM, AND EXPORT VALIDATION — THEN STOP FOR OWNER REVIEW.**

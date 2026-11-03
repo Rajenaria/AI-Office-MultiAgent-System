@@ -1,0 +1,1281 @@
+# AI OFFICE — MODULAR ROOM LAB V1
+## PM & STRATEGY ROOM — HIGH-FIDELITY 3D PIXEL-ART ENVIRONMENT
+
+# 0. ROLE & PRIMARY MISSION
+
+You are a senior Pixel-Art Environment Artist, Isometric Game Level Designer, 3D Technical Artist, Three.js Engineer, and Modular Environment Pipeline Architect.
+
+Create a complete, working, interactive web-based 3D ROOM BUILDER and VIEWER for AI Office.
+
+This is a NEW, STANDALONE project dedicated to producing reusable 3D environment assets.
+
+It is NOT the main AI Office dashboard.
+
+The goal is to create one exceptionally beautiful, detailed, pixel-isometric room and export it as a genuinely reusable `.glb` asset.
+
+**FIRST ROOM: PM & STRATEGY ROOM.**
+
+We will later create other departmental rooms separately and combine them into one connected virtual office.
+
+Therefore, visual fidelity, real 3D geometry, modular standards, and reliable GLB exports are all mandatory.
+
+Do not build the entire office at once.
+
+Do not create other departments yet.
+
+Do not implement agent orchestration, AI backends, or productivity dashboards.
+
+BUILD A REAL INTERACTIVE 3D SCENE, NOT A STATIC IMAGE.
+
+---
+
+# 1. AUTHORITATIVE VISUAL REFERENCE
+
+I have attached an approved isometric pixel-art interior image.
+
+This image is the PRIMARY REFERENCE for the environment art direction.
+
+Analyze its visual characteristics carefully before creating any geometry.
+
+Study:
+
+- Isometric architectural perspective.
+- Detailed warm wood flooring.
+- Cozy wall colors.
+- Furnishing density.
+- Cabinet silhouettes.
+- Desk and computer proportions.
+- Bookcase details.
+- Window construction.
+- Small household objects.
+- Rich but restrained palette.
+- Pixel-level texture detail.
+- Shadow placement.
+- Cutaway room architecture.
+- Overall handcrafted indie-game aesthetic.
+
+IMPORTANT:
+
+The reference shows a residential-style room, but the result must be a PROJECT MANAGER OFFICE.
+
+Do not recreate its kitchen, bathroom, or residential layout.
+
+Translate its artistic qualities into a professional, inviting PM & Strategy office.
+
+The reference controls the ART STYLE, not the floor plan.
+
+### Visual fidelity requirement
+
+The room should immediately feel as if it belongs to the same game world as the attached reference.
+
+Do not replace the art direction with generic smooth 3D.
+
+Do not use random low-poly furniture simply because it is easy to generate.
+
+Do not imitate the reference by placing a flat image inside a 3D environment.
+
+All important visible furnishings must have actual 3D geometry.
+
+---
+
+# 2. TARGET ART STYLE
+
+STYLE NAME:
+
+**Premium Cozy Isometric Pixel-Art 3D**
+
+A modern retro-inspired indie management game environment.
+
+The art must be:
+
+- Detailed.
+- Crisp.
+- Warm.
+- Cohesive.
+- Carefully composed.
+- Geometric.
+- Charming.
+- Visually rich.
+- Easy to read.
+- High quality.
+
+### What "HD Pixel Art" means
+
+High quality must come from well-authored geometry and textures, not photorealism.
+
+Create an image that looks highly detailed at full browser resolution while preserving deliberately pixelated decorative details.
+
+Use:
+
+- Carefully shaped blocky objects.
+- Intentional pixel textures.
+- Clear object silhouettes.
+- Stepped color variation.
+- Rich architectural detail.
+- Limited, harmonious colors.
+- Correct perspective.
+- Tasteful contact shadows.
+- Authentic retro game material treatment.
+
+### Strongly avoid
+
+- Primitive colored cubes representing every object.
+- Blurry fullscreen pixelation.
+- Glossy toy-like low-poly graphics.
+- Smooth Pixar-style modeling.
+- Photorealistic textures.
+- Noisy procedurally generated patterns.
+- Excessive bloom.
+- Excessive ambient occlusion.
+- Heavy image blur.
+- Huge empty rooms.
+- Empty desks.
+- Unrealistic oversized furniture.
+- Unreadable tiny objects.
+- Fake 3D billboards.
+
+Make the environment resemble a handcrafted pixel-art game diorama, not a quick technical prototype.
+
+---
+
+# 3. REQUIRED TECHNOLOGY
+
+Build an actual web application inside Google AI Studio Build.
+
+Preferred:
+
+- React.
+- TypeScript.
+- Three.js.
+- React Three Fiber.
+- @react-three/drei.
+- GLTFExporter.
+- GLTFLoader.
+- Modern CSS for viewer controls.
+
+Use actual 3D meshes and export-compatible standard materials.
+
+Do not require:
+
+- Blender.
+- Blender MCP.
+- External GLB models.
+- Paid 3D asset services.
+- Backend databases.
+- AI API keys.
+- User authentication.
+
+For this first experiment, generate environment objects procedurally and use local procedural texture generation where practical.
+
+Organize code into reusable scene components.
+
+Suggested structure:
+
+- ModularRoomViewer
+- RoomGeometry
+- ModularGrid
+- FloorBuilder
+- WallBuilder
+- WindowBuilder
+- FurnitureLibrary
+- PMRoomLayout
+- PixelMaterialLibrary
+- CameraController
+- LightingRig
+- RoomExportManager
+- RoomImportValidator
+- RoomManifestGenerator
+- RoomInspector
+
+Use the simplest clean architecture that supports all required features.
+
+---
+
+# 4. THE MODULAR ROOM STANDARD — CRITICAL
+
+The room must be designed as ONE independent and reusable world block.
+
+It will eventually become part of a large connected AI Office building.
+
+Do not treat the room as a permanently isolated diorama.
+
+## Coordinate system
+
+Use Three.js coordinates:
+
+- X = East / West.
+- Y = Vertical.
+- Z = North / South.
+
+Use Y-up.
+
+Use one consistent world-unit scale for all future rooms.
+
+### Proposed base module
+
+PM Room footprint:
+
+8 × 8 world units.
+
+- Width: 8 units along X.
+- Depth: 8 units along Z.
+- Floor elevation: Y = 0.
+- Interior wall height: approximately 3.2 units.
+- Primary grid cell: 1 world unit.
+- Floor thickness: approximately 0.16 units.
+
+Use the southwest floor corner as the logical module origin:
+
+X = 0
+Y = 0
+Z = 0
+
+Room bounds:
+
+X = 0 to 8
+Z = 0 to 8
+
+All permanent room geometry must be placed relative to this consistent origin.
+
+Do not arbitrarily center room geometry at the world origin if doing so makes future room placement inconsistent.
+
+The camera may target the module center independently.
+
+### Grid standards
+
+- Use a clearly defined tile grid.
+- Position walls and openings precisely.
+- Furniture may use sub-grid offsets.
+- Keep floor and wall dimensions deterministic.
+- Avoid objects extending beyond room boundaries unless explicitly designated as a connector.
+- Ensure independently exported rooms can be positioned beside each other without unexpected overlaps.
+
+### Connection standard
+
+The room must have reserved modular connector locations for future adjacent rooms.
+
+Provide:
+
+Connector A — EAST
+- At X = 8, centered around Z = 4.
+- 2 world units of passage width.
+
+Connector B — SOUTH
+- At Z = 0, centered around X = 4.
+- 2 world units of passage width.
+
+Use precise connector coordinates and orientations.
+
+Reserve these areas from obstructing furniture.
+
+Connectors represent future doorways or shared passage openings.
+
+They should not produce strange permanently open wall gaps when the room is viewed alone; use removable compatible wall or doorway sections.
+
+### Module compatibility
+
+Future rooms must use the SAME:
+
+- World-unit definition.
+- Floor elevations.
+- Wall alignment.
+- Grid cell size.
+- Doorway width.
+- Connector conventions.
+- Coordinate-axis conventions.
+- Material scale.
+- Texture pixel density.
+
+The first PM Room defines the baseline for subsequent modules.
+
+---
+
+# 5. ROOM ARCHITECTURE
+
+Create a sophisticated but cozy PM & Strategy Room.
+
+It should resemble a miniature office designed for a capable project manager leading an AI software development organization.
+
+### Wall configuration
+
+Use hybrid cutaway architecture.
+
+- North wall: primarily full height.
+- West wall: primarily full height.
+- South-facing edge: low or visually cut away.
+- East-facing edge: low/cutaway where appropriate, with a reserved modular connector.
+
+Ensure the default camera clearly reveals the interior.
+
+### Windows
+
+Add two or three beautifully crafted office windows.
+
+Window details:
+
+- Warm wooden or muted metal frames.
+- Proper sill geometry.
+- Geometric glass panes.
+- Subtle daylight appearance.
+- Exterior-view suggestion if appropriate.
+- Pixel-like frame details.
+
+Avoid large featureless rectangles.
+
+### Wall treatment
+
+Use:
+
+- Warm beige walls.
+- Muted brown trim.
+- Subtle baseboards.
+- Minimal wall texture.
+- A few decorations.
+- Optional wood accents.
+
+### Flooring
+
+Use beautiful pixel-art oak flooring.
+
+Design the floor with:
+
+- Distinct wood planks.
+- Slight color variation.
+- Deliberate grain clusters.
+- Crisp texture detail.
+- Natural pattern repetition.
+- Controlled contrast.
+
+Avoid the overly repetitive, brightly outlined wood grid from the earlier AI Office prototype.
+
+The floor should support the scene visually, not dominate it.
+
+---
+
+# 6. PM ROOM INTERIOR — REQUIRED CONTENT
+
+The room should feel occupied, personalized, functional, and comfortable.
+
+Every major furniture item must have its own recognizable geometry.
+
+## AREA A — PROJECT MANAGER WORKSTATION
+
+Create one excellent executive PM desk.
+
+Include:
+
+- Warm wood desk surface.
+- Detailed desk legs or drawers.
+- Office chair with recognizable backrest.
+- Computer monitor.
+- Laptop if appropriate.
+- Keyboard.
+- Mouse.
+- Desk lamp.
+- Coffee cup.
+- Notebook.
+- Small stack of planning documents.
+- Desk organizer.
+- Small indoor plant.
+- Optional pen holder.
+
+The desk should look like a carefully designed asset, not one rectangular slab with boxes on top.
+
+Place it close to natural lighting, without blocking the windows.
+
+## AREA B — PROJECT PLANNING BOARD
+
+Create an impressive planning area.
+
+Include:
+
+- Large wall-mounted strategy board or freestanding whiteboard.
+- Several colored task notes.
+- Milestone blocks.
+- Timeline-like arrangement.
+- Simple task columns.
+- Small marker tray.
+- Optional connecting lines.
+
+Use abstract shapes instead of attempting detailed unreadable text.
+
+Use muted colors for task notes.
+
+This area should clearly communicate the PM's responsibilities.
+
+## AREA C — MINI COLLABORATION TABLE
+
+Create a small meeting table.
+
+Include:
+
+- Attractive wood geometry.
+- Three or four seats.
+- Papers or project notes.
+- One laptop or tablet.
+- Coffee cups.
+- Small central decoration.
+
+This is for planning and project discussions.
+
+Avoid creating a huge central meeting table that consumes the entire room.
+
+## AREA D — BOOKSHELF / DOCUMENT STORAGE
+
+Create a tall detailed bookcase.
+
+Include:
+
+- Multiple shelves.
+- Books of varying sizes.
+- Different book spine colors.
+- Files and folders.
+- Small storage boxes.
+- Optional awards.
+- Decorative objects.
+- Small plant.
+
+Each shelf should have meaningful visual detail.
+
+The bookcase is an important benchmark for environmental asset quality.
+
+## AREA E — COZY SEATING CORNER
+
+Create a small comfortable seating area.
+
+Include:
+
+- Two-seat sofa or comfortable lounge chairs.
+- Small coffee table.
+- Warm rug.
+- Small decorative lamp.
+- Plant.
+- Optional wall artwork.
+
+Keep the arrangement comfortable but professional.
+
+The space should reinforce the cozy atmosphere of the approved pixel-art room reference.
+
+## AREA F — SMALL DECORATIVE PROPS
+
+Add carefully selected props:
+
+- Indoor plants.
+- Framed project artwork.
+- Clock.
+- Book piles.
+- Small cabinet.
+- Decorative storage.
+- Desk stationery.
+- Soft area rug.
+- Office trash bin.
+- Simple wall decorations.
+
+Do not add objects randomly.
+
+Every item must contribute to the visual composition.
+
+---
+
+# 7. ROOM LAYOUT & WALKABLE SPACE
+
+Do not simply scatter furniture randomly.
+
+Design the room intentionally.
+
+The PM desk should be the main focal point.
+
+The planning board should be clearly visible.
+
+The meeting area should have sufficient clearance.
+
+Keep an unobstructed path between the south and east connector zones.
+
+Furniture must not:
+
+- Block doorways.
+- Intersect walls.
+- Overlap other furniture incorrectly.
+- Extend outside module bounds.
+- Prevent a character from approaching the PM desk.
+- Obstruct the entire interior from the default camera.
+
+### Character compatibility
+
+No permanent character model is required in this first environment.
+
+However, use a shared AI Office character-height reference for scale checking.
+
+Add a temporary scale mannequin toggle if helpful.
+
+The mannequin is ONLY for checking whether chairs, desks and doors are proportionally correct.
+
+It must be excluded from the exported PM Room GLB.
+
+Future Boss PM models will be imported separately.
+
+Do not permanently merge a character into the room asset.
+
+---
+
+# 8. ART-DIRECTED MATERIAL SYSTEM
+
+Implement a reusable pixel-art-friendly material library.
+
+Categories:
+
+- Warm oak wood.
+- Dark walnut wood.
+- Painted beige walls.
+- Cream surfaces.
+- Dark metal.
+- Soft fabric.
+- Glass.
+- Plant foliage.
+- Plant pots.
+- Paper.
+- Electronic screens.
+
+### Texturing
+
+Use crisp procedural pixel textures where useful.
+
+Examples:
+
+Wood:
+Deliberate rectangular plank and grain patterns.
+
+Fabric:
+Subtle low-resolution textile color blocks.
+
+Books:
+Distinct colorful spine clusters.
+
+Plants:
+Layered green geometry with stepped shading.
+
+Computer screens:
+Tiny abstract UI shapes.
+
+### Texture handling
+
+Use appropriate texture filters.
+
+Prefer nearest-neighbor filtering for pixel-style textures.
+
+Use correctly configured UV mapping.
+
+Ensure texture colors remain consistent with the renderer's color-space settings.
+
+Avoid extreme texture stretching.
+
+When procedural textures are generated through CanvasTexture, ensure the texture data can actually be embedded in the GLB export.
+
+Do not use dynamic shader effects as a substitute for permanent material information when those effects cannot be exported reliably.
+
+### Material discipline
+
+Use export-compatible standard or unlit materials where appropriate.
+
+Avoid unsupported custom shaders for permanent room assets.
+
+Preview-specific visual effects must remain separate from the exported material data.
+
+---
+
+# 9. LIGHTING — PREMIUM COZY ATMOSPHERE
+
+Create warm, pleasant natural lighting.
+
+Use:
+
+- Soft directional sunlight.
+- Balanced ambient fill.
+- Gentle shadowing.
+- Restrained contrast.
+- Carefully placed highlights.
+- Natural corner depth.
+
+The room should feel bright and inviting.
+
+Avoid:
+
+- Harsh black shadows.
+- Washed-out materials.
+- Extreme orange lighting.
+- Neon accents.
+- Overly polished reflective surfaces.
+- Excessive ambient occlusion.
+- Heavy bloom.
+
+The quality should resemble the approved reference's cozy pixel-art lighting.
+
+Important export consideration:
+
+Do not assume that the browser's scene lighting, shadows, postprocessing, or tone mapping will automatically look identical in another renderer.
+
+Keep the exportable room materials self-consistent.
+
+Store recommended lighting and rendering information separately in the room manifest.
+
+---
+
+# 10. CAMERA — REAL ROTATABLE 3D
+
+Implement actual camera orbiting.
+
+Use a Three.js OrthographicCamera with OrbitControls or an equivalent implementation.
+
+### Required user controls
+
+- Left drag: rotate.
+- Mouse wheel: zoom.
+- Right drag: pan.
+- Reset: return to default angle.
+- Fit Room: automatically frame the full module.
+
+### Camera presets
+
+- Isometric Default.
+- Front.
+- Back.
+- Left.
+- Right.
+- Top.
+- Four diagonal angles.
+
+Allow full 360-degree horizontal rotation.
+
+Constrain vertical movement sensibly.
+
+Use smooth camera transitions.
+
+### Default composition
+
+The initial isometric view should look like the attached pixel-art room reference.
+
+Use a three-quarter elevated angle.
+
+The room should occupy a substantial portion of the viewport.
+
+Avoid excessive empty background.
+
+### Cutaway wall behavior
+
+When the camera moves behind a wall, avoid obstructing the room interior.
+
+Use camera-aware wall hiding or fading.
+
+However:
+
+**Do not permanently remove the actual wall geometry from the exported room.**
+
+Wall cutaway behavior is a VIEWER FEATURE.
+
+The actual building geometry must remain available for export and later reuse.
+
+---
+
+# 11. VIEWER UI
+
+Build a professional but compact 3D Room Lab interface.
+
+Title:
+
+**AI Office — Modular Room Lab**
+
+Current Module:
+
+**PM & Strategy Room**
+
+### Main layout
+
+CENTER:
+Large 3D room viewport.
+
+TOP:
+Room name, module size, preview mode, Export GLB.
+
+RIGHT:
+Room inspector and display controls.
+
+BOTTOM:
+Camera presets.
+
+### Controls
+
+Provide functional controls:
+
+- Rotate.
+- Zoom.
+- Reset camera.
+- Fit room.
+- Toggle grid.
+- Toggle cutaway mode.
+- Toggle roof/walls where applicable.
+- Toggle furniture group.
+- Toggle props.
+- Toggle scale mannequin.
+- Toggle textures.
+- Toggle shadows.
+- Isometric view.
+- Top-down layout.
+
+### Visual mode
+
+Provide:
+
+1. Reference Match.
+2. Clean Geometry.
+3. Pixel-Art Detail.
+
+Reference Match is the default and should aim to match the approved image.
+
+Clean Geometry helps inspect the actual underlying meshes.
+
+Pixel-Art Detail emphasizes pixel textures without blurry fullscreen downsampling.
+
+Do not implement fake buttons.
+
+Every displayed interactive control must have functional behavior.
+
+---
+
+# 12. GLB EXPORT — MOST IMPORTANT ENGINEERING FEATURE
+
+The application MUST provide a working:
+
+**EXPORT ROOM TO GLB**
+
+button.
+
+Use Three.js GLTFExporter.
+
+Export a real binary GLB, not a screenshot renamed to `.glb`.
+
+### Filename
+
+`AI_OFFICE_ROOM_PM_v1.glb`
+
+### Export content
+
+Include:
+
+- Floor geometry.
+- Permanent walls.
+- Window geometry.
+- Room trim.
+- Desk.
+- Chairs.
+- Meeting table.
+- Planning board.
+- Bookshelves.
+- Sofa.
+- Rug.
+- Permanent plants.
+- Permanent decorative props.
+- Permanent material textures.
+
+### Exclude from export
+
+- Preview camera.
+- Camera helper.
+- Orbit controls.
+- Scene grid helper.
+- World background.
+- Selection outlines.
+- Hover highlights.
+- UI elements.
+- Temporary scale mannequin.
+- Preview-only status icons.
+- Preview-only clipping effects.
+- Debug geometry.
+- Test objects.
+
+### Export structure
+
+Create a dedicated exportable room root:
+
+`ROOM_PM_ROOT`
+
+Use child groups:
+
+`STRUCTURE`
+
+`FLOOR`
+
+`WALLS`
+
+`WINDOWS`
+
+`FURNITURE`
+
+`PROPS`
+
+`DECORATION`
+
+`CONNECTORS`
+
+Use meaningful names for individual meshes and furniture objects.
+
+Do not flatten the entire scene unnecessarily into an uneditable anonymous mesh.
+
+### Origin
+
+The exported module must preserve the agreed local origin convention.
+
+The room must retain a stable module footprint from X=0 to X=8 and Z=0 to Z=8.
+
+Do not automatically recenter the export around the visual midpoint.
+
+Do not bake the viewer camera orbit or preview centering transforms into the room asset.
+
+### Scale
+
+Export at:
+
+1 Three.js unit = 1 agreed world unit.
+
+Avoid unexpected scaling.
+
+Avoid negative scales.
+
+Ensure transformations are compatible with normal GLTFLoader import.
+
+### Textures
+
+Embed supported permanent textures into the GLB.
+
+Ensure material references remain intact.
+
+Do not rely on external CDN-hosted images for exported asset appearance.
+
+Avoid unsupported scene-specific procedural shader dependencies.
+
+### Technical implementation
+
+Use a dedicated export scene containing the actual reusable room hierarchy.
+
+Export with binary mode enabled.
+
+Handle errors explicitly.
+
+Trigger a genuine browser download of the ArrayBuffer as a `.glb` file.
+
+Do not show a success message before export completes.
+
+---
+
+# 13. ROOM MANIFEST — REQUIRED
+
+Besides GLB, generate a companion JSON manifest.
+
+Filename:
+
+`AI_OFFICE_ROOM_PM_v1.manifest.json`
+
+The manifest must include:
+
+- module_id
+- version
+- display_name
+- asset_filename
+- grid_size
+- world_unit_scale
+- coordinate_system
+- module_origin
+- footprint_width
+- footprint_depth
+- floor_elevation
+- wall_height
+- floor_thickness
+- bounding_box
+- connector definitions
+- recommended_camera
+- recommended_lighting
+- renderer color-space assumptions
+- material notes
+- number_of_meshes
+- number_of_materials
+- triangle_count if measurable
+- content groups
+- asset creation/version information
+
+### Example connector data
+
+EAST:
+- Position: [8, 0, 4]
+- Outward direction: +X
+- Width: 2
+
+SOUTH:
+- Position: [4, 0, 0]
+- Outward direction: -Z
+- Width: 2
+
+Keep connector semantics consistent with the geometry.
+
+Do not invent connector positions unrelated to the actual export.
+
+### Future assembly compatibility
+
+The manifest must allow a future application to place this PM Room beside another compatible room block.
+
+Never assume that a file being named ".glb" automatically makes it modular.
+
+Correct scale, origin, floor elevation, bounds, and connector alignment are mandatory.
+
+---
+
+# 14. IMPORT VALIDATION — NON-NEGOTIABLE
+
+After generating the GLB, provide an IMPORT TEST function.
+
+Use GLTFLoader to load the newly exported file as an independent asset.
+
+The application should support a mode:
+
+**Test Exported GLB**
+
+The import test must:
+
+1. Load the generated GLB.
+2. Display its real geometry.
+3. Show the imported room in a clean viewer.
+4. Allow camera rotation.
+5. Inspect bounding box and scale.
+6. Check material and texture presence.
+7. Check for missing objects.
+8. Show basic diagnostics.
+
+The test must not simply display the original in-memory scene and claim that the imported file is correct.
+
+### Assembly proof
+
+Provide a basic optional positioning test:
+
+- Show the imported PM Room at its standard origin.
+- Display a neighboring empty compatible module footprint.
+- Demonstrate snap alignment on the grid.
+- Show connector alignment.
+- Confirm that floor heights match.
+- Confirm that no unexpected furniture extends outside the module.
+
+The neighboring footprint should be a simple wireframe/grid placeholder, not a second fully decorated room.
+
+This proves that the PM Room can become part of a larger office later.
+
+---
+
+# 15. PREVIEW EXPORT
+
+Also provide:
+
+**EXPORT PREVIEW PNG**
+
+Save a high-quality image of the room from the default approved isometric angle.
+
+Suggested filename:
+
+`AI_OFFICE_ROOM_PM_v1_preview.png`
+
+The image should include only the room, not the UI controls.
+
+Use enough resolution to inspect pixel-art textures clearly.
+
+Do not use excessive antialiasing or blur that destroys the intended style.
+
+This PNG is a visual review artifact.
+
+It is NOT a substitute for the GLB.
+
+---
+
+# 16. OPTIONAL ROOM ASSET INSPECTOR
+
+If reasonably feasible, add a simple inspector where the user can select furniture.
+
+Clicking a furniture object should display:
+
+- Object name.
+- Category.
+- Position.
+- Scale.
+- Material.
+- Approximate polygon count.
+
+Allow isolating or hiding an object temporarily for inspection.
+
+Do not implement a full 3D modeling editor.
+
+The goal is visual verification, not production-grade editing.
+
+Optional inspector controls should not delay the primary room and GLB export requirements.
+
+---
+
+# 17. PERFORMANCE
+
+The room should be visually rich but technically efficient.
+
+Use:
+
+- Reusable geometries.
+- Shared materials.
+- Repeated assets where appropriate.
+- Small, efficient textures.
+- Limited draw calls when practical.
+- Controlled dynamic shadows.
+- Carefully managed lighting.
+- Efficient scene updates.
+
+Do not use enormous high-resolution PBR textures for retro pixel-art objects.
+
+Do not render the entire scene at extremely low resolution to create pixelation.
+
+Avoid loading unnecessary external packages or asset libraries.
+
+Maintain smooth camera interaction.
+
+Performance should be measured rather than assumed.
+
+---
+
+# 18. STRICT SCOPE CONTROL
+
+Build ONLY the first PM & Strategy Room.
+
+Do not build:
+
+- Development Department.
+- QA Department.
+- UI/UX Studio.
+- DevOps Hub.
+- Research Library.
+- AI Engine Hub.
+- The complete AI Office building.
+- Character animation systems.
+- AI Agent orchestration.
+- Task Board.
+- Real-time monitoring.
+- Database.
+- Multi-project management.
+
+Do not permanently include the Boss character inside the room.
+
+The character system will be imported separately in a later stage.
+
+Focus on the PM Room as a reusable environmental asset.
+
+---
+
+# 19. IMPLEMENTATION PRIORITY
+
+Work in this order:
+
+### Phase 1 — Foundation
+
+- Set up React and Three.js.
+- Implement camera controls.
+- Establish world/grid coordinates.
+- Create the reusable room root.
+- Create export-compatible material utilities.
+
+### Phase 2 — Architecture
+
+- Construct floor.
+- Construct cutaway walls.
+- Construct windows.
+- Construct architectural trim.
+- Establish modular connector positions.
+
+### Phase 3 — Main Furniture
+
+- PM desk.
+- Executive chair.
+- Strategy board.
+- Meeting table.
+- Seating.
+- Bookshelves.
+
+### Phase 4 — Fine Environment Detail
+
+- Wood texture.
+- Books.
+- Documents.
+- Plants.
+- Lighting.
+- Rugs.
+- Small office props.
+
+### Phase 5 — Visual Review
+
+Compare the room with the attached reference.
+
+Improve weak furniture silhouettes and material details.
+
+Correct empty spaces and unrealistic object proportions.
+
+### Phase 6 — Export
+
+- Implement GLB export.
+- Implement manifest export.
+- Implement PNG preview export.
+
+### Phase 7 — Validation
+
+- Reimport the GLB.
+- Inspect geometry.
+- Inspect materials.
+- Test 360-degree camera rotation.
+- Validate module bounds.
+- Validate connector alignment.
+- Confirm absence of preview-only objects.
+
+If time or context is limited, simplify optional UI features instead of sacrificing room quality and export correctness.
+
+---
+
+# 20. ACCEPTANCE CRITERIA
+
+The prototype is successful only if:
+
+[ ] The PM Room exists as genuine 3D geometry.
+
+[ ] The environment visually resembles the attached premium pixel-art reference.
+
+[ ] Furnishing density feels cozy and intentional.
+
+[ ] The PM desk is detailed and recognizable.
+
+[ ] Planning board is visually distinctive.
+
+[ ] Bookshelves contain real small geometric details.
+
+[ ] Sofa and seating feel carefully designed.
+
+[ ] Flooring has attractive non-repetitive pixel-art detail.
+
+[ ] Windows and wall trim have visual depth.
+
+[ ] Room proportions are suitable for AI Office characters.
+
+[ ] Camera rotation works.
+
+[ ] Zoom and pan work.
+
+[ ] Default isometric composition is attractive.
+
+[ ] Cutaway walls do not obstruct the interior.
+
+[ ] Room uses the agreed modular grid and origin.
+
+[ ] Connector positions are represented accurately.
+
+[ ] Export GLB button works.
+
+[ ] Exported file contains actual geometry.
+
+[ ] Exported textures and materials remain available.
+
+[ ] Preview-only objects are excluded.
+
+[ ] Reimported GLB loads successfully.
+
+[ ] Reimported room preserves geometry, orientation, bounds, and scale.
+
+[ ] JSON manifest is downloadable.
+
+[ ] PNG preview is downloadable.
+
+[ ] No critical runtime errors occur.
+
+---
+
+# 21. REQUIRED FINAL VALIDATION
+
+After implementation, inspect the following views:
+
+1. Default isometric.
+2. Front.
+3. Left.
+4. Right.
+5. Back.
+6. Top-down.
+7. Close-up of PM desk.
+8. Close-up of bookshelf.
+9. Close-up of planning board.
+10. Close-up of floor texture.
+
+Then export and reimport the GLB.
+
+Report:
+
+- Whether the export succeeded.
+- Filename and approximate file size.
+- Actual module dimensions.
+- Measured triangle count.
+- Number of meshes and materials.
+- Whether textures survived export.
+- Whether the GLB was actually reimported.
+- Whether connector alignment is valid.
+- Any remaining fidelity differences from the reference.
+- Any visual features that depend on runtime lighting or postprocessing.
+
+Do not claim successful export or perfect visual fidelity without testing.
+
+---
+
+# 22. FUTURE EXPANSION CONTRACT
+
+The entire system is intended to support room-by-room production.
+
+Future room modules will include:
+
+- UI/UX Design Studio.
+- Engineering Development Room.
+- QA & Review Room.
+- DevOps & AI Engine Hub.
+- Research & Shared Brain Library.
+- Central Collaboration Hub.
+
+Each will be built individually and exported separately.
+
+Every new room must follow the modular standard established by the approved PM Room.
+
+The future AI Office application should eventually assemble them into one connected building.
+
+The assembly must not require rebuilding every room mesh.
+
+Therefore, the current PM Room must establish an excellent reusable asset standard.
+
+---
+
+# FINAL DIRECTIVE
+
+CREATE A BEAUTIFUL, DETAILED, HIGH-FIDELITY, COZY PIXEL-ISOMETRIC 3D PM & STRATEGY ROOM.
+
+Use the attached image as the authoritative environmental art reference.
+
+Build genuine 3D furniture and architecture.
+
+Allow full camera inspection.
+
+Design the room as a modular building block.
+
+Implement fully working:
+
+- EXPORT GLB
+- EXPORT MANIFEST JSON
+- EXPORT PREVIEW PNG
+- IMPORT GLB TEST
+
+Do not create other departments.
+
+Do not create characters.
+
+Do not build the complete office.
+
+The quality of this one room will establish the standard for every future AI Office environment module.
+
+**BUILD THE FUNCTIONAL MODULAR PM ROOM LAB NOW.**

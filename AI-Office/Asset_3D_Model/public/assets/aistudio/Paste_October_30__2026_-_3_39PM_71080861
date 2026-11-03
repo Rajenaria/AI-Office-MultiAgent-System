@@ -1,0 +1,1978 @@
+# AI OFFICE — ENGINEERING STUDIO PRODUCTION V1
+## MODULE 04 — DOUBLE-MODULE ENGINEERING DEPARTMENT
+### Frontend + Backend + Database + Integration Hub
+### Master Layout A3.1 | 8×16 Units | Production Asset Standard V1
+### STRICT DESIGN CONTROL — NO UNAUTHORIZED MODIFICATIONS
+
+---
+
+# 0. YOUR ROLE
+
+You are a Senior Three.js Technical Artist, Voxel Environment Designer, React/TypeScript Engineer, Modular Level Architect, 3D Asset Pipeline Engineer, and Quality Assurance Specialist.
+
+You are working inside the EXISTING Google AI Studio project:
+
+**AI Office — Modular Room Lab**
+
+This application already contains approved rooms, characters, animations, view modes, and export systems.
+
+YOUR MISSION:
+
+Build ONE new Engineering Studio as a single coherent 8×16 3D room, containing three distinct developer workstations and one shared technical collaboration area.
+
+The new room must:
+
+1. Follow the approved Master Layout A3.1.
+2. Match the established AI Office handcrafted voxel visual style.
+3. Provide distinct work areas for Frontend, Backend, and Database.
+4. Include a central technical integration and code-review area.
+5. Avoid visual repetition of existing rooms.
+6. Provide sufficient movement space for three future characters.
+7. Have correct monitor orientation and physically valid furniture placement.
+8. Avoid Z-fighting, duplicate faces, flickering surfaces, and export errors.
+9. Remain fully modular and independently exportable.
+10. Preserve every already approved room and character.
+
+IMPORTANT:
+
+**THIS TASK CREATES THE ENGINEERING ROOM ONLY.**
+
+Do not create Frontend, Backend, or Database characters yet.
+
+Do not implement their animations yet.
+
+Do not implement actual software development, AI execution, database operations, or backend orchestration.
+
+---
+
+# 1. SOURCE OF TRUTH — REFERENCE PRIORITY
+
+The project has multiple visual and technical references.
+
+Use the following strict priority order.
+
+## PRIORITY 1 — APPROVED MASTER LAYOUT A3.1
+
+This defines actual room coordinates, sizes, and global architectural placement.
+
+Engineering is an 8×16 room on the LEFT side of the office.
+
+This supersedes the previous A3 layout where Engineering and DevOps occupied separate 8×8 slots on the left side.
+
+DevOps must be represented as a future 8×8 module on the lower-right side.
+
+## PRIORITY 2 — EXISTING PROJECT SOURCE CODE
+
+Inspect the actual project for:
+
+- Module coordinate conventions.
+- Current room registries.
+- Existing GLB export implementation.
+- Wall and floor construction.
+- Camera systems.
+- Material conventions.
+- Office assembly logic.
+- Room anchor schemas.
+
+Do not assume code or functions exist merely because they were mentioned in an earlier prompt.
+
+## PRIORITY 3 — EXISTING PM, CEO AND UI/UX ROOMS
+
+Use their established visual quality, material treatment, voxel density, and architectural consistency.
+
+Do not overwrite them.
+
+## PRIORITY 4 — ATTACHED ENGINEERING CONCEPT IMAGE
+
+The provided Engineering Studio image is the artistic and functional interior reference.
+
+Use it for:
+
+- Three developer workstation identities.
+- Furniture quality.
+- Color accents.
+- Technical decorations.
+- Integration table.
+- Plants and shelves.
+- Cozy professional atmosphere.
+- General visual richness.
+
+IMPORTANT GEOMETRY CORRECTION:
+
+The concept image shows a WIDE horizontal 16×8 room.
+
+The actual approved Engineering layout is a LONGITUDINAL 8×16 room.
+
+**Adapt the visual zoning into the approved 8×16 footprint.**
+
+Do NOT rotate the entire office, alter the A3.1 layout, or create a 16×8 asset simply to match the concept picture.
+
+If references conflict, follow the priority order above.
+
+---
+
+# 2. PRESERVE EVERYTHING ALREADY APPROVED
+
+Before modifications:
+
+1. Inspect current source files.
+2. Identify the affected systems.
+3. Create a recoverable checkpoint.
+4. Record existing stable IDs, transforms, and export paths.
+5. Make only additive changes and the explicitly authorized A3.1 registry updates.
+
+Preserve the following assets.
+
+## EXISTING ROOMS
+
+- PM & Strategy Room.
+- CEO Executive Brain Command Center.
+- UI/UX Design Studio.
+
+Do not modify their:
+
+- Geometry.
+- Furniture.
+- Lighting.
+- Textures.
+- Materials.
+- Windows.
+- Walls.
+- Floor.
+- Doors.
+- Anchors.
+- Local coordinate origins.
+- Character placement.
+- Production exports.
+
+## EXISTING CHARACTERS
+
+- Original Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+
+Preserve all their existing:
+
+- Appearance.
+- Animations.
+- Expressions.
+- Accessories.
+- Behavior configurations.
+- State simulation controls.
+- Character GLB exports.
+
+## APPLICATION SYSTEMS
+
+Preserve:
+
+- Room Selector.
+- Single Room mode.
+- Full Office mode.
+- Existing OfficeAssembler.
+- Camera controls.
+- Existing export buttons.
+- GLB Import.
+- Production pack export.
+- Room manifests.
+- Behavior and anchor schemas.
+- Existing source code backup functionality.
+
+## KNOWN DEFERRED ISSUES
+
+The owner has deliberately postponed further Full Office camera and visual proportion refinements until additional rooms exist.
+
+Do not attempt to redesign the global camera in this task.
+
+Do not replace the existing Full Office rendering architecture.
+
+Do not modify the master camera projection merely because the new room is larger.
+
+Only make a local Single Room framing adjustment if the existing camera does not correctly frame the 8×16 Engineering Room.
+
+---
+
+# 3. MASTER LAYOUT A3.1 — MANDATORY COORDINATES
+
+Use:
+
+Three.js Y-up coordinate system.
+
+Axes:
+
+- +X = East.
+- -X = West.
+- +Z = North.
+- -Z = South.
+- +Y = Up.
+
+The overall office footprint remains:
+
+- Width: 32 units.
+- Depth: 26 units.
+- X bounds: 0..32.
+- Z bounds: 0..26.
+
+The shared upper corridor remains:
+
+- X = 0..32.
+- Z = 16..18.
+- Width = 2 units.
+
+The Central Hub remains:
+
+- X = 8..24.
+- Z = 0..16.
+- Size = 16×16 units.
+- OPEN AREA, without enclosed room walls.
+
+## FIXED ROOM SLOTS
+
+Upper row:
+
+RESEARCH:
+- X = 0..8.
+- Z = 18..26.
+- Status: Planned or existing actual status.
+
+PM:
+- X = 8..16.
+- Z = 18..26.
+- Status: Existing, preserve.
+
+CEO:
+- X = 16..24.
+- Z = 18..26.
+- Status: Existing, preserve.
+
+UI/UX:
+- X = 24..32.
+- Z = 18..26.
+- Status: Existing, preserve.
+
+Lower wings:
+
+ENGINEERING:
+- X = 0..8.
+- Z = 0..16.
+- Size: 8×16.
+- Status: Build now.
+
+QA:
+- X = 24..32.
+- Z = 8..16.
+- Size: 8×8.
+- Status: Planned or actual current status.
+
+DEVOPS:
+- X = 24..32.
+- Z = 0..8.
+- Size: 8×8.
+- Status: Planned.
+- Replaces the former outdoor terrace slot.
+
+CENTRAL HUB:
+- X = 8..24.
+- Z = 0..16.
+- Open collaboration area.
+
+## A3.1 REGISTRY CHANGE
+
+The earlier A3 configuration had:
+
+Engineering: 8×8 at [0,0,8].
+
+DevOps: 8×8 at [0,0,0].
+
+Terrace: 8×8 at [24,0,0].
+
+The approved A3.1 revision requires:
+
+Engineering: 8×16 at [0,0,0].
+
+DevOps: 8×8 at [24,0,0].
+
+The previous lower-right terrace is no longer a permanent outdoor terrace slot.
+
+### Implementation Rule
+
+Update the office layout registry and affected placeholders to follow A3.1.
+
+Do not move PM, CEO, UI/UX, Research, QA, or Central Hub.
+
+Do not overwrite the previous layout configuration without a recoverable version.
+
+Create a versioned A3.1 layout contract.
+
+Do not create duplicate DevOps placeholders.
+
+Do not place new Engineering geometry across the Central Hub boundary.
+
+---
+
+# 4. ENGINEERING ROOM GEOMETRY CONTRACT
+
+Room ID:
+
+`AI_OFFICE_ROOM_ENGINEERING_v1`
+
+Display Name:
+
+`Engineering & Development Studio`
+
+Room Type:
+
+`ENGINEERING_MULTI_AGENT`
+
+Size:
+
+- Width X: 8 units.
+- Depth Z: 16 units.
+- Wall height: follow existing room standard, approximately 3.2 units.
+
+Local origin:
+
+[0, 0, 0]
+
+Local footprint:
+
+X = 0..8.
+
+Z = 0..16.
+
+Full Office global offset:
+
+[0, 0, 0]
+
+This is ONE room composed of TWO connected 8×8 grid cells.
+
+## IMPORTANT
+
+Do not build two separate enclosed rooms with an internal dividing wall.
+
+Do not make Frontend, Backend, and Database three separate rooms.
+
+Do not create separate roofed cubes with a visible internal wall.
+
+The two 8×8 construction cells must form one continuous Engineering Studio.
+
+Expected result:
+
+- One continuous floor.
+- One unified room perimeter.
+- One coherent visual interior.
+- No internal wall at Z=8.
+- Three developer workstations.
+- One shared discussion area.
+
+The room must remain independently exportable as one Engineering GLB.
+
+---
+
+# 5. VISUAL DESIGN PHILOSOPHY
+
+Target style:
+
+**Premium Cozy Handcrafted Voxel Office**
+
+The Engineering Studio must visually belong to the same office universe as PM, CEO, and UI/UX.
+
+Shared design language:
+
+- Warm wooden flooring.
+- Beige or warm cream walls.
+- Matte materials.
+- Crisp block geometry.
+- Carefully designed voxel shapes.
+- Purposeful pixel-style details.
+- Soft directional lighting.
+- Gentle contact shadows.
+- Detailed but readable props.
+- Good color harmony.
+- Consistent building wall thickness.
+- Compatible window and trim construction.
+
+## WHAT MAKES ENGINEERING UNIQUE
+
+Engineering should feel:
+
+- Technically focused.
+- Productive.
+- Collaborative.
+- Organized.
+- Modern.
+- Slightly more equipment-rich.
+- More workstation-oriented.
+- Cozy despite the technology.
+
+The Engineering Studio should look clearly different from:
+
+PM Room — planning and management.
+
+CEO Room — executive strategy and reporting.
+
+UI/UX Room — creativity, visual design and prototyping.
+
+Engineering is focused on code, services, database structures, and technical integration.
+
+## STRICTLY AVOID
+
+- Three copies of the same desk with different colors.
+- Generic executive desks.
+- A room filled with meaningless monitors.
+- Excessive server racks.
+- Giant glowing holograms.
+- Cyberpunk neon lighting.
+- Oversized futuristic machinery.
+- Unrealistic cables crossing every walkway.
+- Bare low-poly cubes without furniture detail.
+- Overcrowded decoration.
+- Oversized office furniture that obstructs movement.
+
+---
+
+# 6. INTERIOR MASTER ZONING
+
+Because this is an 8×16 longitudinal room, arrange the functional zones along its long Z axis.
+
+Recommended zoning order from NORTH to SOUTH:
+
+ZONE A:
+Frontend Workstation.
+
+ZONE B:
+Backend Workstation.
+
+ZONE C:
+Integration / Architecture Review Area.
+
+ZONE D:
+Database Workstation.
+
+The spatial ranges below are PLANNING REGIONS, not instructions to fill every point with furniture.
+
+### A — FRONTEND
+
+Approximate planning region:
+
+Z = 12..16.
+
+### B — BACKEND
+
+Approximate planning region:
+
+Z = 8..12.
+
+### C — INTEGRATION
+
+Approximate planning region:
+
+Z = 5..8.
+
+### D — DATABASE
+
+Approximate planning region:
+
+Z = 0..5.
+
+Use actual measured furniture footprints to finalize these positions.
+
+Do not blindly place furniture at the region center.
+
+Leave an unobstructed shared circulation path, preferably near the EAST side where the room connects to the Central Hub.
+
+Do not block doors with desks, chairs, or storage.
+
+## DESIGN RULE
+
+All four regions should read as one cohesive Engineering Studio.
+
+Use:
+
+- Color accents.
+- Floor rugs.
+- Shelving.
+- Shared boards.
+- Workspace organization.
+- Small planters.
+
+Do not separate them with full-height internal walls.
+
+Low partitions or open shelving may be used sparingly if circulation remains clear.
+
+---
+
+# 7. ZONE A — FRONTEND DEVELOPER WORKSTATION
+
+Identity:
+
+**Frontend Engineering / Web Interface Implementation**
+
+This zone should feel creative but code-focused.
+
+## FURNITURE
+
+Create ONE dedicated Frontend workstation with:
+
+- Warm wood desk.
+- Comfortable dark ergonomic chair.
+- Main display.
+- Optional secondary display.
+- Keyboard.
+- Mouse.
+- Laptop dock or compact laptop.
+- Small desk organizer.
+- Desk lamp.
+- Cable-management detail.
+- Optional headphone stand.
+- Small plant.
+
+The workstation should be distinct from the UI/UX Designer room.
+
+Frontend focuses on implementation, not primary concept design.
+
+## SCREEN CONTENT
+
+Use static demo visuals suggesting:
+
+- React component layout.
+- Web application preview.
+- Component tree.
+- CSS or UI styling.
+- Responsive design panels.
+- Developer tools.
+
+Avoid copying an actual proprietary application screen.
+
+No actual code execution is required.
+
+## COLOR ACCENTS
+
+Use restrained:
+
+- Muted orange.
+- Soft coral.
+- Warm cream.
+- Dark charcoal.
+- Limited cool blue interface accents.
+
+Orange should help distinguish Frontend but not dominate the whole room.
+
+## DECOR
+
+Possible suitable elements:
+
+- Small frontend reference books.
+- Component board.
+- Web layout testing chart.
+- Desk sticky notes.
+- Small UI preview display.
+- Headphones.
+
+Do not duplicate the UI/UX room's complete wireframe wall.
+
+---
+
+# 8. ZONE B — BACKEND DEVELOPER WORKSTATION
+
+Identity:
+
+**Backend / APIs / Services / Business Logic**
+
+This zone should feel more analytical and infrastructure-oriented.
+
+## FURNITURE
+
+Create ONE Backend workstation.
+
+Include:
+
+- Medium technical desk.
+- Comfortable dark chair.
+- Main monitor.
+- Optional secondary monitor.
+- Keyboard.
+- Mouse.
+- Compact laptop.
+- Small system unit or dock.
+- Technical notebook.
+- Small developer accessory.
+- Compact storage.
+
+The workstation must differ from Frontend in layout and equipment details.
+
+## SCREEN CONTENT
+
+Display fictional demo representations of:
+
+- API routes.
+- Service logic.
+- Terminal output.
+- Request flow.
+- Microservice relationships.
+- Integration logs.
+
+Avoid random unreadable strings where simple structured UI patterns can communicate the purpose.
+
+## COLOR ACCENTS
+
+Use:
+
+- Muted navy.
+- Steel blue.
+- Deep charcoal.
+- Restrained lavender or violet details.
+
+Keep the room warm overall.
+
+## TECHNICAL DECOR
+
+Include one or two relevant items:
+
+- API contract reference board.
+- Small service architecture chart.
+- Technical binder.
+- Documentation shelf.
+- Compact equipment cabinet.
+
+Do not create a full server room.
+
+Server infrastructure belongs primarily to DevOps & AI Engine Hub.
+
+---
+
+# 9. ZONE D — DATABASE DEVELOPER WORKSTATION
+
+Identity:
+
+**Database / Data Models / Schema / Query Analysis**
+
+This area should communicate structured data work rather than generic software development.
+
+## FURNITURE
+
+Create ONE dedicated Database workstation with:
+
+- Wood and dark-green detailed desk.
+- Ergonomic chair.
+- Main monitor.
+- Optional compact secondary display.
+- Keyboard.
+- Mouse.
+- Small workstation computer.
+- Technical books.
+- Data reference documents.
+- Small organizer.
+- Decorative plant.
+
+## SCREEN CONTENT
+
+Use fictional visual representations of:
+
+- Entity relationship diagram.
+- Database schema.
+- Tables and relationships.
+- Query editor.
+- Data model.
+- Database status visualization.
+
+Do not claim a database is actually connected.
+
+## COLOR ACCENTS
+
+Use:
+
+- Muted teal.
+- Sage green.
+- Deep emerald.
+- Warm wood.
+- Off-white.
+
+The Database area should be recognizable without becoming a green neon room.
+
+## DECOR
+
+Possible elements:
+
+- Database schema board.
+- SQL reference books.
+- Small data-model diagram.
+- Filing drawers.
+- Compact archive shelf.
+
+Avoid large racks that prevent character navigation.
+
+---
+
+# 10. ZONE C — INTEGRATION & CODE REVIEW HUB
+
+This is the shared collaboration point for all three engineering roles.
+
+It is NOT a fourth agent workstation.
+
+Create a compact review/discussion area.
+
+## REQUIRED FURNITURE
+
+- One medium rectangular or softly rounded geometric review table.
+- Two to four compact stools/chairs as space permits.
+- One shared architecture or integration board.
+- A laptop or tablet.
+- A few technical notes.
+- Small central decoration.
+
+Do not create an executive meeting table resembling CEO or PM furniture.
+
+The atmosphere should be casual technical collaboration.
+
+## SHARED BOARD CONTENT
+
+Suggested fictional technical diagrams:
+
+- Frontend → API → Backend.
+- Backend → Database.
+- Data flow.
+- Service dependencies.
+- Simple architecture blocks.
+- Request/response diagram.
+- Integration status.
+
+Use recognizable shapes and labels only where text remains readable.
+
+## FUTURE ANIMATION PURPOSE
+
+This area will later be used for:
+
+- Frontend consulting Backend.
+- Backend discussing schema requirements with Database.
+- Integration review.
+- Architecture planning.
+- Technical issue discussion.
+- Code review.
+
+Do not implement these character interactions in this task.
+
+Prepare suitable spatial anchors only.
+
+---
+
+# 11. ENGINEERING ARCHITECTURE AND WALLS
+
+The room must follow the shared construction style of existing AI Office modules.
+
+## WEST SIDE
+
+Local X=0.
+
+This is an exterior-facing wall along the long Engineering wing.
+
+Use:
+
+- Warm cream wall material.
+- Structural trims.
+- Carefully arranged windows.
+- Distinct interior wall sections.
+- Optional framed diagrams or modest decor.
+
+Window placement must not collide with shelves or computer screens.
+
+## EAST SIDE
+
+Local X=8.
+
+This side faces the open Central Hub.
+
+It must provide actual accessible connections.
+
+Use the connector standards defined later in this prompt.
+
+Avoid treating the entire eastern boundary as an unbroken solid wall.
+
+Do not leave the entire side physically open unless supported by the approved architecture.
+
+## NORTH SIDE
+
+Local Z=16.
+
+This boundary faces the existing shared corridor at Z=16..18.
+
+A northern corridor access may be provided according to the connector contract.
+
+Do not create a large exterior window facing an internal corridor merely to imitate a reference image.
+
+## SOUTH SIDE
+
+Local Z=0.
+
+This side forms the lower exterior perimeter of the building.
+
+Use a suitable structural wall or approved cutaway presentation.
+
+Keep the physical world boundary well defined.
+
+---
+
+# 12. CONNECTOR SPECIFICATION
+
+The Engineering Room must provide logical access to the shared office.
+
+## PRIMARY EAST ACCESS
+
+Toward Central Hub.
+
+Suggested connector:
+
+`ENGINEERING_EAST_MAIN`
+
+Nominal local center:
+
+[8, 0, 8]
+
+Nominal opening width:
+
+2 units.
+
+Direction:
+
+East / +X.
+
+This is the primary Engineering-to-Central-Hub connection.
+
+## SECONDARY NORTH ACCESS
+
+Toward the upper corridor.
+
+Suggested connector:
+
+`ENGINEERING_NORTH_CORRIDOR`
+
+Nominal local center:
+
+[4, 0, 16]
+
+Nominal opening width:
+
+2 units.
+
+Direction:
+
+North / +Z.
+
+This provides optional direct access to the shared corridor.
+
+## IMPORTANT IMPLEMENTATION RULE
+
+The positions above are APPROVED DESIGN TARGETS.
+
+Before cutting doorway geometry, inspect the actual OfficeAssembler and shared corridor/hub boundary behavior.
+
+Verify:
+
+- Openings fit the wall thickness.
+- There are no floor gaps.
+- Doorways lead to valid walkable areas.
+- Door clearance is sufficient.
+- No desks or chairs block the openings.
+- No overlapping wall segments cover a door.
+- No unexpected duplicate doorway surfaces appear.
+
+Connector metadata must match actual geometry.
+
+Do not declare a connector valid if it is physically blocked.
+
+If existing source geometry makes one connector unsafe, report the conflict and propose the smallest compatible solution without changing existing finished rooms.
+
+---
+
+# 13. WALKABILITY AND FUTURE MULTI-AGENT USE
+
+Although no Engineering characters are created now, the room must support three future agents.
+
+Design for:
+
+- Three independent workstation positions.
+- One shared discussion space.
+- At least one continuous route along the room.
+- Accessible exits.
+- Reasonable turning clearance.
+- Chairs that do not permanently block movement.
+- No need to walk through desks or shelves.
+
+Use the existing Boss PM / CEO character dimensions as a scale benchmark.
+
+Do not enlarge the Engineering room beyond 8×16 merely to solve poor furniture placement.
+
+If circulation is insufficient:
+
+1. Reduce oversized furniture.
+2. Reposition chairs.
+3. Use wall-mounted storage.
+4. Reduce excessive decoration.
+5. Simplify the review table footprint.
+
+Do not shrink character proportions in order to fit.
+
+---
+
+# 14. FURNITURE MODELING QUALITY STANDARD
+
+All furniture must be genuine editable Three.js geometry or supported project-native 3D assets.
+
+Do not create fake 3D by placing only flat screenshots.
+
+Each major workstation should have:
+
+- Actual desk thickness.
+- Legs or cabinet supports.
+- Appropriate drawers.
+- Readable monitor casing.
+- Physical screen panel.
+- Monitor stand.
+- Keyboard volume.
+- Chair seat.
+- Chair back.
+- Chair support.
+- Armrests where suitable.
+
+Use simple geometry when appropriate, but combine it carefully.
+
+Premium voxel art quality comes from deliberate shape construction, not random mesh count.
+
+Avoid creating hundreds of hidden unnecessary objects.
+
+---
+
+# 15. CRITICAL BUG PREVENTION — MONITOR ORIENTATION
+
+This rule is mandatory.
+
+Previous CEO Room development encountered a dual-monitor bug where screen visuals were duplicated on both sides.
+
+**DO NOT REPEAT THIS BUG.**
+
+For EVERY monitor in Engineering:
+
+1. Create one correctly oriented display surface per physical display.
+2. Create one physical opaque monitor rear casing.
+3. Place the screen surface on the FRONT of the monitor.
+4. Position it relative to the actual workstation chair.
+5. Make sure the screen normal faces generally toward the seated user.
+6. Keep monitor stand and display group correctly attached.
+7. Avoid overlapping front and rear display planes.
+8. Avoid back-to-back duplicate screens.
+9. Verify screen text is not mirrored.
+10. Verify the correction survives GLB export.
+
+### Engineering Standard
+
+For each monitor:
+
+- Determine chair location.
+- Determine screen center.
+- Determine front-facing normal.
+- Confirm the direction from screen to chair aligns with the screen's front normal.
+
+A useful geometric test is:
+
+`dot(screenNormal, normalize(chairPosition - screenPosition)) > 0.7`
+
+This test must be performed in a consistent coordinate space.
+
+Do not use this formula blindly if the screen geometry has a different local front axis.
+
+Transform the normal correctly.
+
+### Screen Materials
+
+- Screen front must be visible to the seated developer.
+- Monitor back must look like a dark hardware casing.
+- Do not use double-sided textures to conceal wrong orientation.
+- Do not put another display texture on the rear casing.
+- Do not mirror text to compensate for incorrect geometry.
+
+### GLB Validation
+
+After export, reimport the GLB and inspect monitors:
+
+- From chair viewpoint.
+- From behind the desk.
+- From left side.
+- From right side.
+
+All must be physically correct.
+
+---
+
+# 16. CRITICAL BUG PREVENTION — Z-FIGHTING
+
+Previously reported issues included:
+
+- Flickering cabinet edges.
+- Blinking wall sections.
+- Intersecting character parts.
+- Overlapping monitor planes.
+
+For Engineering, proactively inspect:
+
+- Desk surface and top decoration.
+- Monitor display plane.
+- Monitor bezel.
+- Bookshelf shelves.
+- Wall trims.
+- Whiteboards.
+- Pinboards.
+- Rug surfaces.
+- Floor planks.
+- Door frames.
+- Window frames.
+- Decorative geometric details.
+
+## GEOMETRY RULES
+
+Avoid coplanar overlapping surfaces.
+
+Do not create two identical faces at the same depth.
+
+Do not accidentally mount the same geometry twice.
+
+Use small physically appropriate offsets for intentional layered details.
+
+Prefer fixing geometry rather than applying renderOrder workarounds.
+
+Do not globally disable depthTest.
+
+Do not globally disable depthWrite.
+
+Do not apply polygonOffset to every material.
+
+Do not change shared global renderer settings unless the change is essential and its effects on existing rooms are verified.
+
+## FLOOR
+
+Make sure:
+
+- No overlapping full-sized floor slabs.
+- No duplicate surface at the internal Z=8 cell boundary.
+- No cracks between the two 8×8 construction cells.
+- No unintended floor elevation change.
+- No z-fighting between rugs and floor.
+
+One continuous room should look genuinely continuous.
+
+---
+
+# 17. CRITICAL BUG PREVENTION — TEXTURES
+
+Use compatible materials and textures.
+
+Recommended:
+
+- Matte materials.
+- Reusable wood palette.
+- Lightweight procedural pixel patterns where needed.
+- Carefully authored monitor display textures.
+- Limited high-frequency decorative noise.
+
+If using CanvasTexture:
+
+- Ensure the exported GLB can embed or correctly represent the texture.
+- Verify color-space handling.
+- Verify screen UV orientation.
+- Verify the display is not mirrored.
+- Verify the texture is not unintentionally flipped.
+- Confirm the exported asset looks correct when imported independently.
+
+Use nearest-neighbor filtering only where appropriate for actual pixel-style textures.
+
+Do not globally force nearest filtering on all material maps if it damages the intended appearance.
+
+Avoid excessive material variations.
+
+---
+
+# 18. CRITICAL BUG PREVENTION — WALLS AND WINDOWS
+
+Verify:
+
+- Windows do not intersect large furniture.
+- Window glass is not placed on top of duplicated opaque wall faces.
+- Wall trims do not overlap each other.
+- Window frames do not flicker.
+- Shelves do not penetrate windows.
+- Doorways are physically open.
+- Internal review boards do not float away from walls.
+- No accidental missing wall segment.
+- No furniture clipped by an architectural cutaway.
+
+Runtime cutaway visibility must be kept separate from permanent export geometry.
+
+Do not export temporary camera-dependent hiding as missing permanent walls.
+
+---
+
+# 19. DECORATION AND ENVIRONMENT DETAIL
+
+The room should be visually rich but not cluttered.
+
+Use decor suited to engineers.
+
+Appropriate options:
+
+- Small technical bookshelves.
+- Architecture diagrams.
+- Component references.
+- Code review board.
+- A few indoor plants.
+- Small desk lamps.
+- Coffee mugs.
+- Sticky notes.
+- One or two developer-themed geometric objects.
+- Organized document trays.
+- Small cable-management details.
+- Shared technical reference cabinet.
+
+Avoid:
+
+- Repeating identical bookshelves in every zone.
+- Repeating the same plant on every desk.
+- Three identical chairs with identical orientation.
+- Large decorative monitors with no purpose.
+- Excessive server racks.
+- Huge neon code symbols.
+- Too many stickers, floating labels, or signs.
+
+Each decoration should contribute to function or atmosphere.
+
+---
+
+# 20. DIFFERENTIATION FROM EXISTING ROOMS
+
+The Engineering Studio must not look like a larger PM Room.
+
+Do not use:
+
+- PM executive desk layout.
+- CEO executive seating composition.
+- The same bookshelf placement.
+- The same central rug and sofa combination.
+- The same meeting table proportions.
+- The same wall art.
+
+Instead, Engineering should emphasize:
+
+- Multiple developer workstations.
+- Technical visual displays.
+- Distinct equipment clusters.
+- Architecture and API review.
+- Dedicated database tools.
+- Shared informal discussion space.
+
+Maintain the existing voxel visual quality and material language.
+
+Different function does not mean different game art style.
+
+---
+
+# 21. FUTURE CHARACTER PLANNING
+
+This Engineering Room will eventually contain three independent characters.
+
+### FRONTEND AGENT
+
+Expected future identity:
+
+- Frontend Developer.
+- Orange-themed coding apparel.
+- Web and UI implementation work.
+
+### BACKEND AGENT
+
+Expected future identity:
+
+- Backend Developer.
+- Dark technical outfit.
+- API and service development work.
+
+### DATABASE AGENT
+
+Expected future identity:
+
+- Database Developer.
+- Distinct green/teal-oriented identity.
+- Schema and data modeling work.
+
+The final character designs will follow their approved character references and the current Room-Native character art standard.
+
+DO NOT CREATE THESE CHARACTERS NOW.
+
+Do not spawn placeholder humans.
+
+Do not copy-paste Boss PM to represent a developer.
+
+Do not generate fake agent conversations.
+
+---
+
+# 22. ANCHOR CONFIGURATION — ROOM LOCAL
+
+Prepare future actor interaction anchors.
+
+Use the existing room anchor schema.
+
+Required semantic IDs:
+
+GENERAL:
+
+- `ENGINEERING_ROOM_SPAWN`
+- `ENGINEERING_ROOM_IDLE`
+- `ENGINEERING_EAST_EXIT`
+- `ENGINEERING_NORTH_EXIT`
+
+FRONTEND:
+
+- `FE_WORKSTATION_APPROACH`
+- `FE_DESK_WORK`
+- `FE_CHAIR`
+- `FE_MONITOR_INTERACTION`
+
+BACKEND:
+
+- `BE_WORKSTATION_APPROACH`
+- `BE_DESK_WORK`
+- `BE_CHAIR`
+- `BE_API_BOARD`
+
+DATABASE:
+
+- `DB_WORKSTATION_APPROACH`
+- `DB_DESK_WORK`
+- `DB_CHAIR`
+- `DB_SCHEMA_REVIEW`
+
+SHARED:
+
+- `ENG_INTEGRATION_TABLE`
+- `ENG_ARCHITECTURE_BOARD`
+- `ENG_CODE_REVIEW_POSITION`
+- `ENG_DISCUSSION_POSITION`
+
+Each anchor should include:
+
+- Stable ID.
+- Local room position.
+- Facing direction.
+- Intended action.
+- Posture if relevant.
+- Referenced workstation or furniture.
+- Optional approach anchor.
+
+### STRICT RULE
+
+Do not fabricate anchor coordinates.
+
+Derive final positions after furniture placement.
+
+Ensure anchors are not inside solid furniture.
+
+All coordinates must remain room-local.
+
+Do not bake global office offsets into anchor coordinates.
+
+Prepare a safe waypoint network for later use if the current schema supports it.
+
+Do not claim the three agents already navigate if the character systems have not been added.
+
+---
+
+# 23. ROOM HIERARCHY
+
+Create one independent Engineering root.
+
+Suggested:
+
+`ROOM_ENGINEERING_ROOT`
+
+With canonical groups:
+
+- STRUCTURE
+- FLOOR
+- WALLS
+- WINDOWS
+- FURNITURE
+- PROPS
+- DECORATION
+- CONNECTORS
+
+Inside FURNITURE or an appropriate separate permanent group, use semantic subgroups:
+
+- FRONTEND_WORKSTATION
+- BACKEND_WORKSTATION
+- DATABASE_WORKSTATION
+- INTEGRATION_REVIEW_AREA
+
+Preserve meaningful node names where possible.
+
+Do not flatten all geometry into one unidentifiable object if it damages maintainability or export inspection.
+
+Avoid unnecessary scene-wide object references.
+
+---
+
+# 24. ROOM SELECTOR INTEGRATION
+
+Add:
+
+`Engineering & Development Studio — READY`
+
+Only mark READY after successful implementation and validation.
+
+When Engineering is selected in Single Room mode:
+
+- Display the actual new Engineering room.
+- Hide unrelated runtime characters.
+- Keep current camera controls.
+- Frame the elongated 8×16 room correctly.
+- Allow zoom and orbit.
+- Allow room export.
+- Allow inspection of technical zones.
+
+Do not show PM or CEO animation controls as if they belonged to Engineering.
+
+Do not add Engineering character simulation controls yet.
+
+---
+
+# 25. FULL OFFICE A3.1 INTEGRATION
+
+Update the OfficeAssembler using the approved A3.1 coordinates.
+
+Place:
+
+Engineering global offset:
+
+[0, 0, 0]
+
+Engineering dimensions:
+
+8×16.
+
+The room must replace the two previous left-side 8×8 room slots as one continuous module.
+
+Move the planned DevOps slot metadata to:
+
+[24, 0, 0]
+
+Size:
+
+8×8.
+
+Preserve QA at:
+
+[24, 0, 8]
+
+Size:
+
+8×8.
+
+Do not create DevOps interior yet.
+
+Do not add a new right-side terrace after moving DevOps into that position.
+
+Do not alter Central Hub geometry except for the minimum connector compatibility needed for the new Engineering doorway.
+
+Do not modify PM, CEO, or UI/UX geometry.
+
+Do not attempt to solve the deferred global camera issue.
+
+---
+
+# 26. CAMERA HANDLING
+
+### SINGLE ROOM
+
+The Engineering Studio is longer than the existing 8×8 rooms.
+
+The Single Room camera must accommodate an 8×16 footprint.
+
+Use actual bounding-box measurements.
+
+Support:
+
+- Isometric.
+- Front.
+- Back.
+- Left.
+- Right.
+- Top.
+- Zoom.
+- Pan.
+- Orbit.
+- Fit Room.
+- Reset.
+
+Do not rotate the room geometry merely to fit the viewport.
+
+Use a compatible orthographic camera where supported.
+
+Avoid clipping the long side.
+
+### FULL OFFICE
+
+Preserve existing Full Office camera presets.
+
+If Engineering looks unusual because of the deferred global camera issue, do not distort Engineering geometry to compensate.
+
+Report the issue as a deferred Full Office presentation concern.
+
+---
+
+# 27. EXPORT — PRODUCTION ASSET STANDARD V1
+
+The Engineering Studio must be portable to the future AI Work Project.
+
+Create a production-ready asset pack.
+
+Required artifacts:
+
+`engineering_room.glb`
+
+`engineering_room.manifest.json`
+
+`engineering_room.anchors.json`
+
+`engineering_room.preview.png`
+
+`engineering_room.behavior.json` — optional future behavior contract, only if supported by existing schema.
+
+`office-layout-a3.1.json`
+
+`engineering_room_production_pack_v1.zip`
+
+Also preserve the full existing source project export workflow.
+
+## GLB EXPORT RULES
+
+Export room geometry from the Engineering room root only.
+
+Include:
+
+- Architecture.
+- Floor.
+- Walls.
+- Windows.
+- Permanent furniture.
+- Monitors and display surfaces.
+- Permanent technical boards.
+- Materials.
+- Embedded compatible textures.
+- Permanent room decor.
+
+Exclude:
+
+- Agent characters.
+- Animation controllers.
+- Preview camera.
+- Studio lights.
+- UI.
+- Debug helpers.
+- Anchor markers.
+- Navigation wireframes.
+- Temporary selection outlines.
+
+## LOCAL ORIGIN
+
+The exported GLB must use:
+
+[0, 0, 0]
+
+for the Engineering Room module root.
+
+Do not recenter the room.
+
+Do not bake Full Office placement transformations into the exported asset.
+
+## MANIFEST
+
+Include:
+
+- schema_version
+- module_id
+- display_name
+- department_type
+- room_dimensions
+- local_origin
+- global_layout_offset
+- coordinate_system
+- rendering_profile
+- material_profile
+- connectors
+- anchor_file_path
+- room_glb_path
+- preview_path
+- export_version
+- geometry_statistics
+- validation_summary
+
+Do not invent statistics.
+
+## ANCHORS FILE
+
+Use measured positions derived from the actual geometry.
+
+## OFFICE LAYOUT JSON
+
+Preserve historical A3 data if needed for backward compatibility.
+
+Create a new A3.1 layout version rather than silently overwriting old data with an incompatible meaning.
+
+Document:
+
+- Engineering 8×16.
+- DevOps lower-right 8×8.
+- QA right-middle 8×8.
+- Unchanged upper rooms.
+- Unchanged Central Hub.
+- Connector positions.
+- Room readiness statuses.
+
+---
+
+# 28. ROUND-TRIP EXPORT VERIFICATION
+
+After exporting the Engineering GLB:
+
+Load the ACTUAL exported binary file using an independent GLTFLoader instance.
+
+Check:
+
+1. Binary GLB header is valid.
+2. glTF scene loads.
+3. Room root is present.
+4. Permanent meshes are present.
+5. Materials load.
+6. Monitor textures load.
+7. Furniture is visible.
+8. Walls and windows exist.
+9. Room dimensions are correct.
+10. Local origin is preserved.
+11. No character meshes are included.
+12. No debug helpers are included.
+13. Screen surfaces face their chairs.
+14. Screen text is not mirrored.
+15. No obvious flickering.
+16. No furniture detached.
+17. Connectors match the manifest.
+18. No material references are broken.
+19. Main room bounds are correct.
+20. Room renders correctly from multiple camera angles.
+
+Do not claim 20/20 PASS unless every test has genuinely been executed.
+
+A JSON manifest claiming success is not proof of successful export.
+
+---
+
+# 29. PERFORMANCE AND ASSET QUALITY
+
+Prioritize well-designed, efficient geometry.
+
+Use:
+
+- Reusable materials.
+- Consistent texture atlases or shared textures where practical.
+- Efficient node grouping.
+- Sensible mesh counts.
+- Correct material disposal.
+- Stable camera framing.
+- Clean animation-independent room geometry.
+
+Avoid:
+
+- Extremely large embedded textures for tiny screens.
+- Thousands of unnecessary decorative meshes.
+- Duplicate hidden furniture.
+- Rebuilding all existing rooms when switching to Engineering.
+- Repeatedly constructing the same material every frame.
+- Rendering invisible placeholders on top of completed rooms.
+
+The room should remain responsive in the existing browser application.
+
+---
+
+# 30. QUALITY GATE — VISUAL REVIEW
+
+Before marking the room as completed, compare it against:
+
+- The Engineering concept image.
+- Existing PM Room.
+- Existing CEO Room.
+- Existing UI/UX Room.
+
+Review the room in:
+
+- Default isometric.
+- Top-down.
+- Front.
+- Rear.
+- Left.
+- Right.
+- Full Office overview.
+
+Check:
+
+- Long 8×16 shape is correct.
+- Interior design feels coherent.
+- Frontend zone is recognizable.
+- Backend zone is recognizable.
+- Database zone is recognizable.
+- Integration area is clear.
+- All three workstations have distinct identities.
+- Workstations are not duplicated unnecessarily.
+- Circulation is possible.
+- Colors are coordinated.
+- Lighting is consistent.
+- Window placement is sensible.
+- Monitors face their users.
+- No major overlap artifacts.
+- Full Office placement uses A3.1.
+
+Do not mark the room approved on behalf of the owner.
+
+The owner will decide whether the visual result is final.
+
+---
+
+# 31. IMPLEMENTATION SEQUENCE
+
+Follow these phases strictly.
+
+## PHASE A — SOURCE AUDIT AND CHECKPOINT
+
+Inspect current project and preserve stable assets.
+
+Check current room registry and exporter architecture.
+
+## PHASE B — MINIMAL A3.1 REGISTRY UPDATE
+
+Update Engineering and DevOps slot metadata.
+
+Preserve all other modules.
+
+Confirm footprint remains 32×26.
+
+## PHASE C — ENGINEERING BASE ARCHITECTURE
+
+Build the 8×16 continuous room.
+
+Create floor, walls, windows, and actual doorway openings.
+
+Validate geometry before furniture.
+
+## PHASE D — FRONTEND WORKSTATION
+
+Build complete Frontend desk and equipment.
+
+Inspect correct monitor orientation.
+
+## PHASE E — BACKEND WORKSTATION
+
+Build Backend zone with appropriate technical identity.
+
+Verify monitor orientation.
+
+## PHASE F — DATABASE WORKSTATION
+
+Build Database zone with schema-specific visual identity.
+
+Verify monitor orientation.
+
+## PHASE G — INTEGRATION HUB
+
+Build shared technical review area.
+
+Preserve circulation routes.
+
+## PHASE H — DECORATION AND LIGHTING
+
+Apply cozy voxel style and purposeful detail.
+
+Avoid excessive repetition.
+
+## PHASE I — GEOMETRY AND BUG AUDIT
+
+Check:
+
+- Z-fighting.
+- Duplicate surfaces.
+- Screen orientation.
+- Screen text mirroring.
+- Shelf overlap.
+- Wall collision.
+- Door opening.
+- Floor continuity.
+- Shadow artifacts.
+
+## PHASE J — ANCHORS
+
+Generate measured anchor metadata.
+
+Verify valid access routes.
+
+## PHASE K — SINGLE ROOM INTEGRATION
+
+Add Engineering to Room Selector.
+
+Frame the 8×16 room.
+
+## PHASE L — FULL OFFICE INTEGRATION
+
+Assemble Engineering at [0,0,0].
+
+Preserve upper rooms and Central Hub.
+
+Keep DevOps as a lower-right placeholder.
+
+## PHASE M — PRODUCTION EXPORT
+
+Export GLB, manifest, anchors, preview, and production ZIP.
+
+## PHASE N — REIMPORT VALIDATION
+
+Independently reload exported GLB.
+
+Check geometry, materials, and monitor direction.
+
+## PHASE O — REGRESSION TEST
+
+Confirm existing PM, CEO, and UI/UX functionality remains intact.
+
+STOP after this phase.
+
+Do not create developer characters yet.
+
+---
+
+# 32. FINAL ACCEPTANCE CHECKLIST
+
+### ARCHITECTURE
+
+[ ] Engineering is exactly 8×16.
+
+[ ] The room is one continuous space.
+
+[ ] No internal wall separates the two 8×8 cells.
+
+[ ] Local origin is correct.
+
+[ ] A3.1 global placement is correct.
+
+[ ] Central Hub remains open.
+
+[ ] DevOps is registered at lower-right.
+
+[ ] Overall 32×26 footprint remains unchanged.
+
+### INTERIOR
+
+[ ] One Frontend workstation exists.
+
+[ ] One Backend workstation exists.
+
+[ ] One Database workstation exists.
+
+[ ] One Integration / Review area exists.
+
+[ ] Each work area is visually distinct.
+
+[ ] Furniture sizes are believable relative to existing AI Office characters.
+
+[ ] Window and wall arrangements are coherent.
+
+[ ] Lighting matches the AI Office visual standard.
+
+[ ] Decoration is detailed but not excessively repetitive.
+
+### BUG PREVENTION
+
+[ ] No back-facing duplicate monitor screens.
+
+[ ] All screens face the relevant workstation chair.
+
+[ ] Screen text is not mirrored.
+
+[ ] No monitor stand is missing.
+
+[ ] No duplicated coplanar floor surfaces.
+
+[ ] No major wall or shelf flicker.
+
+[ ] No doorway blocked by furniture.
+
+[ ] No unexpected missing geometry.
+
+[ ] No obvious texture orientation issues.
+
+[ ] No significant shadow artifacts.
+
+### MODULAR SYSTEM
+
+[ ] Single Room mode works.
+
+[ ] Full Office mode loads.
+
+[ ] Engineering appears in the correct A3.1 slot.
+
+[ ] Room Selector works.
+
+[ ] Anchor JSON is valid.
+
+[ ] Room GLB is independent.
+
+[ ] Source project remains intact.
+
+### EXPORT
+
+[ ] Engineering GLB exists.
+
+[ ] Manifest JSON exists.
+
+[ ] Anchors JSON exists.
+
+[ ] Preview PNG exists.
+
+[ ] A3.1 layout JSON exists.
+
+[ ] Production ZIP includes real exported files.
+
+[ ] Independent GLB reimport succeeds.
+
+### REGRESSION
+
+[ ] PM Room remains unchanged.
+
+[ ] CEO Room remains unchanged.
+
+[ ] UI/UX Room remains unchanged.
+
+[ ] Boss PM animations still work.
+
+[ ] CEO animations still work.
+
+[ ] UI/UX animations still work.
+
+[ ] Existing export buttons still work.
+
+[ ] Existing GLB import still works.
+
+[ ] Existing camera behavior is not unintentionally changed.
+
+---
+
+# 33. REQUIRED FINAL REPORT
+
+After implementation, provide a concise technical report containing:
+
+1. Source files changed.
+2. Whether existing room assets were preserved.
+3. Actual Engineering room dimensions.
+4. Local origin.
+5. Global A3.1 placement.
+6. Engineering zone arrangement.
+7. Furniture objects created.
+8. Actual monitor orientation test results.
+9. Actual connectors and doorway positions.
+10. Validated room-local anchors.
+11. Geometry and rendering issues found.
+12. Corrections made.
+13. Exported filenames.
+14. GLB round-trip test results.
+15. Existing PM, CEO, and UI/UX regression results.
+16. Any unresolved limitations.
+
+If a required test was not performed, explicitly label it:
+
+NOT VERIFIED.
+
+If an exported file does not exist, report it as missing.
+
+Do not claim production readiness based only on code generation.
+
+---
+
+# 34. STRICT SCOPE CONTROL
+
+DO NOT:
+
+- Create Frontend character.
+- Create Backend character.
+- Create Database character.
+- Implement character animations.
+- Implement real agent-to-agent communication.
+- Modify PM-to-CEO report interactions.
+- Implement live AI orchestration.
+- Implement database connections.
+- Implement real Telegram operations.
+- Create a new room outside the approved layout.
+- Build DevOps interior.
+- Redesign existing rooms.
+- Repair deferred Full Office camera problems.
+- Change global lighting without a compatibility check.
+- Replace existing characters.
+- Rebuild the application.
+- Invent unsupported room dimensions.
+- Add unapproved extra departments.
+- Claim backend systems are running when this is only visual simulation.
+
+This task is exclusively:
+
+**Engineering Room Visual Production + Minimal A3.1 Layout Integration + Portable Export Validation.**
+
+---
+
+# FINAL DIRECTIVE
+
+EXTEND THE EXISTING AI OFFICE MODULAR ROOM LAB.
+
+Create ONE beautiful, detailed, premium handcrafted voxel Engineering & Development Studio.
+
+Exact size:
+
+**8×16 units.**
+
+Exact local origin:
+
+**[0,0,0].**
+
+Exact A3.1 global placement:
+
+**[0,0,0].**
+
+The room must contain:
+
+- Frontend workstation.
+- Backend workstation.
+- Database workstation.
+- Shared Integration / Code Review Hub.
+
+All four areas must feel visually distinct but form one coherent, open Engineering Studio.
+
+Preserve the previously approved PM, CEO, and UI/UX assets.
+
+Implement physically correct monitors with their screens facing the actual workstation chairs.
+
+Avoid duplicated screen planes, mirrored textures, overlapping faces, and flickering surfaces.
+
+Preserve the open Central Hub.
+
+Register DevOps in the lower-right placeholder slot according to A3.1.
+
+Keep all characters separate from room geometry.
+
+Export a standalone Engineering GLB and compatible production metadata.
+
+Perform genuine export/reimport and regression checks.
+
+Do not invent validation results.
+
+Do not create Engineering characters yet.
+
+**COMPLETE THE ENGINEERING ENVIRONMENT ONLY, THEN STOP FOR OWNER VISUAL APPROVAL.**

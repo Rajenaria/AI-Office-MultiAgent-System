@@ -1,0 +1,2169 @@
+# AI OFFICE — QA ENGINEER CHARACTER PRODUCTION V1
+## Agent 08 — Quality Assurance & Review Specialist
+### Premium Room-Native Voxel Character | Role-Specific Animations | Demo States | Engineering-Grade Export Validation
+### Existing Google AI Studio Modular Room Lab — STRICT NON-DESTRUCTIVE IMPLEMENTATION
+
+---
+
+# 0. YOUR ROLE AND PRIMARY MISSION
+
+You are a Senior Three.js Character Technical Artist, Voxel Character Designer, Character Animator, React/TypeScript Engineer, Interactive Simulation Developer, and Production GLB Pipeline Specialist.
+
+You are working inside the EXISTING:
+
+**AI Office — Modular Room Lab**
+
+The project already contains:
+
+- A modular office architecture.
+- Master Floor Plan A3.2.
+- Research & Shared Brain Room.
+- PM & Strategy Room.
+- CEO Executive Brain Office.
+- UI/UX Design Studio.
+- Engineering & Development Studio.
+- QA & DevOps Integrated Studio.
+- Central Collaboration Hub.
+- Character animation systems.
+- Full Office and Single Room modes.
+- Smart Cutaway and camera controls.
+- Character selection and simulation panels.
+- Production asset exporting.
+- An existing all-agent meeting demonstration.
+
+Some capabilities may be incomplete. Inspect the ACTUAL project before relying on them.
+
+YOUR MISSION:
+
+Create ONE additional character:
+
+**QA ENGINEER — QUALITY ASSURANCE & REVIEW AGENT**
+
+Deliver:
+
+1. A high-quality Room-Native voxel character faithful to the attached QA character sheet.
+2. A distinctive layered hairstyle with a high tied-up ponytail/bun silhouette.
+3. Correct facial features, outfit, and accessories.
+4. A compatible character rig.
+5. Genuine role-specific animations.
+6. Lightweight facial expressions.
+7. Contextual QA testing props.
+8. Independent demo states.
+9. A dedicated QA simulation panel.
+10. Integration into the existing QA workstation.
+11. Safe coexistence with the future DevOps character.
+12. Optional compatible integration into the existing Central Hub meeting demo.
+13. A standalone GLB with valid embedded animation clips.
+14. Portable behavior and manifest JSON.
+15. Independent GLB reimport validation.
+16. Regression verification against existing rooms and characters.
+
+This task creates only the QA Engineer character and related demo functionality.
+
+DO NOT CREATE DEVOPS CHARACTER.
+
+DO NOT REBUILD THE QA/DEVOPS ROOM.
+
+DO NOT REBUILD THE APPLICATION.
+
+---
+
+# 1. MANDATORY BASELINE INSPECTION
+
+Before writing or modifying code:
+
+1. Inspect the actual current source tree.
+2. Identify existing character builders.
+3. Identify working animation and rig conventions.
+4. Inspect the current character registry.
+5. Inspect the QA & DevOps Room.
+6. Inspect its actual anchor JSON.
+7. Inspect current simulation components.
+8. Inspect the existing meeting demo.
+9. Inspect GLBExporter and GLBLoader integration.
+10. Create a recoverable source checkpoint.
+
+Preserve all completed assets.
+
+## PROTECTED ROOMS
+
+- Research & Shared Brain.
+- PM & Strategy.
+- CEO Executive Brain.
+- UI/UX Design.
+- Engineering & Development.
+- QA & DevOps Integrated Studio.
+- Central Hub.
+
+Do not modify permanent:
+
+- Geometry.
+- Furniture.
+- Walls.
+- Floors.
+- Windows.
+- Doorways.
+- Decorative assets.
+- Lighting fixtures.
+- Materials.
+- Display orientations.
+- Validated GLB exports.
+
+## PROTECTED CHARACTERS
+
+Preserve the actual implemented instances of:
+
+- Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer.
+- Backend Developer.
+- Database Developer.
+- Research Professor.
+
+Do not change any existing hairstyle, outfit, animation clip, rig, expression, or behavior JSON.
+
+## PROTECTED SYSTEMS
+
+Preserve:
+
+- Room Selector.
+- Single Room.
+- Full Office.
+- OfficeAssembler.
+- Master Layout A3.2.
+- Smart Cutaway.
+- Cinema Mode.
+- Camera presets.
+- Zoom restrictions.
+- Meeting table and seating.
+- Existing actor state controllers.
+- Existing GLB exports.
+- Source backup features.
+
+Make only the smallest compatible additions needed for QA.
+
+---
+
+# 2. OFFICIAL QA CHARACTER IDENTITY
+
+Character ID:
+
+`qa_engineer_agent`
+
+Display Name:
+
+`QA Engineer`
+
+Role:
+
+`QUALITY_ASSURANCE_ENGINEER`
+
+Department:
+
+`QA & Review`
+
+Physical Room:
+
+`AI_OFFICE_ROOM_QA_DEVOPS_v1`
+
+Primary workstation:
+
+QA Workstation.
+
+Character type:
+
+Human-like stylized female QA Engineer.
+
+Core professional responsibilities:
+
+- Test case review.
+- Functional testing.
+- Regression testing.
+- UI testing.
+- Device compatibility testing.
+- Bug reproduction.
+- Bug documentation.
+- Verification of fixes.
+- Quality assessment.
+- Review of software requirements.
+- Release readiness review.
+- Reporting test evidence to PM and Engineering.
+
+IMPORTANT:
+
+QA verifies the quality of completed work.
+
+QA does not automatically approve releases.
+
+Final authorization remains governed by the future AI Office workflow and owner approval requirements.
+
+---
+
+# 3. REFERENCE PRIORITY
+
+Use these references in the following order.
+
+## REFERENCE A — ATTACHED QA ENGINEER CHARACTER SHEET
+
+The owner has uploaded the approved QA voxel character concept sheet.
+
+This is the primary visual identity reference.
+
+It contains:
+
+- Character hero design.
+- Eight-direction turnaround.
+- Facial expression variations.
+- Work-related animation poses.
+- Testing accessories.
+- QA workstation examples.
+- Outfit variations.
+
+Study the complete image carefully.
+
+Preserve its recognizable identity.
+
+## REFERENCE B — EXISTING ROOM-NATIVE CHARACTERS
+
+The working PM, CEO, UI/UX, Frontend, Backend, Database, and Research characters define the project's actual technical art style.
+
+Use them to determine:
+
+- Real voxel geometry density.
+- Character height.
+- Head proportions.
+- Torso size.
+- Arm and leg proportions.
+- Material roughness.
+- Eye construction.
+- Pivot placement.
+- Animation conventions.
+- GLB export conventions.
+
+The resulting QA character must look as though it belongs to the SAME 3D game world.
+
+## REFERENCE C — QA/DEVOPS ROOM
+
+Use the actual QA workstation, testing counter, room lighting, and furniture as physical scale references.
+
+The existing room must determine where the character sits, stands, and works.
+
+Do not redesign the room to accommodate an incorrectly scaled character.
+
+---
+
+# 4. STRICT QA VISUAL DESIGN
+
+The character sheet establishes these essential features.
+
+## GENERAL
+
+- Female-presenting stylized voxel character.
+- Compact cute game-character proportions.
+- Friendly but focused expression.
+- Dark chestnut/brown hairstyle.
+- High tied-up hair section.
+- Distinct yellow/gold hair accessory.
+- Warm beige skin.
+- Simple expressive dark eyes.
+- No default eyeglasses.
+- Professional black, white, and yellow QA outfit.
+- Dark trousers.
+- White sneakers with yellow accents.
+- Black technical backpack with QA branding.
+- Optional black/yellow headset for specific work activities.
+
+The character should look:
+
+- Professional.
+- Observant.
+- Confident.
+- Intelligent.
+- Approachable.
+- Slightly playful in a restrained way.
+
+Do not turn the character into a generic school student.
+
+Do not create a realistic human model.
+
+Do not copy the UI/UX Designer's head and simply change the clothes.
+
+Do not copy the Backend character's hairstyle.
+
+---
+
+# 5. CRITICAL VISUAL PRIORITY — HAIRSTYLE
+
+THIS CHARACTER'S HAIRSTYLE IS ONE OF ITS MAIN IDENTIFIERS.
+
+The owner has repeatedly emphasized that character hair must not look like a generic rectangular block.
+
+Follow the QA concept sheet closely.
+
+## 5.1 OVERALL SHAPE
+
+The hair is:
+
+- Dark chestnut brown.
+- Thick and layered.
+- Slightly tousled.
+- Asymmetrical around the fringe.
+- Voluminous around the crown.
+- Gathered into a high tied-up section toward the rear/top.
+
+The hairstyle should have a clearly readable tied-hair silhouette.
+
+Do not model the entire hairstyle as one solid brown cube.
+
+Do not replace it with ordinary short male hair.
+
+Do not create extremely long free-flowing realistic hair.
+
+Maintain the approved stylized voxel shape.
+
+## 5.2 FRONT FRINGE
+
+Use:
+
+- Layered angular hair clusters.
+- A recognizable side-swept fringe.
+- Subtle stepped edges.
+- A natural forehead opening.
+- Controlled unevenness.
+
+The fringe should frame the face without covering the eyes.
+
+Avoid a perfectly straight square hairline.
+
+## 5.3 CROWN
+
+Build the crown from deliberately arranged voxel masses.
+
+Include:
+
+- Central hair volume.
+- Layered top blocks.
+- Slightly raised sections.
+- Dark brown shadows between layers.
+- Subtle variations in height and depth.
+
+The crown should look sculpted, not randomly assembled.
+
+## 5.4 HIGH PONYTAIL / BUN
+
+This is a mandatory feature.
+
+Model a compact high tied-up hair cluster behind or above the main head silhouette.
+
+The tied-up volume should:
+
+- Be visible in three-quarter and side views.
+- Have a distinct shape from the main crown.
+- Include a believable geometric attachment.
+- Remain stable during head rotation.
+- Not float above the head.
+- Not intersect the back of the skull.
+
+The reference uses a compact stylized tied hairstyle, not a long realistic ponytail.
+
+Follow the supplied shape rather than inventing a new hairstyle.
+
+## 5.5 HAIR ACCESSORY
+
+Include the small yellow/gold hair clip or hair fastener visible in the reference.
+
+Requirements:
+
+- Genuine 3D geometry.
+- Appropriate placement.
+- Clearly recognizable gold/yellow accent.
+- Stable head attachment.
+- No Z-fighting.
+- No oversized decorative accessory.
+
+The hair accessory must remain visible from appropriate side angles.
+
+## 5.6 SIDE VIEW
+
+From the side:
+
+- The fringe has visible depth.
+- The crown has stepped layers.
+- The tied-up section is recognizable.
+- The ear remains properly visible.
+- Hair does not intersect the ear.
+
+## 5.7 BACK VIEW
+
+The back is just as important as the front.
+
+Create:
+
+- Deliberately modeled rear hair volume.
+- The visible tied-up section.
+- Layered brown geometry.
+- A controlled hair-to-neck transition.
+
+Do not leave a completely flat rear head.
+
+## 5.8 HAIR MATERIAL PALETTE
+
+Use a controlled palette:
+
+- Deep chestnut brown.
+- Dark chocolate brown.
+- Warm reddish brown midtones.
+- Near-black brown for recessed shadows.
+- Restrained slightly lighter upper-layer highlights.
+
+Mostly matte.
+
+High roughness.
+
+Low metallic response.
+
+No shiny plastic.
+
+No realistic hair strand textures.
+
+## 5.9 FULL TURNAROUND QUALITY GATE
+
+Inspect:
+
+- Front.
+- Front-right.
+- Right.
+- Back-right.
+- Back.
+- Back-left.
+- Left.
+- Front-left.
+
+Confirm:
+
+- The tied hair is recognizable.
+- Hair remains volumetric.
+- No geometry detaches.
+- The accessory stays attached.
+- No hair penetrates the face.
+- No flicker appears.
+
+Do not proceed to final approval if the rear or side hairstyle is unfinished.
+
+---
+
+# 6. QA FACE AND EXPRESSIONS
+
+Use the approved simple voxel face language.
+
+Required:
+
+- Warm beige skin.
+- Dark rectangular eyes.
+- Dark pupils.
+- Small voxel eyebrows.
+- Minimal nose.
+- Compact mouth.
+- Small warm cheek accents.
+- Clean cubic ears.
+
+## DEFAULT GLASSES POLICY
+
+The approved DEFAULT QA character does not wear glasses.
+
+The concept sheet includes an optional glasses outfit variation.
+
+Do not add glasses to the default model.
+
+If the current project supports optional accessories, prepare a future glasses attachment point, but do not prioritize glasses customization now.
+
+## EXPRESSIONS
+
+Implement:
+
+1. Neutral.
+2. Focused.
+3. Happy.
+4. Thinking.
+5. Talking.
+6. Surprised.
+7. Concerned.
+8. Frustrated by Bug.
+9. Confident.
+10. Tired / Waiting.
+
+Keep expressions subtle and readable.
+
+Use eye, eyebrow, and mouth geometry variations.
+
+Do not use realistic facial deformation.
+
+Prevent overlapping facial planes.
+
+---
+
+# 7. DEFAULT QA OUTFIT
+
+The approved look uses a dark QA uniform with bright but controlled yellow accents.
+
+## MAIN CLOTHING
+
+Create:
+
+- White or warm off-white shirt.
+- Dark charcoal/black QA vest or technical jacket.
+- Distinct dark torso panels.
+- Yellow/gold seam or trim accents.
+- Small QA emblem.
+- Appropriate sleeve cuffs.
+- Clean neck opening and collar detail.
+
+The outfit must be recognizable in Full Office view, not only in close-up.
+
+Do not create an orange Frontend hoodie.
+
+Do not create a formal CEO suit.
+
+Do not use strong purple or pink clothing.
+
+## QA EMBLEM
+
+Use a small yellow QA marking on an appropriate jacket or backpack location.
+
+The emblem must be:
+
+- Legible at character inspection scale.
+- Physically attached.
+- Stable during animation.
+- Compatible with GLB export.
+
+Do not use an oversized floating QA logo.
+
+## TROUSERS
+
+Dark navy/charcoal trousers.
+
+Use voxel leg construction consistent with the existing cast.
+
+## SHOES
+
+White/light-gray sneakers with small yellow/gold accents.
+
+Include:
+
+- Real sole geometry.
+- Shoe upper.
+- Dark minor details.
+- Stable foot alignment.
+
+## BACKPACK
+
+Create a compact black/dark-charcoal QA backpack.
+
+Include:
+
+- Rectangular main body.
+- Shoulder straps.
+- Yellow QA label.
+- Small gold accents.
+- Organized technical shape.
+
+The backpack must not obscure the character's hairstyle.
+
+Provide a controlled visibility/attachment policy for seated workstation animations if necessary to avoid chair clipping.
+
+---
+
+# 8. OPTIONAL QA HEADSET
+
+The character sheet includes a black-and-yellow headset variation.
+
+The headset may be used during:
+
+- Device testing.
+- Call or discussion.
+- Test review.
+- Monitoring activity.
+
+It must not permanently replace the default hairstyle.
+
+If implemented:
+
+- Create a separate accessory group.
+- Fit it around the hair.
+- Keep the tied-up hair readable.
+- Avoid intersection with the hair clip.
+- Provide clean toggle or attachment logic.
+
+Do not automatically add the headset to every action.
+
+Do not build a full outfit customization editor in this task.
+
+---
+
+# 9. CHARACTER SCALE AND STYLE MATCHING
+
+Inspect actual existing character dimensions.
+
+Use the established Room-Native scale.
+
+The earlier PM character was approximately 1.72 world units tall, but measure the real current assets.
+
+Requirements:
+
+- Grounded feet.
+- Correct floor-local root origin.
+- Matching head/body proportion language.
+- Similar arm reach.
+- Compatible workstation height.
+- Correct chair sitting geometry.
+- No nonuniform scaling.
+
+The QA character may have a distinct hairstyle silhouette, but it must not be dramatically larger than the existing cast.
+
+Avoid rescaling the QA room furniture.
+
+---
+
+# 10. CHARACTER RIG AND SCENE HIERARCHY
+
+Reuse the working character rig architecture.
+
+Suggested root:
+
+`QA_ENGINEER_AGENT_RUNTIME_ROOT`
+
+Suggested semantic hierarchy:
+
+QA_ENGINEER_AGENT_RUNTIME_ROOT
+- NavigationRoot
+- OrientationRoot
+- CharacterModelRoot
+  - TorsoPivot
+  - HeadPivot
+    - Face
+    - Eyes
+    - Eyebrows
+    - Mouth
+    - HairCrown
+    - HairFringe
+    - PonytailPivot
+    - HairClip
+  - LeftArmPivot
+  - RightArmPivot
+  - LeftLegPivot
+  - RightLegPivot
+  - QAUniform
+  - BackpackAttachment
+  - HeadsetAttachment
+  - LeftHandAttachment
+  - RightHandAttachment
+
+Adapt to actual source conventions.
+
+The hierarchy must support:
+
+- Head movement.
+- Arm gestures.
+- Walking.
+- Standing.
+- Sitting.
+- Typing.
+- Holding props.
+- Inspecting devices.
+- Presenting.
+- Reliable pose reset.
+
+Use stable node names for exported animation tracks.
+
+Do not introduce a completely incompatible animation architecture.
+
+---
+
+# 11. QA & DEVOPS ROOM INTEGRATION
+
+Use:
+
+`AI_OFFICE_ROOM_QA_DEVOPS_v1`
+
+This is the existing combined QA & DevOps Integrated Studio.
+
+Dimensions:
+
+X = 0..8.
+
+Z = 0..16.
+
+Local origin:
+
+[0,0,0].
+
+Global offset:
+
+[24,0,0].
+
+Current layout:
+
+A3.2.
+
+The room contains:
+
+- QA workstation.
+- Device testing counter.
+- QA checklist/bug review board.
+- Shared lounge.
+- Review area.
+- DevOps workstation.
+- Infrastructure racks.
+
+The QA Agent belongs primarily to the QA zone, expected near the northern part of the combined room.
+
+Do not spawn QA at the DevOps desk.
+
+Do not change the room layout.
+
+Do not create a temporary second QA room.
+
+Do not embed the QA character into the room GLB.
+
+Create the character as a separate runtime actor.
+
+---
+
+# 12. VERIFY ACTUAL ROOM ANCHORS
+
+Read the current QA/DevOps anchors file.
+
+Expected semantic identifiers may include:
+
+- QA_DEVOPS_ROOM_SPAWN
+- QA_WORKSTATION_APPROACH
+- QA_DESK_WORK
+- QA_CHAIR
+- QA_DEVICE_TESTING
+- QA_CHECKLIST_BOARD
+- QA_BUG_REVIEW
+- QA_TEST_REPORT_REVIEW
+- QA_DEVOPS_REVIEW_BOARD
+- QA_DEVOPS_DISCUSSION_POSITION
+- QA_DEVOPS_WEST_EXIT
+- QA_DEVOPS_NORTH_EXIT
+
+These are reference candidates, not proof the anchors exist.
+
+Use ACTUAL identifiers and measured positions.
+
+Do not invent coordinates.
+
+For each interaction verify:
+
+- Character floor position.
+- Target desk position.
+- Correct monitor-facing direction.
+- Chair height and orientation.
+- Appropriate hand reach.
+- Door accessibility.
+- Clear navigation route.
+- No furniture penetration.
+
+All movement targets must use the correct room-local coordinate system.
+
+Do not double-apply the Full Office global offset.
+
+---
+
+# 13. REQUIRED ANIMATION CLIPS — CORE MOTION
+
+Create genuine Three.js animations compatible with the working project.
+
+These actions must visibly move the character.
+
+## ANIMATION 01 — Idle_Breathing
+
+Natural relaxed standing pose.
+
+Subtle breathing.
+
+Small head movement.
+
+Loopable.
+
+## ANIMATION 02 — Walk_Cycle
+
+Natural voxel walk.
+
+Alternating arms and legs.
+
+Stable foot grounding.
+
+Appropriate walking speed.
+
+Loopable.
+
+## ANIMATION 03 — Work_Typing
+
+Approach QA workstation.
+
+Align with chair.
+
+Transition to seated posture.
+
+Animate typing and occasional mouse use.
+
+Loopable working segment.
+
+## ANIMATION 04 — Inspect_Test_Results
+
+Inspect test output on the QA workstation.
+
+Alternate focus between displays.
+
+Small head movements.
+
+Occasional pointing gesture.
+
+Clearly different from ordinary typing.
+
+## ANIMATION 05 — Run_Test_Suite_Demo
+
+Show a visual test-running workflow.
+
+Suggested motions:
+
+- Type or click.
+- Watch screen.
+- Pause.
+- Check result display.
+
+IMPORTANT:
+
+This is a visual test-running demo.
+
+Do not execute a real test runner.
+
+Do not fabricate verified test results.
+
+## ANIMATION 06 — Device_Inspect
+
+Walk to the device testing counter.
+
+Pick up or interact with a testing device.
+
+Look at the device screen.
+
+Perform small inspection gestures.
+
+Return the device safely.
+
+---
+
+# 14. REQUIRED ANIMATIONS — BUG INVESTIGATION
+
+## ANIMATION 07 — Reproduce_Bug
+
+Visual sequence:
+
+- Focus on workstation.
+- Interact with mouse/keyboard.
+- Pause.
+- Reinspect the display.
+- Show concern or surprise.
+
+This action must be visually distinct from generic typing.
+
+Do not claim actual bug reproduction occurred.
+
+## ANIMATION 08 — Bug_Found_Reaction
+
+Use a clear but professional reaction.
+
+Possible:
+
+- Small surprised head movement.
+- Slight arm gesture.
+- Concerned expression.
+- Short alert gesture.
+
+The supplied reference includes a red bug-found visual.
+
+That red bug graphic should be treated as a runtime demo indicator or contextual prop, not a permanent part of the QA character mesh.
+
+## ANIMATION 09 — Checklist_Review
+
+Hold a QA checklist or clipboard.
+
+Look down and review items.
+
+Use a small pointing or ticking gesture.
+
+The checklist should remain attached to the hand.
+
+## ANIMATION 10 — Write_Bug_Report
+
+Use clipboard, tablet, or workstation.
+
+Animate note-taking.
+
+This must differ visually from inspecting test results.
+
+## ANIMATION 11 — Verify_Fix_Demo
+
+Review a simulated corrected behavior.
+
+Suggested:
+
+- Inspect screen.
+- Interact with application.
+- Check output.
+- Record review note.
+
+Do not automatically show PASS unless the demo explicitly describes fictional data.
+
+Do not imply an actual code fix has been verified.
+
+## ANIMATION 12 — Regression_Review
+
+Review multiple fictional test cases.
+
+Alternate between test results and checklist.
+
+Use focused QA movements.
+
+This should not be identical to Run_Test_Suite_Demo.
+
+---
+
+# 15. REQUIRED ANIMATIONS — REVIEW AND COLLABORATION
+
+## ANIMATION 13 — Quality_Gate_Review
+
+Walk to a valid QA review board or shared review point.
+
+Face the relevant board.
+
+Inspect checklist and release-readiness indicators.
+
+Make a short reviewing gesture.
+
+IMPORTANT:
+
+This is visual preparation for a future real Quality Gate.
+
+It must not automatically approve deployment.
+
+## ANIMATION 14 — Present_QA_Findings
+
+Walk to a presentation anchor.
+
+Face the review board.
+
+Point toward example bug statistics or testing findings.
+
+Use natural explanatory arm gestures.
+
+## ANIMATION 15 — Technical_Discussion
+
+Natural conversation movement.
+
+Small arm gestures.
+
+Head movement.
+
+Talking expression.
+
+This animation will later support interaction with DevOps, Backend, Frontend, PM, and other agents.
+
+Do not create a fake DevOps character.
+
+## ANIMATION 16 — Read_Test_Specification
+
+Hold a document or tablet.
+
+Read slowly.
+
+Occasional head movement.
+
+Subtle page/hand gestures.
+
+## ANIMATION 17 — Think_Investigate
+
+Thoughtful inspection pose.
+
+Small head tilt.
+
+Possible hand-to-chin gesture.
+
+Return smoothly to a neutral posture.
+
+## ANIMATION 18 — Phone_Call
+
+Hold a smartphone or use a supported communication accessory.
+
+Perform small talking gestures.
+
+Return the accessory to a valid state.
+
+## ANIMATION 19 — Coffee_Break
+
+Hold a coffee cup.
+
+Perform a short drinking animation.
+
+Return to idle.
+
+## ANIMATION 20 — Task_Completed
+
+Short professional positive acknowledgment.
+
+Small satisfied nod or restrained celebration.
+
+Return to idle.
+
+## ANIMATION 21 — Waiting_Review
+
+Calm waiting pose.
+
+May glance toward a clipboard or monitor.
+
+No automatic claim of successful QA sign-off.
+
+---
+
+# 16. ANIMATION IMPLEMENTATION PRIORITY
+
+Implement all required demo actions using valid reusable animation clips and/or explicit multi-step compositions.
+
+PRIORITY A — MUST WORK FIRST:
+
+- Idle.
+- Walk.
+- Work Typing.
+- Device Inspect.
+- Run Test Suite Demo.
+- Reproduce Bug.
+- Bug Found Reaction.
+- Checklist Review.
+- Write Bug Report.
+- Present QA Findings.
+
+PRIORITY B:
+
+- Inspect Test Results.
+- Verify Fix Demo.
+- Regression Review.
+- Quality Gate Review.
+- Technical Discussion.
+- Read Test Specification.
+
+PRIORITY C:
+
+- Think.
+- Phone Call.
+- Coffee Break.
+- Task Completed.
+- Waiting Review.
+
+IMPORTANT:
+
+A multi-step demo action may legitimately combine several validated animation clips and runtime navigation.
+
+Do not generate fake AnimationClip entries containing no meaningful motion merely to satisfy the named action count.
+
+If several actions reuse a core pose, differentiate them through valid gestures, props, target orientation, or sequence structure.
+
+Clearly distinguish:
+
+- Exported AnimationClip.
+- Runtime animation composition.
+- Navigation sequence.
+- Contextual prop effect.
+- Demo state.
+
+Report what is genuinely embedded in GLB.
+
+---
+
+# 17. ANIMATION QUALITY STANDARD
+
+All clips must use actual movement of supported character pivots.
+
+Requirements:
+
+- Valid pivot rotation.
+- Valid keyframe timing.
+- Correct interpolation.
+- No broken arms.
+- No detached hands.
+- No foot sliding during stationary poses.
+- No floating accessories.
+- No sudden snapping between animations.
+- No hairstyle detachment.
+- No backpack clipping into the chair.
+- No headset clipping through the ponytail.
+- Correct body orientation.
+- Smooth transitions where supported.
+
+Separate:
+
+- World navigation.
+- Character facing direction.
+- Local body animation.
+- Expression changes.
+- Accessory state.
+
+Do not mix all movement responsibilities into one uncontrolled update function.
+
+## SEATED ACTIONS
+
+Use this sequence:
+
+1. Navigate to workstation approach.
+2. Stop walking.
+3. Orient toward chair.
+4. Transition to seated posture.
+5. Perform activity.
+6. Return to standing when leaving.
+
+Do not let the character type while standing inside the chair.
+
+Do not let the backpack visibly penetrate the chair.
+
+---
+
+# 18. CONTEXTUAL QA ACCESSORIES
+
+Use props inspired by the supplied character sheet.
+
+## PERMANENT DEFAULT ACCESSORIES
+
+- Yellow hair clip.
+- QA uniform.
+- QA backpack.
+
+## CONTEXTUAL PROPS
+
+- QA laptop, handheld variant only when appropriate.
+- Magnifying glass.
+- Test checklist clipboard.
+- Bug report tablet.
+- Smartphone.
+- QA documentation.
+- Coffee cup.
+- Optional black/yellow headset.
+
+## RUNTIME INDICATORS
+
+- Bug detected symbol.
+- Testing indicator.
+- Checklist status.
+- Attention indicator.
+- Completion icon.
+- Thinking indicator.
+
+Keep runtime indicators separate from permanent character geometry.
+
+## IMPORTANT
+
+The reference includes:
+
+- Desktop monitors.
+- Server racks.
+- Chairs.
+- QA workstation furniture.
+- A small cute cat mascot.
+
+These objects do not automatically belong inside the character GLB.
+
+Use existing room furniture where appropriate.
+
+Do not create an extra AI agent for the cat mascot.
+
+If a small cat figurine or desktop plush is desired as decoration, treat it as an optional separate prop, not as part of the QA character's required identity.
+
+---
+
+# 19. QA DEMO STATE SYSTEM
+
+Implement a demo-only state model.
+
+Do not confuse visual states with verified system events.
+
+Suggested demo states:
+
+- IDLE
+- MOVING
+- WORKING
+- RUNNING_TESTS_DEMO
+- INSPECTING_RESULTS
+- DEVICE_TESTING
+- REPRODUCING_BUG_DEMO
+- BUG_FOUND_DEMO
+- REVIEWING_CHECKLIST
+- WRITING_BUG_REPORT
+- VERIFYING_FIX_DEMO
+- REGRESSION_REVIEW
+- QUALITY_GATE_REVIEW
+- PRESENTING_FINDINGS
+- DISCUSSING
+- READING_SPECIFICATION
+- INVESTIGATING
+- ON_CALL
+- COFFEE_BREAK
+- WAITING_REVIEW
+- TASK_COMPLETED_DEMO
+- BLOCKED_DEMO
+
+Map each action using:
+
+ACTION
+→ DEMO STATE
+→ TARGET ANCHOR
+→ ANIMATION CLIP / SEQUENCE
+→ FACIAL EXPRESSION
+→ OPTIONAL PROP
+→ COMPLETION / RESET RULE.
+
+The future AI Office backend will decide actual task status.
+
+The visual renderer must not decide whether tests passed, fixes succeeded, or Quality Gate approval was granted.
+
+---
+
+# 20. QA DEMO STATE — SPECIAL RULES
+
+This part is especially important for the final AI Office system.
+
+## TEST RUNNING
+
+A character running a demo test animation must not mean a test runner actually executed.
+
+## BUG FOUND
+
+The character may display a bug-found visual effect in DEMO mode.
+
+This must not be treated as a real defect report.
+
+## BUG REPORT
+
+Writing a demo bug report must not create fictional production evidence.
+
+## VERIFY FIX
+
+The demonstration must not automatically mark the real bug as fixed.
+
+## QUALITY GATE
+
+The character may visually review the Quality Gate.
+
+It must not automatically approve the release.
+
+## TASK COMPLETED
+
+The demo completion reaction must remain visually separate from the authoritative backend task completion event.
+
+All simulated status indicators should be clearly marked:
+
+**SIMULASI / DEMO**
+
+This distinction must remain compatible with future verified task evidence.
+
+---
+
+# 21. QA SIMULATION PANEL
+
+Reuse the current character simulation UI.
+
+Panel title:
+
+**QA Engineer — Simulasi Aktivitas**
+
+Provide actions:
+
+1. Idle / Santai.
+2. Jalan.
+3. Kerja di Meja.
+4. Jalankan Testing (Demo).
+5. Periksa Hasil Testing.
+6. Uji Perangkat.
+7. Reproduksi Bug (Demo).
+8. Bug Ditemukan (Demo).
+9. Review Checklist.
+10. Tulis Bug Report.
+11. Verifikasi Perbaikan (Demo).
+12. Regression Review.
+13. Quality Gate Review.
+14. Presentasi Hasil QA.
+15. Diskusi Teknis.
+16. Baca Test Specification.
+17. Investigasi.
+18. Telepon.
+19. Coffee Break.
+20. Tugas Selesai (Demo).
+21. Menunggu Review.
+
+Each control must trigger real visible character behavior.
+
+Display:
+
+- Selected Character.
+- Current Demo State.
+- Active Animation Clip.
+- Target Anchor.
+- Current Position.
+- Current Facial Expression.
+- Active Prop.
+- Simulation / Demo label.
+
+Keep the panel consistent with existing PM, CEO, UI/UX, Engineering, and Research character controls.
+
+Do not create a separate unrelated UI design system.
+
+---
+
+# 22. AUTOMATIC QA WORKFLOW DEMO
+
+Add a dedicated button:
+
+**Jalankan Demo QA Otomatis**
+
+Recommended sequence:
+
+1. Idle.
+2. Walk to QA Workstation.
+3. Work Typing.
+4. Run Test Suite Demo.
+5. Inspect Test Results.
+6. Bug Found Reaction.
+7. Reproduce Bug Demo.
+8. Write Bug Report.
+9. Walk to Device Testing Counter.
+10. Device Inspect.
+11. Walk to QA Review Board.
+12. Checklist Review.
+13. Regression Review.
+14. Verify Fix Demo.
+15. Quality Gate Review.
+16. Present QA Findings.
+17. Task Completed Demo.
+18. Return to Idle.
+
+Use appropriate duration and smooth transitions.
+
+## CONTROL REQUIREMENTS
+
+Support:
+
+- Start.
+- Stop.
+- Reset.
+- Focus QA Camera.
+- Return to Room View.
+
+Do not allow duplicate timers.
+
+Do not create multiple mixers for the same character.
+
+Do not allow conflicting sequences to run simultaneously.
+
+Do not leave props floating after cancellation.
+
+Do not teleport through walls.
+
+Do not alter other characters' activities when QA is reset.
+
+---
+
+# 23. ROOM-SPECIFIC ANIMATION ALIGNMENT
+
+The QA character must interact with the ACTUAL completed room geometry.
+
+## QA WORKSTATION
+
+Verify:
+
+- Correct chair.
+- Correct monitor front direction.
+- Correct keyboard position.
+- Correct typing height.
+- Correct seated pose.
+
+## DEVICE TESTING COUNTER
+
+Verify:
+
+- Device stand position.
+- Correct hand reach.
+- Enough floor clearance.
+- Correct approach facing.
+
+## QA CHECKLIST BOARD
+
+Verify:
+
+- Correct board orientation.
+- Correct viewing side.
+- Real interaction anchor.
+- Appropriate pointing distance.
+
+## QA/DEVOPS REVIEW AREA
+
+Verify:
+
+- Shared review board is accessible.
+- Lounge furniture does not block the route.
+- QA does not occupy a future DevOps seat permanently.
+
+## DOORWAYS
+
+Use validated real room connectors.
+
+Do not assume a physical doorway exists merely because an anchor was listed in a previous prompt.
+
+---
+
+# 24. ENGINEERING AND DEVOPS COLLABORATION — FUTURE CONTRACT ONLY
+
+QA will eventually interact with:
+
+- Frontend during UI verification.
+- Backend during API issue review.
+- Database during data validation.
+- DevOps during release readiness.
+- PM for consolidated QA reports.
+- CEO through the approved reporting workflow.
+
+Do not implement actual cross-agent communications in this task.
+
+Do not fabricate conversations.
+
+Do not make other characters walk to QA automatically without a real supported choreography contract.
+
+Prepare future collaboration capability through:
+
+- Stable character ID.
+- Action mapping.
+- Review anchors.
+- Behavior metadata.
+- External event compatibility.
+
+The actual orchestration will come later.
+
+---
+
+# 25. CENTRAL HUB MEETING DEMO COMPATIBILITY
+
+The office already has a Central Hub meeting system with 10 planned chairs.
+
+After implementing QA, it should become an eligible meeting participant.
+
+DO NOT rebuild the Central Hub.
+
+DO NOT modify its meeting table or seating geometry.
+
+Inspect the existing meeting actor registry.
+
+If compatible:
+
+- Register `qa_engineer_agent`.
+- Assign a valid unoccupied QA meeting seat.
+- Use the existing meeting navigation contract.
+- Use a valid chair approach anchor.
+- Support compatible sit and seated-idle behavior.
+- Preserve Stop and Reset.
+
+If the QA character does not contain a meeting-specific clip, use the existing safe meeting-pose adapter if one actually exists.
+
+Do not invent a new incompatible meeting architecture.
+
+Do not claim successful participation unless QA can genuinely reach and sit at its assigned seat.
+
+If cross-room navigation is not yet validated, mark meeting integration PARTIAL and document what remains.
+
+The Human Owner's reserved chair must stay reserved.
+
+Do not spawn a fake Owner or DevOps agent.
+
+---
+
+# 26. MULTI-CHARACTER SAFETY
+
+QA must have independent runtime state.
+
+Ensure:
+
+- Unique character ID.
+- Unique scene root.
+- Independent AnimationMixer.
+- Independent action controller.
+- Independent expression controller.
+- Independent prop state.
+- Independent room position.
+- Independent current demo state.
+
+Existing Engineering, Research, PM, CEO, and UI/UX characters must not react to QA controls unless an explicitly supported shared demo is running.
+
+Do not reuse a shared mutable selected-agent state as the internal animation state for every character.
+
+Selecting QA in the UI should not replace another agent in memory.
+
+Do not create duplicate QA instances when switching between Single Room and Full Office.
+
+---
+
+# 27. CHARACTER ANTI-FLICKER AUDIT
+
+The owner has previously experienced recurring flicker and disappearing surfaces.
+
+Before completion, test:
+
+- Hair crown.
+- Ponytail/bun connection.
+- Golden hair clip.
+- Ears.
+- Forehead.
+- Eye geometry.
+- Eyebrows.
+- Mouth.
+- Uniform layers.
+- Sleeve cuffs.
+- QA emblem.
+- Backpack straps.
+- Backpack logo.
+- Shoes.
+- Handheld props.
+
+Look for:
+
+- Coplanar faces.
+- Duplicate geometry.
+- Incorrect mesh normals.
+- Hair-face intersections.
+- Material overlap.
+- Shadow artifacts.
+- Incorrect transparency.
+- Object transforms that update inconsistently.
+
+Fix actual geometry or material issues.
+
+Do not globally disable depth testing.
+
+Do not globally disable shadows.
+
+Do not add arbitrary polygonOffset to every object.
+
+Do not make all materials DoubleSide.
+
+The character must remain visually stable during walking, sitting, testing, presenting, and turning.
+
+---
+
+# 28. CHARACTER GLB EXPORT CONTRACT
+
+Follow the existing AI Office Production Asset Standard.
+
+Export:
+
+`qa_engineer_agent.glb`
+
+Include:
+
+- Complete QA character model.
+- Hair crown.
+- Layered fringe.
+- Tied-up hair.
+- Yellow hair accessory.
+- Face.
+- Eyes.
+- QA uniform.
+- QA logo.
+- Trousers.
+- Sneakers.
+- Backpack.
+- Rig hierarchy.
+- Valid supported animation clips.
+- Compatible materials.
+
+Exclude:
+
+- Room geometry.
+- Desks.
+- Chairs.
+- Permanent room displays.
+- QA/DevOps server racks.
+- Central Hub furniture.
+- Other character models.
+- Cameras.
+- Runtime UI.
+- Debug helpers.
+- Temporary selection rings.
+- Unrelated floating reaction icons.
+
+The GLB must be independently usable in the future AI Office main application.
+
+---
+
+# 29. ANIMATION EXPORT RULES
+
+Create genuine Three.js AnimationClips with stable track targets.
+
+Use existing GLTFExporter conventions.
+
+Every reported exported animation clip must:
+
+- Have valid track data.
+- Target nodes included in the exported model.
+- Have valid keyframe timing.
+- Produce visible intended motion.
+- Survive independent GLB reimport.
+- Work with an independent AnimationMixer.
+
+IMPORTANT:
+
+Runtime navigation routes are not automatically contained inside the GLB.
+
+UI demo sequences are not automatically contained inside the GLB.
+
+Some prop visibility or facial state logic may require separate runtime source code.
+
+Do not falsely claim all behavior is baked into the GLB.
+
+When a movement can be faithfully baked into supported transform tracks, do so.
+
+Otherwise preserve its runtime controller and clearly document the dependency.
+
+---
+
+# 30. QA MANIFEST
+
+Export:
+
+`qa_engineer_agent.manifest.json`
+
+Include:
+
+- schema_version
+- asset_id
+- display_name
+- role
+- department
+- compatible_room_id
+- glb_path
+- actual_model_height
+- actual_bounds
+- default_scale
+- local_forward_axis
+- root_origin_policy
+- material_profile
+- hairstyle_profile
+- supported_animation_clips
+- supported_expressions
+- supported_accessories
+- export_version
+- validation_summary
+- known_runtime_dependencies
+
+Use actual measured values.
+
+Do not invent mesh counts, sizes, or test results.
+
+---
+
+# 31. QA BEHAVIOR CONTRACT
+
+Export:
+
+`qa_engineer_agent.behavior.json`
+
+Include:
+
+- schema_version
+- character_id
+- default_state
+- default_idle_anchor_id
+- action_mappings
+- animation_clip_mapping
+- sequence_mapping
+- target_anchor_mapping
+- expression_mapping
+- accessory_mapping
+- movement_configuration
+- animation_transition_policy
+- seated_posture_policy
+- demo_state_definitions
+- meeting_capability
+- external_event_contract
+- validation_status
+
+Reuse existing schema conventions.
+
+Avoid creating a QA-only incompatible format.
+
+Design for future externally controlled actions.
+
+The main AI Office system must remain the authoritative source for real task states.
+
+---
+
+# 32. PREVIEW AND PORTABLE SOURCE
+
+Export:
+
+`qa_engineer_agent_preview.png`
+
+Use a consistent orthographic three-quarter angle.
+
+Where supported, export an additional eight-view turnaround preview.
+
+Preserve source for:
+
+- QA Character Builder.
+- Hair Geometry Builder.
+- Materials.
+- Animation Clips.
+- Expression Controller.
+- Prop Attachments.
+- QA Simulation Controller.
+- Room Anchor Mapping.
+- Meeting Compatibility Adapter.
+- GLB Exporter.
+- GLB Reimport Validator.
+
+Do not assume runtime controllers are embedded in GLB.
+
+Include necessary source files in the existing source backup system.
+
+---
+
+# 33. PRODUCTION FOLDER STRUCTURE
+
+Use the current actual export pipeline.
+
+Target logical structure:
+
+production/
+  characters/
+    qa_engineer_agent/
+      qa_engineer_agent.glb
+      qa_engineer_agent.manifest.json
+      qa_engineer_agent.behavior.json
+      qa_engineer_agent_preview.png
+
+  rooms/
+    qa_devops/
+      qa_devops_room.glb
+      qa_devops_room.manifest.json
+      qa_devops_room.anchors.json
+
+  office/
+    office-layout-a3.2.json
+
+source/
+  modular-room-lab-source.zip
+
+If existing folder conventions differ, preserve backwards compatibility.
+
+Do not restructure the full source project unnecessarily.
+
+Do not include fake or empty placeholder assets.
+
+Do not overwrite a previously approved character pack.
+
+---
+
+# 34. INDEPENDENT GLB ROUND-TRIP VALIDATION
+
+After exporting the QA GLB, load the ACTUAL exported binary with GLTFLoader.
+
+Create a fresh AnimationMixer using the reimported character scene.
+
+Verify:
+
+1. GLB binary is valid.
+2. Parsing succeeds.
+3. Character root exists.
+4. Model geometry is present.
+5. Hair crown is present.
+6. Tied-up hairstyle is present.
+7. Hair clip remains attached.
+8. Hair colors survive export.
+9. Face remains visible.
+10. No unintended default glasses appear.
+11. QA uniform looks correct.
+12. QA emblem remains readable.
+13. Backpack is present.
+14. Shoes remain correct.
+15. Model scale matches the approved cast.
+16. Feet align with the floor.
+17. Exported animation clips are present.
+18. Animation tracks resolve to real nodes.
+19. Idle plays.
+20. Walk plays.
+21. Typing plays.
+22. Testing gesture plays.
+23. Bug-found reaction plays.
+24. Checklist review plays.
+25. Presentation plays.
+26. No limbs detach.
+27. No hairstyle elements detach.
+28. No floating props in default pose.
+29. No major new Z-fighting.
+30. No room geometry is included.
+31. No debug geometry is included.
+32. Materials and textures load correctly.
+
+Do not claim every test passed unless it was genuinely executed.
+
+Report runtime-only actions separately.
+
+---
+
+# 35. QA ROOM SIMULATION TESTS
+
+Verify:
+
+- QA spawns at a valid anchor.
+- QA does not spawn inside furniture.
+- QA faces the workstation monitor.
+- Typing posture aligns with the keyboard.
+- Device testing interaction is correctly positioned.
+- Clipboard attaches to the correct hand.
+- QA can reach the checklist board.
+- QA can reach the shared review board.
+- QA can move without passing through the sofa.
+- QA does not enter DevOps-only equipment space without a valid action.
+- Stop Demo works.
+- Reset Demo works.
+- Switching camera does not reset animations.
+- Cinema Mode does not stop QA demo.
+- Smart Cutaway does not hide the QA character incorrectly.
+
+Do not mark any unavailable route as validated.
+
+---
+
+# 36. GLOBAL REGRESSION
+
+Verify:
+
+[ ] PM Room unchanged.
+
+[ ] Boss PM functional.
+
+[ ] CEO Room unchanged.
+
+[ ] CEO character functional.
+
+[ ] UI/UX Room unchanged.
+
+[ ] UI/UX character functional.
+
+[ ] Engineering Room unchanged.
+
+[ ] Frontend functional.
+
+[ ] Backend functional.
+
+[ ] Database functional.
+
+[ ] Research Room unchanged.
+
+[ ] Research Professor functional.
+
+[ ] QA/DevOps Room remains 8×16.
+
+[ ] Central Hub unchanged.
+
+[ ] Existing meeting furniture unchanged.
+
+[ ] Room Selector works.
+
+[ ] Character selection works.
+
+[ ] Single Room works.
+
+[ ] Full Office works.
+
+[ ] Cinema Mode works.
+
+[ ] Smart Cutaway works.
+
+[ ] Camera zoom limitations remain intact.
+
+[ ] Existing exports remain functional.
+
+[ ] Source backup remains available.
+
+Do not rebuild working features simply to make the QA character function.
+
+---
+
+# 37. IMPLEMENTATION PHASES
+
+Follow this exact order.
+
+## PHASE A — PROJECT AUDIT
+
+Inspect existing code and create a recoverable checkpoint.
+
+## PHASE B — CHARACTER BASE
+
+Build the head, body, arms, legs, and face.
+
+Match existing character proportions.
+
+## PHASE C — HAIRSTYLE
+
+Build the detailed brown layered hairstyle.
+
+Create the high tied-up hair section and yellow clip.
+
+Inspect from eight angles.
+
+Refine until the silhouette matches the reference.
+
+## PHASE D — OUTFIT
+
+Build the white shirt, dark QA uniform, yellow details, QA logo, trousers, sneakers, and backpack.
+
+## PHASE E — MATERIAL AND SCALE REVIEW
+
+Check material quality, surface stability, and character proportions.
+
+## PHASE F — RIG AND BASIC CLIPS
+
+Implement Idle and Walk.
+
+Verify all pivots.
+
+## PHASE G — QA WORKSTATION INTEGRATION
+
+Use measured anchors.
+
+Validate standing, sitting, and monitor interaction.
+
+## PHASE H — CORE QA ANIMATIONS
+
+Implement test running, device inspection, bug investigation, checklist review, bug reporting, and presentation.
+
+## PHASE I — SUPPORTING QA ANIMATIONS
+
+Implement regression review, fix verification, Quality Gate, reading, thinking, discussion, and remaining contextual actions.
+
+## PHASE J — EXPRESSIONS AND PROPS
+
+Implement facial expressions and QA-specific contextual accessories.
+
+## PHASE K — SIMULATION PANEL
+
+Add QA controls and automatic workflow demo.
+
+## PHASE L — MEETING COMPATIBILITY
+
+Register QA as an eligible Central Hub meeting participant only using compatible existing systems.
+
+## PHASE M — PRODUCTION EXPORT
+
+Export standalone GLB, manifest, behavior, preview, and preserve source.
+
+## PHASE N — INDEPENDENT REIMPORT
+
+Reload actual GLB and validate animation playback.
+
+## PHASE O — REGRESSION TEST
+
+Verify completed rooms, characters, cameras, meetings, and export systems.
+
+STOP AFTER QA CHARACTER COMPLETION.
+
+Do not create DevOps yet.
+
+---
+
+# 38. VISUAL ACCEPTANCE CRITERIA
+
+[ ] Character resembles the approved QA sheet.
+
+[ ] Female QA character identity is recognizable.
+
+[ ] Brown hair is visibly layered.
+
+[ ] High tied-up hairstyle is correctly modeled.
+
+[ ] Yellow hair accessory is present.
+
+[ ] Hairstyle looks correct from all directions.
+
+[ ] Default face has no glasses.
+
+[ ] Facial expressions work.
+
+[ ] Black/white/yellow outfit is detailed.
+
+[ ] QA emblem is present.
+
+[ ] Backpack is correctly attached.
+
+[ ] Sneakers are properly modeled.
+
+[ ] Character scale matches existing cast.
+
+[ ] Materials are matte and stable.
+
+[ ] No hair/ear/face flickering.
+
+[ ] No outfit or prop clipping during main actions.
+
+---
+
+# 39. FUNCTIONAL ACCEPTANCE CRITERIA
+
+[ ] Idle and Walk work.
+
+[ ] QA workstation interaction works.
+
+[ ] Testing animation is real.
+
+[ ] Device inspection works.
+
+[ ] Bug reproduction demo works.
+
+[ ] Bug-found reaction works.
+
+[ ] Checklist animation works.
+
+[ ] Bug report animation works.
+
+[ ] Regression review works.
+
+[ ] Verify Fix demo works.
+
+[ ] Quality Gate review works.
+
+[ ] QA presentation works.
+
+[ ] Automatic QA demo works.
+
+[ ] Stop and Reset work.
+
+[ ] Demo states are clearly labeled.
+
+[ ] No real test evidence is fabricated.
+
+[ ] QA joins the character registry independently.
+
+[ ] QA can participate in the existing meeting demo where technically validated.
+
+[ ] Existing characters remain unaffected.
+
+[ ] QA GLB and JSON export successfully.
+
+[ ] Reimported clips work.
+
+---
+
+# 40. REQUIRED FINAL IMPLEMENTATION REPORT
+
+After completion provide:
+
+1. Source files added and modified.
+2. Existing baseline preservation results.
+3. Character geometry summary.
+4. Actual character height and bounds.
+5. Hairstyle construction details.
+6. Hair color/material palette.
+7. Uniform and accessory implementation.
+8. Visual comparison against the supplied character sheet.
+9. Implemented animation actions.
+10. Actual exported AnimationClip names.
+11. Runtime-only sequences and dependencies.
+12. Facial expressions implemented.
+13. QA demo states and mappings.
+14. QA anchors used.
+15. QA workstation interaction results.
+16. Automatic QA demo results.
+17. Meeting compatibility status.
+18. Exported filenames and real file sizes.
+19. Independent reimport results.
+20. Existing project regression results.
+21. Known defects or limitations.
+
+Use honest statuses:
+
+- COMPLETED
+- PARTIAL
+- BLOCKED
+- NOT IMPLEMENTED
+- NOT VERIFIED
+
+Do not invent a successful test result.
+
+Do not report an animation as exported unless it is present in the actual reimported GLB.
+
+Do not mark owner approval on the owner's behalf.
+
+---
+
+# 41. STRICT PROHIBITIONS
+
+DO NOT:
+
+- Create the DevOps character.
+- Build a new QA room.
+- Modify the QA/DevOps interior.
+- Change Master Layout A3.2.
+- Redesign Central Hub.
+- Modify existing character designs.
+- Modify existing character animations.
+- Change Full Office camera behavior.
+- Remove Cinema Mode.
+- Remove Smart Cutaway.
+- Recreate working character controllers unnecessarily.
+- Implement a real test runner.
+- Modify project source code being tested.
+- Create fake test evidence.
+- Automatically approve a release.
+- Trigger actual infrastructure deployments.
+- Send real Telegram messages.
+- Create fake interactions with DevOps.
+- Bake the room into the QA character GLB.
+- Export only a static character without animation and claim completion.
+
+---
+
+# FINAL DIRECTIVE
+
+CREATE ONE NEW QA ENGINEER CHARACTER INSIDE THE EXISTING AI OFFICE MODULAR ROOM LAB.
+
+Use the attached approved QA Engineer Character Sheet as the primary visual identity reference.
+
+Prioritize:
+
+1. Detailed dark brown layered voxel hairstyle.
+2. Correct high tied-up hair silhouette.
+3. Small yellow hair accessory.
+4. Expressive face without default glasses.
+5. Black, white and gold QA uniform.
+6. QA-branded backpack.
+7. Correct Room-Native character proportions.
+8. Genuine QA testing and bug-investigation animations.
+9. Independent demo action and state controls.
+10. Correct QA workstation navigation.
+11. Safe participation in the existing Central Hub meeting demo when supported.
+12. Standalone GLB containing verified animation clips.
+13. Production-compatible manifest and behavior JSON.
+14. Anti-flicker inspection.
+15. Independent GLB reimport testing.
+16. Complete regression protection.
+
+DO NOT modify approved rooms or existing characters.
+
+DO NOT create DevOps yet.
+
+DO NOT implement real AI testing or release approvals.
+
+DO NOT fabricate runtime events or validation results.
+
+Preserve all production exports and source backups.
+
+**COMPLETE THE QA ENGINEER CHARACTER, ANIMATIONS, DEMO STATES, ROOM INTEGRATION AND PRODUCTION EXPORT — THEN STOP FOR OWNER REVIEW.**

@@ -1,0 +1,254 @@
+{
+  "schema_version": "AI_OFFICE_ASSET_MANIFEST_V1",
+  "asset_id": "ai_office.character.boss_pm_room_native.v1",
+  "legacy_asset_id": "AI_OFFICE_ORIGINAL_BOSS_PM_v1",
+  "asset_version": "1.0.0",
+  "asset_kind": "character",
+  "role_classification": "ROOM_NATIVE_EXPORT_CANDIDATE",
+  "canonical_character_lab_notice": "Preserves the approved room-native cozy voxel Boss PM as an integration candidate. Does not silently replace Character Lab as the canonical character-production pipeline.",
+  "source_project_name": "ai-office-modular-room-lab",
+  "source_revision": "NOT AVAILABLE (Google AI Studio Build Sandbox)",
+  "export_date": "2026-10-28T15:37:52.891Z",
+  "file_inventory": {
+    "glb": {
+      "filename": "boss_pm.glb",
+      "relative_path": "./boss_pm.glb",
+      "size_bytes": 98420,
+      "sha256": "7cecd5ec72aaf92eb4a08dfd373dd6f05f35e1a5175eef3e0864e4d97ba5eb8a"
+    },
+    "manifest": {
+      "filename": "boss_pm.manifest.json",
+      "relative_path": "./boss_pm.manifest.json"
+    },
+    "behavior": {
+      "filename": "boss_pm.behavior.json",
+      "relative_path": "./boss_pm.behavior.json"
+    },
+    "preview": {
+      "filename": "boss_pm.preview.png",
+      "relative_path": "./boss_pm.preview.png"
+    },
+    "readme": {
+      "filename": "README.md",
+      "relative_path": "./README.md"
+    }
+  },
+  "coordinate_and_scale_contract": {
+    "up_axis": "Y",
+    "handedness": "right-handed",
+    "character_origin": [
+      0,
+      0,
+      0
+    ],
+    "origin_convention": "Feet contact point flush with floor plane Y = 0.000",
+    "local_forward": [
+      0,
+      0,
+      1
+    ],
+    "raw_height_units": 1.725,
+    "calibrated_height_units": 1.72,
+    "applied_scale_factor": 0.9971,
+    "separate_from_room_root": true
+  },
+  "measured_bounds": {
+    "local_min": [
+      -0.33,
+      0,
+      -0.188
+    ],
+    "local_max": [
+      0.33,
+      1.725,
+      0.23
+    ],
+    "size": [
+      0.66,
+      1.725,
+      0.418
+    ]
+  },
+  "geometry_and_material_summary": {
+    "source_hierarchy_total_meshes": 46,
+    "exported_rest_pose_visible_meshes": 41,
+    "contextual_handheld_prop_meshes_in_source": 5,
+    "mesh_count_difference_explanation": "Source hierarchy contains 46 total meshes: 41 permanent body/suit/head/hair/glasses meshes visible in the default standing rest pose, plus 5 contextual handheld prop meshes (Binder_Cover, Binder_Pages, Executive_Smartphone_Prop, Coffee_Mug_Body, Coffee_Mug_Sleeve) that are hidden in rest pose so they do not overlap the hands in static glTF viewers.",
+    "material_count": 13,
+    "material_names": [
+      "Voxel_Trousers_Charcoal",
+      "Voxel_Shoes_Dark_Leather",
+      "Voxel_Belt_Brass_Buckle",
+      "Voxel_Executive_Suit_Black",
+      "Voxel_Inner_Shirt_White",
+      "Voxel_Executive_Suit_Lapel",
+      "Voxel_Necktie_Red",
+      "Voxel_Skin_Warm",
+      "Voxel_Prop_Navy_Binder",
+      "Voxel_Sunglasses_Frame_Black",
+      "Voxel_Prop_Ceramic_Mug",
+      "Voxel_Hair_Dark_Espresso",
+      "Voxel_Sunglasses_Lens_Dark"
+    ],
+    "has_skinned_skeleton": false,
+    "articulated_pivot_groups": [
+      "Hips",
+      "Torso",
+      "Head",
+      "LeftArm",
+      "RightArm",
+      "LeftLeg",
+      "RightLeg"
+    ],
+    "visual_identity_checklist": {
+      "blocky_voxel_silhouette": true,
+      "geometric_dark_hairstyle": true,
+      "rectangular_black_sunglasses": true,
+      "black_suit_jacket": true,
+      "white_inner_shirt": true,
+      "red_necktie": true,
+      "ear_sideburn_temple_separation_preserved": true,
+      "torso_z_layering_preserved": true
+    }
+  },
+  "animation_inventory": {
+    "embedded_gltf_clip_count": 11,
+    "clips": [
+      {
+        "name": "Idle_Breathing",
+        "duration_seconds": 2.4,
+        "track_count": 3,
+        "targeted_pivots": [
+          "Head",
+          "LeftArm",
+          "RightArm"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Walk_Cycle",
+        "duration_seconds": 0.96,
+        "track_count": 5,
+        "targeted_pivots": [
+          "Hips",
+          "LeftLeg",
+          "RightLeg",
+          "LeftArm",
+          "RightArm"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Work_Typing",
+        "duration_seconds": 1.2,
+        "track_count": 6,
+        "targeted_pivots": [
+          "Hips",
+          "LeftLeg",
+          "RightLeg",
+          "LeftArm",
+          "RightArm",
+          "Head"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Meeting_Briefing",
+        "duration_seconds": 2,
+        "track_count": 3,
+        "targeted_pivots": [
+          "RightArm",
+          "LeftArm",
+          "Head"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Present_Board",
+        "duration_seconds": 2,
+        "track_count": 3,
+        "targeted_pivots": [
+          "RightArm",
+          "LeftArm",
+          "Head"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Read_Document",
+        "duration_seconds": 2,
+        "track_count": 3,
+        "targeted_pivots": [
+          "LeftArm",
+          "RightArm",
+          "Head"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Think_Plan",
+        "duration_seconds": 2.2,
+        "track_count": 3,
+        "targeted_pivots": [
+          "RightArm",
+          "LeftArm",
+          "Head"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Phone_Call",
+        "duration_seconds": 2,
+        "track_count": 3,
+        "targeted_pivots": [
+          "RightArm",
+          "LeftArm",
+          "Head"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Coffee_Break",
+        "duration_seconds": 2.6,
+        "track_count": 2,
+        "targeted_pivots": [
+          "RightArm",
+          "Head"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Waiting_Approval",
+        "duration_seconds": 2,
+        "track_count": 3,
+        "targeted_pivots": [
+          "LeftArm",
+          "RightArm",
+          "Head"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      },
+      {
+        "name": "Task_Completed",
+        "duration_seconds": 1.4,
+        "track_count": 3,
+        "targeted_pivots": [
+          "LeftArm",
+          "RightArm",
+          "Head"
+        ],
+        "classification": "EMBEDDED_GLTF_CLIP"
+      }
+    ]
+  },
+  "validation_status": "PASS",
+  "known_limitations": [
+    "Uses hierarchical pivot node animation (Hips, Torso, Head, LeftArm, RightArm, LeftLeg, RightLeg) rather than a deformed SkinnedMesh skeleton, preserving crisp voxel block geometry without vertex stretching.",
+    "Contextual handheld props (strategy binder, smartphone, coffee mug), waypoint navigation, seated height offset (-0.16u), and interactive speech/approval bubbles are driven by the companion procedural controller (BossPMCharacterSystem.ts) as documented in boss_pm.behavior.json."
+  ],
+  "provenance": {
+    "author_tool": "AI Office Modular Room Lab (Three.js GLTFExporter)",
+    "visual_source_of_truth": "Room-Native Cozy Handcrafted Voxel Boss PM V1",
+    "license": "Internal AI Office Project Asset — All Rights Reserved by Project Owner"
+  }
+}

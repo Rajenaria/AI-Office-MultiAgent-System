@@ -1,0 +1,1900 @@
+# AI OFFICE — MODULE 05
+# RESEARCH & SHARED BRAIN ROOM PRODUCTION V1
+## THE KNOWLEDGE ATELIER
+### Premium Cozy Voxel Research Library + Knowledge Visualization
+### Master Layout A3.1 | 8×8 Modular Room | Production Asset Standard V1
+
+---
+
+# 0. YOUR ROLE AND MISSION
+
+You are a Senior Three.js Environment Artist, Voxel Interior Designer, Modular Architecture Engineer, React/TypeScript Developer, Technical Level Designer, and Production GLB Pipeline Engineer.
+
+You are working inside the EXISTING Google AI Studio project:
+
+**AI Office — Modular Room Lab**
+
+This application contains previously developed rooms, characters, animations, camera controls, modular assembly tools, and production export systems.
+
+YOUR MISSION:
+
+Create ONE entirely new room:
+
+**Module 05 — Research & Shared Brain**
+
+The room must be a richly detailed handcrafted voxel research environment that visually represents knowledge acquisition, documentation, organizational memory, reference materials, and research activities.
+
+This room is NOT a duplicate executive office.
+
+It is NOT a generic developer workspace.
+
+It is NOT a futuristic server room.
+
+The desired environment is:
+
+**A cozy academic research library blended with a sophisticated digital knowledge atelier.**
+
+Your responsibility:
+
+1. Preserve all approved existing modules.
+2. Build an independent 8×8 Research Room.
+3. Create a unique academic-research interior.
+4. Add a physical library and knowledge archive.
+5. Add a functional research workstation.
+6. Add a visually distinctive Shared Brain Atlas.
+7. Add evidence analysis and reference displays.
+8. Prepare navigation for a future Research Professor character.
+9. Support Single Room and Full Office views.
+10. Export a portable Research Room GLB and metadata.
+11. Independently validate the actual exported asset.
+
+DO NOT create the Research Professor character yet.
+
+DO NOT implement real memory retrieval or RAG systems.
+
+DO NOT rebuild the application.
+
+---
+
+# 1. ABSOLUTE PROJECT PRESERVATION
+
+Before modifying the project:
+
+- Inspect existing source files.
+- Identify current room builders.
+- Inspect the room registry.
+- Inspect OfficeAssembler.
+- Inspect actual A3.1 layout metadata.
+- Inspect shared rendering conventions.
+- Inspect current room export and reimport infrastructure.
+- Create a recoverable source checkpoint.
+
+Preserve existing assets.
+
+## EXISTING ROOMS
+
+- PM & Strategy Room.
+- CEO Executive Brain Command Center.
+- UI/UX Design Studio.
+- Engineering & Development Studio.
+
+Do not modify existing room geometry, furniture, walls, floor patterns, textures, windows, lighting profiles, or exported GLBs.
+
+## EXISTING CHARACTERS
+
+Preserve:
+
+- Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer.
+- Backend Developer.
+- Database Developer, if present in the current project.
+
+Preserve their:
+
+- Geometry.
+- Clothing.
+- Hairstyles.
+- Animation clips.
+- Expressions.
+- Character behavior controllers.
+- Anchor mapping.
+- Production exports.
+
+## EXISTING SYSTEMS
+
+Preserve:
+
+- Single Room mode.
+- Full Office mode.
+- Room Selector.
+- OfficeAssembler.
+- Master Layout A3.1.
+- Camera controls.
+- Character simulation panels.
+- GLB Import.
+- Room export.
+- Character export.
+- Existing production pack functionality.
+- Source backup.
+
+IMPORTANT:
+
+The owner has postponed final corrections to Full Office camera proportions.
+
+Do not redesign the global camera system during this task.
+
+Do not change existing room positions.
+
+Do not add extra departments.
+
+---
+
+# 2. STRICT SOURCE-OF-TRUTH PRIORITY
+
+Use the following references.
+
+## PRIORITY 1 — APPROVED MASTER LAYOUT A3.1
+
+Defines room dimensions, physical location, and modular placement.
+
+## PRIORITY 2 — CURRENT WORKING PROJECT SOURCE
+
+Defines actual available APIs, rendering conventions, exporters, coordinate systems, and room registry.
+
+## PRIORITY 3 — EXISTING APPROVED ROOM ASSETS
+
+Defines world consistency, voxel style, lighting quality, and level of furniture detail.
+
+## PRIORITY 4 — RESEARCH DESIGN BRIEF BELOW
+
+Defines the new room's unique interior personality.
+
+If existing source differs from assumptions in this prompt, inspect before changing.
+
+Do not invent missing APIs or silently replace existing architecture.
+
+Do not reproduce another room's floor plan merely because its code is convenient to reuse.
+
+---
+
+# 3. MODULE IDENTITY
+
+Room ID:
+
+`AI_OFFICE_ROOM_RESEARCH_v1`
+
+Display Name:
+
+`Research & Shared Brain`
+
+Alternative Title:
+
+`The Knowledge Atelier`
+
+Department:
+
+`Research / Intelligence / Knowledge`
+
+Room Purpose:
+
+- Information research.
+- Knowledge organization.
+- Reference discovery.
+- Research documentation.
+- Evidence analysis.
+- Source comparison.
+- Knowledge mapping.
+- Shared Brain visualization.
+- Research findings.
+- Project knowledge exploration.
+
+The room represents a research and organizational knowledge function.
+
+It is not the actual memory database itself.
+
+---
+
+# 4. MASTER LAYOUT A3.1 — EXACT POSITION
+
+Use the same Three.js Y-up coordinate system as the existing project.
+
+World orientation:
+
+- +X = East.
+- -X = West.
+- +Z = North.
+- -Z = South.
+- +Y = Up.
+
+## RESEARCH ROOM
+
+Dimensions:
+
+8 × 8 × approximately 3.2 units.
+
+Use the actual established wall-height standard.
+
+Local origin:
+
+[0, 0, 0]
+
+Local bounds:
+
+X = 0..8.
+
+Z = 0..8.
+
+Y = 0..room height.
+
+Full Office global offset:
+
+[0, 0, 18]
+
+Global bounds:
+
+X = 0..8.
+
+Z = 18..26.
+
+Research occupies the NORTH-WEST corner of the A3.1 office.
+
+Its eastern neighbor is PM Room.
+
+The southern side faces the shared upper corridor.
+
+The northern and western boundaries are exterior-facing.
+
+## DO NOT MODIFY EXISTING PLACEMENTS
+
+PM:
+
+[8, 0, 18]
+
+CEO:
+
+[16, 0, 18]
+
+UI/UX:
+
+[24, 0, 18]
+
+Engineering:
+
+[0, 0, 0], size 8×16.
+
+QA:
+
+[24, 0, 8].
+
+DevOps:
+
+[24, 0, 0].
+
+Central Hub:
+
+X=8..24, Z=0..16, OPEN.
+
+Shared corridor:
+
+X=0..32, Z=16..18.
+
+Overall footprint remains 32×26.
+
+---
+
+# 5. RESEARCH CONNECTOR DESIGN
+
+Research needs at least one physically usable connection to the shared office circulation system.
+
+## REQUIRED — SOUTH CONNECTOR
+
+Connector ID:
+
+`RESEARCH_SOUTH_CORRIDOR`
+
+Nominal local center:
+
+[4, 0, 0]
+
+Nominal global center:
+
+[4, 0, 18]
+
+Opening direction:
+
+South / -Z.
+
+Target opening width:
+
+2 units.
+
+This connector leads to the existing upper corridor.
+
+Verify:
+
+- Doorway geometry is actually open.
+- Door clearance is sufficient.
+- No bookshelf blocks the opening.
+- No hidden wall covers the doorway.
+- Floor elevations align.
+- Entrance is reachable.
+
+## OPTIONAL — EAST CONNECTION TO PM
+
+Research's eastern boundary:
+
+Local X=8.
+
+PM's western boundary:
+
+Global X=8.
+
+An optional Research-to-PM opening could be centered at:
+
+Research local:
+
+[8, 0, 4]
+
+Global:
+
+[8, 0, 22]
+
+However, the existing PM Room previously confirmed EAST and SOUTH connectors, not necessarily a WEST connector.
+
+DO NOT ASSUME a direct Research-to-PM doorway already exists.
+
+Do not cut into the approved PM Room.
+
+If PM's western wall is solid, keep Research's east wall compatible and use the SOUTH CORRIDOR route.
+
+Only define an active east connector when both room geometries genuinely support the opening.
+
+Do not invent successful doorway validation.
+
+---
+
+# 6. PRIMARY ART DIRECTION
+
+Style:
+
+**Premium Cozy Handcrafted Isometric Voxel Art**
+
+Design concept:
+
+**The Knowledge Atelier — an intimate academic research library with digital knowledge exploration.**
+
+The room should feel:
+
+- Intellectual.
+- Curious.
+- Warm.
+- Detailed.
+- Academic.
+- Organized.
+- Calm.
+- Inviting.
+- Slightly vintage.
+- Technologically capable.
+- Distinctly research-oriented.
+
+It should feel as though a highly experienced researcher spends meaningful time there studying, reading, comparing sources, and organizing discoveries.
+
+## COLOR PALETTE
+
+Use:
+
+- Warm oak.
+- Deep walnut.
+- Parchment beige.
+- Warm cream.
+- Muted sage green.
+- Dusty teal.
+- Brass accents.
+- Muted brown leather tones.
+- Dark charcoal electronics.
+
+Optional subtle accents:
+
+- Antique gold.
+- Desaturated burgundy.
+- Dusty olive.
+- Dark blue-gray.
+
+Do not make the room entirely dark brown.
+
+Maintain the brightness and cozy atmosphere of the existing AI Office.
+
+---
+
+# 7. NON-REPETITION — MANDATORY DESIGN RULE
+
+The owner explicitly requires that this Research Room must NOT look identical to previous assets.
+
+Avoid repetitive composition.
+
+## DO NOT COPY PM ROOM
+
+Avoid copying:
+
+- PM executive desk layout.
+- PM sofa composition.
+- PM planning board arrangement.
+- PM furniture distribution.
+- PM office cabinet layout.
+
+## DO NOT COPY CEO ROOM
+
+Avoid copying:
+
+- CEO executive desk.
+- CEO dual-monitor command station.
+- CEO executive chair.
+- CEO seven-panel dashboard console.
+- CEO report review area composition.
+
+## DO NOT COPY UI/UX ROOM
+
+Avoid copying:
+
+- Large UI wireframe walls.
+- Design color palette boards.
+- Prototype display racks.
+- Creative design critique furniture.
+
+## DO NOT COPY ENGINEERING ROOM
+
+Avoid copying:
+
+- Multiple developer workstations.
+- Three large coding monitor clusters.
+- API architecture boards.
+- Technical collaboration desk arrangement.
+- Server-oriented decor.
+
+## RESEARCH MUST HAVE ITS OWN IDENTITY
+
+Its primary visual signatures should be:
+
+1. A rich library/archive wall.
+2. A beautifully designed research reading/workstation corner.
+3. A distinctive Shared Brain Knowledge Atlas.
+4. A compact evidence and research-analysis area.
+5. Carefully curated books, folders, cards, documents, and academic artifacts.
+
+The room should instantly communicate:
+
+"Research and Knowledge"
+
+without requiring a floating label.
+
+---
+
+# 8. INTERIOR ZONING — FOUR DISTINCT AREAS
+
+Create four complementary functional zones within the 8×8 room.
+
+These zones are a design framework, not four enclosed cubicles.
+
+Do not add interior partition walls.
+
+Final placement must respect windows, doorways, and character movement.
+
+## ZONE A
+
+**Knowledge Archive Library**
+
+A detailed archival bookshelf and documentation area.
+
+## ZONE B
+
+**Research Professor Workstation**
+
+A scholarly research desk with one primary computer and study tools.
+
+## ZONE C
+
+**Shared Brain Knowledge Atlas**
+
+A unique wall-mounted visual representation of connected knowledge.
+
+## ZONE D
+
+**Evidence & Reading Corner**
+
+A small area for comparing sources, reading documents, and recording research findings.
+
+Keep a clear central walking path.
+
+The final arrangement should look asymmetric yet deliberately balanced.
+
+Do not place all four zones in identical squares.
+
+---
+
+# 9. ZONE A — KNOWLEDGE ARCHIVE LIBRARY
+
+This is one of the room's strongest visual elements.
+
+Create a beautiful academic library/archives area.
+
+## BOOKSHELF DESIGN
+
+Use a carefully detailed tall bookshelf or coordinated shelving composition.
+
+Possible design:
+
+- Deep walnut outer frame.
+- Staggered shelves.
+- Mixed vertical and horizontal book stacks.
+- Small cabinet drawers.
+- Archive boxes.
+- Document binders.
+- Labeled catalog compartments.
+- A few empty spaces for visual breathing room.
+- Small decorative objects.
+
+Do not use identical repeated books everywhere.
+
+## BOOKS
+
+Use varied but controlled colors:
+
+- Burgundy.
+- Forest green.
+- Muted navy.
+- Tan.
+- Cream.
+- Walnut brown.
+- Dusty teal.
+
+Add:
+
+- Thick research volumes.
+- Reference books.
+- Technical publications.
+- Project archives.
+- Research journals.
+
+The books should have believable relative sizes.
+
+Avoid unreadable microtext on every spine.
+
+## ARCHIVE DRAWERS
+
+Include a compact catalog/drawer system where space allows.
+
+Details:
+
+- Small drawer fronts.
+- Brass-colored handles.
+- Tiny labels.
+- Organized compartments.
+- Physical depth.
+
+Avoid overlapping drawer and cabinet faces.
+
+## ADDITIONAL DETAILS
+
+Possible accents:
+
+- Document holder.
+- Small reading lamp.
+- Stacked folders.
+- Minimal vintage globe or geometric atlas.
+- Plant.
+- Small artifact display.
+
+Do not turn the bookshelf into a museum display.
+
+Its main purpose is organizing information.
+
+---
+
+# 10. ZONE B — RESEARCH PROFESSOR WORKSTATION
+
+This area will eventually be used by the previously designed Research Professor character.
+
+Do not create that character now.
+
+The future character is a senior academic researcher with distinctive white voxel hair and glasses.
+
+Design the workstation to suit that identity.
+
+## DESK STYLE
+
+Create a scholarly research desk.
+
+Unlike PM and CEO:
+
+- More reading-focused.
+- More books and notes.
+- Less executive.
+- More personal.
+- Organized but naturally lived-in.
+
+Suggested geometry:
+
+- Walnut or medium-oak desk.
+- Slightly broader writing surface.
+- Real drawer supports.
+- Warm desk lamp.
+- Comfortable scholarly chair.
+- Primary monitor.
+- Compact keyboard.
+- Mouse.
+- Open research notebook.
+- Small document pile.
+- Reading stand.
+- Pen or writing tool.
+- Bookmarks.
+- Small organizer.
+
+## COMPUTER DESIGN
+
+One primary monitor is sufficient.
+
+An optional compact secondary reference tablet may be used.
+
+Do not fill the room with many developer monitors.
+
+The display should show fictional research activity, such as:
+
+- Source comparison.
+- Document index.
+- Research search results.
+- Evidence notes.
+- Knowledge references.
+- Research topic exploration.
+
+Clearly label screen content as DEMO if it implies data activity.
+
+## CHAIR AND POSTURE PLANNING
+
+Future character actions include:
+
+- Seated reading.
+- Typing research notes.
+- Standing to inspect books.
+- Walking to the Knowledge Atlas.
+- Reviewing a document.
+- Presenting findings.
+
+Leave enough space around the desk and chair.
+
+Do not place the workstation flush against the entrance.
+
+---
+
+# 11. ZONE C — SHARED BRAIN KNOWLEDGE ATLAS
+
+This is the room's signature design feature.
+
+Create a unique physical + digital knowledge visualization.
+
+This should NOT look like the CEO Executive Brain Console.
+
+The CEO Console displays strategic organization status.
+
+The Research Knowledge Atlas displays INFORMATION RELATIONSHIPS, SOURCES, and KNOWLEDGE ORGANIZATION.
+
+## VISUAL CONCEPT
+
+A carefully designed wall-mounted knowledge map.
+
+Suggested visual language:
+
+- A central knowledge node.
+- Connected topic cards.
+- Document references.
+- Source nodes.
+- Evidence relationships.
+- Project knowledge clusters.
+- Small physical frames.
+- Warm teal and brass highlights.
+- Subtle card or graph details.
+
+Keep the design crisp and voxel-friendly.
+
+## THREE KNOWLEDGE LAYERS
+
+The visual representation may show:
+
+### ORGANIZATION BRAIN
+
+Global organizational knowledge, policies, standards, and reusable context.
+
+### PROJECT BRAIN
+
+Project-specific architecture, documentation, decisions, and references.
+
+### AGENT WORKING CONTEXT
+
+Temporary task-specific information and permitted working context.
+
+IMPORTANT:
+
+These are conceptual knowledge layers, not proof that all information is physically stored in the Research Room.
+
+They are visualizations of the future Shared Brain services.
+
+## KNOWLEDGE QUALITY CONCEPTS
+
+Where suitable, show small evidence indicators representing:
+
+- Source.
+- Provenance.
+- Version.
+- Recency.
+- Access permission.
+- Validation status.
+
+These indicators are fictional demo data at this stage.
+
+Do not display genuine confidential data.
+
+## STYLE
+
+Blend:
+
+- Academic knowledge mapping.
+- Physical cards.
+- Wooden framing.
+- Small illuminated display panels.
+- Minimal digital interface.
+- Curated documentation.
+
+Do not create a huge glowing holographic brain.
+
+Do not create a spaceship control console.
+
+Do not duplicate CEO's dashboard.
+
+The Atlas should be intellectually interesting and visually attractive, while remaining cozy.
+
+---
+
+# 12. ZONE D — EVIDENCE AND READING CORNER
+
+This area should communicate careful research and knowledge verification.
+
+Create a small independent reading/review corner.
+
+Suggested elements:
+
+- Compact reading table.
+- One or two chairs or stools.
+- Open book or document.
+- Document tray.
+- Source comparison papers.
+- Corkboard or evidence pinboard.
+- Reading light.
+- Small rug.
+- Small plant or tasteful decor.
+
+## EVIDENCE BOARD
+
+Create a distinctive research evidence board.
+
+Possible contents:
+
+- Source cards.
+- Topic headings.
+- Small reference diagrams.
+- Research findings.
+- Connecting lines.
+- Verification markers.
+- Sticky notes.
+- Timeline snippets.
+
+This should look like an academic research process.
+
+Do not make it identical to the PM strategy board or UI/UX wireframe wall.
+
+## VISUAL PRIORITY
+
+Make the reading corner feel inviting.
+
+Avoid oversized meeting tables.
+
+A compact round or irregularly arranged study table may look better than another rectangular executive table.
+
+Do not block circulation.
+
+---
+
+# 13. SPECIAL RESEARCH DECORATION
+
+This room should have richer storytelling through small objects.
+
+Appropriate decorations:
+
+- Antique-style brass desk lamp.
+- Miniature globe.
+- Stacked academic books.
+- Reference cards.
+- Archive labels.
+- Open notebooks.
+- Research journals.
+- Magnifying glass.
+- Compact observation instrument.
+- Document holders.
+- Small wooden filing drawers.
+- Plant.
+- Framed scholarly illustration.
+- Small analog clock.
+- Warm reading lamp.
+
+Do not add every possible item.
+
+Select a curated set with clear visual purpose.
+
+Avoid:
+
+- Excessive identical plants.
+- Random server racks.
+- Giant neon data symbols.
+- Large robot models.
+- Repetitive coffee cups everywhere.
+- Dozens of floating labels.
+- Oversized scientific instruments unrelated to the room's purpose.
+
+Create beautiful, functional detail rather than visual noise.
+
+---
+
+# 14. ARCHITECTURE AND ROOM COMPOSITION
+
+Preserve the established office architectural language.
+
+Required:
+
+- Compatible warm wood flooring.
+- Similar floor elevation.
+- Compatible wall thickness.
+- Cream/beige wall material.
+- Consistent wall height.
+- Clean trim geometry.
+- Detailed windows.
+- Room-specific cutaway presentation.
+- Correct modular boundaries.
+
+## NORTH AND WEST WALLS
+
+These are exterior boundaries.
+
+Use natural window placement where architecturally appropriate.
+
+Suggested:
+
+- One substantial daylight window near the research desk.
+- A smaller window or partial natural-light feature near the reading area.
+
+Do not force windows into every wall.
+
+Do not place bookshelves directly over windows.
+
+Do not make the room much darker than other offices.
+
+## EAST WALL
+
+Adjacent to PM Room.
+
+Preserve the shared boundary.
+
+Do not assume an existing PM West doorway.
+
+Avoid putting a permanent decorative feature across a verified connector opening.
+
+## SOUTH WALL
+
+Faces the common corridor.
+
+Provide the required actual doorway.
+
+Do not obstruct it with furniture.
+
+## CUTAWAY PRESENTATION
+
+The room should remain clearly visible from default isometric view.
+
+Use the existing app's wall cutaway system.
+
+Do not permanently remove necessary wall geometry merely to improve one camera angle.
+
+Keep permanent geometry and viewer-only cutaway behavior separate.
+
+---
+
+# 15. UNIQUE ROOM COMPOSITION
+
+The Research Room should have a different visual balance from previous offices.
+
+Suggested composition:
+
+- Library/archive shelves concentrated on one wall or corner.
+- Research workstation near daylight.
+- Knowledge Atlas on a visible feature wall.
+- Reading/evidence corner near an accessible side.
+- Open center movement space.
+
+Do not create the exact furniture symmetry of CEO Room.
+
+Do not create a three-workstation row like Engineering.
+
+Do not create UI/UX's creative studio layout.
+
+Use slight asymmetry to create an authored, lived-in academic environment.
+
+Maintain balanced visual weight.
+
+---
+
+# 16. LIGHTING STYLE
+
+Preserve the established warm and soft AI Office lighting style.
+
+But give Research a distinctive atmosphere:
+
+- Warm reading lamps.
+- Natural daylight.
+- Soft bookcase shadows.
+- Subtle golden highlights.
+- Gentle indirect illumination.
+- Slightly warmer library corners.
+- Bright enough workstation and document areas.
+
+Avoid:
+
+- Extremely dark library lighting.
+- Blue cyberpunk ambience.
+- Overexposed screens.
+- Harsh spotlight circles.
+- Unrealistic glowing books.
+- Heavy volumetric effects.
+
+All furniture must remain readable.
+
+Do not make the Research Room look like a horror library or fantasy magic shop.
+
+---
+
+# 17. CRITICAL MONITOR AND DISPLAY ORIENTATION
+
+Previous modules experienced incorrect monitor orientation, duplicated screen surfaces, and mirrored text.
+
+Do not repeat these bugs.
+
+For the Research workstation and Knowledge Atlas:
+
+1. Identify the intended viewer position.
+2. Determine each display's actual front normal.
+3. Ensure the display faces its intended viewer.
+4. Create only one front display surface per physical display.
+5. Use an opaque rear casing where appropriate.
+6. Verify texture orientation.
+7. Verify readable text is not mirrored.
+8. Ensure frames and stands are attached.
+9. Prevent screen-plane Z-fighting.
+10. Verify exported GLB preserves correct orientation.
+
+A Knowledge Atlas wall display must face the room.
+
+A research workstation monitor must face the chair.
+
+Do not simply rotate all screens toward the camera.
+
+Do not use double-sided textures to hide incorrect geometry.
+
+---
+
+# 18. CRITICAL ANTI-FLICKER / Z-FIGHTING STANDARD
+
+Existing AI Office assets have experienced surface flickering.
+
+Prevent those issues proactively.
+
+Inspect:
+
+- Floor planks.
+- Rugs.
+- Wall trims.
+- Window frames.
+- Bookshelf edges.
+- Book spines.
+- Archive drawer fronts.
+- Board panels.
+- Document overlays.
+- Screen surfaces.
+- Monitor casings.
+- Small decorative objects.
+
+Common possible causes:
+
+- Coplanar duplicate faces.
+- Duplicate meshes.
+- Intersecting surfaces.
+- Incorrect material depth settings.
+- Shadow acne.
+- Insufficient depth precision.
+- Texture aliasing.
+- Transparent material sorting.
+
+Do not assume every flicker has the same cause.
+
+## FIX RULES
+
+Prefer actual geometry repair.
+
+Avoid coincident surfaces.
+
+Give intentionally layered details a small physically appropriate depth separation.
+
+Remove redundant hidden duplicate faces where safe.
+
+Do not globally disable depthTest.
+
+Do not globally disable depthWrite.
+
+Do not globally apply polygonOffset.
+
+Do not change the shared renderer configuration unless absolutely necessary and verified against existing rooms.
+
+Do not reduce visual quality merely to hide defects.
+
+---
+
+# 19. TEXTURE AND MATERIAL STANDARDS
+
+Use glTF-compatible materials.
+
+Suggested:
+
+- Matte wood.
+- Cream wall materials.
+- Brass-like accent materials with restrained metallic response.
+- Parchment paper tones.
+- Muted green furniture finishes.
+- Dark monitor casings.
+- Controlled pixel-texture patterns.
+
+If CanvasTextures are used for:
+
+- Knowledge Atlas.
+- Research display.
+- Evidence labels.
+- Document visuals.
+
+Verify:
+
+- Actual image embedding during GLB export.
+- Correct colorspace.
+- Correct UV direction.
+- No mirrored text.
+- Stable texture filtering.
+- No missing image on reimport.
+
+Do not use massive high-resolution textures for tiny decorative elements.
+
+Do not rely on CSS overlays to simulate permanent room display objects.
+
+The exported GLB must retain its essential visual information.
+
+---
+
+# 20. FUTURE RESEARCH PROFESSOR CHARACTER
+
+The Research Professor character has already been conceptually designed.
+
+Future characteristics:
+
+- Senior academic appearance.
+- Large layered white voxel hair.
+- White facial hair.
+- Dark glasses.
+- Academic/professor clothing.
+- Research documents and equipment.
+
+THIS TASK MUST NOT CREATE THE CHARACTER.
+
+Instead, prepare the room to support future actions:
+
+- Idle.
+- Walk to Research Desk.
+- Read Research Paper.
+- Search References.
+- Review Sources.
+- Inspect Knowledge Atlas.
+- Analyze Evidence.
+- Organize Documents.
+- Update Research Notes (Demo).
+- Present Research Findings.
+- Discuss with PM.
+- Consult Shared Brain.
+- Prepare Knowledge Summary.
+- Task Completed.
+
+These are future action concepts only.
+
+Do not implement their animations yet.
+
+---
+
+# 21. NAVIGATION AND ANCHOR PLANNING
+
+Inspect actual completed room furniture geometry first.
+
+After furniture placement, create room-local anchors.
+
+Suggested stable IDs:
+
+- RESEARCH_ROOM_SPAWN
+- RESEARCH_ROOM_IDLE
+- RESEARCH_DESK_APPROACH
+- RESEARCH_DESK_WORK
+- RESEARCH_CHAIR_POSITION
+- RESEARCH_BOOKSHELF_ACCESS
+- RESEARCH_ARCHIVE_DRAWER
+- RESEARCH_KNOWLEDGE_ATLAS
+- RESEARCH_EVIDENCE_BOARD
+- RESEARCH_READING_TABLE
+- RESEARCH_REFERENCE_REVIEW
+- RESEARCH_PRESENTATION_POSITION
+- RESEARCH_SOUTH_EXIT
+- RESEARCH_EAST_CONNECTION (only if physically valid)
+
+For each anchor include:
+
+- ID.
+- Local position.
+- Facing angle.
+- Intended activity.
+- Optional posture.
+- Interaction target.
+- Approach position if necessary.
+
+Do not fabricate coordinates.
+
+Derive them from actual furniture geometry.
+
+## WALKABILITY
+
+Plan for one primary Research Professor actor and an occasional visitor.
+
+Allow:
+
+- Access to desk.
+- Access to bookshelf.
+- Access to Knowledge Atlas.
+- Access to evidence board.
+- Access to reading table.
+- Access to south exit.
+
+Avoid navigation through shelves or chairs.
+
+Ensure doors remain unobstructed.
+
+Use the actual character scale from existing AI Office assets.
+
+Do not create fake pathfinding success reports before agents exist.
+
+---
+
+# 22. SHARED BRAIN — IMPORTANT TECHNICAL BOUNDARY
+
+This room is a VISUAL REPRESENTATION of the future Shared Brain.
+
+It is NOT the Shared Brain service implementation.
+
+Do not build:
+
+- A vector database.
+- A real document ingestion pipeline.
+- An embedding service.
+- An LLM retrieval API.
+- A persistent memory store.
+- A live source-indexing engine.
+- A real permission management service.
+- A production task-state database.
+
+These systems belong to the MAIN AI OFFICE PROJECT.
+
+The current Research Room must only display honest mock/demo visualization.
+
+Do not fabricate real organization knowledge.
+
+Do not use private user documents as sample content.
+
+## RECOMMENDED DISPLAY ARCHITECTURE
+
+Keep the visuals data-driven where practical.
+
+Define stable display IDs such as:
+
+- RESEARCH_DISPLAY_SOURCE_INDEX
+- RESEARCH_DISPLAY_KNOWLEDGE_ATLAS
+- RESEARCH_DISPLAY_ORG_BRAIN
+- RESEARCH_DISPLAY_PROJECT_BRAIN
+- RESEARCH_DISPLAY_AGENT_CONTEXT
+- RESEARCH_DISPLAY_EVIDENCE_STATUS
+
+For each display, document:
+
+- Display ID.
+- Mesh/node reference.
+- Demo content source.
+- Expected future data category.
+- Visual update capability.
+- Demo-only flag.
+
+If useful, provide:
+
+`research_room.display_slots.json`
+
+This is an OPTIONAL additional metadata file.
+
+It should describe visual binding slots, not contain a database implementation.
+
+Do not embed application business logic permanently into GLB geometry.
+
+Keep the room ready for future external state integration.
+
+---
+
+# 23. RESEARCH DEMO CONTENT
+
+Use simple fictional content.
+
+Possible examples:
+
+- Research Sources: DEMO.
+- Topic Map: Sample.
+- Knowledge Layers: 3.
+- References Indexed: Sample Data.
+- Evidence Review: Demo.
+- Project Context: Example.
+- Research Summary: Draft Demo.
+
+All simulated metrics must be clearly marked DEMO.
+
+Do not display invented source verification results as real.
+
+Do not claim actual Shared Brain retrieval has occurred.
+
+Do not connect external accounts or search services.
+
+---
+
+# 24. SCENE HIERARCHY
+
+Create one independent root:
+
+`ROOM_RESEARCH_ROOT`
+
+Use the canonical room structure compatible with the existing application.
+
+Suggested:
+
+ROOM_RESEARCH_ROOT
+- STRUCTURE
+- FLOOR
+- WALLS
+- WINDOWS
+- FURNITURE
+  - KNOWLEDGE_ARCHIVE_LIBRARY
+  - RESEARCH_WORKSTATION
+  - KNOWLEDGE_ATLAS
+  - EVIDENCE_READING_CORNER
+- PROPS
+- DECORATION
+- CONNECTORS
+
+Use meaningful mesh and group names.
+
+Keep permanent geometry separate from temporary runtime helpers.
+
+Do not flatten all important objects into a single unidentifiable mesh.
+
+Do not create unnecessary duplicate root groups.
+
+---
+
+# 25. ROOM SELECTOR INTEGRATION
+
+Register the new room using the current room registry conventions.
+
+Initial status while under development:
+
+IN DEVELOPMENT.
+
+After successful validation:
+
+READY FOR OWNER REVIEW.
+
+Do not automatically mark it owner-approved.
+
+When selected in Single Room mode:
+
+- Show actual Research Room.
+- Use local origin [0,0,0].
+- Frame the entire 8×8 space.
+- Support orbit, pan, zoom, top and isometric views.
+- Support export controls.
+- Do not show unrelated PM/CEO/Engineering character simulation controls.
+- Do not spawn a generic Research character.
+
+Keep UI changes minimal.
+
+---
+
+# 26. FULL OFFICE A3.1 INTEGRATION
+
+Replace the Research placeholder in the NORTH-WEST slot.
+
+Global position:
+
+[0,0,18]
+
+Size:
+
+8×8.
+
+The existing Research slot must not be duplicated.
+
+If current room registry names differ from A3.1, update only the relevant Research entry and its clearly linked metadata.
+
+Do not change other completed room identifiers.
+
+Preserve:
+
+- PM position.
+- CEO position.
+- UI/UX position.
+- Engineering 8×16 position.
+- QA placeholder.
+- DevOps placeholder.
+- Central Hub open area.
+- Shared corridor.
+- Main entrance.
+
+Do not rebuild all modules.
+
+Do not merge Research permanently into a combined office GLB.
+
+Use wrapper transforms.
+
+Do not bake global placement into Research GLB.
+
+---
+
+# 27. SINGLE ROOM CAMERA
+
+Use the existing Single Room camera system.
+
+Preserve:
+
+- Isometric.
+- Front.
+- Back.
+- Left.
+- Right.
+- Top.
+- Orbit.
+- Pan.
+- Zoom.
+- Fit Room.
+- Reset.
+
+Frame Research correctly.
+
+Ensure the bookshelf, workstation, Knowledge Atlas, and evidence area are readable in the default view.
+
+Avoid massive furniture occlusion.
+
+If the Knowledge Atlas is hidden entirely from the default camera, reconsider its placement before changing camera architecture.
+
+Do not rotate the room to disguise poor furniture composition.
+
+Do not change the deferred global Full Office camera behavior.
+
+---
+
+# 28. PRODUCTION EXPORT CONTRACT
+
+Follow the established AI Office Production Asset Standard V1.
+
+Required output files:
+
+`research_room.glb`
+
+`research_room.manifest.json`
+
+`research_room.anchors.json`
+
+`research_room.preview.png`
+
+Optional:
+
+`research_room.display_slots.json`
+
+`research_room.behavior.json`
+
+The behavior file, if created, must be clearly labeled as a future action contract, not an implemented character system.
+
+Provide a Research production pack ZIP using the existing export infrastructure.
+
+Preserve source backup functionality.
+
+## GLB CONTENTS
+
+Include:
+
+- Permanent floor geometry.
+- Walls.
+- Windows.
+- Library shelves.
+- Books and archive furniture.
+- Research desk.
+- Computer station.
+- Knowledge Atlas physical structure.
+- Evidence board.
+- Reading area.
+- Permanent decor.
+- Appropriate textures and materials.
+
+Exclude:
+
+- Research Professor character.
+- PM character.
+- Other room geometry.
+- Cameras.
+- Temporary studio lighting helpers.
+- UI elements.
+- Debug arrows.
+- Navigation markers.
+- Invisible collider visualization.
+- Temporary selection outlines.
+- Runtime-only status bubbles.
+
+## LOCAL ORIGIN
+
+The room GLB must preserve:
+
+[0,0,0]
+
+at the designated module origin.
+
+No automatic recentering.
+
+No baked global A3.1 transform.
+
+---
+
+# 29. MANIFEST JSON
+
+Export:
+
+`research_room.manifest.json`
+
+Include:
+
+- schema_version
+- module_id
+- display_name
+- department
+- room_type
+- dimensions
+- wall_height
+- coordinate_system
+- local_origin
+- global_layout_offset
+- connectors
+- rendering_profile
+- material_profile
+- geometry_statistics
+- asset_paths
+- anchor_file_path
+- display_slots_file_path if present
+- preview_path
+- export_version
+- validation_summary
+
+Use actual measured data.
+
+Do not invent mesh counts or file sizes.
+
+---
+
+# 30. REIMPORT VALIDATION
+
+After export, load the ACTUAL `research_room.glb` binary with an independent GLTFLoader test.
+
+Validate:
+
+1. GLB binary is valid.
+2. Room root is present.
+3. All room geometry exists.
+4. Room dimensions remain 8×8.
+5. Local origin is preserved.
+6. Walls and windows remain intact.
+7. Bookshelves remain intact.
+8. Research desk remains intact.
+9. Knowledge Atlas is present.
+10. Evidence board is present.
+11. Reading furniture remains intact.
+12. Materials load correctly.
+13. Embedded textures are available.
+14. No unexpected mirrored display text.
+15. No back-facing duplicate screens.
+16. No significant Z-fighting.
+17. No missing archive cabinet faces.
+18. No furniture clipping through walls.
+19. South connector matches actual geometry.
+20. No character is embedded.
+21. No debug helpers are exported.
+22. Room appears correctly from multiple camera views.
+
+Do not claim that every check passed unless each was actually executed.
+
+If a display looks correct in the live viewer but fails after GLB reimport, identify it as a portability defect and repair the export.
+
+---
+
+# 31. REGRESSION PROTECTION
+
+After Research is added, verify:
+
+[ ] PM Room still loads.
+
+[ ] Boss PM animations still work.
+
+[ ] CEO Room still loads.
+
+[ ] CEO character simulation still works.
+
+[ ] UI/UX Room still loads.
+
+[ ] UI/UX character still works.
+
+[ ] Engineering Room remains 8×16.
+
+[ ] Engineering characters remain independent.
+
+[ ] Frontend simulation works.
+
+[ ] Backend simulation works.
+
+[ ] Database simulation works if implemented.
+
+[ ] Room Selector works.
+
+[ ] Single Room works.
+
+[ ] Full Office mode loads.
+
+[ ] A3.1 room positions are preserved.
+
+[ ] Current GLB Import still works.
+
+[ ] Character export remains functional.
+
+[ ] Existing room exports remain functional.
+
+[ ] No unintended global renderer changes.
+
+[ ] Source backup remains available.
+
+Do not hide regressions.
+
+Report them explicitly.
+
+---
+
+# 32. IMPLEMENTATION SEQUENCE
+
+Follow this order strictly.
+
+## PHASE A — SOURCE INSPECTION
+
+Inspect source, room registry, current A3.1 layout, shared rendering conventions, and exporters.
+
+Create a recoverable checkpoint.
+
+## PHASE B — ROOM ARCHITECTURE
+
+Build:
+
+- 8×8 base.
+- Walls.
+- Windows.
+- South doorway.
+- Compatible architectural cutaway.
+
+Validate modular bounds before adding furniture.
+
+## PHASE C — LIBRARY AND ARCHIVE
+
+Build the detailed academic bookshelf and catalog storage.
+
+Ensure it is visually distinct from PM and CEO bookshelves.
+
+## PHASE D — RESEARCH WORKSTATION
+
+Build the scholarly desk, chair, computer, reference documents, and desk accessories.
+
+Validate screen orientation.
+
+## PHASE E — KNOWLEDGE ATLAS
+
+Create the signature Shared Brain knowledge visualization.
+
+Use demo-only content.
+
+Avoid copying the CEO command console.
+
+## PHASE F — EVIDENCE CORNER
+
+Build source comparison board, reading table, chairs, books and organized research materials.
+
+## PHASE G — COZY DECORATION
+
+Add curated academic accents, plants, lamps, archive objects, rugs, and small functional details.
+
+Avoid unnecessary repetition.
+
+## PHASE H — VISUAL QUALITY PASS
+
+Inspect from multiple views.
+
+Compare visual richness against PM, CEO, UI/UX, and Engineering.
+
+Fix overly empty areas or unnecessary clutter.
+
+## PHASE I — FLICKER AND MATERIAL AUDIT
+
+Inspect geometry, displays, windows, boards, materials, shadows, and floor details.
+
+Repair actual defects.
+
+## PHASE J — ANCHORS
+
+Derive Research anchors from final furniture positions.
+
+Verify walkable access.
+
+## PHASE K — ROOM SELECTOR
+
+Register Research as an independently selectable room.
+
+## PHASE L — FULL OFFICE INTEGRATION
+
+Place Research at global [0,0,18].
+
+Preserve all other completed modules.
+
+## PHASE M — PRODUCTION EXPORT
+
+Generate room GLB, manifest, anchors, preview and production ZIP.
+
+## PHASE N — INDEPENDENT REIMPORT
+
+Reload actual exported binary.
+
+Verify geometry and materials.
+
+## PHASE O — REGRESSION TEST
+
+Confirm previously working modules remain functional.
+
+STOP AFTER ROOM VISUAL PRODUCTION.
+
+Do not build the Research Professor character.
+
+---
+
+# 33. VISUAL ACCEPTANCE CHECKLIST
+
+## RESEARCH IDENTITY
+
+[ ] Room clearly communicates academic research and knowledge.
+
+[ ] It does not look like a duplicate of PM Room.
+
+[ ] It does not look like a duplicate of CEO Room.
+
+[ ] It does not look like another Engineering workspace.
+
+[ ] Room has a distinctive academic/library personality.
+
+[ ] Materials match the AI Office world.
+
+[ ] Cozy atmosphere is preserved.
+
+## FURNITURE AND DECOR
+
+[ ] Detailed Knowledge Archive Library.
+
+[ ] Research Professor Workstation.
+
+[ ] Shared Brain Knowledge Atlas.
+
+[ ] Evidence and Reading Corner.
+
+[ ] Academic books and reference documents.
+
+[ ] Purposeful decorative objects.
+
+[ ] Appropriate lighting.
+
+[ ] Attractive wall composition.
+
+[ ] Balanced visual density.
+
+[ ] Adequate character movement space.
+
+## TECHNICAL
+
+[ ] 8×8 module geometry.
+
+[ ] Correct local origin.
+
+[ ] Correct A3.1 global placement.
+
+[ ] South connector is physically usable.
+
+[ ] PM Room is not modified.
+
+[ ] No unverified direct east connector.
+
+[ ] No major surface flicker.
+
+[ ] No duplicated monitor display surfaces.
+
+[ ] No mirrored display text.
+
+[ ] No missing shelf or drawer geometry.
+
+[ ] No invalid wall/window overlap.
+
+## ASSET EXPORT
+
+[ ] research_room.glb exists.
+
+[ ] Manifest JSON exists.
+
+[ ] Anchors JSON exists.
+
+[ ] Preview PNG exists.
+
+[ ] Production ZIP contains genuine files.
+
+[ ] Independent GLB reimport succeeds.
+
+[ ] Essential geometry survives export.
+
+[ ] No character is baked into the room GLB.
+
+[ ] No debug helper pollution.
+
+## REGRESSION
+
+[ ] PM remains stable.
+
+[ ] CEO remains stable.
+
+[ ] UI/UX remains stable.
+
+[ ] Engineering remains stable.
+
+[ ] Existing characters and animation systems remain intact.
+
+[ ] Room Selector works.
+
+[ ] Full Office loads.
+
+[ ] A3.1 positions unchanged.
+
+---
+
+# 34. REQUIRED FINAL REPORT
+
+After implementation provide:
+
+1. Source files created or modified.
+2. Confirmation existing assets were preserved.
+3. Final room dimensions and local origin.
+4. Global A3.1 offset.
+5. Final furniture layout.
+6. Library and archive details.
+7. Research workstation details.
+8. Shared Brain Atlas implementation.
+9. Evidence and reading area details.
+10. Decorative elements.
+11. Actual connector positions.
+12. Room-local navigation anchors.
+13. Display slot metadata if implemented.
+14. Visual stability test findings.
+15. Exported filenames.
+16. GLB independent reimport results.
+17. Regression test results.
+18. Remaining known limitations.
+
+Separate:
+
+- COMPLETED.
+- PARTIAL.
+- NOT IMPLEMENTED.
+- NOT VERIFIED.
+
+Do not invent successful testing results.
+
+Do not mark the room owner-approved without actual owner confirmation.
+
+---
+
+# 35. STRICT SCOPE CONTROL
+
+DO NOT:
+
+- Create the Research Professor character.
+- Generate placeholder humans.
+- Add character animations.
+- Implement real Shared Brain memory services.
+- Build a vector database.
+- Connect to real document repositories.
+- Implement live web research.
+- Implement document ingestion.
+- Implement RAG retrieval.
+- Implement AI agents.
+- Implement Telegram integration.
+- Modify existing characters.
+- Redesign PM or CEO.
+- Change Engineering Room dimensions.
+- Modify Master Layout A3.1.
+- Create a new department.
+- Redesign global Full Office camera.
+- Replace the OfficeAssembler.
+- Build the entire office from scratch.
+- Add unrequested backend infrastructure.
+
+THIS TASK IS ONLY:
+
+**Research & Shared Brain Room Visual Production + Modular Integration + Asset Export + Validation.**
+
+---
+
+# FINAL DIRECTIVE
+
+BUILD MODULE 05 — RESEARCH & SHARED BRAIN.
+
+Create a beautiful and richly detailed 8×8 handcrafted voxel research library with a unique academic identity.
+
+The room must combine:
+
+- Knowledge Archive Library.
+- Research Professor Workstation.
+- Shared Brain Knowledge Atlas.
+- Evidence Analysis and Reading Corner.
+- Curated academic decoration.
+- Warm lighting.
+- Clear navigation routes.
+- Production-ready modular architecture.
+
+Make it visually distinct from PM, CEO, UI/UX and Engineering while preserving the established cozy voxel AI Office art style.
+
+Use local origin [0,0,0] and A3.1 global offset [0,0,18].
+
+Preserve every existing approved room, character and animation.
+
+Do not implement real memory systems.
+
+Do not create the Research Professor character yet.
+
+Prevent monitor orientation errors, mirrored display textures, overlapping surfaces and flickering geometry.
+
+Export a genuine standalone Research Room GLB with compatible JSON metadata and preview.
+
+Independently reimport and validate the generated asset.
+
+**COMPLETE THE RESEARCH ENVIRONMENT ONLY, THEN STOP FOR OWNER VISUAL REVIEW AND APPROVAL.**

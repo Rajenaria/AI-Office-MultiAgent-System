@@ -1,0 +1,1187 @@
+# AI OFFICE — ENGINEERING STUDIO VISUAL POLISH V1.1
+## Premium Environment Detailing + Flicker / Z-Fighting Root-Cause Repair
+### Existing Room Refinement — NO REBUILD — Production Export Compatible
+
+# 0. ROLE AND MISSION
+
+You are a Senior Voxel Environment Artist, Three.js Rendering Engineer, React/TypeScript Engineer, Technical Level Designer, and 3D Quality Assurance Specialist.
+
+You are working inside the EXISTING AI Office Modular Room Lab.
+
+Module 04 — Engineering & Development Studio has already been implemented.
+
+The owner has reviewed the result.
+
+The architectural concept is acceptable, but two problems remain:
+
+**PROBLEM A — The Engineering Room is visually too empty and lacks the interior detail density of the approved concept reference.**
+
+**PROBLEM B — Several room surfaces exhibit intermittent flickering, blinking, disappearing, or unstable rendering.**
+
+Your task is to improve the existing Engineering Room, not replace it.
+
+Objectives:
+
+1. Preserve the existing 8×16 architectural structure.
+2. Increase meaningful visual detail.
+3. Improve the three developer workstations.
+4. Improve the Integration Hub.
+5. Add carefully selected technical decoration.
+6. Improve room composition and visual richness.
+7. Diagnose and eliminate actual flickering sources.
+8. Preserve future multi-agent walkability.
+9. Preserve all existing room and character systems.
+10. Export and independently validate the refined asset.
+
+This is a targeted ART POLISH and RENDERING STABILITY task.
+
+---
+
+# 1. AUTHORITATIVE REFERENCES
+
+Two images are provided.
+
+## REFERENCE A — CURRENT ENGINEERING ROOM SCREENSHOT
+
+This image shows the current working implementation.
+
+Use it as the factual baseline for:
+
+- Existing architecture.
+- Workstation positions.
+- Floor and wall construction.
+- Doorways.
+- Windows.
+- Overall scale.
+- Current color palette.
+- Camera presentation.
+
+Do not discard the existing room.
+
+## REFERENCE B — APPROVED ENGINEERING STUDIO CONCEPT
+
+This image shows the desired level of interior detail, visual richness, and engineering-specific decoration.
+
+Use it as the artistic quality target for:
+
+- Workspace decoration.
+- Technical boards.
+- Shelves and cabinets.
+- Developer equipment.
+- Workstation uniqueness.
+- Desk accessories.
+- Rugs and floor details.
+- Warm cozy lighting.
+- Environmental storytelling.
+- Organized visual complexity.
+
+IMPORTANT:
+
+Reference B uses a horizontal 16×8 presentation.
+
+The actual approved module is 8×16.
+
+Do NOT change Engineering dimensions or global office layout to copy the image.
+
+Adapt the visual detail into the existing longitudinal room.
+
+Do not reproduce the reference image as a texture, billboard, or flat screenshot.
+
+Build genuine 3D geometry.
+
+---
+
+# 2. PRESERVE EXISTING PROJECT
+
+Before changing anything:
+
+- Inspect current source.
+- Identify Engineering room builder and material definitions.
+- Inspect Engineering scene hierarchy.
+- Inspect existing room export code.
+- Inspect affected renderer and camera settings.
+- Create a recoverable checkpoint.
+
+Do not rebuild the application.
+
+Preserve:
+
+- PM & Strategy Room.
+- Boss PM character and 11 animation actions.
+- CEO Office.
+- CEO Executive Assistant character and animations.
+- UI/UX Design Studio.
+- UI/UX Designer character and animations.
+- Single Room and Full Office modes.
+- Current Room Selector.
+- OfficeAssembler.
+- Master Layout A3.1.
+- Existing room anchors.
+- Current GLB export infrastructure.
+- Existing independent character exports.
+
+Do not modify previous characters or their geometry.
+
+Do not change the global camera system.
+
+The owner has deferred final Full Office camera improvements.
+
+Do not introduce new departments or rooms.
+
+---
+
+# 3. ENGINEERING GEOMETRY — LOCKED
+
+Room ID:
+
+`AI_OFFICE_ROOM_ENGINEERING_v1`
+
+Local origin:
+
+[0, 0, 0]
+
+Local dimensions:
+
+- X = 0..8.
+- Z = 0..16.
+- Y up.
+
+Global A3.1 placement:
+
+[0, 0, 0]
+
+The room is a single connected 8×16 space built from two 8×8 grid cells.
+
+DO NOT:
+
+- Create an internal wall at Z=8.
+- Convert the room to 16×8.
+- Change floor elevation.
+- Move room connectors.
+- Close existing valid doorways.
+- Expand beyond module bounds.
+- Recenter the exported GLB.
+
+You may refine room interior furniture placement and decorative geometry when needed.
+
+Keep all architectural boundaries consistent.
+
+---
+
+# 4. PRIMARY VISUAL PROBLEM
+
+The current Engineering Room appears functional but visually underdeveloped.
+
+Observed characteristics:
+
+- Large empty wall sections.
+- Limited shelving.
+- Simple workstation equipment.
+- Minimal desk accessories.
+- A relatively plain Integration Hub.
+- Weak separation of Frontend / Backend / Database identities.
+- Sparse decoration along the long room.
+- Large unused visual gaps.
+- One foreground monitor back obscuring part of the workstation from the default viewing angle.
+
+The approved concept image has significantly richer detail.
+
+However, do not solve this by randomly filling every empty area.
+
+**ADD PURPOSEFUL VISUAL DETAIL.**
+
+The final room must feel like a carefully authored professional engineering studio.
+
+Not a warehouse full of computer monitors.
+
+---
+
+# 5. ART DIRECTION — PREMIUM COZY VOXEL
+
+Maintain the established AI Office world style.
+
+Required:
+
+- Crisp handcrafted voxel geometry.
+- Warm natural wooden floors.
+- Warm cream walls.
+- Matte materials.
+- Soft ambient lighting.
+- Clear geometric furniture.
+- Layered wooden details.
+- Detailed but compact props.
+- Purposeful pixel-inspired surfaces.
+- Consistent material shading.
+- Soft believable shadows.
+- Readable isometric composition.
+
+The new detail must match the current PM, CEO, and UI/UX rooms.
+
+Do not suddenly make Engineering:
+
+- Photorealistic.
+- Highly glossy.
+- Cyberpunk.
+- Neon-heavy.
+- Excessively low-poly.
+- Full of random cubes.
+- Much more geometrically complex than every other room.
+
+Visual quality must come from deliberate design.
+
+---
+
+# 6. WORKSTATION POLISH — FRONTEND ZONE
+
+Retain the existing Frontend workstation and its identity.
+
+Improve the current desk instead of deleting and rebuilding everything.
+
+## REQUIRED DETAILS
+
+Add or refine:
+
+- Main monitor casing.
+- Readable keyboard.
+- Small mouse.
+- Compact laptop or laptop dock.
+- Monitor support.
+- Desk drawers.
+- Under-desk storage.
+- Desk organizer.
+- Small task lamp.
+- Headphone stand.
+- Small UI implementation notes.
+- Organized stationery.
+- A small plant where appropriate.
+
+## SCREEN DESIGN
+
+Use fictional interface visuals representing:
+
+- Component preview.
+- Web application interface.
+- Browser development tools.
+- React-like component tree.
+- Responsive layout.
+
+Keep screen information visually readable at an appropriate distance.
+
+Do not fill all monitors with identical code patterns.
+
+## FRONTEND DECOR
+
+Use restrained orange, coral, and muted blue accents.
+
+Possible additions:
+
+- Small component reference board.
+- Framed interface layout.
+- UI testing reference sheet.
+- Compact developer reference shelf.
+- Small rug or floor accent.
+
+The Frontend area should feel like a web implementation workstation, not a duplicate of UI/UX Design Studio.
+
+---
+
+# 7. WORKSTATION POLISH — BACKEND ZONE
+
+Retain the existing Backend workstation and improve technical detail.
+
+## REQUIRED DETAILS
+
+Add or refine:
+
+- Distinct technical desk configuration.
+- Dual monitor arrangement if already present.
+- Keyboard and mouse.
+- Small developer workstation unit.
+- Laptop stand or tablet.
+- Technical document organizer.
+- API reference notes.
+- Desk lamp.
+- Compact storage drawers.
+- Small coffee cup.
+- Cable management detail.
+
+## SCREEN DESIGN
+
+Use fictional technical interfaces:
+
+- API route list.
+- Request/response flow.
+- Service log.
+- Terminal display.
+- Backend architecture diagram.
+
+## BACKEND DECOR
+
+Add one substantial technical visual feature:
+
+**API & Services Architecture Board**
+
+The board should display simple block diagrams such as:
+
+Frontend → API Gateway → Backend Services → Database.
+
+Make the board physically mounted with real frame geometry.
+
+Add small readable interface diagrams or labeled data blocks.
+
+Do not use a giant glowing hologram.
+
+## COLOR ACCENTS
+
+- Charcoal.
+- Muted navy.
+- Steel blue.
+- Soft violet details.
+
+Maintain warm room materials.
+
+---
+
+# 8. WORKSTATION POLISH — DATABASE ZONE
+
+Make the Database workstation immediately recognizable.
+
+Retain the existing desk and improve it.
+
+## REQUIRED DETAILS
+
+Add or refine:
+
+- Main data-model display.
+- Secondary compact monitor if appropriate.
+- Keyboard and mouse.
+- Desk drawers.
+- Compact technical computer.
+- Schema reference documentation.
+- Data design notebook.
+- Small organized file tray.
+- SQL-related reference books.
+- Desk lamp or task lighting.
+- Subtle plants.
+
+## SCREEN DESIGN
+
+Use fictional data engineering visuals:
+
+- ER diagram.
+- Database relationships.
+- Tables.
+- Schema objects.
+- Query editor.
+- Data status.
+
+## DATABASE DECOR
+
+Add a dedicated data-oriented storage arrangement.
+
+Possible items:
+
+- Sage-green technical bookcase.
+- Organized binders.
+- Mini database documentation rack.
+- Compact network/storage hardware representation.
+- Data model reference diagram.
+
+Avoid full-size server racks.
+
+DevOps will have a separate infrastructure room.
+
+## COLOR ACCENTS
+
+- Sage green.
+- Deep green.
+- Muted teal.
+- Warm wood.
+- Off-white.
+
+---
+
+# 9. IMPORTANT — FOREGROUND MONITOR COMPOSITION
+
+In the current screenshot, one large dark monitor back occupies a prominent foreground position and visually blocks part of the Database workstation.
+
+Inspect the actual desk and chair positions before making changes.
+
+This monitor may already face its seated user correctly.
+
+Do not automatically rotate it toward the viewer.
+
+Instead, investigate:
+
+- Monitor size relative to the desk.
+- Monitor distance from the chair.
+- Screen height.
+- Desk orientation.
+- Viewing angle.
+- Occlusion of important workstation elements.
+
+If the monitor is physically correct but visually oversized or obstructive, make the smallest appropriate adjustments.
+
+Possible improvements:
+
+- Slightly reduce the monitor casing size.
+- Reposition the monitor within the desk.
+- Improve the viewing angle through local inspection framing.
+- Arrange secondary equipment more clearly.
+- Adjust desk accessories to maintain visual balance.
+
+Do not sacrifice physically correct screen orientation merely to make a screenshot look attractive.
+
+---
+
+# 10. INTEGRATION HUB — MAJOR DETAIL IMPROVEMENT
+
+The shared Integration Hub currently feels too simple.
+
+It should become a distinctive collaboration area.
+
+Refine:
+
+- Existing central review table.
+- Table material thickness.
+- Supporting legs.
+- Chairs or stools.
+- Technical documents.
+- Tablet or compact laptop.
+- Architectural notes.
+- Small desk accessory.
+- Carefully placed decorative object.
+
+## ADD A SHARED ARCHITECTURE REVIEW DISPLAY
+
+Create a technical board near the discussion area, where wall or floor space genuinely permits.
+
+Possible information:
+
+- Frontend components.
+- API contract.
+- Backend services.
+- Database schema.
+- Integration flow.
+- Code review checklist.
+
+It must feel like a technical collaboration station.
+
+Not a PM strategy board duplicate.
+
+## FURNITURE RULE
+
+Maintain sufficient space for three future developer agents.
+
+Do not place an oversized table in the center that blocks all movement.
+
+Keep seating accessible.
+
+If the original table is too small, improve its proportions, but do not grow it without checking circulation.
+
+---
+
+# 11. WALLS — ADD VISUAL STORYTELLING
+
+The current long wall is visually repetitive.
+
+Introduce carefully selected variation.
+
+Potential additions:
+
+- Technical shelves.
+- Framed architecture diagrams.
+- Small pinboards.
+- Compact wall-mounted storage.
+- Developer reference books.
+- A few decorative objects.
+- Carefully selected wall art.
+- Small wall clock.
+- Modest office signage.
+- Wall-mounted task lamp if suitable.
+
+Do not fill every wall with computer screens.
+
+## DECORATION DISTRIBUTION
+
+Distribute objects unevenly but intentionally.
+
+Example:
+
+- A bookshelf near Frontend.
+- An architecture board near Backend.
+- A technical storage cabinet near Database.
+- A shared review display near Integration Hub.
+
+This is more visually interesting than repeating the same bookshelf every few units.
+
+## WINDOWS
+
+Preserve the existing windows.
+
+Do not block them with large bookcases.
+
+Do not mount opaque wall panels directly over windows.
+
+Keep natural lighting visually coherent.
+
+---
+
+# 12. FLOOR AND COZY DETAILS
+
+The room should remain warm and pleasant despite being technical.
+
+Improve floor composition through:
+
+- Subtle area rugs for selected zones.
+- Small stool/chair footprints.
+- Floor-level storage.
+- Plant stands.
+- Purposeful desk-side details.
+- Small carpet borders.
+- Natural material variation.
+
+Do not add decorative floors directly on top of identical coplanar surfaces.
+
+Rugs must have appropriate thickness or justified surface offsets.
+
+Do not duplicate the main floor mesh.
+
+The room must retain a continuous 8×16 floor.
+
+---
+
+# 13. DO NOT OVERDECORATE
+
+The target is approximately the detail richness of the approved concept, not maximum polygon count.
+
+Prioritize the visual hierarchy:
+
+1. Workstation geometry.
+2. Technical displays and boards.
+3. Storage furniture.
+4. Collaboration table.
+5. Functional accessories.
+6. Cozy secondary decoration.
+7. Tiny pixel-level decorative details.
+
+Important:
+
+Large furniture and wall decorations should look convincing before adding many tiny props.
+
+Do not generate hundreds of small objects to hide weak design.
+
+Preserve clean negative space for navigation.
+
+---
+
+# 14. CRITICAL TASK — FLICKERING ROOT-CAUSE AUDIT
+
+The owner reports recurring flickering, blinking, or disappearing geometry in Engineering.
+
+These defects must be investigated and repaired.
+
+DO NOT assume that every flickering surface is caused by Z-fighting.
+
+Possible sources include:
+
+- Coplanar duplicate faces.
+- Overlapping geometric panels.
+- Duplicate floor meshes.
+- Intersecting wall trim surfaces.
+- Poor monitor plane placement.
+- Shadow acne.
+- Incorrect shadow bias.
+- Depth-buffer precision.
+- Transparent material sorting.
+- Texture aliasing or shimmer.
+- Unintended repeated object mounting.
+- Camera-dependent cutaway visibility logic.
+- Unstable material or geometry state.
+
+Investigate the actual affected objects.
+
+Do not claim root cause without evidence.
+
+---
+
+# 15. GEOMETRY REPAIR RULES
+
+Inspect likely problem areas:
+
+- Monitor screens.
+- Monitor bezels.
+- Desk corners.
+- Drawer fronts.
+- Bookshelf surfaces.
+- Rug edges.
+- Wall panels.
+- Window frames.
+- Door frames.
+- Planning boards.
+- Floor seams.
+- Decorative overlays.
+
+For each affected object:
+
+1. Identify mesh names.
+2. Identify visible symptoms.
+3. Determine whether multiple surfaces occupy nearly the same plane.
+4. Confirm whether the artifact changes with camera movement.
+5. Apply a targeted geometry correction.
+6. Verify from several viewpoints.
+
+Prefer source geometry corrections.
+
+For intentional layered surfaces, use small scale-appropriate offsets.
+
+Do not arbitrarily increase offsets everywhere.
+
+Remove redundant duplicate surfaces when safe.
+
+Ensure the correction does not create visible gaps.
+
+Avoid global renderOrder hacks.
+
+Do not globally disable depth testing or depth writing.
+
+Do not globally apply polygonOffset to every material.
+
+---
+
+# 16. FLOOR FLICKER PREVENTION
+
+Engineering uses two connected 8×8 construction cells.
+
+Verify that the room does NOT contain overlapping floor surfaces at the internal Z=8 boundary.
+
+Check:
+
+- Duplicate floor slabs.
+- Coplanar decorative panels.
+- Floor plank overlaps.
+- Rug overlap.
+- Floor elevations.
+- Shared boundary seams.
+
+The visual result must be one continuous floor.
+
+If duplicated internal faces exist, remove or repair them non-destructively.
+
+Do not introduce a dividing wall between the cells.
+
+---
+
+# 17. SHADOW AND DEPTH STABILITY
+
+Inspect:
+
+- Directional light shadow configuration.
+- Shadow bias.
+- Normal bias.
+- Shadow camera bounds.
+- Camera near/far clipping.
+- Surface normals.
+- Material transparency.
+- Depth precision.
+
+Use targeted adjustments only.
+
+Do not globally disable shadows merely to hide flickering.
+
+Preserve warm contact shadows.
+
+If changes to shared rendering configuration are unavoidable, verify PM, CEO, and UI/UX before accepting them.
+
+Do not alter the deferred global Full Office camera presentation.
+
+---
+
+# 18. TEXTURE SHIMMER INSPECTION
+
+Some blinking may be caused by fine texture sampling or high-frequency detail, not overlapping geometry.
+
+Inspect:
+
+- Wood plank textures.
+- Monitor CanvasTextures.
+- Wall pattern textures.
+- Small icons.
+- Pixel-art decorations.
+
+Choose filtering based on texture purpose and viewing scale.
+
+Do not force one filtering mode onto every texture.
+
+Preserve crisp voxel/pixel aesthetics.
+
+Avoid blurry materials.
+
+Avoid unstable high-frequency patterns.
+
+If mipmaps are needed for distant surfaces, test them without making the intended pixel-art style visually soft.
+
+Do not introduce new texture flicker while increasing detail.
+
+---
+
+# 19. MONITOR QUALITY CONTROL — ZERO DOUBLE-SIDED DISPLAY BUG
+
+Previous CEO Office development had duplicate front/back monitor screens.
+
+Do not repeat this problem.
+
+For every engineering display:
+
+- One intended visible front screen surface.
+- One opaque rear casing.
+- Correct screen normal facing the user's chair.
+- Correct screen material.
+- Correct readable texture orientation.
+- No mirrored letters.
+- No front and rear duplicated HUD planes.
+- No floating stand.
+- No screen-plane z-fighting.
+
+Use a consistent world-space facing test when feasible.
+
+The vector from screen to chair should align with the screen's outward viewing normal.
+
+Test all displays from:
+
+- Chair perspective.
+- Front room view.
+- Rear room view.
+- Isometric view.
+
+A display's backside may legitimately appear dark from the public camera.
+
+Do not label that alone as a bug.
+
+---
+
+# 20. TEMPORARY DEBUG MODE
+
+If necessary, add a hidden developer-only diagnostic mode for Engineering.
+
+Possible controls:
+
+- Toggle Shadows.
+- Inspect Mesh Names.
+- Highlight Selected Mesh.
+- Wireframe View.
+- Show Material Properties.
+- Show Camera Clipping Values.
+- Highlight Potential Coplanar Surface Pairs.
+
+A duplicate-surface checker may report likely conflicts, but must distinguish legitimate adjacent/intersecting objects from verified coplanar duplicates.
+
+Do not automatically delete meshes based only on overlapping bounding boxes.
+
+Debug helpers must not appear in production GLB exports.
+
+Keep the normal UI clean.
+
+---
+
+# 21. NAVIGATION AND ANCHOR PROTECTION
+
+Engineering already has anchor definitions and is intended for three future characters.
+
+Before rearranging furniture:
+
+Inspect the existing:
+
+- Frontend workstation anchor.
+- Backend workstation anchor.
+- Database workstation anchor.
+- Integration table anchor.
+- Entrance and exit anchors.
+- Waypoints.
+- Furniture collision zones.
+
+If furniture positions are adjusted, update only the corresponding Engineering anchor coordinates.
+
+Maintain clear movement routes.
+
+Use the existing character scale as a reference.
+
+Prefer a continuous walkway with approximately 1.2 units or more of practical clearance where possible, adapting to actual chair and character dimensions.
+
+Do not place decorations inside required walking paths.
+
+Do not put planters directly in front of doors.
+
+Do not invalidate anchors silently.
+
+Any anchor changes must be documented.
+
+---
+
+# 22. SINGLE ROOM AND FULL OFFICE
+
+## SINGLE ROOM
+
+The revised Engineering Room must remain correctly displayed at local origin [0,0,0].
+
+Support:
+
+- Isometric camera.
+- Orbit.
+- Pan.
+- Zoom.
+- Fit Room.
+- Front/side/top presets.
+
+Preserve the room's real 8×16 geometry.
+
+## FULL OFFICE
+
+Engineering remains at A3.1 global offset [0,0,0].
+
+Do not move it.
+
+Do not modify other modules.
+
+Do not use camera-dependent geometry stretching to make the room appear more attractive.
+
+The Full Office camera issue remains deferred.
+
+---
+
+# 23. PRODUCTION EXPORT
+
+This is an AI Office production asset, not a disposable prototype.
+
+The refined Engineering environment must retain all portable export features.
+
+Required outputs:
+
+- `engineering_room.glb`
+- `engineering_room.manifest.json`
+- `engineering_room.anchors.json`
+- `engineering_room.preview.png`
+- Updated Engineering production ZIP
+- Existing source code backup
+- Current office layout A3.1 contract
+
+Use a new export revision/version to distinguish the polished result from the previous Engineering asset.
+
+Do not overwrite historical source checkpoints without backup.
+
+## EXPORT RULES
+
+Export actual room geometry.
+
+Include:
+
+- Floor.
+- Walls.
+- Windows.
+- Permanent furniture.
+- Permanent decor.
+- Screens.
+- Technical boards.
+- Compatible materials.
+- Embedded textures where supported.
+
+Exclude:
+
+- Runtime characters.
+- Camera.
+- Lights where they are only preview configuration.
+- Debug helpers.
+- Temporary UI labels.
+- Navigation visualizations.
+- Hidden construction guides.
+
+Keep Engineering and its future characters independently exportable.
+
+---
+
+# 24. ROUND-TRIP VALIDATION
+
+Export the actual Engineering GLB.
+
+Reload the resulting binary using GLTFLoader.
+
+Verify:
+
+- GLB parses.
+- Geometry remains correct.
+- Room dimensions are 8×16.
+- Local origin is preserved.
+- New furniture is present.
+- Decor has not disappeared.
+- Screen textures are valid.
+- Screen orientation is correct.
+- No duplicate rear display surfaces exist.
+- Material colors remain correct.
+- No essential textures are missing.
+- Floor remains continuous.
+- Room connectors are preserved.
+- No character is included.
+- No debug geometry is included.
+
+Inspect the reimported model from multiple camera angles.
+
+If a fix works only in the live builder but not in the reimported GLB, classify it as VIEWER-ONLY rather than claiming the exported asset is repaired.
+
+---
+
+# 25. VISUAL QUALITY GATE
+
+Compare Engineering before and after refinement.
+
+The final room must demonstrate:
+
+- More visually complete developer workstations.
+- Better furniture detailing.
+- Distinct Frontend, Backend, and Database identities.
+- More useful wall decoration.
+- Richer but organized technical props.
+- A better-developed Integration Hub.
+- Better visual balance.
+- Appropriate plants and cozy accents.
+- No unnecessarily empty major wall areas.
+- No excessive clutter.
+- Clear walking space.
+- No obviously obstructive monitor composition.
+- Same-world consistency with PM, CEO, and UI/UX.
+
+Use the approved Engineering concept for the expected level of detail, not exact horizontal floor layout.
+
+Do not substitute a static concept image for the actual scene.
+
+---
+
+# 26. IMPLEMENTATION ORDER
+
+Follow this order to avoid introducing additional bugs.
+
+## PHASE A — CHECKPOINT AND DIAGNOSTICS
+
+Inspect existing Engineering code.
+
+Save a recoverable checkpoint.
+
+Identify known flickering locations.
+
+Record existing Engineering geometry and export baseline.
+
+## PHASE B — REPAIR EXISTING FLICKER
+
+Fix known geometry, material, shadow, or depth issues before adding new detail.
+
+Verify affected surfaces.
+
+## PHASE C — FRONTEND POLISH
+
+Improve workstation furniture and technical props.
+
+Check rendering and monitor orientation.
+
+## PHASE D — BACKEND POLISH
+
+Improve workstation and architecture board.
+
+Check rendering and monitor orientation.
+
+## PHASE E — DATABASE POLISH
+
+Improve workstation, technical shelves, and data diagrams.
+
+Check rendering and monitor orientation.
+
+## PHASE F — INTEGRATION HUB POLISH
+
+Improve table, chairs, architecture board, and documentation.
+
+Preserve circulation.
+
+## PHASE G — ENVIRONMENT DETAIL
+
+Add wall decoration, storage, plants, rugs, lighting details, and small functional props.
+
+Avoid visual clutter and duplicated structures.
+
+## PHASE H — FULL ROOM RENDERING AUDIT
+
+Orbit through multiple viewpoints.
+
+Check all surfaces for flicker.
+
+Check screens and materials.
+
+Check floor, wall, and window stability.
+
+## PHASE I — NAVIGATION ANCHORS
+
+Validate existing Engineering anchors and update only positions affected by actual furniture changes.
+
+## PHASE J — EXPORT AND REIMPORT
+
+Export the refined Engineering room.
+
+Independently reload and inspect it.
+
+## PHASE K — REGRESSION CHECK
+
+Confirm PM, CEO, and UI/UX rooms and characters are unaffected.
+
+Confirm Single Room and Full Office still load.
+
+STOP AFTER ENGINEERING VISUAL POLISH.
+
+Do not create Engineering characters yet.
+
+---
+
+# 27. ACCEPTANCE CRITERIA
+
+### DESIGN
+
+[ ] Engineering is noticeably richer than the previous version.
+
+[ ] The overall room still matches the established voxel visual style.
+
+[ ] Frontend zone is complete and distinctive.
+
+[ ] Backend zone is complete and distinctive.
+
+[ ] Database zone is complete and distinctive.
+
+[ ] Integration Hub feels like a technical collaboration space.
+
+[ ] Technical shelves and boards provide meaningful decoration.
+
+[ ] Room is detailed but not overcrowded.
+
+[ ] Major walkways remain accessible.
+
+### BUG FIXES
+
+[ ] Known flickering areas have been inspected.
+
+[ ] Verified geometry overlaps have been repaired.
+
+[ ] No known recurring floor flicker remains.
+
+[ ] Monitor display surfaces are correctly oriented.
+
+[ ] No duplicated front/back screen surfaces exist.
+
+[ ] No mirrored screen text is introduced.
+
+[ ] No obvious wall or trim flicker remains.
+
+[ ] No major shadow artifacts remain.
+
+[ ] New decorations do not introduce Z-fighting.
+
+[ ] No unexpected geometry disappears during camera movement.
+
+### INTEGRATION
+
+[ ] Existing Engineering anchors remain valid or are updated.
+
+[ ] Engineering dimensions remain 8×16.
+
+[ ] Engineering global placement remains unchanged.
+
+[ ] PM Room is unchanged.
+
+[ ] CEO Room is unchanged.
+
+[ ] UI/UX Room is unchanged.
+
+[ ] Existing character animations remain functional.
+
+[ ] Room Selector works.
+
+[ ] Single Room and Full Office both load.
+
+### EXPORT
+
+[ ] Refined GLB export succeeds.
+
+[ ] Manifest reflects the new revision.
+
+[ ] Anchor JSON is valid.
+
+[ ] Preview PNG reflects the actual revised room.
+
+[ ] Production ZIP contains genuine assets.
+
+[ ] Independent reimport succeeds.
+
+[ ] No missing permanent furniture or decor.
+
+[ ] No preview/debug objects contaminate the GLB.
+
+---
+
+# 28. REQUIRED FINAL REPORT
+
+After implementation, report:
+
+1. Existing defects discovered.
+2. Verified cause of each flickering issue.
+3. Which meshes or materials were corrected.
+4. Frontend detail improvements.
+5. Backend detail improvements.
+6. Database detail improvements.
+7. Integration Hub improvements.
+8. New decoration objects.
+9. Any furniture repositioning.
+10. Anchor changes.
+11. Monitor orientation verification.
+12. Rendering stability test results.
+13. Exported asset filenames.
+14. Independent GLB reimport results.
+15. Regression results for previous rooms and characters.
+16. Known limitations.
+
+Provide a BEFORE vs AFTER summary.
+
+Do not claim that flickering is fully eliminated unless verified.
+
+If an issue cannot be reproduced or tested, explicitly mark it NOT VERIFIED.
+
+Do not invent numerical measurements or test results.
+
+---
+
+# FINAL DIRECTIVE
+
+POLISH THE EXISTING AI OFFICE ENGINEERING STUDIO.
+
+Do not rebuild it.
+
+Keep its approved 8×16 footprint and A3.1 placement.
+
+Use the approved Engineering concept reference to increase meaningful environmental detail.
+
+Improve the Frontend, Backend, and Database workstations.
+
+Make the Integration Hub more visually convincing.
+
+Add beautiful but practical technical decor, shelving, wall boards, equipment, rugs, and small office props.
+
+Fix recurring flickering and blinking geometry at the actual source.
+
+Prevent double-sided monitor display bugs, duplicate floors, overlapping faces, and unstable textures.
+
+Preserve the existing PM, CEO, and UI/UX assets and animations.
+
+Maintain safe navigation paths for three future Engineering agents.
+
+Export a refined production-compatible Engineering GLB and verify the actual exported asset independently.
+
+Do not create new characters.
+
+Do not implement live AI behavior.
+
+Do not modify the deferred Full Office camera issue.
+
+**DELIVER THE SAME ENGINEERING ROOM WITH MUCH BETTER VISUAL DETAIL AND VERIFIED RENDERING STABILITY, THEN STOP FOR OWNER APPROVAL.**

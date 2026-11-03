@@ -1,0 +1,41 @@
+{
+  "timestamp": "3:37:53 PM",
+  "totalRoomMeshes": 376,
+  "totalCharacterMeshes": 46,
+  "duplicateRoomMeshNames": [],
+  "duplicateCharacterMeshNames": [],
+  "coplanarConflictCount": 0,
+  "cameraNearFar": [
+    0.5,
+    48
+  ],
+  "shadowBias": -0.0008,
+  "shadowNormalBias": 0.035,
+  "verifiedAreas": [
+    {
+      "area": "Boss PM Ears, Sideburns & Sunglasses Temples",
+      "status": "STABLE",
+      "detail": "Ears (X=±0.160..±0.194, Y=0.155..0.229), Temples (Y=0.229..0.245), Sideburns (Y=0.246..0.350) strictly separated."
+    },
+    {
+      "area": "Tall Bookcase & Archival Wardrobe Corners",
+      "status": "STABLE",
+      "detail": "Bookcase back/plinth/shelves inset between Side_Left & Side_Right (X=±0.65); Wardrobe open garment bay recessed cleanly."
+    },
+    {
+      "area": "Corner Refreshment Counter & Filing Tower",
+      "status": "STABLE",
+      "detail": "Counter_Cabinet_Base (X=-0.51..+0.83) and Counter_Filing_Tower (X=-1.13..-0.51) abut at X=-0.51 with zero overlap."
+    },
+    {
+      "area": "North/West Walls, Pilaster, Top Caps & Windows",
+      "status": "STABLE",
+      "detail": "Exterior shell (X=0..0.10) behind inner piers (X=0.10..0.34); walls (Y=0..3.16) below dark top caps (Y=3.16..3.20)."
+    },
+    {
+      "area": "Strategy Board, Posters, Rug & Contact Shadows",
+      "status": "STABLE",
+      "detail": "Stepped Z planes on board/posters/clock; polygonOffset active on rug, contact shadows, and selection ring."
+    }
+  ]
+}

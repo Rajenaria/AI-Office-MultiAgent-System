@@ -1,0 +1,558 @@
+{
+  "schema_version": "AI_OFFICE_ASSET_MANIFEST_V1",
+  "asset_id": "ai_office.room.pm_strategy.v1",
+  "legacy_module_id": "AI_OFFICE_ROOM_PM_v1",
+  "asset_version": "1.0.0",
+  "asset_kind": "room",
+  "source_project_name": "ai-office-modular-room-lab",
+  "source_revision": "NOT AVAILABLE (Google AI Studio Build Sandbox)",
+  "export_date": "2026-10-28T15:37:53.193Z",
+  "file_inventory": {
+    "glb": {
+      "filename": "pm_room.glb",
+      "relative_path": "./pm_room.glb",
+      "size_bytes": 785584,
+      "sha256": "ddf24b59b5c71e977c1c6f4ba31a22b76da53f3cb1e01750fdf15749a0d25446"
+    },
+    "manifest": {
+      "filename": "pm_room.manifest.json",
+      "relative_path": "./pm_room.manifest.json"
+    },
+    "anchors": {
+      "filename": "pm_room.anchors.json",
+      "relative_path": "./pm_room.anchors.json"
+    },
+    "preview": {
+      "filename": "pm_room.preview.png",
+      "relative_path": "./pm_room.preview.png"
+    },
+    "readme": {
+      "filename": "README.md",
+      "relative_path": "./README.md"
+    }
+  },
+  "coordinate_and_scale_contract": {
+    "up_axis": "Y",
+    "handedness": "right-handed",
+    "world_floor_y": 0,
+    "floor_subbase_min_y": -0.16,
+    "wall_top_y": 3.2,
+    "grid_unit_size": 1,
+    "world_unit_scale": "1 Three.js world unit = 1 modular grid tile (1.0m nominal)",
+    "room_origin": [
+      0,
+      0,
+      0
+    ],
+    "room_origin_convention": "South-West (SW) floor corner at [0, 0, 0]; room extends across X=[0..8] (West->East) and Z=[0..8] (South->North).",
+    "footprint_units": [
+      8,
+      8
+    ],
+    "recentered_on_export": false,
+    "default_front_facing_note": "North (+Z) and West (X=0) walls are full height (3.20u); East (X=8) and South (Z=0) are cutaway walls (0.38u) for three-quarter isometric viewing from the South-East quadrant."
+  },
+  "measured_bounds": {
+    "local_min": [
+      -0.05,
+      -0.16,
+      0
+    ],
+    "local_max": [
+      8,
+      3.2,
+      8
+    ],
+    "world_min": [
+      -0.05,
+      -0.16,
+      0
+    ],
+    "world_max": [
+      8,
+      3.2,
+      8
+    ],
+    "size": [
+      8.05,
+      3.36,
+      8
+    ]
+  },
+  "geometry_and_material_summary": {
+    "source_mesh_count": 376,
+    "exported_mesh_count": 376,
+    "material_count": 37,
+    "triangle_count": 5264,
+    "embedded_texture_count": 8,
+    "content_groups": [
+      "STRUCTURE",
+      "FLOOR",
+      "WALLS",
+      "WINDOWS",
+      "FURNITURE",
+      "PROPS",
+      "DECORATION",
+      "CONNECTORS"
+    ],
+    "group_mesh_counts": {
+      "STRUCTURE": 7,
+      "FLOOR": 1,
+      "WALLS": 21,
+      "WINDOWS": 22,
+      "FURNITURE": 263,
+      "PROPS": 18,
+      "DECORATION": 34,
+      "CONNECTORS": 10
+    },
+    "character_excluded": true,
+    "preview_helpers_excluded": true
+  },
+  "connectors": {
+    "EAST": {
+      "id": "CONNECTOR_EAST",
+      "name": "Connector A — East Passage",
+      "side": "EAST",
+      "position": [
+        8,
+        0,
+        4
+      ],
+      "outward_direction": "+X",
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "width": 2,
+      "height": 2.3,
+      "span_range": [
+        3,
+        5
+      ],
+      "clearance_zone": {
+        "minX": 6.7,
+        "maxX": 8,
+        "minZ": 3,
+        "maxZ": 5
+      },
+      "removable_wall_node": "Connector_East_Removable_Doorway"
+    },
+    "SOUTH": {
+      "id": "CONNECTOR_SOUTH",
+      "name": "Connector B — South Passage",
+      "side": "SOUTH",
+      "position": [
+        4,
+        0,
+        0
+      ],
+      "outward_direction": "-Z",
+      "normal": [
+        0,
+        0,
+        -1
+      ],
+      "width": 2,
+      "height": 2.3,
+      "span_range": [
+        3,
+        5
+      ],
+      "clearance_zone": {
+        "minX": 3,
+        "maxX": 5,
+        "minZ": 0,
+        "maxZ": 1.35
+      },
+      "removable_wall_node": "Connector_South_Removable_Threshold"
+    }
+  },
+  "furniture_and_material_parity": [
+    {
+      "catalog_id": "PM_Executive_Desk",
+      "name": "Executive PM Workstation Desk",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        1.35,
+        0,
+        5.35
+      ],
+      "catalog_dimensions": [
+        1.15,
+        0.78,
+        1.95
+      ],
+      "mesh_count": 54,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified executive PM workstation with dual pedestals, separated modesty panel, widescreen monitor (embedded pixel UI texture), secondary laptop, keyboard, mouse, lamp, and mug."
+    },
+    {
+      "catalog_id": "PM_Executive_Chair",
+      "name": "Ergonomic Leather Executive Chair",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        2.15,
+        0,
+        5.35
+      ],
+      "catalog_dimensions": [
+        0.66,
+        1.12,
+        0.66
+      ],
+      "mesh_count": 18,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified 3D geometry (18 sub-meshes) and glTF-compatible MeshStandardMaterial."
+    },
+    {
+      "catalog_id": "PM_Strategy_Board",
+      "name": "Wall-Mounted PM Strategy & Roadmap Board",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        5.35,
+        1.15,
+        7.68
+      ],
+      "catalog_dimensions": [
+        2.35,
+        1.38,
+        0.12
+      ],
+      "mesh_count": 23,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified North-wall sprint Kanban board with embedded pixel-art roadmap texture, sticky notes, and aluminum marker ledge."
+    },
+    {
+      "catalog_id": "PM_Credenza_Cabinet",
+      "name": "Strategy Credenza & Blueprint Cabinet",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        5.35,
+        0,
+        7.35
+      ],
+      "catalog_dimensions": [
+        2.15,
+        0.68,
+        0.56
+      ],
+      "mesh_count": 10,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified 3D geometry (10 sub-meshes) and glTF-compatible MeshStandardMaterial."
+    },
+    {
+      "catalog_id": "PM_Tall_Bookcase",
+      "name": "Tall Archival Bookcase & Document Shelving",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        1.95,
+        0,
+        7.42
+      ],
+      "catalog_dimensions": [
+        1.45,
+        2.52,
+        0.56
+      ],
+      "mesh_count": 72,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified 3D walnut bookcase with inset shelves, back panel, lower cabinet doors, pixel book spine clusters, and top crown; zero coplanar faces."
+    },
+    {
+      "catalog_id": "PM_Archival_Wardrobe",
+      "name": "Tall PM Coat & Blueprint Locker Cabinet",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        7.15,
+        0,
+        7.15
+      ],
+      "catalog_dimensions": [
+        1.1,
+        2.28,
+        0.72
+      ],
+      "mesh_count": 15,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified honey-oak cabinet with true 3D recessed open garment bay, hanging blazers, upper/lower doors, and top archive boxes."
+    },
+    {
+      "catalog_id": "PM_Collaboration_Table",
+      "name": "Mini Strategy Collaboration Table & Seats",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        1.75,
+        0,
+        2.25
+      ],
+      "catalog_dimensions": [
+        1.25,
+        0.76,
+        1.25
+      ],
+      "mesh_count": 31,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified 3D geometry (31 sub-meshes) and glTF-compatible MeshStandardMaterial."
+    },
+    {
+      "catalog_id": "PM_Cozy_Sofa",
+      "name": "Two-Seat Cozy Studio Lounge Sofa",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        3.95,
+        0,
+        3.85
+      ],
+      "catalog_dimensions": [
+        1.95,
+        0.86,
+        0.95
+      ],
+      "mesh_count": 12,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified 3D geometry (12 sub-meshes) and glTF-compatible MeshStandardMaterial."
+    },
+    {
+      "catalog_id": "PM_Coffee_Table",
+      "name": "Oak Side & Lounge Table",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        5.35,
+        0,
+        3.65
+      ],
+      "catalog_dimensions": [
+        0.85,
+        0.48,
+        0.62
+      ],
+      "mesh_count": 11,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified 3D geometry (11 sub-meshes) and glTF-compatible MeshStandardMaterial."
+    },
+    {
+      "catalog_id": "PM_Area_Rug",
+      "name": "Woven Pixel-Pattern Indigo Studio Rug",
+      "category": "DECORATION",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        4.35,
+        0.015,
+        4.85
+      ],
+      "catalog_dimensions": [
+        2.4,
+        0.02,
+        2.3
+      ],
+      "mesh_count": 1,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified woven pixel-pattern studio rug with embedded CanvasTexture at Y=0.015; runtime polygonOffset documented in rendering_profile."
+    },
+    {
+      "catalog_id": "PM_Corner_Credenza",
+      "name": "South-West Refreshment & Document Counter",
+      "category": "FURNITURE",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        1.35,
+        0,
+        0.75
+      ],
+      "catalog_dimensions": [
+        1.8,
+        0.85,
+        0.65
+      ],
+      "mesh_count": 17,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified SW refreshment counter with separated filing tower (X=-1.13..-0.51) and cabinet base (X=-0.51..+0.83), espresso station, and pour-over kettle."
+    },
+    {
+      "catalog_id": "PM_Floor_Lamp",
+      "name": "Warm Brass & Linen Floor Lamp",
+      "category": "PROPS",
+      "included_in_room_glb": true,
+      "source_module": "src/three/FurnitureLibraryBuilder.ts",
+      "local_position": [
+        6.35,
+        0,
+        6.85
+      ],
+      "catalog_dimensions": [
+        0.46,
+        1.72,
+        0.46
+      ],
+      "mesh_count": 3,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Verified 3D geometry (3 sub-meshes) and glTF-compatible MeshStandardMaterial."
+    },
+    {
+      "catalog_id": "FLOOR",
+      "name": "Oak Plank Surface & Structural Subbase",
+      "category": "FLOOR",
+      "included_in_room_glb": true,
+      "source_module": "src/three/RoomArchitectureBuilder.ts",
+      "local_position": [
+        4,
+        -0.08,
+        4
+      ],
+      "catalog_dimensions": [
+        7.92,
+        0.16,
+        7.92
+      ],
+      "mesh_count": 1,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Embedded procedural pixel-art oak plank texture serialized as PNG in GLB; abuts East/South cutaway plinth trims without overlap."
+    },
+    {
+      "catalog_id": "WALLS",
+      "name": "North & West Full Walls, Pilasters, Caps & Baseboard Trim",
+      "category": "WALLS",
+      "included_in_room_glb": true,
+      "source_module": "src/three/RoomArchitectureBuilder.ts",
+      "local_position": [
+        4,
+        1.6,
+        4
+      ],
+      "catalog_dimensions": [
+        8,
+        3.2,
+        8
+      ],
+      "mesh_count": 21,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Embedded warm beige plaster texture; North pilaster and West exterior shell separated to eliminate coplanar Z-fighting."
+    },
+    {
+      "catalog_id": "WINDOWS",
+      "name": "West Panorama & Study Casement Windows",
+      "category": "WINDOWS",
+      "included_in_room_glb": true,
+      "source_module": "src/three/RoomArchitectureBuilder.ts",
+      "local_position": [
+        0.18,
+        1.75,
+        4.2
+      ],
+      "catalog_dimensions": [
+        0.24,
+        1.95,
+        5.8
+      ],
+      "mesh_count": 22,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Non-overlapping casement frames, split vertical mullions around horizontal transoms, daylight vista backdrop texture, and translucent glass panes."
+    },
+    {
+      "catalog_id": "CONNECTORS",
+      "name": "East [8,0,4] & South [4,0,0] Modular Snap Connectors",
+      "category": "CONNECTORS",
+      "included_in_room_glb": true,
+      "source_module": "src/three/RoomArchitectureBuilder.ts",
+      "local_position": [
+        6,
+        0.18,
+        2
+      ],
+      "catalog_dimensions": [
+        2,
+        2.3,
+        2
+      ],
+      "mesh_count": 10,
+      "material_type": "MeshStandardMaterial",
+      "gltf_compatible": true,
+      "visual_parity_notes": "Includes CONNECTOR_A_EAST, CONNECTOR_B_SOUTH, removable doorway thresholds, and layered South welcome mat."
+    }
+  ],
+  "rendering_profile": {
+    "camera_projection": "orthographic",
+    "recommended_position": [
+      13.6,
+      11.2,
+      -5.6
+    ],
+    "recommended_target": [
+      4,
+      1.15,
+      4
+    ],
+    "recommended_zoom": 76,
+    "orthographic_near": 0.5,
+    "orthographic_far": 48,
+    "shadow_map_size": [
+      1024,
+      1024
+    ],
+    "shadow_bias": -0.0008,
+    "shadow_normal_bias": 0.035,
+    "tone_mapping": "ACESFilmicToneMapping",
+    "tone_mapping_exposure": 0.96,
+    "output_color_space": "SRGBColorSpace",
+    "texture_filtering": "THREE.NearestFilter (crisp pixel-art)",
+    "polygon_offset_surfaces": [
+      "Floor_Center_Woven_Rug (polygonOffsetFactor: -1, polygonOffsetUnits: -2)",
+      "Contact_Shadow_* (polygonOffsetFactor: -1, polygonOffsetUnits: -2, depthWrite: false)"
+    ],
+    "runtime_viewer_dependencies": [
+      "glTF 2.0 does not serialize Three.js Material.polygonOffset parameters; host runtime should re-apply polygonOffset (-1, -2) to Floor_Center_Woven_Rug and Contact_Shadow_* meshes or preserve their physical Y elevation offset (already separated at Y >= 0.004..0.025).",
+      "Set magFilter and minFilter to THREE.NearestFilter on imported textures to preserve crisp pixel-art texel edges.",
+      "Directional key light shadow bias (-0.0008) and normalBias (0.035) with orthographic near=0.5 / far=48 prevent shadow acne on thin voxel trims."
+    ]
+  },
+  "animation_inventory": {
+    "embedded_clips_count": 0,
+    "note": "pm_room.glb is a static architectural and furniture module (0 embedded clips). Character animations belong to boss_pm.glb and BossPMCharacterSystem.ts."
+  },
+  "validation_status": "PASS",
+  "known_limitations": [
+    "Scene lights, OrbitControls, orthographic camera, and RoomEnvironment IBL are runtime viewer components and are intentionally excluded from pm_room.glb.",
+    "Three.js polygonOffset material properties are runtime renderer state and not part of the glTF 2.0 specification; however, all floor rugs, mats, and decals are also physically separated in Y elevation so they do not Z-fight in standard glTF viewers."
+  ],
+  "provenance": {
+    "author_tool": "AI Office Modular Room Lab (Three.js GLTFExporter)",
+    "visual_source_of_truth": "Human Owner Approved Google AI Studio PM & Strategy Room V1",
+    "license": "Internal AI Office Project Asset — All Rights Reserved by Project Owner"
+  }
+}

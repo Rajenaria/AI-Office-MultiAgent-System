@@ -1,0 +1,721 @@
+{
+  "schema_version": "AI_OFFICE_ROOM_ANCHORS_V1",
+  "room_asset_id": "ai_office.room.pm_strategy.v1",
+  "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+  "coordinate_convention": {
+    "up_axis": "Y",
+    "floor_elevation_y": 0,
+    "room_origin": [
+      0,
+      0,
+      0
+    ],
+    "facing_convention": "0 rad = North (+Z), +PI/2 = East (+X), PI = South (-Z), -PI/2 = West (-X)"
+  },
+  "spawn_anchor_id": "SPAWN_POINT",
+  "default_idle_anchor_id": "ROOM_IDLE_POSITION",
+  "connectors": {
+    "EAST": {
+      "id": "CONNECTOR_EAST",
+      "name": "Connector A — East Passage",
+      "side": "EAST",
+      "position": [
+        8,
+        0,
+        4
+      ],
+      "outward_direction": "+X",
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "width": 2,
+      "height": 2.3,
+      "span_range": [
+        3,
+        5
+      ],
+      "clearance_zone": {
+        "minX": 6.7,
+        "maxX": 8,
+        "minZ": 3,
+        "maxZ": 5
+      },
+      "removable_wall_node": "Connector_East_Removable_Doorway"
+    },
+    "SOUTH": {
+      "id": "CONNECTOR_SOUTH",
+      "name": "Connector B — South Passage",
+      "side": "SOUTH",
+      "position": [
+        4,
+        0,
+        0
+      ],
+      "outward_direction": "-Z",
+      "normal": [
+        0,
+        0,
+        -1
+      ],
+      "width": 2,
+      "height": 2.3,
+      "span_range": [
+        3,
+        5
+      ],
+      "clearance_zone": {
+        "minX": 3,
+        "maxX": 5,
+        "minZ": 0,
+        "maxZ": 1.35
+      },
+      "removable_wall_node": "Connector_South_Removable_Threshold"
+    }
+  },
+  "anchors": [
+    {
+      "id": "SPAWN_POINT",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "Spawn Point (South Entrance)",
+      "world_position": [
+        4,
+        0,
+        1.55
+      ],
+      "local_position": [
+        4,
+        0,
+        1.55
+      ],
+      "facing_rad": 0,
+      "facing_deg": 0,
+      "forward_vector": [
+        0,
+        0,
+        1
+      ],
+      "activity_role": "idle",
+      "posture": "standing",
+      "approach_anchor_id": null,
+      "associated_furniture_id": "CONNECTOR_B_SOUTH",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Initial Boss PM entry point inside the South modular passage threshold."
+    },
+    {
+      "id": "ROOM_IDLE_POSITION",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "Room Idle Center (Rug)",
+      "world_position": [
+        3.35,
+        0,
+        5.15
+      ],
+      "local_position": [
+        3.35,
+        0,
+        5.15
+      ],
+      "facing_rad": 2.35,
+      "facing_deg": 135,
+      "forward_vector": [
+        0.7115,
+        0,
+        -0.7027
+      ],
+      "activity_role": "idle",
+      "posture": "standing",
+      "approach_anchor_id": null,
+      "associated_furniture_id": "PM_Area_Rug",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Central standing spot on the woven studio rug with clear sightlines."
+    },
+    {
+      "id": "PM_DESK_APPROACH",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "PM Desk Approach",
+      "world_position": [
+        2.78,
+        0,
+        5.35
+      ],
+      "local_position": [
+        2.78,
+        0,
+        5.35
+      ],
+      "facing_rad": -1.5708,
+      "facing_deg": 270,
+      "forward_vector": [
+        -1,
+        0,
+        0
+      ],
+      "activity_role": "work_desk",
+      "posture": "standing",
+      "approach_anchor_id": null,
+      "associated_furniture_id": "PM_Executive_Chair",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Clear approach point beside the executive leather chair before sitting/working."
+    },
+    {
+      "id": "PM_DESK_WORK_POSITION",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "PM Desk Work Position",
+      "world_position": [
+        1.96,
+        0,
+        5.35
+      ],
+      "local_position": [
+        1.96,
+        0,
+        5.35
+      ],
+      "facing_rad": -1.5708,
+      "facing_deg": 270,
+      "forward_vector": [
+        -1,
+        0,
+        0
+      ],
+      "activity_role": "work_desk",
+      "posture": "seated",
+      "approach_anchor_id": "PM_DESK_APPROACH",
+      "associated_furniture_id": "PM_Executive_Desk",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Active workstation position in front of the dual-screen PM desk."
+    },
+    {
+      "id": "PM_CHAIR_POSITION",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "PM Executive Chair Anchor",
+      "world_position": [
+        2.05,
+        0,
+        5.35
+      ],
+      "local_position": [
+        2.05,
+        0,
+        5.35
+      ],
+      "facing_rad": -1.5708,
+      "facing_deg": 270,
+      "forward_vector": [
+        -1,
+        0,
+        0
+      ],
+      "activity_role": "work_desk",
+      "posture": "seated",
+      "approach_anchor_id": "PM_DESK_APPROACH",
+      "associated_furniture_id": "PM_Executive_Chair",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Seated anchor aligned with the ergonomic leather executive task chair."
+    },
+    {
+      "id": "MEETING_TABLE_APPROACH",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "Meeting Table Approach",
+      "world_position": [
+        2.85,
+        0,
+        2.25
+      ],
+      "local_position": [
+        2.85,
+        0,
+        2.25
+      ],
+      "facing_rad": -1.5708,
+      "facing_deg": 270,
+      "forward_vector": [
+        -1,
+        0,
+        0
+      ],
+      "activity_role": "meeting_briefing",
+      "posture": "standing",
+      "approach_anchor_id": null,
+      "associated_furniture_id": "PM_Collaboration_Table",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Walkable approach node east of the mini collaboration table."
+    },
+    {
+      "id": "MEETING_SEAT_POSITION",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "Meeting Briefing Position",
+      "world_position": [
+        2.52,
+        0,
+        2.25
+      ],
+      "local_position": [
+        2.52,
+        0,
+        2.25
+      ],
+      "facing_rad": -1.5708,
+      "facing_deg": 270,
+      "forward_vector": [
+        -1,
+        0,
+        0
+      ],
+      "activity_role": "meeting_briefing",
+      "posture": "standing",
+      "approach_anchor_id": "MEETING_TABLE_APPROACH",
+      "associated_furniture_id": "PM_Collaboration_Table",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Briefing position at the head of the sprint collaboration table."
+    },
+    {
+      "id": "PRESENTATION_BOARD_POSITION",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "Strategy Board Presentation",
+      "world_position": [
+        5.35,
+        0,
+        6.42
+      ],
+      "local_position": [
+        5.35,
+        0,
+        6.42
+      ],
+      "facing_rad": 0,
+      "facing_deg": 0,
+      "forward_vector": [
+        0,
+        0,
+        1
+      ],
+      "activity_role": "present_board",
+      "posture": "standing",
+      "approach_anchor_id": null,
+      "associated_furniture_id": "PM_Strategy_Board",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Presentation stance in front of the Wall-Mounted PM Strategy & Roadmap Board."
+    },
+    {
+      "id": "BOOKSHELF_POSITION",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "Tall Bookcase Reading Spot",
+      "world_position": [
+        1.95,
+        0,
+        6.55
+      ],
+      "local_position": [
+        1.95,
+        0,
+        6.55
+      ],
+      "facing_rad": 0,
+      "facing_deg": 0,
+      "forward_vector": [
+        0,
+        0,
+        1
+      ],
+      "activity_role": "read_document",
+      "posture": "standing",
+      "approach_anchor_id": null,
+      "associated_furniture_id": "PM_Tall_Bookcase",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Reading & reference lookup spot in front of the five-tier walnut bookcase."
+    },
+    {
+      "id": "COFFEE_BREAK_POSITION",
+      "room_module_id": "AI_OFFICE_ROOM_PM_v1",
+      "label": "Coffee & Refreshment Counter",
+      "world_position": [
+        2.55,
+        0,
+        1.05
+      ],
+      "local_position": [
+        2.55,
+        0,
+        1.05
+      ],
+      "facing_rad": -2.15,
+      "facing_deg": 237,
+      "forward_vector": [
+        -0.8369,
+        0,
+        -0.5474
+      ],
+      "activity_role": "coffee_break",
+      "posture": "standing",
+      "approach_anchor_id": null,
+      "associated_furniture_id": "PM_Corner_Credenza",
+      "character_compatibility": [
+        "ai_office.character.boss_pm_room_native.v1",
+        "character_lab_imported_glb_1.72u"
+      ],
+      "description": "Refreshment break position beside the South-West espresso & kettle counter."
+    }
+  ],
+  "navigation_waypoints": [
+    {
+      "id": "WP_SOUTH_ENTRY",
+      "world_position": [
+        4,
+        0,
+        1.55
+      ],
+      "neighbors": [
+        "WP_SOUTH_WEST",
+        "WP_SOUTH_EAST",
+        "WP_WEST_LOWER"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_SOUTH_WEST",
+      "world_position": [
+        2.75,
+        0,
+        1.25
+      ],
+      "neighbors": [
+        "WP_SOUTH_ENTRY",
+        "WP_WEST_LOWER"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_WEST_LOWER",
+      "world_position": [
+        2.85,
+        0,
+        2.25
+      ],
+      "neighbors": [
+        "WP_SOUTH_WEST",
+        "WP_SOUTH_ENTRY",
+        "WP_WEST_MID"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_WEST_MID",
+      "world_position": [
+        2.85,
+        0,
+        3.85
+      ],
+      "neighbors": [
+        "WP_WEST_LOWER",
+        "WP_WEST_DESK",
+        "WP_CENTER_RUG"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_WEST_DESK",
+      "world_position": [
+        2.85,
+        0,
+        5.35
+      ],
+      "neighbors": [
+        "WP_WEST_MID",
+        "WP_NORTH_WEST",
+        "WP_CENTER_RUG"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_CENTER_RUG",
+      "world_position": [
+        3.45,
+        0,
+        5.25
+      ],
+      "neighbors": [
+        "WP_WEST_MID",
+        "WP_WEST_DESK",
+        "WP_NORTH_MID",
+        "WP_EAST_UPPER"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_NORTH_WEST",
+      "world_position": [
+        2.25,
+        0,
+        6.45
+      ],
+      "neighbors": [
+        "WP_WEST_DESK",
+        "WP_NORTH_MID"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_NORTH_MID",
+      "world_position": [
+        3.85,
+        0,
+        6.42
+      ],
+      "neighbors": [
+        "WP_NORTH_WEST",
+        "WP_CENTER_RUG",
+        "WP_NORTH_BOARD"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_NORTH_BOARD",
+      "world_position": [
+        5.35,
+        0,
+        6.42
+      ],
+      "neighbors": [
+        "WP_NORTH_MID",
+        "WP_EAST_UPPER"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_EAST_UPPER",
+      "world_position": [
+        6.15,
+        0,
+        5.35
+      ],
+      "neighbors": [
+        "WP_NORTH_BOARD",
+        "WP_CENTER_RUG",
+        "WP_EAST_MID"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_EAST_MID",
+      "world_position": [
+        6.45,
+        0,
+        3.95
+      ],
+      "neighbors": [
+        "WP_EAST_UPPER",
+        "WP_SOUTH_EAST"
+      ],
+      "obstacle_clear": true
+    },
+    {
+      "id": "WP_SOUTH_EAST",
+      "world_position": [
+        5.65,
+        0,
+        2.15
+      ],
+      "neighbors": [
+        "WP_EAST_MID",
+        "WP_SOUTH_ENTRY"
+      ],
+      "obstacle_clear": true
+    }
+  ],
+  "patrol_anchor_sequence": [
+    "ROOM_IDLE_POSITION",
+    "PM_DESK_APPROACH",
+    "BOOKSHELF_POSITION",
+    "PRESENTATION_BOARD_POSITION",
+    "COFFEE_BREAK_POSITION",
+    "MEETING_TABLE_APPROACH"
+  ],
+  "obstacle_footprint_catalog": [
+    {
+      "furniture_id": "PM_Executive_Desk",
+      "name": "Executive PM Workstation Desk",
+      "center_xz": [
+        1.35,
+        5.35
+      ],
+      "size_xz": [
+        1.15,
+        1.95
+      ],
+      "blocks_navigation": true
+    },
+    {
+      "furniture_id": "PM_Executive_Chair",
+      "name": "Ergonomic Leather Executive Chair",
+      "center_xz": [
+        2.15,
+        5.35
+      ],
+      "size_xz": [
+        0.66,
+        0.66
+      ],
+      "blocks_navigation": false
+    },
+    {
+      "furniture_id": "PM_Strategy_Board",
+      "name": "Wall-Mounted PM Strategy & Roadmap Board",
+      "center_xz": [
+        5.35,
+        7.68
+      ],
+      "size_xz": [
+        2.35,
+        0.12
+      ],
+      "blocks_navigation": false
+    },
+    {
+      "furniture_id": "PM_Credenza_Cabinet",
+      "name": "Strategy Credenza & Blueprint Cabinet",
+      "center_xz": [
+        5.35,
+        7.35
+      ],
+      "size_xz": [
+        2.15,
+        0.56
+      ],
+      "blocks_navigation": true
+    },
+    {
+      "furniture_id": "PM_Tall_Bookcase",
+      "name": "Tall Archival Bookcase & Document Shelving",
+      "center_xz": [
+        1.95,
+        7.42
+      ],
+      "size_xz": [
+        1.45,
+        0.56
+      ],
+      "blocks_navigation": true
+    },
+    {
+      "furniture_id": "PM_Archival_Wardrobe",
+      "name": "Tall PM Coat & Blueprint Locker Cabinet",
+      "center_xz": [
+        7.15,
+        7.15
+      ],
+      "size_xz": [
+        1.1,
+        0.72
+      ],
+      "blocks_navigation": true
+    },
+    {
+      "furniture_id": "PM_Collaboration_Table",
+      "name": "Mini Strategy Collaboration Table & Seats",
+      "center_xz": [
+        1.75,
+        2.25
+      ],
+      "size_xz": [
+        1.25,
+        1.25
+      ],
+      "blocks_navigation": true
+    },
+    {
+      "furniture_id": "PM_Cozy_Sofa",
+      "name": "Two-Seat Cozy Studio Lounge Sofa",
+      "center_xz": [
+        3.95,
+        3.85
+      ],
+      "size_xz": [
+        1.95,
+        0.95
+      ],
+      "blocks_navigation": true
+    },
+    {
+      "furniture_id": "PM_Coffee_Table",
+      "name": "Oak Side & Lounge Table",
+      "center_xz": [
+        5.35,
+        3.65
+      ],
+      "size_xz": [
+        0.85,
+        0.62
+      ],
+      "blocks_navigation": true
+    },
+    {
+      "furniture_id": "PM_Area_Rug",
+      "name": "Woven Pixel-Pattern Indigo Studio Rug",
+      "center_xz": [
+        4.35,
+        4.85
+      ],
+      "size_xz": [
+        2.4,
+        2.3
+      ],
+      "blocks_navigation": false
+    },
+    {
+      "furniture_id": "PM_Corner_Credenza",
+      "name": "South-West Refreshment & Document Counter",
+      "center_xz": [
+        1.35,
+        0.75
+      ],
+      "size_xz": [
+        1.8,
+        0.65
+      ],
+      "blocks_navigation": true
+    },
+    {
+      "furniture_id": "PM_Floor_Lamp",
+      "name": "Warm Brass & Linen Floor Lamp",
+      "center_xz": [
+        6.35,
+        6.85
+      ],
+      "size_xz": [
+        0.46,
+        0.46
+      ],
+      "blocks_navigation": true
+    }
+  ]
+}

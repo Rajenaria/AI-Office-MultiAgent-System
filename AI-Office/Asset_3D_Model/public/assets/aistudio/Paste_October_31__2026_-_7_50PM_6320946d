@@ -1,0 +1,1988 @@
+# AI OFFICE — ENGINEERING AGENT 03
+# DATABASE DEVELOPER / DATABASE ADMINISTRATOR
+## Character Design, Animations, Expressions, Simulation & Production Export V1
+
+**PROJECT:** Existing AI Office — Modular Room Lab  
+**ROOM:** Engineering & Development Studio (8×16)  
+**CHARACTER:** Database Developer / Database Administrator  
+**REFERENCE:** Attached Voxel Database Admin Character Sheet  
+**ART STYLE:** Existing Room-Native Handcrafted Voxel Style  
+**SCOPE:** ONE NEW CHARACTER ONLY  
+**STATUS:** Visual Simulation / Demo  
+**INTEGRATION TARGET:** Future AI Office Main System
+
+---
+
+# 0. YOUR ROLE
+
+You are a Senior Three.js Character Technical Artist, Voxel Character Designer, Animation Engineer, React/TypeScript Developer, 3D Asset Pipeline Engineer, and Technical QA Specialist.
+
+You are working inside the EXISTING AI Office Modular Room Lab.
+
+The application already contains:
+
+- PM & Strategy Room.
+- Boss PM character and animations.
+- CEO Executive Brain Office.
+- CEO Executive Assistant and animations.
+- UI/UX Design Studio.
+- UI/UX Designer and animations.
+- Engineering & Development Studio.
+- Frontend Developer character.
+- Backend Developer character, if its current implementation is complete.
+- Single Room and Full Office modes.
+- Character simulation controls.
+- Room and character export functionality.
+- GLB Import and independent reimport validation.
+- Master Office Layout A3.1.
+
+YOUR TASK:
+
+Create the THIRD Engineering Department character:
+
+**DATABASE DEVELOPER / DATABASE ADMINISTRATOR**
+
+The result must be a fully reusable voxel 3D character with genuine database-related animations, simple facial expressions, contextual props, room navigation, demo simulation controls, and production-compatible exports.
+
+Do not rebuild the application.
+
+Do not redesign existing assets.
+
+Do not create another room.
+
+Do not change the existing Frontend or Backend characters.
+
+---
+
+# 1. STRICT PROJECT PRESERVATION
+
+Before implementing:
+
+1. Inspect the existing project source.
+2. Identify the actual existing character builders.
+3. Identify the shared rig conventions.
+4. Inspect existing animation controllers.
+5. Inspect Engineering Room anchors.
+6. Inspect the current actor registry.
+7. Inspect the production GLB exporter.
+8. Create a recoverable checkpoint.
+
+Preserve all previously approved work.
+
+## Preserve existing rooms
+
+- PM Room.
+- CEO Room.
+- UI/UX Room.
+- Engineering Room.
+
+Do not modify their permanent geometry, materials, furniture, lighting, wall structures, windows, connector definitions, or validated export assets.
+
+## Preserve existing characters
+
+- Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer.
+- Backend Developer.
+
+Do not modify their:
+
+- Geometry.
+- Hairstyles.
+- Outfits.
+- Rig structures.
+- Animations.
+- Expressions.
+- Accessories.
+- Behavior contracts.
+- Export filenames.
+
+## Preserve systems
+
+- Room Selector.
+- Single Room.
+- Full Office.
+- OfficeAssembler.
+- Master Layout A3.1.
+- Existing camera controls.
+- GLB loader/exporter.
+- Production asset packs.
+- Simulation control panels.
+- Character registry.
+- Source backup workflow.
+
+The owner has deferred final Full Office camera refinements.
+
+DO NOT attempt to fix the Full Office camera in this task.
+
+---
+
+# 2. OFFICIAL CHARACTER IDENTITY
+
+Character ID:
+
+`database_developer_agent`
+
+Display Name:
+
+`Database Developer`
+
+Alternative role label:
+
+`Database Engineer / Database Administrator`
+
+Department:
+
+`Engineering`
+
+Room ID:
+
+`AI_OFFICE_ROOM_ENGINEERING_v1`
+
+Functional focus:
+
+- Database schema design.
+- Data modeling.
+- SQL query implementation.
+- Query optimization.
+- Database constraints and integrity.
+- Database migration planning.
+- Data structure review.
+- Database compatibility analysis.
+- Documentation of schemas.
+- Database issue investigation.
+- Data validation.
+- Coordination with Backend.
+- Database-related quality checks.
+
+This character represents database engineering and administration.
+
+IMPORTANT:
+
+Do not turn this character into a DevOps Engineer.
+
+Infrastructure deployments, server provisioning, and general cloud administration belong primarily to the separate DevOps role.
+
+Database backup, migration, and recovery concepts may be represented visually, but no real operations may be executed in this demo.
+
+---
+
+# 3. OFFICIAL REFERENCE PRIORITY
+
+Use three reference sources in the following strict order.
+
+## REFERENCE A — ATTACHED DATABASE CHARACTER SHEET
+
+This image defines the CHARACTER IDENTITY.
+
+The supplied sheet shows:
+
+- Multiple character viewing directions.
+- Detailed layered hairstyle.
+- Dark technical clothing.
+- Green accent colors.
+- Distinct facial expressions.
+- Working and analysis actions.
+- Database-themed props.
+- Workstation variations.
+- Optional outfit variations.
+
+Follow the supplied image as the authoritative appearance reference.
+
+## REFERENCE B — EXISTING ROOM-NATIVE CHARACTERS
+
+Use the actual in-project PM, CEO, UI/UX, Frontend, and Backend models for:
+
+- Character scale.
+- Head proportions.
+- Body proportions.
+- Material finish.
+- Voxel block density.
+- Animation architecture.
+- Pivot positions.
+- Facial construction.
+- Lighting behavior.
+- Export conventions.
+
+These ACTUAL working character meshes define the technical art style.
+
+## REFERENCE C — EXISTING ENGINEERING ROOM
+
+Use Engineering Studio as the reference for:
+
+- Character height.
+- Workstation scale.
+- Desk and chair positions.
+- Navigation.
+- Environmental lighting.
+- Material compatibility.
+
+REFERENCE RULE:
+
+Do not reproduce the standalone character illustration using an incompatible high-detail rendering style.
+
+The new Database character must visibly belong to the same 3D world as every existing AI Office character.
+
+---
+
+# 4. VISUAL CHARACTER REQUIREMENTS
+
+The approved Database character has a distinct technical appearance.
+
+Required features:
+
+- Short, thick, layered dark brown voxel hairstyle.
+- Warm light-beige skin.
+- Simple dark rectangular eyes.
+- No default eyeglasses.
+- No default opaque sunglasses.
+- Black or very dark charcoal technical jacket.
+- Distinct emerald-green and olive-green details.
+- Light inner shirt.
+- Dark trousers.
+- White and light-gray sneakers.
+- Black technical backpack with green accents.
+- Subtle database-themed accessories.
+
+This character must feel:
+
+- Intelligent.
+- Technically focused.
+- Calm.
+- Analytical.
+- Friendly.
+- Professional.
+- Slightly youthful.
+- Distinct from Frontend and Backend.
+
+DO NOT:
+
+- Add black glasses simply because Backend wears glasses.
+- Copy Frontend's orange hoodie.
+- Copy Backend's white headphones as a mandatory accessory.
+- Copy CEO's formal executive suit.
+- Copy the Research Professor's white hair.
+- Turn the character into a robotic database mascot.
+
+The default Database character should match the supplied sheet.
+
+---
+
+# 5. CRITICAL PRIORITY — HAIRSTYLE SHAPE
+
+The owner places high importance on hairstyle geometry.
+
+Do not treat the hairstyle as a minor decorative feature.
+
+The supplied Database character has a distinctive layered dark chestnut-brown hairstyle.
+
+The hair is NOT a flat solid cube.
+
+## 5.1 Main silhouette
+
+Create:
+
+- Large but controlled upper hair volume.
+- Multiple stepped voxel hair layers.
+- Slightly asymmetrical fringe.
+- Irregular geometric hair contour.
+- Softly tousled technical-professional hairstyle.
+- Compact side layers.
+- Clearly modeled back silhouette.
+
+The hair should be volumetric from every direction.
+
+Do not make it a helmet-shaped rectangular cap.
+
+## 5.2 Front hair
+
+From the front:
+
+- Use several visibly layered fringe blocks.
+- Slightly vary the projection of individual clusters.
+- Frame the forehead naturally.
+- Maintain sufficient space for the eyes.
+- Preserve the recognizable dark brown fringe silhouette.
+
+The fringe should feel intentionally styled, not randomly assembled.
+
+## 5.3 Hair crown
+
+The upper hair should contain:
+
+- A main dark brown volume.
+- Stepped layers of different heights.
+- Small angular elevated clusters.
+- Subtle asymmetry.
+- A coherent overall shape.
+
+Avoid perfectly identical rectangular blocks repeated across the crown.
+
+Avoid excessive jagged spikes.
+
+## 5.4 Left and right side
+
+The side silhouette should have:
+
+- Recognizable stepped layers.
+- Compact volume near the temples.
+- Correct relationship to the ears.
+- Natural progression toward the back of the head.
+
+Do not allow hair to cut through the ears.
+
+## 5.5 Back silhouette
+
+The rear hair MUST be deliberately modeled.
+
+Use:
+
+- Dark layered back volume.
+- A thicker upper section.
+- Lower stepped sections.
+- Slightly tapered lower contour.
+- Small geometry depth variations.
+
+Do not leave a single featureless cube at the back.
+
+The sheet contains a proper rear view; use it.
+
+## 5.6 Hair color palette
+
+Use a restrained dark-brown palette.
+
+Suggested tonal family:
+
+- Deep chocolate brown.
+- Dark chestnut.
+- Near-black brown shadows.
+- Muted warm brown highlights.
+- Very restrained burgundy-brown variation.
+
+Avoid:
+
+- Uniform pure black.
+- Bright red highlights.
+- Orange hair.
+- Glossy wet-hair effects.
+- Gray/silver hair associated with the CEO character.
+
+The tone variation must complement the room lighting.
+
+## 5.7 Hair material quality
+
+Use mostly matte materials.
+
+Recommended:
+
+- High roughness.
+- Low metallic response.
+- Consistent shading.
+- Carefully controlled material colors.
+- Crisp voxel edges.
+
+Do not simulate realistic individual hair strands.
+
+Use actual geometric layering.
+
+## 5.8 Hair geometry stability
+
+Inspect:
+
+- Hair-to-head intersections.
+- Hair-to-ear intersections.
+- Duplicate surface planes.
+- Hair layer overlap.
+- Hair shadow artifacts.
+- Small decorative voxel clipping.
+- Surface flickering during animation.
+
+Avoid coplanar polygons.
+
+Do not globally apply polygonOffset to solve hairstyle problems.
+
+Correct faulty geometry directly.
+
+## 5.9 Hair turnaround quality gate
+
+Inspect the character from:
+
+1. Front.
+2. Front-right.
+3. Right.
+4. Back-right.
+5. Back.
+6. Back-left.
+7. Left.
+8. Front-left.
+
+Confirm that the hairstyle remains recognizable in ALL views.
+
+If only the front silhouette looks good, the hairstyle is not complete.
+
+---
+
+# 6. FACE DESIGN — NO DEFAULT GLASSES
+
+The Database character's face is simpler than Frontend and Backend.
+
+Follow the supplied sheet.
+
+Required:
+
+- Compact cubic voxel face.
+- Warm skin tone.
+- Dark rectangular eyes.
+- Black/dark pupils.
+- Minimal eyebrows.
+- Small nose.
+- Simple mouth.
+- Small cheek accents.
+- Clear cubic ears.
+
+Do not automatically add glasses.
+
+Do not add sunglasses.
+
+The visible eyes are part of the character's distinct identity.
+
+Expression changes should remain visible during animation.
+
+Preserve face simplicity consistent with the existing Room-Native art style.
+
+---
+
+# 7. CLOTHING — DATABASE TECHNICAL OUTFIT
+
+## 7.1 Default jacket
+
+Create a dark charcoal technical jacket.
+
+It should contain:
+
+- Dark primary torso.
+- Distinct front opening or jacket panel layers.
+- Light inner shirt.
+- Small emerald-green accents.
+- Subtle olive-green details.
+- Dark sleeves.
+- Geometric cuffs.
+- Optional small database patch on one sleeve.
+
+The jacket should clearly differ from the existing Backend outfit.
+
+Do not simply copy Backend's torso geometry and replace its material colors.
+
+Build a recognizably distinct jacket silhouette where possible.
+
+## 7.2 Green accent details
+
+Green is the Database character's signature identity.
+
+Use green in:
+
+- Jacket detail.
+- Small sleeve badge.
+- Backpack straps.
+- Backpack panel.
+- Small technical accessory.
+
+Do not turn every clothing surface neon green.
+
+Use restrained emerald and olive shades.
+
+## 7.3 Trousers
+
+Dark charcoal or deep navy.
+
+Maintain the same voxel leg proportions used by other office characters.
+
+## 7.4 Shoes
+
+White/light-gray sneakers.
+
+Include:
+
+- Voxel upper.
+- Visible sole.
+- Small gray details.
+- Limited green accents where appropriate.
+
+Keep shoe size consistent with the existing cast.
+
+## 7.5 Backpack
+
+Use the backpack shown in the reference.
+
+Required:
+
+- Compact dark technical main body.
+- Green accent panels.
+- Dark shoulder straps.
+- Small database-themed marking or structured green pattern.
+- Appropriate back attachment.
+- Readable rear silhouette.
+
+Do not make the backpack wider than the torso without reason.
+
+The backpack must remain correctly attached while the character walks.
+
+During seated work, use a controlled backpack visibility or attachment policy to prevent clipping through the chair.
+
+Do not permanently remove it from the exported character.
+
+---
+
+# 8. OPTIONAL OUTFITS
+
+The reference image includes outfit variations such as:
+
+- Default dark technical outfit.
+- Green hoodie.
+- Black hoodie.
+- T-shirt.
+- Alternative jacket.
+- Lab coat.
+- Cap.
+- Headphone variation.
+- Formal variant.
+- Dark/night-mode variation.
+
+These are FUTURE CUSTOMIZATION OPTIONS.
+
+For this task, prioritize the approved DEFAULT outfit.
+
+Do not develop a complete clothing editor.
+
+Prepare modular attachment or clothing-group conventions where compatible with the existing project.
+
+Do not sacrifice default-model quality to produce optional variants.
+
+Optional outfits must not be falsely marked as implemented.
+
+---
+
+# 9. MATERIAL AND TEXTURE STANDARD
+
+The owner has encountered recurring texture and flickering problems in previous assets.
+
+Prevent them in this character.
+
+## Hair
+
+- Matte dark brown.
+- Intentional layer variation.
+- No coplanar overlap.
+- No random glossy faces.
+
+## Skin
+
+- Warm matte beige.
+- Subtle geometric shading.
+- No plastic shine.
+
+## Jacket
+
+- Dark charcoal fabric-like visual treatment.
+- Small green panels.
+- Stable material definitions.
+
+## Backpack
+
+- Dark matte casing/fabric.
+- Controlled green accents.
+- No floating decorative panel.
+
+## Shoes
+
+- Light gray/white with clear soles.
+- Matte material.
+- Consistent geometric thickness.
+
+## GLB materials
+
+Use compatible glTF material types.
+
+If CanvasTextures or generated image textures are used:
+
+- Verify export support.
+- Confirm embedded image data.
+- Confirm correct color-space handling.
+- Confirm UV orientation.
+- Prevent unwanted mirroring.
+- Check texture sampling at different camera distances.
+
+Avoid unnecessary high-frequency textures.
+
+Do not globally change rendering settings for all rooms.
+
+---
+
+# 10. SCALE AND PROPORTIONS
+
+Inspect the currently implemented characters.
+
+Previously, Boss PM was approximately 1.72 world units tall.
+
+Verify the current actual asset dimensions instead of assuming the value remains unchanged.
+
+Match the existing general character scale.
+
+Requirements:
+
+- Feet aligned with floor Y=0.
+- Valid character root at floor origin.
+- Head proportion compatible with other characters.
+- Similar arm length.
+- Similar leg proportions.
+- Compatible sitting height.
+- Correct desk interaction scale.
+- Correct shoulder and backpack width.
+
+Do not make the Database character significantly larger or smaller without a reference-based reason.
+
+Avoid nonuniform scale.
+
+---
+
+# 11. CHARACTER RIG
+
+Reuse the existing character rig and animation philosophy.
+
+Create a dedicated independent character root.
+
+Suggested:
+
+`DATABASE_AGENT_RUNTIME_ROOT`
+
+Example hierarchy:
+
+DATABASE_AGENT_RUNTIME_ROOT
+- NavigationRoot
+- OrientationRoot
+- CharacterModelRoot
+  - TorsoPivot
+  - HeadPivot
+    - Face
+    - Hair
+    - Eyes
+    - Eyebrows
+    - Mouth
+  - LeftArmPivot
+  - RightArmPivot
+  - LeftLegPivot
+  - RightLegPivot
+  - Jacket
+  - BackpackAttachment
+  - AccessoryAttachments
+- AnimationController
+
+Adapt this hierarchy to actual working source conventions.
+
+Do not force a new incompatible rig architecture.
+
+Requirements:
+
+- Stable arm pivots.
+- Stable leg pivots.
+- Head rotation support.
+- Compatible standing and sitting.
+- Stable accessory attachments.
+- Valid AnimationMixer bindings.
+- Safe pose reset.
+- Valid GLB export.
+
+Do not bake room navigation transforms into the character model geometry.
+
+---
+
+# 12. ENGINEERING ROOM INTEGRATION
+
+The existing room is:
+
+`AI_OFFICE_ROOM_ENGINEERING_v1`
+
+Size:
+
+8×16 units.
+
+Local origin:
+
+[0,0,0].
+
+Global A3.1 offset:
+
+[0,0,0].
+
+The Engineering Room contains:
+
+- Frontend workstation.
+- Backend workstation.
+- Database workstation.
+- Shared Integration Hub.
+
+THIS TASK ADDS ONLY THE DATABASE CHARACTER.
+
+Expected Engineering cast after this task:
+
+- Frontend Developer.
+- Backend Developer.
+- Database Developer.
+
+All three characters must remain independent runtime actors.
+
+The Database character must not replace Frontend or Backend.
+
+Do not embed characters into the Engineering room GLB.
+
+Do not recreate the Database workstation.
+
+Do not move existing furniture.
+
+---
+
+# 13. DATABASE WORKSTATION ANCHORS
+
+Inspect the existing Engineering anchor file.
+
+Reuse verified Database-specific positions.
+
+Expected semantic anchors may include:
+
+- DB_WORKSTATION_APPROACH
+- DB_DESK_WORK
+- DB_CHAIR
+- DB_SCHEMA_REVIEW
+- ENG_INTEGRATION_TABLE
+- ENG_ARCHITECTURE_BOARD
+- ENG_DISCUSSION_POSITION
+- ENGINEERING_ROOM_SPAWN
+- ENGINEERING_ROOM_IDLE
+- ENGINEERING_EAST_EXIT
+
+These names are candidates, not guaranteed source IDs.
+
+Read actual current configuration.
+
+Determine:
+
+- Actual Database desk position.
+- Database chair position.
+- Monitor-facing direction.
+- Database schema display location.
+- Safe approach position.
+- Workstation clearance.
+- Integration Hub route.
+- Exit accessibility.
+
+Do not invent final coordinates.
+
+All anchors must use room-local coordinates.
+
+The character must face the real screen surface, not the monitor back.
+
+The character must not stand or sit inside furniture.
+
+---
+
+# 14. REQUIRED DATABASE ANIMATIONS
+
+Create real 3D animations based on Database engineering activities.
+
+The supplied reference sheet shows visual actions including idle, walking, talking, typing, analyzing, maintaining, troubleshooting, and presenting.
+
+Adapt these into role-appropriate database activities.
+
+All animations must involve actual character geometry movement.
+
+Do not implement actions as text-only state changes.
+
+## 01 — Idle_Breathing
+
+Relaxed standing posture.
+
+Subtle breathing.
+
+Small head movement.
+
+Loopable.
+
+## 02 — Walk_Cycle
+
+Natural voxel walking.
+
+Alternating arm/leg motion.
+
+Correct orientation.
+
+Stable feet.
+
+Loopable.
+
+## 03 — Work_Typing
+
+Walk to the Database workstation.
+
+Sit or enter the supported work posture.
+
+Face the actual monitor.
+
+Animate keyboard interaction.
+
+Keep hands near the keyboard.
+
+## 04 — Schema_Design
+
+Character works on a fictional database schema.
+
+Actions may include:
+
+- Typing.
+- Pausing to inspect the monitor.
+- Small mouse movement.
+- Looking between schema representations.
+
+Must feel distinct from generic typing.
+
+## 05 — ERD_Analysis
+
+Character reviews an Entity Relationship Diagram.
+
+Use:
+
+- Main display.
+- Schema board.
+- Tablet.
+
+Subtle pointing or head movement.
+
+## 06 — SQL_Query_Development
+
+Character visually writes or reviews a query.
+
+Alternate between keyboard interaction and result inspection.
+
+No actual SQL execution is required.
+
+## 07 — Query_Optimization
+
+Character reviews a fictional slow-query or execution-plan visualization.
+
+Suggested gestures:
+
+- Lean toward monitor.
+- Pause.
+- Think.
+- Point toward an optimization result.
+- Return to workstation.
+
+Clearly a demo.
+
+## 08 — Data_Integrity_Check
+
+Character checks fictional constraints, relationships, and validation results.
+
+Use focused head and hand gestures.
+
+Do not claim actual database validation occurred.
+
+## 09 — Migration_Review
+
+Character inspects a fictional schema migration plan.
+
+Use a tablet or document.
+
+Possible short reading and confirmation motions.
+
+Do not perform any actual migration.
+
+## 10 — Database_Maintenance_Demo
+
+Demonstrate database-specific maintenance review.
+
+Focus on:
+
+- Schema health.
+- Query/index review.
+- Logical storage information.
+- Data organization.
+
+Do not create a real server-maintenance workflow.
+
+Do not take over general infrastructure duties from DevOps.
+
+## 11 — Troubleshoot_Database
+
+Character investigates a simulated database issue.
+
+Suggested sequence:
+
+- Notice issue.
+- Pause.
+- Analyze.
+- Check database screen.
+- Review documentation.
+- Resume investigation.
+
+Use a focused or slightly concerned facial expression.
+
+## 12 — Review_Backend_Dependency
+
+Character reviews an API/data contract relevant to Backend.
+
+Use a technical document or shared architecture board.
+
+Do not spawn another Backend character.
+
+Do not trigger an actual Backend agent process.
+
+## 13 — Present_Data_Model
+
+Character moves to a valid review/board anchor.
+
+Face the board.
+
+Explain a schema or database model using pointing gestures.
+
+Use the same general presentation quality as existing agents.
+
+## 14 — Read_Documentation
+
+Read SQL documentation or schema notes.
+
+Use a book, document or tablet.
+
+Subtle head and arm movements.
+
+## 15 — Think_Plan
+
+Thoughtful analytical pose.
+
+Small head tilt.
+
+Hand-to-chin gesture if supported.
+
+Return to neutral.
+
+## 16 — Technical_Discussion
+
+Reusable talking gesture for future Backend/Database collaboration.
+
+Natural hand and head motions.
+
+No real cross-agent conversation required.
+
+## 17 — Coffee_Break
+
+Hold a coffee cup.
+
+Simple drinking motion.
+
+Return the accessory appropriately.
+
+## 18 — Waiting_Review
+
+Calm waiting pose.
+
+May briefly inspect monitor or paperwork.
+
+Do not automatically treat waiting as successful approval.
+
+## 19 — Task_Completed
+
+Short professional positive reaction.
+
+Small nod or satisfied gesture.
+
+Return smoothly to Idle.
+
+---
+
+# 15. DIFFERENTIATION FROM BACKEND AND DEVOPS
+
+The Database character must have clearly distinct actions.
+
+BACKEND:
+
+- APIs.
+- Application services.
+- Business logic.
+- Server-side application debugging.
+
+DATABASE:
+
+- Schema.
+- Relationships.
+- Queries.
+- Indexes.
+- Data integrity.
+- Database migration planning.
+- Data modeling.
+
+DEVOPS:
+
+- Infrastructure.
+- Cloud environment.
+- Deployment orchestration.
+- CI/CD.
+- Observability.
+- Runtime operations.
+
+Do not invent live operations for any role.
+
+The character sheet contains deployment and maintenance illustrations, but they should not automatically become production deployment authority.
+
+If a visual "deploy" animation is retained, represent only a DEMO review or handoff activity, not actual production deployment.
+
+---
+
+# 16. ANIMATION QUALITY RULES
+
+Use the established animation infrastructure.
+
+All animations should:
+
+- Move genuine 3D pivots.
+- Preserve character geometry.
+- Keep the backpack attached.
+- Preserve hairstyle geometry.
+- Avoid detached arms.
+- Avoid floating feet.
+- Avoid pose snapping.
+- Avoid clipping through desk or chair.
+- Return cleanly to neutral.
+- Support interruption and reset.
+- Respect character navigation state.
+
+Separate:
+
+1. Root navigation.
+2. Character facing orientation.
+3. Local body animation.
+4. Facial expression.
+5. Accessory state.
+
+Do not mix them into one uncontrolled update loop.
+
+For seated tasks:
+
+1. Navigate to workstation approach.
+2. Stop the walk clip.
+3. Align with chair.
+4. Transition to sitting.
+5. Perform activity.
+6. Transition back to standing before walking away.
+
+Do not animate walking while seated.
+
+---
+
+# 17. FACIAL EXPRESSION SYSTEM
+
+The reference includes several expression concepts.
+
+Implement lightweight voxel-compatible expressions:
+
+- Neutral.
+- Happy.
+- Focused.
+- Thinking.
+- Concerned.
+- Surprised.
+- Talking.
+- Confident.
+- Tired / Waiting.
+
+Use:
+
+- Eye geometry variations.
+- Eyebrow movement.
+- Small mouth variations.
+- Subtle head movement.
+
+Do not use realistic facial deformation.
+
+Do not radically change the face silhouette.
+
+Because the default character has NO glasses, maintain clear expressive eyes.
+
+If expression geometry is dynamically switched at runtime, document whether that behavior is embedded in the GLB or requires controller source.
+
+Prevent facial surface flicker.
+
+---
+
+# 18. ACCESSORIES AND PROPS
+
+Use the supplied Database character sheet for accessory inspiration.
+
+## Permanent
+
+- Technical backpack.
+- Jacket details.
+- Small database-related badge or patch, if consistent.
+
+## Contextual props
+
+- Laptop.
+- Tablet.
+- SQL reference book.
+- Schema documentation.
+- Clipboard.
+- Coffee cup.
+- Smartphone, if needed.
+- Small database model card.
+
+Optional runtime visual indicators:
+
+- Database symbol.
+- Query analysis indicator.
+- Warning symbol.
+- Completion check.
+
+These should be runtime UI/FX, not permanently baked into the character GLB.
+
+## IMPORTANT
+
+The reference includes server stacks and workstation setups.
+
+Those are environmental props.
+
+Do not permanently embed large server racks into the character model.
+
+If a character uses a handheld device, attach it to a stable hand pivot.
+
+When the action ends, remove or hide it appropriately.
+
+No floating props.
+
+---
+
+# 19. ENGINEERING MULTI-ACTOR MANAGEMENT
+
+This is an important addition.
+
+Engineering now contains three character roles.
+
+Ensure the current character registration architecture supports multiple independent actors inside the same room.
+
+The system must be able to distinguish:
+
+- frontend_developer_agent
+- backend_developer_agent
+- database_developer_agent
+
+Each actor must have:
+
+- Unique ID.
+- Independent 3D root.
+- Independent animation mixer or compatible animation state.
+- Independent behavior mapping.
+- Independent current demo state.
+- Independent position and facing.
+- Independent selection/focus state.
+
+Do not use one shared mutable current-state variable for all three agents.
+
+Do not replace Backend or Frontend when Database is selected.
+
+### Actor selection
+
+In Single Room Engineering view, provide a lightweight actor selection control.
+
+Example:
+
+**Engineering Agent:**
+
+- Frontend
+- Backend
+- Database
+
+Selecting Database should display Database-specific simulation controls.
+
+Frontend and Backend should remain present if the existing room runtime is designed to show all active agents.
+
+Do not unnecessarily create or destroy their geometry during each selection change.
+
+### Concurrency
+
+Two characters should not be forced to perform the same animation because they share an action name.
+
+Stop/Reset Database should affect only Database unless the user explicitly selects a room-wide action.
+
+Avoid duplicate actor instances.
+
+Do not add real multi-agent collaboration orchestration in this task.
+
+---
+
+# 20. NAVIGATION AND COLLISION SAFETY
+
+Engineering Room contains three workstations and an Integration Hub.
+
+The Database character must move safely between:
+
+- Database idle position.
+- Database workstation.
+- Database schema board.
+- Integration Hub.
+- Valid exits.
+
+Use the existing waypoint/navigation architecture.
+
+Do not invent new room coordinates without inspecting geometry.
+
+Check movement paths for:
+
+- Desks.
+- Chairs.
+- Cabinets.
+- Tables.
+- Walls.
+- Large props.
+- Other actor spawn positions.
+
+For this phase, avoid overlapping stationary actor spawn positions.
+
+If collision avoidance between moving actors is not already implemented, do not pretend it exists.
+
+Keep route planning compatible with future multi-agent collision avoidance.
+
+Do not add a large new pathfinding framework without a demonstrated need.
+
+---
+
+# 21. DATABASE SIMULATION PANEL
+
+Reuse the existing simulation UI.
+
+Panel title:
+
+**Database Developer — Simulasi Aktivitas**
+
+Actions:
+
+1. Idle.
+2. Jalan.
+3. Kerja di Meja.
+4. Desain Schema.
+5. Analisis ERD.
+6. SQL Query.
+7. Optimasi Query.
+8. Validasi Integritas Data.
+9. Review Migrasi.
+10. Maintenance Database (Demo).
+11. Troubleshooting.
+12. Review Dependency Backend.
+13. Presentasi Data Model.
+14. Baca Dokumentasi.
+15. Berpikir.
+16. Diskusi Teknis.
+17. Istirahat Kopi.
+18. Menunggu Review.
+19. Tugas Selesai.
+
+Each action must trigger a real visible animation.
+
+Show:
+
+- Character ID.
+- Active state.
+- Active animation clip.
+- Current anchor.
+- World or room-local position.
+- Current expression.
+- Current accessory.
+- Demo status.
+
+Clearly display:
+
+**SIMULASI / DEMO**
+
+No real database connection should be created.
+
+No real query should execute.
+
+No actual migration should run.
+
+No actual production data should be modified.
+
+---
+
+# 22. AUTOMATIC DATABASE DEMO
+
+Create:
+
+**Jalankan Demo Database**
+
+Suggested sequence:
+
+Idle
+→ Walk to Database Desk
+→ Work Typing
+→ Schema Design
+→ ERD Analysis
+→ SQL Query Development
+→ Query Optimization
+→ Troubleshooting
+→ Read Documentation
+→ Present Data Model
+→ Task Completed
+→ Return to Idle.
+
+Requirements:
+
+- Valid target anchors.
+- Natural character facing.
+- Smooth animation changes.
+- Appropriate sitting/standing transitions.
+- Safe waypoint movement.
+- Correct prop visibility.
+- No repeated timer accumulation.
+- No duplicate AnimationMixers.
+- Stop support.
+- Reset support.
+- Correct final idle position.
+
+This auto demo must be independent from Frontend and Backend demos.
+
+Do not trigger their actions automatically.
+
+---
+
+# 23. DEMO STATE AND BEHAVIOR CONTRACT
+
+The actual AI Office backend state system will be integrated later.
+
+For now, define DEMO states such as:
+
+- IDLE
+- MOVING
+- WORKING
+- SCHEMA_DESIGN
+- ERD_ANALYSIS
+- SQL_DEVELOPMENT
+- QUERY_OPTIMIZATION
+- DATA_VALIDATION_DEMO
+- MIGRATION_REVIEW
+- DATABASE_MAINTENANCE_DEMO
+- TROUBLESHOOTING
+- BACKEND_DEPENDENCY_REVIEW
+- PRESENTING
+- READING
+- THINKING
+- DISCUSSING
+- COFFEE_BREAK
+- WAITING_REVIEW
+- COMPLETED
+- BLOCKED_DEMO
+
+Map:
+
+ACTION
+→ DEMO STATE
+→ TARGET ANCHOR
+→ ANIMATION CLIP
+→ EXPRESSION
+→ OPTIONAL PROP.
+
+Use the existing compatible behavior schema.
+
+Do not introduce a new incompatible state system for Database.
+
+The renderer should later be able to receive authoritative external events from the main AI Office backend.
+
+Do not implement real AI orchestration now.
+
+---
+
+# 24. REAL ANIMATION CLIP REQUIREMENTS
+
+Use real Three.js AnimationClips compatible with the existing character exporter.
+
+A valid exportable clip must contain actual transform keyframes targeting existing exported nodes.
+
+Use:
+
+- Valid track paths.
+- Stable node names.
+- Valid keyframe times.
+- Supported transform data.
+- Appropriate looping conventions.
+- Deterministic default pose.
+
+Do not claim JavaScript-only navigation paths are embedded into GLB.
+
+If an animation uses a mix of clip-based movement and runtime behavior, separate these responsibilities.
+
+Example:
+
+`Walk_Cycle` belongs in the GLB.
+
+Moving from the Database desk to the Integration Hub belongs in runtime navigation configuration.
+
+Contextual prop visibility may require runtime source or independent prop assets.
+
+Document any nonportable effects.
+
+Do not invent a successful animation count.
+
+---
+
+# 25. PRODUCTION EXPORT STANDARD
+
+Follow the existing:
+
+**AI OFFICE PRODUCTION ASSET STANDARD V1**
+
+## CHARACTER GLB
+
+Filename:
+
+`database_developer_agent.glb`
+
+Include:
+
+- Complete character geometry.
+- Layered dark brown hairstyle.
+- Face and eyes.
+- Dark technical jacket.
+- Green clothing accents.
+- Inner shirt.
+- Dark trousers.
+- White sneakers.
+- Backpack.
+- Stable rig/pivot hierarchy.
+- Compatible materials.
+- Genuine exportable animation clips.
+
+Exclude:
+
+- Engineering floor.
+- Engineering walls.
+- Desks.
+- Chairs.
+- Room monitors.
+- Permanent room server equipment.
+- Camera.
+- Lighting setup.
+- Debug markers.
+- UI controls.
+- Temporary speech bubbles.
+- Other character models.
+
+The GLB must remain a standalone reusable actor.
+
+## MANIFEST JSON
+
+Filename:
+
+`database_developer_agent.manifest.json`
+
+Include:
+
+- schema_version
+- asset_id
+- display_name
+- department
+- role
+- compatible_room_id
+- glb_path
+- measured_character_height
+- actual_bounds
+- default_scale
+- local_forward_axis
+- root_origin_policy
+- material_profile
+- hair_palette
+- supported_animation_clips
+- supported_expressions
+- supported_accessories
+- export_version
+- validation_summary
+
+Use actual measured values.
+
+## BEHAVIOR JSON
+
+Filename:
+
+`database_developer_agent.behavior.json`
+
+Include:
+
+- schema_version
+- character_id
+- default_state
+- default_idle_anchor_id
+- action_mappings
+- animation_clip_mapping
+- anchor_mapping
+- facial_expression_mapping
+- accessory_mapping
+- navigation_policy
+- animation_transition_policy
+- posture_transition_policy
+- demo_capability_flags
+- future_external_event_contract
+
+## PREVIEW PNG
+
+Filename:
+
+`database_developer_agent_preview.png`
+
+Use the same orthographic three-quarter presentation conventions as the previous characters.
+
+Where supported, include an additional multi-angle turnaround preview.
+
+## SOURCE BACKUP
+
+Keep relevant source files:
+
+- Character builder.
+- Hair construction logic.
+- Material definitions.
+- Animation definitions.
+- Expression controller.
+- Accessory controller.
+- Navigation integration.
+- Simulation controller.
+- GLB export and validation logic.
+
+Do not assume all runtime logic is embedded in a GLB.
+
+---
+
+# 26. PRODUCTION FOLDER CONTRACT
+
+Maintain compatibility with the planned main AI Office asset library.
+
+Suggested logical export structure:
+
+production/
+  characters/
+    database_developer_agent/
+      database_developer_agent.glb
+      database_developer_agent.manifest.json
+      database_developer_agent.behavior.json
+      database_developer_agent_preview.png
+
+  rooms/
+    engineering/
+      engineering_room.glb
+      engineering_room.manifest.json
+      engineering_room.anchors.json
+
+  office/
+    office-layout-a3.1.json
+
+source/
+  modular-room-lab-source.zip
+
+Do not restructure the entire existing Google AI Studio codebase merely to match this export directory.
+
+The production asset pack is the stable integration boundary.
+
+Keep existing filenames and character IDs unchanged.
+
+---
+
+# 27. CRITICAL CHARACTER ANTI-BUG AUDIT
+
+The owner previously encountered flickering geometry, reversed monitors, inconsistent materials, and broken object overlaps.
+
+Avoid those issues in this character.
+
+Inspect:
+
+- Hair layers.
+- Ears.
+- Forehead.
+- Eyebrows.
+- Eyes.
+- Mouth.
+- Jacket layers.
+- Sleeves.
+- Backpack straps.
+- Backpack panels.
+- Shoes.
+- Handheld props.
+
+Check for:
+
+- Coplanar surfaces.
+- Duplicate mesh instances.
+- Unintentional intersections.
+- Z-fighting.
+- Shadow acne.
+- Transparent sorting artifacts.
+- Flickering materials.
+- Unsupported texture sampling.
+- Incorrect object parent assignment.
+
+Prefer fixing geometry at its source.
+
+Do not use renderOrder to hide fundamental geometry problems.
+
+Do not globally disable depth testing.
+
+Do not modify shared renderer settings to hide a character-specific bug.
+
+Do not add unsupported visual effects that disappear after GLB export.
+
+---
+
+# 28. VISUAL STYLE MATCHING TEST
+
+Inspect Database alongside the real current:
+
+- Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer.
+- Backend Developer.
+
+Use consistent:
+
+- Lighting.
+- Camera angle.
+- Distance.
+- Floor reference.
+- Material profile.
+
+Compare:
+
+- Height.
+- Head width.
+- Torso proportions.
+- Arms.
+- Legs.
+- Feet.
+- Face geometry.
+- Hair detail density.
+- Material finish.
+- Shadow style.
+- Visual readability.
+
+The Database character must clearly share the same world style while having a distinct identity.
+
+Most importantly:
+
+- Frontend: orange hoodie and glasses.
+- Backend: dark technical outfit, glasses and headphones.
+- Database: dark-green technical details, layered brown hair and NO default glasses.
+
+Do not make three nearly identical characters with different jacket colors.
+
+---
+
+# 29. INDEPENDENT GLB REIMPORT VALIDATION
+
+Export the actual generated Database GLB.
+
+Load it using an independent GLTFLoader test.
+
+Create a new AnimationMixer using the reimported character root.
+
+Verify:
+
+1. Valid binary GLB.
+2. Successful parsing.
+3. Character root exists.
+4. Meshes are present.
+5. Materials are present.
+6. Dark brown hair layers are complete.
+7. Hair colors survive export.
+8. Face is visible.
+9. No unintended glasses are present.
+10. Jacket detail survives export.
+11. Green accents remain correct.
+12. Backpack remains attached.
+13. Shoes remain correct.
+14. Character height and bounds are correct.
+15. Feet align with the floor.
+16. Animation clips genuinely exist.
+17. Clip tracks resolve to actual nodes.
+18. Idle works.
+19. Walk works.
+20. Work Typing works.
+21. Schema Design works.
+22. Query Optimization works.
+23. Troubleshooting works.
+24. Presentation works.
+25. No detached limbs.
+26. No broken poses.
+27. No missing textures.
+28. No unintended room geometry.
+29. No debug helpers.
+30. No obvious new flickering.
+
+Report the actual test results.
+
+Do not claim 30/30 PASS unless all checks were executed.
+
+Report any procedural-only actions separately.
+
+---
+
+# 30. ENGINEERING MULTI-CHARACTER REGRESSION
+
+After integrating the Database character, test the Engineering room with the full existing cast.
+
+Verify:
+
+[ ] Frontend remains visible.
+
+[ ] Backend remains visible.
+
+[ ] Database appears correctly.
+
+[ ] All three have unique character IDs.
+
+[ ] Their spawn positions do not overlap.
+
+[ ] Database uses the correct Database workstation.
+
+[ ] Frontend does not move when Database action controls are used.
+
+[ ] Backend does not move when Database action controls are used.
+
+[ ] Database animations do not overwrite other actors' mixers.
+
+[ ] Actor selection works.
+
+[ ] All existing animation controls remain functional.
+
+[ ] Reset Database affects only Database.
+
+[ ] Engineering Room geometry is unchanged.
+
+[ ] Room GLB does not contain permanently baked characters.
+
+[ ] Independent character export still works.
+
+[ ] No new memory leak or duplicated render loop is introduced.
+
+If the current system does not support simultaneous character presence, identify the limitation instead of silently replacing other agents.
+
+Make only the smallest compatible actor-registry changes needed.
+
+Do not implement complex cross-agent choreography.
+
+---
+
+# 31. GLOBAL REGRESSION
+
+Verify:
+
+[ ] PM Room still works.
+
+[ ] Boss PM simulation still works.
+
+[ ] CEO Room still works.
+
+[ ] CEO animation system still works.
+
+[ ] UI/UX Room still works.
+
+[ ] UI/UX character still works.
+
+[ ] Frontend character still works.
+
+[ ] Backend character still works.
+
+[ ] Engineering Room remains 8×16.
+
+[ ] Master Layout A3.1 is unchanged.
+
+[ ] Room Selector works.
+
+[ ] Single Room works.
+
+[ ] Full Office still loads.
+
+[ ] Camera controls remain unchanged.
+
+[ ] Existing production exports remain valid.
+
+[ ] Existing source backup remains available.
+
+Do not use this task to repair the deferred Full Office camera issue.
+
+---
+
+# 32. IMPLEMENTATION ORDER
+
+Follow the sequence below.
+
+## PHASE A — SOURCE INSPECTION
+
+Inspect project source, working characters, Engineering Room, anchors, and exporter.
+
+Create a recoverable checkpoint.
+
+## PHASE B — DATABASE CHARACTER BASE
+
+Build the head, body, arms, legs, face, and neutral pose.
+
+Match existing character scale.
+
+## PHASE C — HAIR MODELING
+
+Construct detailed layered dark brown hair.
+
+Inspect the full 360-degree silhouette.
+
+Repair weak front, side or rear geometry before moving on.
+
+## PHASE D — OUTFIT AND MATERIALS
+
+Create the dark technical jacket, green accents, trousers, shoes, and backpack.
+
+Verify material quality.
+
+## PHASE E — RIG AND BASIC MOTION
+
+Implement valid pivots.
+
+Create Idle and Walk.
+
+Test geometry stability during movement.
+
+## PHASE F — DATABASE WORKSTATION INTEGRATION
+
+Validate room anchors.
+
+Place the character near its own desk.
+
+Verify chair and monitor facing.
+
+## PHASE G — DATABASE JOB ANIMATIONS
+
+Implement the role-specific animation clips.
+
+Prioritize:
+
+- Work Typing.
+- Schema Design.
+- ERD Analysis.
+- SQL Query.
+- Query Optimization.
+- Troubleshooting.
+- Data Model Presentation.
+
+Then complete supporting actions.
+
+## PHASE H — EXPRESSIONS AND PROPS
+
+Implement lightweight facial expressions and contextual accessories.
+
+## PHASE I — MULTI-ACTOR REGISTRATION
+
+Add Database to the Engineering actor registry.
+
+Preserve Frontend and Backend.
+
+Add safe actor selection.
+
+## PHASE J — SIMULATION UI
+
+Add Database-specific controls and automatic demo.
+
+## PHASE K — EXPORT
+
+Export GLB, manifest, behavior JSON, preview PNG, and source configuration.
+
+## PHASE L — INDEPENDENT REIMPORT
+
+Load actual exported GLB.
+
+Inspect materials, geometry, animation clips, and playback.
+
+## PHASE M — REGRESSION
+
+Test the Engineering room and previous approved modules.
+
+STOP AFTER DATABASE CHARACTER COMPLETION.
+
+---
+
+# 33. REQUIRED FINAL REPORT
+
+Provide an implementation report containing:
+
+1. Source files added or modified.
+2. Character geometry summary.
+3. Actual character height and bounds.
+4. Detailed hair construction summary.
+5. Hair color/material palette.
+6. Visual match against the attached reference sheet.
+7. Differences from Frontend and Backend.
+8. Completed animation list.
+9. Actual exported GLB animation clip list.
+10. Procedural-only animation behaviors.
+11. Facial expressions.
+12. Accessories.
+13. Engineering anchor usage.
+14. Database workstation navigation results.
+15. Multi-actor registration results.
+16. Exported filenames.
+17. Independent reimport test results.
+18. Regression results.
+19. Remaining limitations.
+
+Distinguish:
+
+COMPLETED  
+PARTIAL  
+NOT IMPLEMENTED  
+NOT VERIFIED
+
+Do not claim a feature has been validated without actually testing it.
+
+---
+
+# FINAL DIRECTIVE
+
+Extend the EXISTING AI Office Modular Room Lab.
+
+Create ONE Database Developer / Database Administrator character using the attached Voxel Database Admin Character Sheet as the authoritative visual identity reference.
+
+Use the existing PM, CEO, UI/UX, Frontend and Backend character assets as the technical style baseline.
+
+PRIORITIZE:
+
+- Accurate layered dark brown hairstyle.
+- High-quality hair silhouette from all directions.
+- Simple expressive face without default glasses.
+- Dark charcoal technical jacket.
+- Emerald-green details.
+- Compact green-accent technical backpack.
+- Correct character proportions.
+- Stable geometry and materials.
+- Genuine database-specific animations.
+- Independent Database workstation navigation.
+- Safe coexistence with Frontend and Backend.
+- Demo-only state and behavior mapping.
+- Portable standalone GLB.
+- Actual embedded animation clips.
+- Production-compatible JSON metadata.
+- Independent GLB reimport and regression verification.
+
+Do not modify existing rooms.
+
+Do not modify existing characters.
+
+Do not implement real database operations.
+
+Do not create DevOps.
+
+Do not create additional rooms.
+
+Do not change the Master Layout A3.1.
+
+Do not fix the deferred Full Office camera issue.
+
+**COMPLETE DATABASE CHARACTER PRODUCTION, ANIMATION, SIMULATION CONTROLS, AND EXPORT VALIDATION — THEN STOP FOR OWNER REVIEW.**

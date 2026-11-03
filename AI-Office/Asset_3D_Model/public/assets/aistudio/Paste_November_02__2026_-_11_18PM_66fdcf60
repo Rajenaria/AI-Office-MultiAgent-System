@@ -1,0 +1,1572 @@
+# AI OFFICE — FULL OFFICE VIEW REFINEMENT V2.1
+## Smart Wall Cutaway, UI/UX Missing Wall Repair, Cinematic Camera, Clean View & Controlled Zoom
+### Existing Google AI Studio Modular Room Lab — Non-Destructive Fix
+
+---
+
+# 0. ROLE AND OBJECTIVE
+
+You are a Senior Three.js Rendering Engineer, Architectural Visualization Specialist, 3D Camera Systems Engineer, React/TypeScript Frontend Engineer, Modular Scene Architect, and Technical QA Specialist.
+
+You are working inside the EXISTING:
+
+**AI Office — Modular Room Lab**
+
+The application already contains:
+
+- A modular Full Office.
+- Master Floor Plan A3.2.
+- Research, PM, CEO, UI/UX, Engineering and QA/DevOps room assets, according to their actual current implementation status.
+- Animated AI characters.
+- Character simulation controllers.
+- A Central Hub.
+- A large meeting table and seating system.
+- An all-agent meeting demonstration.
+- Single Room and Full Office modes.
+- Camera controls and export functionality.
+
+The owner has reported problems with the current Full Office presentation.
+
+YOUR MISSION:
+
+Refine ONLY the Full Office camera, wall visibility, UI layout, zoom constraints, and related rendering reliability.
+
+The desired result is a comfortable cinematic 3D office view where the user can observe the activities of multiple AI agents without unnecessary wall or UI obstruction.
+
+THIS IS NOT A ROOM REDESIGN TASK.
+
+THIS IS NOT AN ASSET REBUILD TASK.
+
+---
+
+# 1. REPORTED PROBLEMS
+
+The owner has supplied two screenshots.
+
+## SCREENSHOT 1 — UI/UX WALL PROBLEM
+
+A wall around the UI/UX Design Studio appears missing or disappears under certain Full Office camera/selection conditions.
+
+The problem appears particularly noticeable near the room's left-side boundary as viewed in the screenshot.
+
+Possible causes include:
+
+- Camera-dependent cutaway visibility.
+- Incorrect room-specific wall visibility.
+- Wrong wall ownership or mesh grouping.
+- An invalid wall transform.
+- Shared material side/culling behavior.
+- Visibility state leaking between camera presets.
+- Incorrect React component lifecycle.
+- Scene graph reparenting.
+- Incorrect handling when changing room focus.
+- Actual missing geometry.
+
+Do not assume the precise cause before inspecting the source.
+
+## SCREENSHOT 2 — CAMERA AND OFFICE PRESENTATION
+
+The Full Office looks better when seen from a front-facing elevated three-quarter angle.
+
+However, the view still needs improvement.
+
+Problems include:
+
+- Camera orientation not consistently comfortable.
+- Too much empty viewport.
+- Zoom sometimes too far.
+- Some walls block interior visibility.
+- UI sidebars and demo panels cover part of the office.
+- The camera can move into awkward angles.
+- Multi-agent activity is not sufficiently visible.
+- Room-focus changes can make the framing feel inconsistent.
+
+The owner wants an intentional cinematic architectural camera, not a freely wandering debug camera.
+
+---
+
+# 2. SOURCE-OF-TRUTH RULES
+
+Before modifying code, inspect the actual project.
+
+Find:
+
+- Full Office camera setup.
+- OrthographicCamera configuration.
+- OrbitControls configuration.
+- Room Selector.
+- Single Room camera.
+- OfficeAssembler.
+- Room root nodes.
+- Wall grouping and cutaway logic.
+- UI/UX room root and walls.
+- Full Office renderer canvas.
+- Main layout components.
+- Left navigation/sidebar.
+- Right simulation panel.
+- Meeting demo controls.
+- Camera focus functions.
+- Scene visibility state.
+- Existing asset export flow.
+
+Do not assume that function names from previous prompts exist.
+
+Do not rewrite architecture unnecessarily.
+
+Create a recoverable checkpoint before editing.
+
+Preserve previously validated production assets.
+
+---
+
+# 3. ABSOLUTE PRESERVATION RULES
+
+DO NOT CHANGE:
+
+- Research Room furniture and geometry.
+- PM Room furniture and geometry.
+- CEO Room furniture and geometry.
+- UI/UX furniture and permanent geometry.
+- Engineering furniture and permanent geometry.
+- QA/DevOps room content.
+- Central Hub floor and furniture.
+- The main meeting table.
+- The 10 meeting chairs.
+- The approved flooring design.
+- Room colors and decorative assets.
+- Existing character models.
+- Character outfits and hairstyles.
+- Existing animation clips.
+- Character behavior files.
+- Meeting seat assignments.
+- Verified navigation anchors.
+- GLB asset identity and local origin.
+- Office floor plan dimensions.
+
+Allowed modifications:
+
+- Full Office camera framing and presets.
+- Full Office OrbitControls limits.
+- Full Office canvas viewport layout.
+- UI side panel visibility controls.
+- Full Office smart cutaway system.
+- Wall visibility state management.
+- Localized architectural repair of proven missing geometry.
+- Full Office camera state management.
+- Minimal UI integration needed to support these changes.
+- Necessary debugging and regression tests.
+
+Do not accidentally modify Single Room rendering while fixing Full Office.
+
+---
+
+# 4. MASTER LAYOUT — LOCKED
+
+Preserve Master Floor Plan A3.2.
+
+World coordinate system:
+
+- +X East.
+- -X West.
+- +Z North.
+- -Z South.
+- +Y Up.
+
+Office footprint:
+
+X = 0..32.
+
+Z = 0..26.
+
+Overall:
+
+32 × 26 units.
+
+Upper rooms:
+
+- Research [0,0,18], 8×8.
+- PM [8,0,18], 8×8.
+- CEO [16,0,18], 8×8.
+- UI/UX [24,0,18], 8×8.
+
+Shared upper corridor:
+
+Z=16..18.
+
+Engineering:
+
+[0,0,0], 8×16.
+
+Central Hub:
+
+[8,0,0], 16×16.
+
+QA/DevOps Integrated Studio:
+
+[24,0,0], 8×16.
+
+Do not change these coordinates.
+
+Do not rotate the office geometry to fix the camera.
+
+Do not use nonuniform scaling to correct visual appearance.
+
+---
+
+# 5. REQUIRED CAMERA DESIGN — CINEMATIC FRONT THREE-QUARTER VIEW
+
+The default Full Office camera should resemble an architectural diorama viewed from the front and slightly above.
+
+This must be the primary Full Office experience.
+
+## CAMERA TYPE
+
+Use THREE.OrthographicCamera.
+
+Do not use perspective projection for the primary Full Office view.
+
+The goal is:
+
+- Stable world proportions.
+- No distant perspective shrinkage.
+- Straight structural geometry.
+- Predictable room scale.
+- Good visibility into multiple rooms.
+- Comfortable architectural composition.
+
+## CAMERA POSITIONING
+
+The camera should view the building from its SOUTH-facing side, with a moderate horizontal diagonal offset.
+
+The user should see:
+
+- The main entrance.
+- Central Hub.
+- The upper department row.
+- Engineering wing.
+- QA/DevOps wing.
+- The rooms' interior furniture.
+- Available characters.
+
+Avoid a near-vertical top-down view.
+
+Avoid a very low ground-level view.
+
+## TARGET ANGLE
+
+Start with an approximate camera elevation of:
+
+**35–38 degrees above the horizontal plane.**
+
+Allow visual refinement within approximately 30–42 degrees if necessary.
+
+This is a design target, not an instruction to hardcode arbitrary rotations.
+
+Example conceptual view direction:
+
+Camera offset from office center proportional to:
+
+[+0.42, +0.85, -1.00]
+
+Use the actual normalized direction and appropriate distance.
+
+The view should have:
+
+- A modest side angle.
+- A clear view from the south/front.
+- Visible office depth.
+- Readable side walls.
+- Readable back walls.
+- Enough downward angle to inspect furniture.
+
+Do not use an exaggerated 45-degree horizontal yaw that unnecessarily compresses the full building's visible width.
+
+Prefer a front-oriented view with a modest diagonal angle.
+
+---
+
+# 6. CAMERA FRAMING — LESS EMPTY SPACE
+
+The owner specifically reports that the existing camera shows too much empty space around the office.
+
+Fix this.
+
+## REQUIRED BEHAVIOR
+
+When Full Office mode opens:
+
+- Automatically calculate office bounds.
+- Fit the actual office into the available canvas.
+- Keep reasonable visual margins.
+- Center the building.
+- Avoid cutting off roofless wall tops.
+- Avoid excessive empty dark background.
+- Avoid pushing the office behind UI panels.
+
+Target approximately:
+
+**6–10% visual padding around the projected office**, when possible.
+
+Do not use a fixed large camera distance that works only on one screen size.
+
+Use projected bounding-box fitting.
+
+Include actual visible architecture height.
+
+## FOCUS TARGET
+
+Use actual office bounds for the camera target.
+
+The ground footprint center is approximately:
+
+[16,0,13]
+
+but use the appropriate vertical center of visible architecture.
+
+Keep the building balanced in the available viewport.
+
+## RESPONSIVE FRAMING
+
+Recalculate the camera frustum when:
+
+- The browser viewport changes size.
+- The left sidebar opens/closes.
+- The right simulation panel opens/closes.
+- Cinema Mode activates.
+- Cinema Mode exits.
+- A major canvas container size changes.
+- The user selects Fit Office.
+
+Use the actual rendered canvas dimensions, not only the browser window dimensions.
+
+Update the camera projection matrix and controls consistently.
+
+Do not recreate the entire 3D scene merely to resize the viewport.
+
+---
+
+# 7. CONTROLLED CAMERA ROTATION
+
+The existing orbit behavior allows some uncomfortable camera positions.
+
+Improve the default Full Office interaction.
+
+## PRIMARY VIEW — CINEMATIC ORBIT
+
+Provide constrained orbiting around the office.
+
+Recommended starting limits:
+
+Camera elevation:
+
+Approximately 28–46 degrees above horizontal.
+
+Horizontal azimuth:
+
+Approximately ±20 degrees from the approved default view.
+
+Adjust these ranges based on actual interior visibility tests.
+
+The important result is that the default user interaction stays in a useful front-oriented architectural viewing range.
+
+Do not allow the camera to flip below the floor.
+
+Do not allow extreme side-on viewing that compresses the office into a thin strip during normal use.
+
+Do not allow unexpected camera roll.
+
+Use OrbitControls constraints correctly.
+
+Remember:
+
+In Three.js OrbitControls, polar angle is measured from the upward axis, not from the horizontal plane.
+
+Convert elevation limits to polar limits correctly.
+
+## OPTIONAL INSPECTION MODE
+
+If the project already supports free orbit inspection, preserve it as a separate optional mode.
+
+Suggested:
+
+- Cinematic View — constrained default.
+- Free Inspection — existing unrestricted or broader orbit.
+
+Do not delete legitimate existing inspection features.
+
+The default Full Office view should remain cinematic and predictable.
+
+---
+
+# 8. CONTROLLED ZOOM — IMPORTANT
+
+The user wants zooming, but not unlimited zooming out or in.
+
+The office should always remain reasonably visible.
+
+## ORTHOGRAPHIC ZOOM
+
+Derive the allowable zoom range relative to the calculated Fit Office zoom.
+
+Suggested initial range:
+
+Minimum zoom:
+
+0.88 × Fit Office zoom.
+
+Maximum zoom:
+
+1.65 × Fit Office zoom.
+
+For clarity:
+
+- Lower orthographic zoom values show MORE world space.
+- Higher zoom values show LESS world space.
+
+Therefore:
+
+The 0.88× limit prevents excessively zooming out.
+
+The 1.65× limit prevents excessively zooming in during the primary Full Office overview.
+
+Tune the exact factors using the actual viewport.
+
+## REQUIREMENTS
+
+- Mouse wheel zoom is clamped.
+- Trackpad zoom is clamped.
+- Button zoom uses the same limits.
+- Camera preset transitions respect the limits.
+- Fit Office returns to a consistent baseline.
+- Cinema Mode does not reset into an excessive zoom-out state.
+- Room Focus may use an explicitly separate focus range, then return to valid overview framing.
+
+Avoid jumps when switching modes.
+
+Do not allow the user to zoom so far out that the office becomes a tiny object surrounded by dark space.
+
+---
+
+# 9. PAN RESTRICTIONS
+
+The user should be able to reposition the view slightly, but not lose the building.
+
+Implement constrained camera panning.
+
+Requirements:
+
+- Keep the camera target reasonably close to the office footprint.
+- Use camera-relative boundaries.
+- Maintain the office within a recoverable viewport area.
+- Do not allow endless panning into empty space.
+- Provide a reliable Reset View button.
+- Preserve camera continuity when sidebar visibility changes.
+
+Avoid hardcoding one pan range that behaves poorly at different zoom levels.
+
+---
+
+# 10. SMART WALL CUTAWAY SYSTEM — CRITICAL
+
+The owner wants:
+
+**All agent work activities to remain visible without unnecessary wall obstruction.**
+
+At the same time, the office must still look like an actual architectural building.
+
+Do not solve this by deleting all walls.
+
+Create a reliable Smart Cutaway system specifically for Full Office.
+
+## IMPORTANT PRINCIPLE
+
+There are TWO different concepts:
+
+1. Permanent structural geometry.
+2. Temporary camera-dependent visibility.
+
+Permanent walls must remain intact in room assets and GLB exports.
+
+Temporary cutaway states may hide or fade selected occluding surfaces only while rendering the Full Office preview.
+
+Never confuse them.
+
+---
+
+# 11. CUTAWAY DISPLAY MODES
+
+Implement three useful wall visibility modes.
+
+## MODE A — SMART CUTAWAY (DEFAULT)
+
+Automatically reduce obstruction caused by walls between the camera and relevant room interiors or actors.
+
+This should become the primary cinematic experience.
+
+Expected behavior:
+
+- Exterior/back walls retain architectural identity.
+- Interior partitions remain readable where they do not obstruct the scene.
+- Foreground walls that block characters may be faded or selectively hidden.
+- Door openings stay physically correct.
+- Room structure still feels complete.
+- Important workstation activity remains visible.
+
+## MODE B — SHOW ARCHITECTURE
+
+Show all permanent walls according to the verified scene hierarchy.
+
+This mode is for inspecting geometry, not necessarily maximizing actor visibility.
+
+It must reveal the real structural boundaries.
+
+Use it to verify the UI/UX wall exists.
+
+## MODE C — AGENT VISIBILITY / X-RAY VIEW
+
+Prioritize the visibility of active characters.
+
+Use more aggressive wall fading only for verified occluding surfaces.
+
+Keep the remaining architecture readable through outlines, unobstructed boundary elements, or non-occluding structural frames where practical.
+
+Do not turn the whole building into a transparent ghost.
+
+Use controlled opacity or selective cutaway.
+
+Avoid excessive visual clutter.
+
+---
+
+# 12. SMART CUTAWAY IMPLEMENTATION LOGIC
+
+Inspect the existing scene hierarchy first.
+
+Use stable semantic wall groups.
+
+For example, identify:
+
+- Exterior walls.
+- Back walls.
+- Near-camera walls.
+- Interior shared walls.
+- Door frames.
+- Permanent window frames.
+- Structural pillars.
+- Optional decorative wall panels.
+
+Do not rely only on mesh name substrings if existing naming is inconsistent.
+
+Use actual metadata or explicit wall-role registration where possible.
+
+## OCCLUSION DETECTION
+
+Use camera position and agent/interior target positions.
+
+Potential technique:
+
+- Cast a ray from the camera toward the visible bounds of an agent.
+- Identify wall meshes blocking the view.
+- Determine whether the wall is eligible for temporary cutaway.
+- Fade or hide only eligible wall sections.
+- Leave non-occluding structural elements intact.
+
+For each actor, consider the head and torso, not only a single foot-level point.
+
+Where appropriate, also protect the view of essential furniture and workstation activity.
+
+## PERFORMANCE
+
+Do not perform expensive full-scene raycasting unnecessarily every animation frame.
+
+Update cutaway decisions when:
+
+- Camera changes meaningfully.
+- Full Office mode starts.
+- Room selection changes.
+- Character moves enough to change occlusion.
+- Meeting mode changes.
+- The wall visibility mode changes.
+
+Use throttling or efficient scene queries.
+
+## MATERIAL SAFETY
+
+If a wall is temporarily faded:
+
+- Avoid changing a material shared by other walls unintentionally.
+- Avoid transparency sorting artifacts.
+- Avoid flickering during visibility transitions.
+- Preserve original material properties.
+- Restore all original states correctly.
+
+A direct visibility toggle may be preferable to transparency for some structural elements.
+
+Choose based on actual rendered results.
+
+Do not hide doorframes, floors or essential structural pillars indiscriminately.
+
+---
+
+# 13. UI/UX ROOM LEFT WALL — DEDICATED REPAIR
+
+This is a separately reported defect and MUST be investigated independently.
+
+Do not assume Smart Cutaway alone will fix it.
+
+## STEP 1 — IDENTIFY THE AFFECTED WALL
+
+Inspect the current UI/UX Room geometry.
+
+Room ID:
+
+`AI_OFFICE_ROOM_UIUX_v1`
+
+Full Office offset:
+
+[24,0,18]
+
+Expected room footprint:
+
+8×8.
+
+The screenshot describes the missing wall as being on the LEFT.
+
+IMPORTANT:
+
+"Left" may mean left in screen space, not necessarily local -X.
+
+Determine the exact wall using:
+
+- Camera screenshot orientation.
+- Scene hierarchy.
+- World coordinates.
+- Wall mesh names.
+- Bounding boxes.
+- Wall normals.
+
+Do not blindly edit the wrong wall.
+
+## STEP 2 — VERIFY PERMANENT GEOMETRY
+
+Check:
+
+- Whether the wall mesh exists.
+- Whether its geometry is valid.
+- Whether it has the correct transform.
+- Whether its normals are oriented correctly.
+- Whether material side settings are correct.
+- Whether it is attached to the correct room root.
+- Whether it is unintentionally excluded in Full Office mode.
+
+## STEP 3 — VERIFY VISIBILITY STATE
+
+Check:
+
+- Scene.visible values.
+- Ancestor group visibility.
+- Existing cutaway rules.
+- Room selection logic.
+- Camera preset changes.
+- React mounting/unmounting.
+- Shared visibility state.
+- Material state changes.
+- Any per-frame visibility callback.
+
+Determine why the wall disappears.
+
+Do not create a duplicate wall on top of an existing wall merely to hide the problem.
+
+## STEP 4 — FIX ROOT CAUSE
+
+If geometry is genuinely missing:
+
+Restore the minimum required geometry with correct module alignment.
+
+If geometry exists but is incorrectly hidden:
+
+Fix the visibility policy or lifecycle behavior.
+
+If the wall is intentionally cut away:
+
+Ensure it is hidden only under an explicit cutaway condition and correctly restored in Show Architecture mode.
+
+## STEP 5 — VERIFY MULTIPLE CONDITIONS
+
+Test the UI/UX room when:
+
+- UI/UX is selected.
+- PM is selected.
+- CEO is selected.
+- Engineering is selected.
+- Full Office is entered.
+- Single Room is entered.
+- Camera rotates.
+- Camera resets.
+- Meeting Demo starts.
+- Meeting Demo ends.
+- Cinema Mode starts.
+- Cinema Mode ends.
+- Show Architecture mode is enabled.
+- Smart Cutaway mode is enabled.
+
+The UI/UX wall must never disappear unpredictably.
+
+---
+
+# 14. WALL VISIBILITY STATE MANAGEMENT
+
+Prevent state leakage between room modes.
+
+Required principles:
+
+- Permanent mesh geometry is immutable during camera operations.
+- Camera cutaway state is separate from room asset state.
+- Visibility overrides have a clear owner.
+- Original visibility can always be restored.
+- Shared materials are not globally mutated.
+- Camera transitions do not leave old walls hidden.
+- Scene unmount/cleanup restores temporary overrides.
+- Room switching does not duplicate or remove walls.
+- Export processes use permanent structural geometry, not temporary cutaway results.
+
+Create reliable separation between:
+
+`PermanentWallState`
+
+and
+
+`FullOfficePresentationState`
+
+These are conceptual categories; adapt to the actual source architecture.
+
+Do not create incompatible parallel state systems.
+
+---
+
+# 15. SHOW ALL AGENTS CLEARLY
+
+Full Office is primarily a visual dashboard for AI Agent work.
+
+The user should be able to observe the characters working inside their departments.
+
+## TARGET EXPERIENCE
+
+At the default Full Office angle:
+
+- Research activity should be readable.
+- PM activity should be readable.
+- CEO activity should be readable.
+- UI/UX activity should be readable.
+- Engineering characters should be visible.
+- QA/DevOps characters should be visible when their real assets exist.
+- Central Hub meeting activity should be visible.
+
+Do not fake missing characters.
+
+## IMPORTANT LIMITATION
+
+A single 3D camera angle may not show every character perfectly at every moment because furniture and geometry can still obstruct them.
+
+The Smart Cutaway system should reduce wall obstruction substantially.
+
+If an actor is temporarily hidden by furniture or another object, provide an existing-compatible focus interaction rather than distorting the whole room.
+
+Do not create artificial character duplicates outside their actual rooms.
+
+---
+
+# 16. CAMERA FOCUS ON ACTIVE AGENTS
+
+Improve existing room/character focus behavior without rebuilding it.
+
+Suggested:
+
+- Focus All Office.
+- Focus Selected Room.
+- Focus Selected Agent.
+- Focus Meeting.
+- Return to Cinematic Overview.
+
+## AGENT FOCUS
+
+When focusing an agent:
+
+- Target its actual world position.
+- Use a comfortable 3/4 camera angle.
+- Frame the character and surrounding workstation.
+- Avoid clipping nearby furniture.
+- Apply Smart Cutaway as needed.
+- Preserve the correct room coordinates.
+
+## RETURN
+
+Return to the last valid Full Office overview or approved default cinematic preset.
+
+Do not create camera jumps that change office geometry.
+
+Do not reset the character animation merely because focus changed.
+
+---
+
+# 17. FULL OFFICE CINEMA MODE — NEW UI FEATURE
+
+The owner reports that the left and right UI panels obstruct the office.
+
+Implement:
+
+**Cinema Mode / Clean Office View**
+
+This must be a functional UI feature.
+
+## NORMAL MODE
+
+Preserve the existing application interface.
+
+Including:
+
+- Left navigation.
+- Room Selector.
+- Simulation controls.
+- Right inspector.
+- Demo panels.
+- Office camera controls.
+- Export controls.
+
+Do not remove these features.
+
+## CINEMA MODE
+
+When activated:
+
+- Hide the left navigation/sidebar.
+- Hide the right inspector/sidebar.
+- Hide the large demo control panel.
+- Hide nonessential floating notifications.
+- Hide oversized room selection overlays.
+- Hide large bottom control docks where applicable.
+- Expand the office canvas into the newly available space.
+- Refit the camera.
+- Preserve the currently selected view and ongoing animations.
+
+The office should use nearly the entire available application viewport.
+
+Do not hide the actual 3D scene.
+
+Do not pause the character simulation merely because panels are hidden.
+
+## MINIMAL RESTORE CONTROL
+
+Keep one compact, accessible control such as:
+
+`Show Controls`
+
+or
+
+`Exit Cinema Mode`
+
+Place it near the top-right corner or another unobtrusive screen location.
+
+It should not obscure a department.
+
+A small camera/control button is acceptable.
+
+Do not require the user to reload the application to restore controls.
+
+---
+
+# 18. INDEPENDENT PANEL TOGGLES
+
+In addition to Cinema Mode, provide individual UI control options.
+
+The owner should be able to:
+
+- Show/Hide Left Sidebar.
+- Show/Hide Right Sidebar.
+- Show/Hide Demo Panel.
+- Enter/Exit Cinema Mode.
+
+Use existing UI architecture.
+
+Keep the controls understandable.
+
+The user may want to inspect the office without closing every other tool.
+
+Do not create multiple redundant controls that clutter the screen.
+
+## SHORTCUTS
+
+Where compatible:
+
+- Escape exits Cinema Mode.
+- An optional keyboard shortcut may toggle Cinema Mode.
+- A visible button must remain available.
+
+Check for existing shortcut conflicts before assigning new keys.
+
+Do not intercept typing in input fields.
+
+---
+
+# 19. CINEMA MODE — CANVAS AND CAMERA RESIZING
+
+This is a critical implementation detail.
+
+Hiding the sidebars is not enough.
+
+The actual WebGL canvas must take advantage of the freed layout space.
+
+When panels are hidden:
+
+1. Update the layout container.
+2. Measure the new canvas dimensions.
+3. Update renderer size if required.
+4. Update orthographic frustum dimensions.
+5. Update camera projection matrix.
+6. Update controls.
+7. Refit the current view or preserve intentional focus appropriately.
+8. Avoid unnecessary scene re-creation.
+
+Use a ResizeObserver or another compatible robust measurement strategy if the existing project supports it.
+
+Do not use stale viewport dimensions.
+
+Do not stretch the canvas CSS without updating the renderer aspect.
+
+Do not cause blurry rendering after resize.
+
+Do not change the 3D geometry aspect ratio.
+
+---
+
+# 20. CINEMA MODE — SIMULATION CONTINUITY
+
+The current project supports character demos and an all-agent meeting session.
+
+Cinema Mode must be presentation-only.
+
+Entering Cinema Mode must NOT:
+
+- Reset animations.
+- Stop the meeting.
+- Delete characters.
+- Reset room state.
+- Recreate AnimationMixers.
+- Lose selected room state.
+- Reset the scene.
+- Trigger an unrelated export.
+- Restart running demos.
+
+If an all-agent meeting is active:
+
+- Keep the current session.
+- Keep characters seated or animated.
+- Preserve seat assignments.
+- Preserve session state.
+- Allow returning to the controls to stop/reset the demo.
+
+The same applies to character-specific simulations.
+
+---
+
+# 21. SIMPLIFIED CAMERA CONTROLS
+
+The current camera control dock should be less visually intrusive.
+
+Retain core actions:
+
+- Cinematic Overview.
+- Fit Office.
+- Top View.
+- Focus Room.
+- Focus Agent.
+- Focus Meeting.
+- Reset Camera.
+- Cinema Mode.
+
+Do not display every advanced debug control permanently.
+
+Move nonessential controls into a compact view/settings area if compatible with the existing interface.
+
+Do not delete advanced functionality.
+
+## CAMERA STATUS
+
+An optional compact current-view label is acceptable:
+
+`Cinematic · Smart Cutaway`
+
+Avoid a large persistent panel covering the office.
+
+---
+
+# 22. BACKGROUND AND COMPOSITION
+
+Preserve the dark neutral presentation background.
+
+The office should remain the dominant visual element.
+
+Requirements:
+
+- Avoid excessive empty dark margins.
+- Keep the building centered.
+- Preserve soft visual contrast between office and background.
+- Keep architectural edges readable.
+- Avoid strong distracting grid overlays.
+- Avoid oversized floating labels above every agent.
+
+If necessary, reduce label clutter in Cinema Mode.
+
+Do not remove important selectable agent identity information permanently.
+
+Use focus/hover or a compact overlay when appropriate.
+
+---
+
+# 23. RENDERING QUALITY AND ANTI-FLICKER
+
+Do not introduce new rendering defects while implementing Smart Cutaway or camera changes.
+
+Inspect:
+
+- UI/UX walls.
+- Engineering walls.
+- Exterior walls.
+- Door frames.
+- Windows.
+- Glass transparency.
+- Wall trim.
+- Cutaway edges.
+- Character faces and hair.
+- Monitor display surfaces.
+- Floor material.
+- Meeting table and chairs.
+
+Possible issues:
+
+- Coplanar surfaces.
+- Incorrect face orientation.
+- Shared material mutations.
+- Transparent sorting.
+- Z-fighting.
+- Unstable visibility toggles.
+- Invalid cleanup of temporary presentation states.
+
+## REQUIRED PRACTICES
+
+- Prefer repairing actual geometry defects.
+- Avoid duplicate wall shells.
+- Avoid unnecessary material transparency.
+- Preserve depth testing.
+- Preserve valid mesh normals.
+- Restore material properties after temporary changes.
+- Keep exports independent of viewer-only hidden states.
+
+Do not globally disable depthTest.
+
+Do not globally make all materials DoubleSide.
+
+Do not globally disable shadows.
+
+Do not apply arbitrary polygonOffset everywhere.
+
+---
+
+# 24. CHARACTER VISIBILITY AND PERFORMANCE
+
+Full Office may show multiple independently animated characters.
+
+Do not create a heavy cutaway algorithm that reduces performance significantly.
+
+Optimize by:
+
+- Reusing scene references.
+- Caching relevant wall meshes.
+- Updating occlusion when necessary.
+- Minimizing unnecessary raycasts.
+- Avoiding repeated material cloning.
+- Disposing temporary materials safely.
+- Preserving actor AnimationMixer ownership.
+- Avoiding duplicate render loops.
+
+Do not instantiate new agent meshes just to measure occlusion.
+
+Use existing actor roots.
+
+If a character is unavailable, report it honestly.
+
+---
+
+# 25. PRODUCTION EXPORT PROTECTION
+
+The visual cutaway system is a presentation feature.
+
+It must not corrupt the production asset library.
+
+Preserve:
+
+- Room GLBs.
+- Character GLBs.
+- Animation clips.
+- Behavior JSON files.
+- Anchor JSON files.
+- Master Layout A3.2.
+- Central Hub export.
+- Meeting seat metadata.
+- Source backup.
+
+## EXPORT RULE
+
+When exporting a room:
+
+Use the complete intended permanent room geometry.
+
+Do not export walls as permanently missing merely because they were hidden by Smart Cutaway.
+
+Do not bake Cinema Mode state into geometry.
+
+Do not change a character GLB merely because a camera focus feature was added.
+
+If a genuine UI/UX wall geometry repair is necessary, export a versioned correction with its updated manifest.
+
+Document exactly what changed.
+
+---
+
+# 26. CAMERA CONFIGURATION PROFILE
+
+If compatible with the existing source, preserve the updated camera and presentation configuration in a separate serializable profile.
+
+Suggested logical file:
+
+`full-office-camera-profile-v2.1.json`
+
+Possible fields:
+
+- projection_type
+- default_view
+- target_position
+- default_elevation
+- default_azimuth
+- minimum_elevation
+- maximum_elevation
+- azimuth_limits
+- min_zoom_factor
+- max_zoom_factor
+- fit_padding
+- default_cutaway_mode
+- pan_limits
+- camera_transition_policy
+- responsive_fit_policy
+
+Values must reflect the actual implemented settings.
+
+Do not create a configuration file that the application never reads and then claim it controls the camera.
+
+---
+
+# 27. IMPLEMENTATION SEQUENCE
+
+Follow this order.
+
+## PHASE A — BASELINE AUDIT
+
+Inspect source and current scene.
+
+Create checkpoint.
+
+Identify current camera and wall systems.
+
+## PHASE B — UI/UX WALL DIAGNOSIS
+
+Find the specific disappearing wall.
+
+Determine whether the problem is actual missing geometry or temporary visibility.
+
+Record the cause.
+
+## PHASE C — WALL REPAIR
+
+Correct the identified UI/UX defect.
+
+Verify in Full Office and Single Room.
+
+Do not duplicate intact walls.
+
+## PHASE D — SMART CUTAWAY
+
+Implement a reliable Full Office-only wall visibility policy.
+
+Provide:
+
+- Smart Cutaway.
+- Show Architecture.
+- Agent Visibility.
+
+Verify mode transitions.
+
+## PHASE E — CINEMATIC CAMERA
+
+Implement the new front three-quarter orthographic view.
+
+Use the approved approximate camera orientation.
+
+Measure actual office bounds.
+
+## PHASE F — CAMERA LIMITS
+
+Implement:
+
+- Controlled orbit.
+- Controlled zoom.
+- Constrained pan.
+- Reliable Fit Office.
+- Reset.
+- Room/Agent Focus.
+
+## PHASE G — CINEMA MODE
+
+Implement panel hiding and canvas expansion.
+
+Preserve ongoing simulations.
+
+## PHASE H — PANEL TOGGLES
+
+Add independent left/right/demo panel controls.
+
+Ensure they do not obscure the office.
+
+## PHASE I — RESPONSIVE CAMERA FIT
+
+Handle canvas size changes correctly.
+
+Avoid blurred or stretched output.
+
+## PHASE J — VISUAL INSPECTION
+
+Check all office areas from the new default camera.
+
+Verify agent visibility and architectural consistency.
+
+## PHASE K — REGRESSION TEST
+
+Test existing rooms, characters, meeting demo, controls and exports.
+
+## PHASE L — FINAL REPORT
+
+Report fixes and remaining limitations.
+
+STOP FOR OWNER REVIEW.
+
+Do not implement unrelated room or character features.
+
+---
+
+# 28. MANDATORY CAMERA AND UI TEST MATRIX
+
+Test the following combinations.
+
+## TEST 1 — NORMAL FULL OFFICE
+
+- Left panel visible.
+- Right panel visible.
+- Cinematic camera.
+- Smart Cutaway enabled.
+
+Expected:
+
+Office is framed within available canvas area.
+
+## TEST 2 — CINEMA MODE
+
+- Left panel hidden.
+- Right panel hidden.
+- Demo panel hidden.
+- Expanded canvas.
+
+Expected:
+
+Office is larger and more readable.
+
+No canvas stretching.
+
+## TEST 3 — ZOOM OUT
+
+Use mouse wheel or zoom buttons repeatedly.
+
+Expected:
+
+Camera stops at the configured minimum zoom.
+
+Office does not become tiny.
+
+## TEST 4 — ZOOM IN
+
+Zoom in repeatedly.
+
+Expected:
+
+Camera stops at the configured overview maximum.
+
+No uncontrolled close-up.
+
+## TEST 5 — ORBIT LIMITS
+
+Rotate camera in each direction.
+
+Expected:
+
+Camera remains within comfortable viewing angles.
+
+No flipped or ground-level camera.
+
+## TEST 6 — UI/UX WALL
+
+Focus UI/UX.
+
+Switch wall modes.
+
+Rotate and reset camera.
+
+Expected:
+
+The wall remains structurally valid.
+
+Show Architecture restores complete geometry.
+
+Smart Cutaway only applies intentional visibility changes.
+
+## TEST 7 — ENGINEERING WALL
+
+Focus Engineering.
+
+Expected:
+
+Architectural walls behave consistently and do not disappear unexpectedly.
+
+## TEST 8 — ALL-AGENT MEETING
+
+Start a meeting demo with available actors.
+
+Enter Cinema Mode.
+
+Expected:
+
+Meeting continues.
+
+Characters remain visible.
+
+No animation reset.
+
+## TEST 9 — SINGLE ROOM RETURN
+
+Switch from Full Office into UI/UX Single Room.
+
+Expected:
+
+Original Single Room camera and wall behavior remain intact.
+
+## TEST 10 — EXPORT
+
+Export and reimport the relevant room asset.
+
+Expected:
+
+Temporary Full Office cutaway does not permanently remove structural walls.
+
+## TEST 11 — RESPONSIVE VIEWPORT
+
+Resize the application or change panel visibility.
+
+Expected:
+
+The camera fits the updated canvas dimensions without distortion.
+
+---
+
+# 29. REQUIRED ACCEPTANCE CRITERIA
+
+## CAMERA
+
+[ ] Orthographic cinematic default.
+
+[ ] Comfortable front three-quarter angle.
+
+[ ] Not excessively top-down.
+
+[ ] No perspective taper.
+
+[ ] Office fills available viewport better.
+
+[ ] Full Office remains geometrically proportional.
+
+[ ] Controlled zoom limits.
+
+[ ] Controlled orbit limits.
+
+[ ] Constrained pan.
+
+[ ] Fit Office works.
+
+[ ] Focus Room works.
+
+[ ] Reset works.
+
+## WALLS
+
+[ ] UI/UX wall defect diagnosed.
+
+[ ] UI/UX wall defect corrected.
+
+[ ] No duplicate wall geometry created.
+
+[ ] Structural geometry remains valid.
+
+[ ] Smart Cutaway works.
+
+[ ] Show Architecture works.
+
+[ ] Agent Visibility works.
+
+[ ] Wall visibility does not leak between camera modes.
+
+[ ] Room exports preserve permanent walls.
+
+## USER INTERFACE
+
+[ ] Cinema Mode works.
+
+[ ] Left sidebar can be hidden.
+
+[ ] Right sidebar can be hidden.
+
+[ ] Demo panel can be hidden.
+
+[ ] A compact restore control remains visible.
+
+[ ] Canvas expands when panels are hidden.
+
+[ ] Camera refits correctly.
+
+[ ] No distorted canvas.
+
+[ ] Existing controls remain accessible.
+
+## AGENTS
+
+[ ] Existing characters remain intact.
+
+[ ] Existing animations remain intact.
+
+[ ] Agent work is easier to observe.
+
+[ ] Meeting Demo continues in Cinema Mode.
+
+[ ] No fake missing characters are spawned.
+
+[ ] Camera Focus does not reset character activities.
+
+## REGRESSION
+
+[ ] PM remains functional.
+
+[ ] CEO remains functional.
+
+[ ] UI/UX remains functional.
+
+[ ] Engineering remains functional.
+
+[ ] Research remains functional.
+
+[ ] QA/DevOps retains its actual current implementation.
+
+[ ] Master Layout A3.2 remains unchanged.
+
+[ ] Central Hub remains unchanged.
+
+[ ] Existing GLB exports still work.
+
+[ ] Source backup remains available.
+
+---
+
+# 30. REQUIRED FINAL REPORT
+
+After implementation, provide:
+
+1. Files inspected.
+2. Files modified.
+3. Checkpoint created.
+4. UI/UX wall root cause.
+5. UI/UX wall correction.
+6. Smart Cutaway implementation.
+7. Camera configuration before and after.
+8. Final camera elevation and azimuth.
+9. Final zoom limits.
+10. Final orbit limits.
+11. Responsive fit implementation.
+12. Cinema Mode implementation.
+13. Individual panel toggles.
+14. Agent visibility results.
+15. Meeting Demo compatibility.
+16. Single Room regression results.
+17. Full Office regression results.
+18. Export integrity results.
+19. Unresolved limitations.
+
+For each claim distinguish:
+
+- COMPLETED.
+- PARTIAL.
+- BLOCKED.
+- NOT VERIFIED.
+
+Do not claim a wall bug is fixed without reproducing and retesting it.
+
+Do not claim all agents are visible at every instant unless actually verified.
+
+Do not claim that source assets remain unchanged if geometry was modified.
+
+---
+
+# FINAL DIRECTIVE
+
+REFINE THE EXISTING AI OFFICE FULL OFFICE EXPERIENCE.
+
+Do not rebuild the office.
+
+Do not regenerate characters.
+
+Do not redesign completed rooms.
+
+Fix the UI/UX room wall that disappears unexpectedly.
+
+Implement a reliable Smart Cutaway system that preserves permanent room geometry but reduces obstruction from walls when viewing agents.
+
+Improve the default Full Office camera to a comfortable elevated front three-quarter orthographic view, approximately 35–38 degrees above horizontal.
+
+Avoid excessively top-down viewpoints.
+
+Make the building occupy more of the available screen space.
+
+Constrain camera zoom, orbit, and pan so users cannot easily lose the office or move into uncomfortable angles.
+
+Add a real Cinema Mode that hides the left sidebar, right inspector, large demo panels, and nonessential overlays.
+
+Expand and correctly resize the WebGL canvas when controls are hidden.
+
+Keep a small accessible control to restore the interface.
+
+Allow independent sidebar toggles.
+
+Ensure all currently available AI agents remain properly animated and are as visible as practicable from the cinematic viewpoint.
+
+Preserve ongoing meeting and agent simulations when camera or UI modes change.
+
+Preserve the Master Layout A3.2, Central Hub, floor materials, room geometry, characters, animations, and production export pipeline.
+
+Do not export temporarily hidden cutaway walls as missing permanent geometry.
+
+Test wall visibility, camera bounds, viewport resizing, animation continuity, and GLB export integrity.
+
+**DELIVER A CLEAN, CINEMATIC, COMFORTABLE FULL OFFICE VIEW THAT MAKES THE ENTIRE VIRTUAL OFFICE EASIER TO OBSERVE — THEN STOP FOR OWNER REVIEW.**

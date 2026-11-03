@@ -1,0 +1,364 @@
+{
+  "schema_version": "AI_OFFICE_ROUNDTRIP_REPORT_V1",
+  "generated_at": "2026-10-28T15:37:53.318Z",
+  "overall_status": "PASS",
+  "room_roundtrip": {
+    "timestamp": "2026-10-28T15:37:53.210Z",
+    "filename": "pm_room.glb",
+    "fileSizeBytes": 785584,
+    "fileSizeKB": "767.2 KB",
+    "loadSuccess": true,
+    "meshCount": 376,
+    "materialCount": 37,
+    "triangleCount": 5264,
+    "embeddedTexturesCount": 8,
+    "texturesSurvived": true,
+    "boundingBox": {
+      "min": [
+        -0.05,
+        -0.16,
+        0
+      ],
+      "max": [
+        8,
+        3.2,
+        8
+      ],
+      "size": [
+        8.05,
+        3.36,
+        8
+      ]
+    },
+    "boundsValidation": {
+      "valid": true,
+      "originPreserved": true,
+      "withinHorizontalFootprint": true,
+      "withinHeightLimits": true,
+      "messages": [
+        "SW Corner Origin (0,0,0) and 8×8 world-unit footprint preserved.",
+        "Vertical floor (-0.16..0.00) and wall height (3.20) within spec."
+      ]
+    },
+    "groupsPresent": {
+      "STRUCTURE": true,
+      "FLOOR": true,
+      "WALLS": true,
+      "WINDOWS": true,
+      "FURNITURE": true,
+      "PROPS": true,
+      "DECORATION": true,
+      "CONNECTORS": true
+    },
+    "allGroupsPresent": true,
+    "connectorsVerified": {
+      "eastPresent": true,
+      "southPresent": true,
+      "eastPosition": [
+        8,
+        0,
+        4
+      ],
+      "southPosition": [
+        4,
+        0,
+        0
+      ],
+      "alignmentValid": true
+    },
+    "previewObjectsExcluded": true,
+    "diagnostics": [
+      "Binary GLB parsed via Three.js GLTFLoader (767.2 KB).",
+      "Verified 376 3D meshes, 37 PBR materials, and 5,264 triangles.",
+      "Embedded pixel-art textures survived round-trip export/import (8 active textures verified).",
+      "SW Corner Origin (0,0,0) and 8×8 world-unit footprint preserved.",
+      "Vertical floor (-0.16..0.00) and wall height (3.20) within spec.",
+      "East [8, 0, 4] and South [4, 0, 0] modular connectors verified & snap-ready.",
+      "Confirmed 0 preview-only or scale mannequin objects leaked into GLB."
+    ],
+    "sha256": "cead94eeaecb4c9005a3bf706cbc5c80b0b0debc45adfa4adceaaec92fa7fd12",
+    "validGlbHeader": true,
+    "characterExcluded": true,
+    "verifiedKeyFurniture": [
+      "PM_Tall_Bookcase",
+      "PM_Archival_Wardrobe",
+      "PM_Corner_Credenza",
+      "PM_Executive_Desk",
+      "PM_Strategy_Board",
+      "PM_Collaboration_Table",
+      "PM_Cozy_Sofa",
+      "PM_Area_Rug"
+    ]
+  },
+  "character_roundtrip": {
+    "timestamp": "2026-10-28T15:37:53.318Z",
+    "filename": "boss_pm.glb",
+    "fileSizeBytes": 98420,
+    "fileSizeKB": "96.1 KB",
+    "sha256": "7cecd5ec72aaf92eb4a08dfd373dd6f05f35e1a5175eef3e0864e4d97ba5eb8a",
+    "validGlbHeader": true,
+    "loadSuccess": true,
+    "sourceTotalMeshes": 46,
+    "importedMeshCount": 41,
+    "hiddenContextualPropMeshes": 5,
+    "meshDifferenceReason": "Source hierarchy has 46 meshes (41 visible standing body/suit/head/hair/glasses meshes + 5 contextual handheld prop meshes hidden in rest pose). GLTFExporter (onlyVisible: true) exports the 41 standing rest-pose meshes cleanly.",
+    "importedMaterialCount": 11,
+    "importedTriangleCount": 492,
+    "boundingBox": {
+      "min": [
+        -0.33,
+        0,
+        -0.188
+      ],
+      "max": [
+        0.33,
+        1.725,
+        0.186
+      ],
+      "size": [
+        0.66,
+        1.725,
+        0.374
+      ]
+    },
+    "feetGroundedAtZero": true,
+    "heightMatchesSpec": true,
+    "roomGeometryExcluded": true,
+    "articulatedPivotsVerified": {
+      "allPresent": true,
+      "foundPivots": [
+        "Hips",
+        "Torso",
+        "Head",
+        "LeftArm",
+        "RightArm",
+        "LeftLeg",
+        "RightLeg"
+      ]
+    },
+    "identityMeshesVerified": {
+      "allPresent": true,
+      "foundMeshes": [
+        "Suit_Jacket_Body",
+        "Inner_Shirt_Front",
+        "Red_Necktie_Blade",
+        "Red_Necktie_Knot",
+        "Voxel_Face_Cranium",
+        "Voxel_Ear_L",
+        "Voxel_Ear_R",
+        "Hair_Top_Crown",
+        "Hair_Sideburn_L",
+        "Hair_Sideburn_R",
+        "Sunglasses_Frame_L",
+        "Sunglasses_Lens_L",
+        "Sunglasses_Temple_L"
+      ]
+    },
+    "embeddedClipsVerified": {
+      "count": 11,
+      "expectedCount": 11,
+      "allPresent": true,
+      "clips": [
+        {
+          "name": "Idle_Breathing",
+          "duration": 2.4,
+          "trackCount": 3
+        },
+        {
+          "name": "Walk_Cycle",
+          "duration": 0.96,
+          "trackCount": 5
+        },
+        {
+          "name": "Work_Typing",
+          "duration": 1.2,
+          "trackCount": 6
+        },
+        {
+          "name": "Meeting_Briefing",
+          "duration": 2,
+          "trackCount": 3
+        },
+        {
+          "name": "Present_Board",
+          "duration": 2,
+          "trackCount": 3
+        },
+        {
+          "name": "Read_Document",
+          "duration": 2,
+          "trackCount": 3
+        },
+        {
+          "name": "Think_Plan",
+          "duration": 2.2,
+          "trackCount": 3
+        },
+        {
+          "name": "Phone_Call",
+          "duration": 2,
+          "trackCount": 3
+        },
+        {
+          "name": "Coffee_Break",
+          "duration": 2.6,
+          "trackCount": 2
+        },
+        {
+          "name": "Waiting_Approval",
+          "duration": 2,
+          "trackCount": 3
+        },
+        {
+          "name": "Task_Completed",
+          "duration": 1.4,
+          "trackCount": 3
+        }
+      ]
+    },
+    "diagnostics": [
+      "Binary boss_pm.glb parsed via Three.js GLTFLoader (96.1 KB · SHA-256 7cecd5ec72aaf92e…).",
+      "Verified 41 standing rest-pose meshes, 11 PBR materials, and 492 triangles.",
+      "Source hierarchy has 46 meshes (41 visible standing body/suit/head/hair/glasses meshes + 5 contextual handheld prop meshes hidden in rest pose). GLTFExporter (onlyVisible: true) exports the 41 standing rest-pose meshes cleanly.",
+      "Measured character bounds: min [-0.33, 0, -0.188] .. max [0.33, 1.725, 0.186], height 1.725u (feet grounded at Y=0).",
+      "Verified 7/7 articulated hierarchy pivots (Hips, Torso, Head, LeftArm, RightArm, LeftLeg, RightLeg).",
+      "Verified 11 embedded glTF AnimationClips in parsed GLB (Idle_Breathing, Walk_Cycle, Work_Typing, Meeting_Briefing, Present_Board, Read_Document, Think_Plan, Phone_Call, Coffee_Break, Waiting_Approval, Task_Completed).",
+      "Confirmed 0 room meshes leaked into boss_pm.glb."
+    ]
+  },
+  "validation_matrix": [
+    {
+      "id": "live_pm_room_visual",
+      "area": "Live PM Room visual",
+      "status": "PASS",
+      "measured_result": "Preserved (376 source meshes, 8 content groups)",
+      "details": "Original 8×8 PM & Strategy Room architecture, walls, windows, bookcase, wardrobe, credenza, executive desk, and strategy board preserved without redesign."
+    },
+    {
+      "id": "room_geometry_inventory",
+      "area": "Room geometry inventory",
+      "status": "PASS",
+      "measured_result": "Verified (8/8 key assemblies + 8 groups)",
+      "details": "Verified groups: STRUCTURE:7, FLOOR:1, WALLS:21, WINDOWS:22, FURNITURE:263, PROPS:18, DECORATION:34, CONNECTORS:10."
+    },
+    {
+      "id": "boss_pm_visual_identity",
+      "area": "Boss PM visual identity",
+      "status": "PASS",
+      "measured_result": "Preserved (46 source meshes / 41 exported rest-pose meshes, 13 materials)",
+      "details": "Original Room-Native Cozy Voxel Boss PM preserved: dark geometric hair, black rectangular sunglasses, black suit, white shirt, red necktie, and separated ear/sideburn/temple planes."
+    },
+    {
+      "id": "existing_activity_states",
+      "area": "Existing activity states",
+      "status": "PASS",
+      "measured_result": "11 states recorded",
+      "details": "ACT_01:IDLE(Idle_Breathing), ACT_02:MOVING(Walk_Cycle), ACT_03:WORKING(Work_Typing), ACT_04:MEETING(Meeting_Briefing), ACT_05:PRESENTING(Present_Board), ACT_06:READING(Read_Document), ACT_07:THINKING(Think_Plan), ACT_08:PHONE_CALL(Phone_Call), ACT_09:COFFEE_BREAK(Coffee_Break), ACT_10:WAITING_APPROVAL(Waiting_Approval), ACT_11:TASK_COMPLETED(Task_Completed)"
+    },
+    {
+      "id": "room_glb_binary",
+      "area": "Room GLB binary",
+      "status": "PASS",
+      "measured_result": "Valid (767.2 KB · 785,584 B · SHA-256 cead94eeaecb…)",
+      "details": "glTF 2.0 binary magic header 0x46546C67 v2 verified; downloadable as pm_room.glb."
+    },
+    {
+      "id": "boss_pm_glb_binary",
+      "area": "Boss PM GLB binary",
+      "status": "PASS",
+      "measured_result": "Valid (96.1 KB · 98,420 B · SHA-256 7cecd5ec72aa…)",
+      "details": "glTF 2.0 binary magic header 0x46546C67 v2 verified; downloadable as boss_pm.glb."
+    },
+    {
+      "id": "independent_room_reimport",
+      "area": "Independent room reimport",
+      "status": "PASS",
+      "measured_result": "PASS (376 meshes, 37 materials, 0 character meshes)",
+      "details": "Parsed exported pm_room.glb bytes via GLTFLoader without calling buildRoomArchitecture or buildPMRoomFurnitureAndProps."
+    },
+    {
+      "id": "independent_character_reimport",
+      "area": "Independent character reimport",
+      "status": "PASS",
+      "measured_result": "PASS (41 rest-pose meshes, 11 clips, 0 room meshes)",
+      "details": "Source hierarchy has 46 meshes (41 visible standing body/suit/head/hair/glasses meshes + 5 contextual handheld prop meshes hidden in rest pose). GLTFExporter (onlyVisible: true) exports the 41 standing rest-pose meshes cleanly."
+    },
+    {
+      "id": "material_parity",
+      "area": "Material parity",
+      "status": "PASS",
+      "measured_result": "Verified (8 embedded pixel textures + 37 PBR materials)",
+      "details": "All procedural CanvasTextures serialized as embedded PNGs in pm_room.glb; runtime polygonOffset and NearestFilter documented in rendering_profile."
+    },
+    {
+      "id": "dimensions_and_origin",
+      "area": "Dimensions/origin",
+      "status": "PASS",
+      "measured_result": "Room [-0.05, -0.16, 0]..[8, 3.2, 8] · PM [-0.33, 0, -0.188]..[0.33, 1.725, 0.186]",
+      "details": "Room SW corner origin [0,0,0] and 8×8 footprint preserved without recentering; Boss PM feet grounded at Y=0.000, height 1.725u."
+    },
+    {
+      "id": "east_south_connectors",
+      "area": "EAST/SOUTH connectors",
+      "status": "PASS",
+      "measured_result": "Verified (EAST [8,0,4] · SOUTH [4,0,0])",
+      "details": "CONNECTOR_A_EAST and CONNECTOR_B_SOUTH verified in re-imported pm_room.glb with 2.0u width and unobstructed clearance zones."
+    },
+    {
+      "id": "anchors_and_waypoints",
+      "area": "Anchors/waypoints",
+      "status": "PASS",
+      "measured_result": "10 anchors & 12 walkable waypoints verified",
+      "details": "Exported in pm_room.anchors.json with exact world/local transforms, facing radians/degrees, forward vectors, and furniture associations."
+    },
+    {
+      "id": "embedded_animation_clips",
+      "area": "Embedded animation clips",
+      "status": "PASS",
+      "measured_result": "11 clips verified in re-imported boss_pm.glb",
+      "details": "Idle_Breathing (2.4s, 3 tracks), Walk_Cycle (0.96s, 5 tracks), Work_Typing (1.2s, 6 tracks), Meeting_Briefing (2s, 3 tracks), Present_Board (2s, 3 tracks), Read_Document (2s, 3 tracks), Think_Plan (2.2s, 3 tracks), Phone_Call (2s, 3 tracks), Coffee_Break (2.6s, 2 tracks), Waiting_Approval (2s, 3 tracks), Task_Completed (1.4s, 3 tracks)"
+    },
+    {
+      "id": "procedural_controllers",
+      "area": "Procedural controllers",
+      "status": "PASS",
+      "measured_result": "Preserved in source (BossPMCharacterSystem.ts & pmSimulationSpec.ts)",
+      "details": "Waypoint pathfinding, smooth yaw interpolation, seated desk height offset (-0.16u), contextual prop visibility (binder/phone/coffee), and interactive approval state machine preserved intact."
+    },
+    {
+      "id": "behavior_mapping",
+      "area": "Behavior mapping",
+      "status": "PASS",
+      "measured_result": "11/11 states mapped in boss_pm.behavior.json",
+      "details": "Each state maps its state_id, action_id, embedded_clip_name, target_anchor_id, posture, and procedural controller role."
+    },
+    {
+      "id": "visual_stability",
+      "area": "Visual stability",
+      "status": "PASS",
+      "measured_result": "376 room meshes · 46 PM meshes · 0 coplanar/duplicate conflicts",
+      "details": "Verified across Iso Default, Focus PM, PM Desk, Bookcase, and Strategy Board presets; orthographic near=0.5/far=48, shadow bias=-0.0008/normalBias=0.035."
+    },
+    {
+      "id": "full_source_project",
+      "area": "Full Source Project",
+      "status": "PASS",
+      "measured_result": "Confirmed (26 real project source files packaged in modular-room-lab-source.zip)",
+      "details": "Includes verbatim React/Three.js source, geometry builders, character system, specs, tests, and export pipeline (excluding .env secrets)."
+    },
+    {
+      "id": "file_inventory_checksums",
+      "area": "File inventory/checksums",
+      "status": "PASS",
+      "measured_result": "SHA-256 computed for pm_room.glb & boss_pm.glb",
+      "details": "pm_room.glb: cead94eeaecb4c90… | boss_pm.glb: 7cecd5ec72aaf92e…"
+    },
+    {
+      "id": "no_visual_redesign",
+      "area": "No visual redesign",
+      "status": "PASS",
+      "measured_result": "Verified against Golden Visual Reference",
+      "details": "Zero modifications made to approved room geometry, furniture layout, color palette, or Boss PM voxel identity."
+    }
+  ]
+}

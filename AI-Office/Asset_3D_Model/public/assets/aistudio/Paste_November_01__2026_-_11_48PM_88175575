@@ -1,0 +1,2393 @@
+# AI OFFICE — FULL OFFICE VISUAL & ARCHITECTURE OVERHAUL V1
+## Master Layout A3.2 — Precision Geometry, Camera, Flooring, Walls, Main Entrance, Lighting, Central Hub & All-Agent Meeting Demo
+### EXISTING MODULAR ROOM LAB — NON-DESTRUCTIVE REFINEMENT
+### Production Compatibility | Strict Regression Protection | Verifiable Results
+
+---
+
+# 0. YOUR ROLE
+
+You are a Senior Three.js Rendering Engineer, 3D Technical Artist, Architectural Visualization Specialist, Modular Scene Architect, React/TypeScript Engineer, Character Simulation Engineer, and Production Asset QA Lead.
+
+You are working in the EXISTING:
+
+AI Office — Modular Room Lab.
+
+The owner has provided screenshots showing several important visual and architectural problems in FULL OFFICE MODE.
+
+Your task is to correct these issues while preserving the already completed room and character assets.
+
+This is NOT a request to rebuild the office from scratch.
+
+This is a targeted upgrade of the Full Office presentation, modular assembly, central collaboration environment, and meeting demonstration.
+
+## PRIMARY OBJECTIVES
+
+1. Replace visually exhausting floor patterns.
+2. Improve the complete office floor material composition.
+3. Correct Full Office camera projection and framing.
+4. Ensure every module maintains exact rectangular dimensions.
+5. Fix missing Engineering wall geometry or incorrect wall visibility.
+6. Restore the visible main office entrance.
+7. Improve global lighting, sharpness, materials, and visual quality.
+8. Redesign and furnish the open Central Hub.
+9. Enlarge the central meeting table.
+10. Provide 10 properly sized meeting chairs.
+11. Prepare a demonstration where available agents can gather and sit together.
+12. Preserve modular production asset compatibility.
+13. Diagnose and prevent flickering, Z-fighting, duplicated surfaces, and reversed monitors.
+14. Validate the changes from several camera angles and through actual export/reimport.
+
+All changes must be scoped, measurable, and reversible.
+
+DO NOT make unrelated decisions.
+
+---
+
+# 1. SOURCE-OF-TRUTH PRIORITY
+
+Use the following precedence.
+
+## FIRST — ACTUAL WORKING PROJECT SOURCE
+
+Inspect the real implementation.
+
+Identify:
+
+- OfficeAssembler.
+- Room registry.
+- A3.2 layout specification.
+- Room root transforms.
+- Existing wall visibility/cutaway handling.
+- Full Office camera.
+- Single Room camera.
+- Floor builders.
+- Rendering profile.
+- Central Hub construction.
+- Character/actor registry.
+- Animation systems.
+- Existing navigation anchors.
+- GLB exporters.
+
+Do not assume a function or file exists because it appeared in earlier prompts.
+
+## SECOND — OWNER'S CURRENT FULL OFFICE SCREENSHOTS
+
+These are evidence of the CURRENT problems.
+
+The screenshots show:
+
+- Excessively busy, high-contrast wooden flooring.
+- Visually inconsistent office proportions.
+- Engineering room walls that appear missing in Full Office.
+- An unclear or missing main entrance.
+- An underdeveloped Central Hub.
+- Small central meeting furniture.
+- Some weak visual framing and geometry visibility.
+- Uneven visual density between completed rooms and the central area.
+
+Treat these as problems requiring diagnosis, not proof of any single root cause.
+
+## THIRD — APPROVED ALTERNATIVE FLOOR VISUAL
+
+The owner likes the previously generated elegant office alternative featuring:
+
+- Warm oak herringbone/parquet flooring in Central Hub.
+- Large-format warm greige stone around the shared circulation perimeter.
+- Thin restrained brass/cream transition trims.
+- Calmer wood floors in individual departments.
+- Soft elegant rugs.
+- A cohesive modern, warm, professional office appearance.
+
+This establishes the desired NEW FLOORING ART DIRECTION.
+
+Use the reference for material composition and visual quality.
+
+Do NOT copy any accidental room layout or character changes from the generated concept image.
+
+## FOURTH — EXISTING APPROVED ROOM ASSETS
+
+Preserve all approved architecture, furniture, characters, and animations wherever possible.
+
+---
+
+# 2. REQUIRED SAFETY CHECKPOINT
+
+Before modifying anything:
+
+1. Inspect the project.
+2. Verify the actual current layout version.
+3. Identify scene and camera systems involved.
+4. Record current room origins and dimensions.
+5. Record current character IDs.
+6. Record existing production asset paths.
+7. Create a recoverable checkpoint.
+8. Preserve existing exported GLBs and JSON files.
+
+If the project still references the older A3 or A3.1 schema, inspect its real state before changing anything.
+
+Do not assume the A3.2 migration is complete merely because the previous prompt requested it.
+
+Do not destroy the last working baseline.
+
+---
+
+# 3. NON-DESTRUCTIVE CHANGE POLICY
+
+The following rooms already exist or have been planned.
+
+Preserve their permanent asset geometry:
+
+- Research & Shared Brain.
+- PM & Strategy.
+- CEO Executive Brain.
+- UI/UX Design.
+- Engineering & Development.
+- QA & DevOps Integrated Studio, if already created.
+
+The QA & DevOps room may still be in development. Verify its actual status.
+
+Preserve existing characters:
+
+- Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer.
+- Backend Developer.
+- Database Developer.
+- Research Professor.
+- QA Agent, if implemented.
+- DevOps Agent, if implemented.
+
+Do not regenerate character meshes.
+
+Do not alter hairstyles, outfits, facial expressions, or existing animation clips.
+
+Do not rebuild individual rooms.
+
+Allowed changes:
+
+- Full Office camera configuration.
+- Full Office layout transforms if proven incorrect.
+- Wall visibility policies.
+- Missing or defective architectural shell geometry.
+- Main entrance structure.
+- Shared floor rendering system.
+- Central Hub geometry and furnishing.
+- Full Office lighting profile.
+- Meeting seating metadata.
+- Additional meeting demo controllers.
+- Scoped material optimizations.
+- Production manifests and scene assembly metadata.
+- Minimal Engineering wall repair when a verified architectural defect exists.
+
+If individual room geometry must be modified to repair an actual defect:
+
+- Make the smallest localized correction.
+- Preserve a versioned baseline.
+- Update only the affected asset manifest/export.
+- Explain the correction.
+- Verify its Single Room appearance remains consistent.
+
+---
+
+# 4. MASTER FLOOR PLAN A3.2 — LOCKED GEOMETRY
+
+Use Y-up Three.js coordinates.
+
+World axes:
+
++X = East.
+-X = West.
++Z = North.
+-Z = South.
++Y = Up.
+
+The building footprint is EXACTLY:
+
+X: 0..32
+
+Z: 0..26
+
+Width: 32 units.
+
+Depth: 26 units.
+
+These dimensions must not change.
+
+## UPPER DEPARTMENTS
+
+Research:
+Origin [0,0,18].
+Size 8×8.
+
+PM:
+Origin [8,0,18].
+Size 8×8.
+
+CEO:
+Origin [16,0,18].
+Size 8×8.
+
+UI/UX:
+Origin [24,0,18].
+Size 8×8.
+
+## CONNECTING CORRIDOR
+
+Global:
+
+X=0..32.
+
+Z=16..18.
+
+Width=2.
+
+## LOWER LEFT WING
+
+Engineering:
+
+Origin [0,0,0].
+
+Size 8×16.
+
+## LOWER CENTRAL AREA
+
+Central Hub:
+
+Origin [8,0,0].
+
+Size 16×16.
+
+This remains ONE OPEN HUB.
+
+No enclosing internal room walls.
+
+## LOWER RIGHT WING
+
+QA & DevOps Integrated Studio:
+
+Origin [24,0,0].
+
+Size 8×16.
+
+If the combined room is not yet complete, preserve the correct placeholder without inventing a completed asset.
+
+## PHYSICAL STRUCTURE
+
+The approved full office is a rectangular arrangement.
+
+Room walls must be:
+
+- Straight.
+- Vertical.
+- Correctly oriented.
+- Aligned to module boundaries.
+- Measured in consistent world units.
+- Physically coherent at shared edges.
+
+No arbitrary offsets.
+
+No accidental rotation of individual room roots.
+
+No nonuniform scaling.
+
+No stretched geometry.
+
+No slanted architectural walls.
+
+No room overlap.
+
+No unintended room gaps.
+
+The entire office must be geometrically rectangular in world space.
+
+---
+
+# 5. CRITICAL CAMERA CLARIFICATION
+
+The owner wants the full office to stop looking:
+
+- Warped.
+- Tapered.
+- Skewed.
+- Stretched.
+- Trapezoidal due to perspective.
+- Unbalanced.
+- Unevenly sized.
+- Incorrectly angled.
+
+IMPORTANT:
+
+A true isometric projection naturally makes a rectangular floor appear as a diamond or parallelogram on the screen.
+
+This is NOT geometry distortion.
+
+Do not attempt to force the screen-space isometric projection into a perfect rectangle by stretching the model.
+
+Instead, provide TWO reliable camera modes:
+
+1. TRUE ORTHOGRAPHIC ISOMETRIC.
+2. EXACT ORTHOGRAPHIC TOP VIEW.
+
+The top view must show the real 32×26 rectangle.
+
+The isometric view must preserve parallelism and consistent dimensional proportions without perspective taper.
+
+---
+
+# 6. FULL OFFICE CAMERA — TRUE ORTHOGRAPHIC ISOMETRIC
+
+Inspect the actual Full Office camera first.
+
+If the existing default camera uses perspective projection and causes distant sections to appear smaller, replace or supplement it with a proper OrthographicCamera.
+
+## REQUIRED CAMERA BEHAVIOR
+
+- Orthographic projection.
+- No perspective vanishing-point distortion.
+- Symmetrical viewing direction.
+- No arbitrary camera roll.
+- Camera up vector aligned with world +Y.
+- Camera target centered on the complete office bounds.
+- Consistent near/far clipping.
+- Controlled zoom.
+- Proper aspect-ratio handling.
+- Automatic fit to office bounds.
+
+Recommended starting orientation:
+
+An elevated diagonal camera where the absolute X and Z viewing components are balanced.
+
+For example, construct a normalized view direction with approximately equal X and Z components and a suitable Y elevation.
+
+Do not hardcode a camera position and assume it is correct for every viewport.
+
+Use actual office bounding-box measurements.
+
+## CAMERA TARGET
+
+Calculate the full scene bounding box, including visible architectural height.
+
+Use its actual center for the camera target.
+
+The ground footprint center is approximately:
+
+[16,0,13]
+
+but framing must also account for wall height.
+
+Use the correct actual vertical center.
+
+## FIT OFFICE
+
+Calculate the projected bounds of the eight architectural corners or full office bounding box.
+
+Set the orthographic frustum to fit all visible geometry.
+
+Use a modest padding margin, approximately 8–12% when appropriate.
+
+Avoid:
+
+- Cropped right wing.
+- Cropped left wing.
+- Excessive unused background.
+- Building pushed too low in the viewport.
+- Top walls clipped.
+- Camera target offset toward a selected department while claiming the view is Full Office Overview.
+
+## REQUIRED RESULT
+
+The office should look architecturally balanced.
+
+Opposite parallel edges should remain parallel after projection.
+
+Opposite edges of equal world length should have consistent projected lengths.
+
+No far-side taper.
+
+No inconsistent department scale.
+
+---
+
+# 7. EXACT TOP VIEW — TECHNICAL RECTANGULAR VIEW
+
+Provide a dedicated Full Office Top View.
+
+Requirements:
+
+- Camera directly above the scene.
+- Looking downward.
+- No camera roll.
+- Orthographic.
+- Entire 32×26 footprint visible.
+- Proper viewport-fit behavior.
+- Rectangular building outline.
+- Module boundaries aligned.
+- Straight corridors.
+- No diagonal distortion.
+
+This view must be suitable for validating the floor plan.
+
+The footprint must look like a true rectangle with the correct 32:26 aspect ratio, subject only to viewport framing.
+
+Do not fake the rectangle using a 2D screenshot.
+
+It must still render the actual 3D office.
+
+---
+
+# 8. CAMERA PRESET SYSTEM
+
+Reuse existing camera controls.
+
+Provide or correct the following Full Office presets:
+
+- Full Office — True Isometric.
+- Full Office — Exact Top View.
+- Full Office — Architectural 3/4 View.
+- Fit Full Office.
+- Reset Full Office.
+- Focus Selected Room.
+- Central Hub Focus.
+- Meeting Focus.
+
+Preserve Single Room camera behavior.
+
+## CAMERA TRANSITIONS
+
+Use smooth transitions when supported.
+
+Avoid sudden camera flips.
+
+Avoid changing room transforms when switching cameras.
+
+Camera changes must affect the VIEW, not room geometry.
+
+## IMPORTANT
+
+Do not permanently move individual rooms to compensate for camera problems.
+
+Do not modify their GLB source origins.
+
+Do not rotate the entire office model when a camera rotation would solve the issue.
+
+---
+
+# 9. CAMERA VALIDATION — GEOMETRIC TESTS
+
+Create a reproducible Full Office camera diagnostic.
+
+Measure:
+
+- Actual world-space office bounds.
+- Each room root position.
+- Each room's world dimensions.
+- Module rotation.
+- Module scale.
+- Projected building corner positions.
+- Top-view bounding ratio.
+- Isometric parallel-edge behavior.
+
+Suggested verification:
+
+1. Confirm building X extent = 32 units.
+2. Confirm building Z extent = 26 units.
+3. Confirm room root rotations use approved values.
+4. Confirm module wrapper scale is [1,1,1] unless explicitly justified.
+5. Confirm no parent introduces a nonuniform scale.
+6. Confirm orthographic projection does not taper distant edges.
+7. Confirm the whole office fits the viewport.
+8. Confirm the exact top view is geometrically rectangular.
+
+Do not claim visual precision based only on a screenshot.
+
+Measure actual transforms.
+
+---
+
+# 10. FLOORING — COMPLETE VISUAL REDESIGN
+
+This is a major visual priority.
+
+The current floor pattern uses too many narrow, strongly outlined wood planks.
+
+From the Full Office camera distance, these dark seams form dense repetitive lines.
+
+The result is visually exhausting.
+
+Replace this style with a refined architectural flooring system based on the owner's approved alternative image.
+
+## DESIGN PHILOSOPHY
+
+- Large, calm material shapes.
+- Subtle seam contrast.
+- Natural warm colors.
+- Distinct public and private zones.
+- Consistent world scale.
+- Minimal high-frequency noise.
+- No repetitive black grid.
+
+The floor should improve visual readability.
+
+Do not make the room look like a checkerboard.
+
+Do not replace the entire office with one flat texture.
+
+---
+
+# 11. CENTRAL HUB FLOOR — PREMIUM HERRINGBONE OAK
+
+The Central Hub should receive the signature flooring treatment.
+
+Area:
+
+16×16.
+
+Use:
+
+**Warm Natural Oak Herringbone / Chevron-inspired Parquet.**
+
+IMPORTANT:
+
+The pattern must remain subtle when zoomed out.
+
+The individual wood pieces must be large enough to avoid tiny repetitive visual noise.
+
+Use:
+
+- Light natural oak.
+- Warm honey oak.
+- Gentle beige-oak midtones.
+- Muted warm-brown accents.
+- Soft wood grain variation.
+
+Do not use highly saturated orange flooring.
+
+Do not use thick black plank borders.
+
+Do not create tiny herringbone units that cause texture shimmer.
+
+## PATTERN SCALE
+
+Use larger parquet pieces appropriate to the room scale.
+
+The pattern should look like refined architectural flooring, not thousands of tiny bricks.
+
+Consider using a baked or generated texture with carefully controlled frequency, provided it survives GLB export.
+
+If using real plank geometry, optimize it and prevent duplicate surfaces.
+
+## BOUNDARY
+
+The parquet should transition into warm greige stone flooring.
+
+Use a refined thin brass or cream-gold transition border.
+
+Avoid overly bright yellow lines.
+
+The border should establish spatial hierarchy without dominating the scene.
+
+---
+
+# 12. CENTRAL HUB PERIMETER — WARM GREIGE STONE
+
+Around the central parquet region, create a restrained architectural circulation band.
+
+Material:
+
+**Warm Greige Large-Format Stone.**
+
+Colors:
+
+- Warm gray-beige.
+- Pale sandstone.
+- Soft limestone.
+- Muted ivory-gray.
+
+Use large-format stone units.
+
+Seams should be subtle.
+
+No high-contrast checkerboard pattern.
+
+The stone should feel clean, architectural, and premium.
+
+Use this material to distinguish shared circulation from departmental workspaces.
+
+## EDGE TRANSITION
+
+At the boundary between parquet and stone:
+
+- Use clean geometry.
+- No overlapping identical floor planes.
+- No flickering.
+- No accidental cracks.
+- No exposed raw edges.
+- No inconsistent height steps.
+
+Prefer a consistent flat walking surface.
+
+A decorative trim must not create an obstacle for future characters.
+
+---
+
+# 13. CONNECTING CORRIDOR FLOOR
+
+The upper corridor should visually connect with the Central Hub stone perimeter.
+
+Use the same warm greige stone family.
+
+The corridor must feel continuous.
+
+Avoid abrupt material mismatches between corridor and hub.
+
+Do not create a visibly raised walkway.
+
+Preserve existing access and room thresholds.
+
+Use subtle transition trims near department doors.
+
+The floor should guide the eye toward the Central Hub and main entrance.
+
+---
+
+# 14. DEPARTMENT ROOM FLOORS
+
+The existing rooms have warm wooden floors but currently appear too busy in Full Office mode.
+
+Improve visual consistency WITHOUT unnecessarily replacing the finished room assets.
+
+## TARGET
+
+Use calmer, wider wood planks in departmental interiors.
+
+Properties:
+
+- Wider visible planks.
+- Longer uninterrupted segments.
+- Soft seam contrast.
+- Restrained color variation.
+- Matte finish.
+- Warm oak family.
+- Compatible with each room's identity.
+
+Do not make all departments identical.
+
+Allow subtle material personality:
+
+- Research: warm academic oak.
+- PM: balanced honey oak.
+- CEO: slightly richer walnut-toned oak.
+- UI/UX: light natural oak.
+- Engineering: refined medium oak.
+- QA/DevOps: warm elegant oak.
+
+## NON-DESTRUCTIVE IMPLEMENTATION
+
+Inspect whether each room exposes its floor materials or semantic FLOOR group.
+
+If safe:
+
+Use a Full-Office-specific floor material profile that replaces only verified room-floor materials or uses supported material variants.
+
+Do not place a second coplanar floor surface over an existing room floor.
+
+Do not globally replace every wood material, because desks, bookcases, doors, and furniture must retain their original appearance.
+
+If room floors cannot be independently identified without damaging approved assets:
+
+Leave their original geometry intact and report the limitation.
+
+Do not invent a fragile overlay workaround.
+
+Preserve the original Single Room visual baseline unless a carefully scoped change is explicitly justified.
+
+---
+
+# 15. FLOOR TECHNICAL QUALITY
+
+For each floor material:
+
+- Verify normals.
+- Verify UV orientation.
+- Verify color space.
+- Verify texture frequency.
+- Verify mipmap behavior.
+- Verify filtering.
+- Verify GLB compatibility.
+- Verify floor elevation.
+- Verify seam consistency.
+
+## ANTI-FLICKER
+
+Check:
+
+- Existing duplicate floor slabs.
+- Overlay polygons.
+- Rug overlays.
+- Decorative border strips.
+- Floor transition strips.
+- Coplanar plank patterns.
+
+Avoid global polygonOffset hacks.
+
+Fix geometry and material sampling at the source.
+
+## DISTANCE TEST
+
+Inspect the floor from:
+
+- Close-up.
+- Medium distance.
+- Full Office Isometric.
+- Exact Top View.
+
+The pattern must remain comfortable and readable at all four distances.
+
+---
+
+# 16. ENGINEERING WALLS — MISSING WALL REPAIR
+
+The owner reports that several Engineering walls appear missing in Full Office mode.
+
+This requires a dedicated architectural audit.
+
+Engineering is:
+
+8×16.
+
+Global origin:
+
+[0,0,0].
+
+## FIRST — FIND THE ACTUAL CAUSE
+
+Possible causes:
+
+- Incorrect Full Office cutaway visibility.
+- Missing wall mesh.
+- Incorrect wall parent.
+- Wrong transform.
+- Incorrect material side.
+- Camera-dependent culling.
+- Wall geometry hidden by a mode-specific flag.
+- Incorrect room builder branch.
+- Exported geometry that differs from live source geometry.
+- A wall removed during the Engineering room merge.
+
+Do not assume a specific root cause without inspecting the source.
+
+## REQUIRED RESULT
+
+Engineering must have:
+
+- Architecturally complete exterior boundaries.
+- Correctly placed interior boundaries.
+- Functional access to Central Hub.
+- Functional access to corridor where supported.
+- No missing structural wall segments.
+- No unnecessary internal division.
+- No duplicate overlapping wall sections.
+
+## FULL OFFICE VISIBILITY
+
+Separate:
+
+1. Permanent structural geometry.
+2. Runtime visual cutaway behavior.
+
+Cutaway may intentionally hide a foreground wall for visibility.
+
+However, it must not cause major structural sections to disappear unpredictably.
+
+Create a clear visibility policy for Full Office.
+
+Do not simply enable every wall and obscure all room interiors.
+
+Do not solve the issue by building another complete overlapping wall shell on top of the existing walls.
+
+Verify ownership of each shared wall boundary first.
+
+---
+
+# 17. ARCHITECTURAL WALL ALIGNMENT
+
+Audit all room boundaries.
+
+Check:
+
+- Research / PM.
+- PM / CEO.
+- CEO / UIUX.
+- Engineering / Central Hub.
+- Central Hub / QA-DevOps.
+- Upper rooms / corridor.
+- Building exterior perimeter.
+
+For each shared boundary:
+
+- Confirm consistent wall thickness.
+- Confirm alignment.
+- Confirm no duplicate wall faces.
+- Confirm no unexpected wall gap.
+- Confirm no floating wall segments.
+- Confirm door openings remain physically open.
+
+If adjoining room walls already occupy the same structural boundary, avoid adding duplicate walls.
+
+Choose a consistent wall-ownership or interface policy.
+
+Do not alter approved room GLBs merely to conceal a seam problem in Full Office.
+
+Use a compatible assembly-layer correction where practical.
+
+---
+
+# 18. MAIN OFFICE ENTRANCE — RESTORE AND UPGRADE
+
+The current Full Office preview does not clearly show the main entrance.
+
+Create or restore a proper entrance at the SOUTH side of Central Hub.
+
+Central Hub global area:
+
+X=8..24.
+
+Z=0..16.
+
+Nominal entrance center:
+
+[16,0,0].
+
+The main entrance must connect the outside to Central Hub.
+
+## VISUAL DESIGN
+
+Create an elegant office entrance using:
+
+- Warm oak or walnut frame.
+- Subtle dark trim.
+- Glass double-door or clearly framed open-door structure.
+- Appropriate handles.
+- Small threshold.
+- Outdoor/entrance-side welcome mat.
+- Clean architectural entrance posts.
+- Optional warm entry lighting.
+- Small decorative planters.
+
+The door should feel consistent with the cozy professional AI Office environment.
+
+Avoid a giant futuristic automatic portal.
+
+## DOOR GEOMETRY
+
+Use actual physically plausible dimensions.
+
+Target:
+
+- Opening width approximately 2–2.4 units.
+- Height compatible with the existing 3.2-unit wall standard.
+- Clear floor threshold.
+- Proper frame and hinges or fixed-open leaf arrangement if supported.
+
+Verify actual scene conventions.
+
+## IMPORTANT
+
+The entrance must remain visible from:
+
+- Default Full Office Isometric.
+- Front/Architectural View.
+- Top View.
+- Central Hub Focus.
+
+Do not create a door that is hidden by a runtime cutaway flag.
+
+Do not place furniture in front of it.
+
+Do not place a solid invisible collider across its opening.
+
+Do not permanently close the path.
+
+---
+
+# 19. FULL OFFICE LIGHTING OVERHAUL
+
+The user requests higher-quality lighting and sharper graphics.
+
+Improve the Full Office rendering profile while preserving the established handcrafted voxel style.
+
+## DESIRED RESULT
+
+- Bright enough to inspect all rooms.
+- Warm and cozy.
+- Clear architectural geometry.
+- Readable characters.
+- Balanced highlights.
+- Stable shadows.
+- Natural material colors.
+- No washed-out cream surfaces.
+- No overly dark corners.
+- No extreme bloom.
+
+## LIGHTING COMPONENTS
+
+Reuse the existing lighting architecture where possible.
+
+Consider:
+
+- Balanced ambient or hemisphere lighting.
+- A primary directional daylight source.
+- Soft shadowing.
+- Appropriate contact shading.
+- Controlled local warm fixture contribution.
+- A coherent light direction across the entire office.
+
+Do not add a separate high-intensity shadow-casting light to every decorative lamp.
+
+Prioritize visual consistency and browser performance.
+
+## GLOBAL COLOR QUALITY
+
+Inspect:
+
+- Renderer output color space.
+- Tone mapping.
+- Exposure.
+- Material color values.
+- Background color.
+- Shadow settings.
+- Texture color spaces.
+
+Use the actual current Three.js renderer API.
+
+Do not introduce deprecated or unsupported settings without verifying their current availability.
+
+Avoid applying an arbitrary global exposure multiplier that breaks previously approved rooms.
+
+---
+
+# 20. IMAGE SHARPNESS AND RENDER QUALITY
+
+Improve:
+
+- Edge readability.
+- Voxel geometry clarity.
+- Small character visibility.
+- Monitor sharpness.
+- Floor material stability.
+- Wall trim definition.
+- Text readability at suitable zoom.
+- Shadow consistency.
+
+## RENDERER
+
+Inspect:
+
+- Device pixel ratio.
+- Antialiasing.
+- Canvas dimensions.
+- Orthographic zoom behavior.
+- Texture resolution.
+- Texture filtering.
+- Shadow-map quality.
+
+Use a reasonable device-pixel-ratio cap based on performance.
+
+Do not set an extremely high render resolution that makes the application unusable.
+
+## PIXEL/VOXEL STYLE
+
+Preserve crisp purposeful pixel details.
+
+Use appropriate sampling for actual pixel textures.
+
+For large obliquely viewed floors, choose sampling that avoids excessive shimmer.
+
+Do not indiscriminately apply NearestFilter to every texture.
+
+Do not blur all pixel-art textures as a shortcut.
+
+## PERFORMANCE
+
+Keep the entire Full Office responsive with multiple characters present.
+
+Avoid extreme mesh counts and expensive shadow effects that provide little visible benefit.
+
+---
+
+# 21. CENTRAL HUB — COMPLETE DESIGN UPGRADE
+
+This is the major new architectural/interior feature.
+
+The Central Hub currently appears too empty.
+
+The meeting table and chairs are too small.
+
+The owner wants:
+
+- A richer environment.
+- A larger professional meeting table.
+- Comfortable seating.
+- Decorative details.
+- A central gathering destination for all agents.
+- A warm, living office atmosphere.
+
+The Central Hub must still remain OPEN.
+
+No full-height partition walls.
+
+No enclosed meeting room.
+
+## HUB DIMENSIONS
+
+Global:
+
+X=8..24.
+
+Z=0..16.
+
+Size:
+
+16×16.
+
+Hub local origin:
+
+[0,0,0].
+
+Full Office offset:
+
+[8,0,0].
+
+All hub furniture must use Hub-local coordinates in its exported module.
+
+---
+
+# 22. CENTRAL MEETING TABLE — NEW DESIGN
+
+Create a larger premium conference table.
+
+## TARGET
+
+A long wooden meeting table sized for approximately 10 seats.
+
+Suggested starting dimensions:
+
+- Length approximately 6.5–7 world units.
+- Width approximately 2.2–2.6 units.
+- Height compatible with existing character sitting proportions.
+
+These are planning targets.
+
+Verify against actual character height, chair dimensions, and movement clearance.
+
+## TABLE DESIGN
+
+Use:
+
+- Walnut or medium-oak tabletop.
+- Proper tabletop thickness.
+- Softly beveled or voxel-stepped rectangular edges.
+- Sturdy leg or pedestal geometry.
+- Carefully detailed wooden supports.
+- A tasteful dark/brass edge detail.
+- Optional subtle cable-management insert.
+- A few small permanent decorative objects.
+
+Do not make the table a giant empty rectangular cube.
+
+Do not create an executive desk in the middle.
+
+It should read as a collaborative meeting table.
+
+## TABLE PLACEMENT
+
+Center the table within Central Hub.
+
+Suggested global center:
+
+[16,0,8].
+
+Align its long axis consistently with the hub and floor pattern.
+
+Do not rotate it arbitrarily relative to the office grid.
+
+Keep sufficient space around all sides.
+
+---
+
+# 23. MEETING SEATS — 9 AGENTS + OWNER
+
+Design the meeting area for the current nine planned character roles.
+
+## AGENT ROLE INVENTORY
+
+1. Boss PM.
+2. CEO Executive Assistant.
+3. UI/UX Designer.
+4. Frontend Developer.
+5. Backend Developer.
+6. Database Developer.
+7. Research Professor.
+8. QA Agent.
+9. DevOps Agent.
+
+TOTAL:
+
+9 planned visual agents.
+
+Provide:
+
+**10 meeting chairs.**
+
+The tenth chair is reserved for the Human Owner or future meeting guest.
+
+Do not invent a Human Owner character.
+
+## CHAIR ARRANGEMENT
+
+Use a balanced and orderly composition.
+
+Recommended:
+
+- Five chairs along one long side.
+- Five chairs along the opposite long side.
+
+Alternate arrangements are permitted only if all 10 seats remain physically usable and the composition is clearly better.
+
+## CHAIR STYLE
+
+Create new high-quality meeting chairs.
+
+Material:
+
+- Muted navy/slate-blue upholstery.
+- Warm wooden or dark metal supports.
+- Comfortable backrest.
+- Proper seat cushion.
+- Armrests only if they do not obstruct seating.
+
+Each chair should have:
+
+- Distinct seat geometry.
+- Backrest.
+- Structural supports.
+- Correct height.
+- Plausible dimensions.
+- Appropriate clearance from the table.
+
+Do not use tiny stools.
+
+Do not use chairs that are oversized relative to characters.
+
+Do not simply scale up existing chairs with nonuniform transforms.
+
+## POSITION
+
+Measure actual seat centers and facing directions.
+
+Make sure:
+
+- Every seat faces the meeting table.
+- The chairs do not overlap.
+- Arms and hands can reach the tabletop naturally.
+- Seated character feet remain grounded.
+- Entry/exit paths remain accessible.
+
+---
+
+# 24. CENTRAL MEETING RUG
+
+Place a large premium area rug under the meeting table.
+
+Use the approved elegant visual direction.
+
+Suggested palette:
+
+- Muted navy.
+- Cream.
+- Warm greige.
+- Subtle brass or woven border pattern.
+
+The rug must feel substantial.
+
+It should visually anchor the entire meeting setup.
+
+Do not use a tiny flat blue rectangle.
+
+Do not create an excessively detailed pattern that competes with the new parquet floor.
+
+The meeting rug should be decorative but visually calm.
+
+## TECHNICAL
+
+Ensure:
+
+- No floor/rug Z-fighting.
+- Safe depth positioning.
+- Stable material sampling.
+- No duplicate coplanar surface.
+- Correct GLB export.
+
+---
+
+# 25. CENTRAL HUB DECORATION — MAKE IT FEEL ALIVE
+
+The central area must become visually richer.
+
+However, preserve the open-office identity.
+
+## REQUIRED DECORATION
+
+Add or refine:
+
+- Four or more carefully placed substantial planters.
+- Smaller secondary plants where appropriate.
+- Entrance-side greenery.
+- Elegant wood or brass planter stands.
+- Warm low-level lighting.
+- A tasteful meeting centerpiece.
+- Books or meeting documents.
+- Small notebook/tablet props.
+- Subtle floor perimeter detail.
+- Comfortable lounge-oriented accents.
+- Carefully designed architectural trims.
+- A small sideboard/refreshment console where circulation permits.
+
+## OPTIONAL DETAILS
+
+If room permits:
+
+- Water/coffee refreshment point.
+- Compact project notice display.
+- Small open document shelf.
+- Meeting room supply cabinet.
+- Wall-free collaboration display.
+- Portable presentation screen.
+- Additional restrained lighting fixtures.
+
+Do not add everything automatically.
+
+Use visual judgment while respecting the specified room layout.
+
+## STRICT NON-REPETITION RULE
+
+Create new Central Hub furniture and decorative assets.
+
+Do not simply copy:
+
+- PM sofa.
+- CEO executive desk.
+- UI/UX review table.
+- Engineering integration table.
+- Research library.
+- QA/DevOps lounge furniture.
+
+The Central Hub needs its own visual identity:
+
+**Collaborative Executive Meeting Commons.**
+
+---
+
+# 26. CENTRAL HUB VISUAL BALANCE
+
+The existing Central Hub contains large empty floor areas.
+
+The new design should use visual hierarchy.
+
+Suggested composition:
+
+CENTER:
+Large meeting table, 10 chairs, rug.
+
+NORTH:
+Clear connection to upper corridor.
+
+SOUTH:
+Main entrance and welcoming threshold.
+
+WEST:
+Open access toward Engineering.
+
+EAST:
+Open access toward QA & DevOps.
+
+CORNERS:
+Plants, restrained architectural lighting, and purposeful decorative features.
+
+Do not clutter central walking routes.
+
+Do not fill every empty area with random objects.
+
+Maintain enough open space for agent movement.
+
+---
+
+# 27. CENTRAL HUB PATH CLEARANCE
+
+The entire Central Hub must remain navigable.
+
+Required circulation:
+
+- Entrance → meeting table.
+- Upper corridor → meeting table.
+- Engineering → meeting table.
+- QA/DevOps → meeting table.
+- Meeting table → each seat.
+- Meeting table → exit.
+
+Do not block entrances with planters.
+
+Do not place the meeting table directly across a doorway.
+
+Use appropriate character collision dimensions.
+
+Verify actual routes from multiple directions.
+
+If furniture conflicts with movement:
+
+1. Reduce unnecessary props.
+2. Reposition secondary furniture.
+3. Adjust chair spacing.
+4. Improve the route.
+5. Recheck navigation.
+
+Do not shrink characters.
+
+Do not distort the building.
+
+---
+
+# 28. MEETING SEAT ANCHORS AND DATA CONTRACT
+
+Create 10 semantic seat anchors.
+
+Example IDs:
+
+- HUB_MEETING_SEAT_01
+- HUB_MEETING_SEAT_02
+- HUB_MEETING_SEAT_03
+- HUB_MEETING_SEAT_04
+- HUB_MEETING_SEAT_05
+- HUB_MEETING_SEAT_06
+- HUB_MEETING_SEAT_07
+- HUB_MEETING_SEAT_08
+- HUB_MEETING_SEAT_09
+- HUB_MEETING_SEAT_10
+
+For every seat store:
+
+- Seat ID.
+- Hub-local position.
+- Facing direction.
+- Approach anchor.
+- Seated pose target.
+- Seat object/node ID.
+- Occupancy policy.
+- Assigned character ID when appropriate.
+- Reserved/available status.
+
+Use actual measured chair geometry.
+
+Do not invent anchor coordinates.
+
+## OWNER SEAT
+
+Reserve one seat:
+
+`HUB_MEETING_OWNER_RESERVED`
+
+This is a seat designation, not a new character.
+
+It must remain physically available without generating an owner avatar.
+
+## METADATA
+
+Export a compatible seating contract, for example:
+
+`central_hub.meeting_seats.json`
+
+Use the existing project schema conventions when possible.
+
+---
+
+# 29. ALL-AGENT MEETING DEMO — FUNCTIONAL REQUIREMENT
+
+The owner wants a visual demonstration where all available agents can gather at the Central Hub and sit around the table.
+
+This is a DEMO, not real AI orchestration.
+
+Implement a dedicated control:
+
+**Jalankan Demo Meeting Semua Agent**
+
+Also provide:
+
+- Stop Meeting Demo.
+- Reset Meeting.
+- Focus Meeting Camera.
+
+Reuse existing controls and UI patterns.
+
+## EXPECTED FLOW
+
+1. Read the actual runtime actor registry.
+2. Identify available instantiated characters.
+3. Determine each actor's current room/position.
+4. Assign each actor a unique meeting seat.
+5. Prepare valid routes to Central Hub.
+6. Start walking animations.
+7. Move actors through valid doorways.
+8. Approach each assigned chair.
+9. Align with the chair.
+10. Transition to seated posture.
+11. Play subtle seated idle/meeting animation.
+12. Show a DEMO meeting state.
+13. Allow Stop / End Meeting.
+14. Return or restore characters safely when the demonstration ends.
+
+## IMPORTANT
+
+Do not create fake actors for missing characters.
+
+If QA and DevOps characters have not yet been built, leave their assigned seats empty.
+
+Do not duplicate Frontend or Backend to fill the gaps.
+
+The meeting system should automatically recognize additional characters when they are implemented later.
+
+---
+
+# 30. MEETING ANIMATION COMPATIBILITY
+
+Some existing characters may not contain dedicated meeting animations.
+
+Inspect their actual animation and rig capabilities first.
+
+Do not assume all character GLBs include:
+
+- Sit_Down.
+- Seated_Idle.
+- Stand_Up.
+- Seated_Talk.
+
+## REQUIRED COMPATIBILITY APPROACH
+
+Reuse existing validated seated animations when available.
+
+For characters without meeting-specific clips:
+
+Implement a minimal reusable runtime meeting-pose adapter using compatible existing character pivots and safe transition logic.
+
+It should provide, where technically supported:
+
+- Stand-to-sit transition.
+- Correct seated posture.
+- Subtle seated breathing.
+- Small head movement.
+- Optional restrained conversation gesture.
+- Sit-to-stand transition.
+
+Do not deform character geometry.
+
+Do not permanently modify existing character source meshes.
+
+Do not overwrite their original exported animation clips.
+
+If the runtime adapter requires additional source files, preserve those files in the main source backup and future integration contract.
+
+Do not claim these meeting actions are embedded in character GLBs unless they actually are.
+
+If an actor cannot safely support a seated pose, report that limitation instead of using a visibly broken animation.
+
+---
+
+# 31. CROSS-ROOM MEETING NAVIGATION
+
+Existing AI Office cross-room choreography has not been fully validated.
+
+This demo is the first coordinated gathering scenario.
+
+Implement only the minimum reliable navigation required for the meeting demonstration.
+
+## USE VERIFIED CONNECTORS
+
+Potential routes:
+
+- Research → corridor → Central Hub.
+- PM → corridor → Central Hub.
+- CEO → corridor → Central Hub.
+- UI/UX → corridor → Central Hub.
+- Engineering → Hub connector.
+- QA/DevOps → Hub connector.
+
+Verify actual physical doorways before creating the route graph.
+
+Do not assume all doors exist merely because the manifest lists them.
+
+## MOVEMENT
+
+- Use actual walking cycles.
+- Maintain appropriate facing.
+- Avoid walls.
+- Avoid desks.
+- Avoid doorframe collisions.
+- Avoid walking through other large props.
+- Avoid immediate teleportation during ordinary movement.
+
+Use safe waypoints and door approach anchors.
+
+## MULTI-AGENT TRAFFIC
+
+Several characters may approach the Central Hub.
+
+Prevent them from all occupying the same waypoint simultaneously.
+
+A simple deterministic staggered departure or queue system is acceptable.
+
+Do not introduce an excessive full-scale navigation framework if existing waypoints are sufficient.
+
+## FALLBACK
+
+If a specific character lacks a validated route:
+
+- Do not walk through a wall.
+- Do not silently teleport.
+- Mark the route as blocked or not verified.
+- Keep that actor at a safe state.
+- Show the limitation in the demo report.
+
+The room seating layout must remain complete regardless of character availability.
+
+---
+
+# 32. MEETING DEMO STATE SAFETY
+
+The demonstration must not interfere with real future AI agent work.
+
+All displayed meeting states are:
+
+SIMULASI / DEMO.
+
+Do not claim actual department coordination occurred.
+
+Do not generate fake meeting minutes as real project evidence.
+
+Do not call external AI providers.
+
+Do not send real Telegram messages.
+
+Do not modify repositories.
+
+Do not execute production approvals.
+
+The visual demonstration should be controlled by an isolated UI/demo layer.
+
+## CURRENT ACTOR STATE
+
+Before meeting:
+
+- Record or safely pause each participating character's demo activity.
+- Stop incompatible animations.
+- Clean up temporary props.
+- Prevent duplicate animation control loops.
+
+During meeting:
+
+- Each character has one unique seat.
+- Each character retains an independent animation controller.
+- Seated states are visibly correct.
+- No actor should control another actor's rig.
+
+After meeting:
+
+- Safely stand.
+- Restore previous compatible positions/states where supported.
+- Or return to a documented idle anchor.
+
+Never leave characters floating or attached to chairs incorrectly.
+
+---
+
+# 33. ALL-AGENT MEETING DEMO ACCEPTANCE
+
+Verify:
+
+[ ] Meeting control appears.
+
+[ ] 10 physical chairs exist.
+
+[ ] 9 planned agent roles have unique seat assignments.
+
+[ ] Owner seat is reserved and remains an empty seat unless a real owner avatar is later implemented.
+
+[ ] Existing actor registry is used.
+
+[ ] No duplicate characters appear.
+
+[ ] Existing actors can approach the hub through validated paths.
+
+[ ] Arrival positions do not overlap.
+
+[ ] Characters face their assigned seats.
+
+[ ] Supported characters transition into correct seated poses.
+
+[ ] Seated hands and feet are positioned plausibly.
+
+[ ] Meeting camera frames the entire table.
+
+[ ] Stop Meeting works.
+
+[ ] Reset Meeting works.
+
+[ ] Missing future actors are reported honestly.
+
+[ ] No actual backend activity is falsely claimed.
+
+Do not declare this section fully complete if essential characters cannot yet participate.
+
+Report the completed capability and remaining prerequisites separately.
+
+---
+
+# 34. CENTRAL HUB AS AN INDEPENDENT ASSET
+
+The Central Hub should be production-compatible.
+
+Use a dedicated root:
+
+`CENTRAL_HUB_ROOT`
+
+Suggested hierarchy:
+
+CENTRAL_HUB_ROOT
+- FLOOR
+- PARQUET
+- STONE_PERIMETER
+- FLOOR_TRIMS
+- MEETING_TABLE
+- MEETING_CHAIRS
+- MEETING_RUG
+- DECORATION
+- PLANTS
+- LIGHT_FIXTURES
+- ENTRANCE_STRUCTURE
+- CONNECTORS
+
+Adapt names to the existing scene conventions.
+
+Do not create duplicate structural floor groups.
+
+Do not permanently merge individual character meshes into the Central Hub.
+
+Keep all meeting chairs as identifiable objects.
+
+Keep chair anchors independent from the chairs' permanent geometry.
+
+---
+
+# 35. SHARED DISPLAY / PRESENTATION OPTION
+
+If the Central Hub has sufficient clear space, add a tasteful shared presentation point.
+
+Possible:
+
+- Compact double-sided freestanding display with intentional front/back content only if actually designed for dual-sided use.
+- One-sided digital review board.
+- Small mobile meeting screen.
+
+This is optional.
+
+Do not sacrifice the required seating or circulation.
+
+Do not create another giant executive command wall.
+
+## SCREEN SAFETY
+
+For every ordinary monitor:
+
+- One physical front screen.
+- One opaque rear casing.
+- Correct facing orientation.
+- No mirrored text.
+- No duplicated rear display content.
+
+Only intentionally designed dual-sided displays may have two screen faces, and such objects must be explicitly named and verified.
+
+Do not apply dual-sided materials to normal computer monitors.
+
+---
+
+# 36. ARCHITECTURAL VISIBILITY POLICY
+
+Full Office must support two goals:
+
+1. Rooms should remain visibly furnished.
+2. The building must remain architecturally coherent.
+
+Create a consistent cutaway policy.
+
+## SINGLE ROOM
+
+Preserve existing room-native cutaway behavior.
+
+## FULL OFFICE
+
+Use an architectural visibility mode that:
+
+- Shows necessary exterior shell geometry.
+- Shows meaningful room partitions.
+- Preserves open doorways.
+- Keeps major furniture visible.
+- Avoids hiding entire room walls without reason.
+- Does not randomly toggle material visibility.
+
+Avoid accidental disappearance when:
+
+- Camera rotates.
+- Selected room changes.
+- Room Focus changes.
+- Full Office resets.
+- A character begins an animation.
+
+Do not remove permanent walls from exported room geometry as a camera workaround.
+
+---
+
+# 37. GLOBAL ANTI-FLICKER AUDIT
+
+Inspect the current project for recurring rendering defects.
+
+Focus on:
+
+- Room floors.
+- Central parquet.
+- Stone perimeter.
+- Rugs.
+- Floor borders.
+- Wall trims.
+- Engineering wall sections.
+- Entrance door frame.
+- Windows.
+- Shelves.
+- Monitor displays.
+- Books.
+- Chair details.
+- Character ears and hair.
+- Decorative signs.
+- Plants.
+
+Possible causes:
+
+- Coincident polygons.
+- Duplicate meshes.
+- Incorrect depth settings.
+- Shadow acne.
+- Unstable shadow bias.
+- Texture shimmer.
+- Transparent sorting.
+- Scene layering.
+- Invalid cutaway state transitions.
+- Object transforms updated incorrectly.
+
+## FIX POLICY
+
+Correct the actual cause.
+
+Prefer targeted fixes over global renderer hacks.
+
+Do not globally disable depth testing.
+
+Do not globally disable shadows.
+
+Do not make every material DoubleSide.
+
+Do not apply arbitrary polygonOffset to all objects.
+
+Do not reduce overall asset quality to hide a bug.
+
+Any global rendering changes must pass regression tests against all completed rooms.
+
+---
+
+# 38. FULL OFFICE EXPORT COMPATIBILITY
+
+Preserve the existing production asset architecture.
+
+Do not replace modular room assets with one giant permanently merged mesh.
+
+Retain:
+
+- Independent room GLBs.
+- Independent character GLBs.
+- Manifest JSONs.
+- Behavior JSONs.
+- Anchor JSONs.
+- Office layout metadata.
+- Source backup.
+
+## RECOMMENDED NEW OUTPUTS
+
+Use the existing exporter conventions where possible.
+
+Suggested:
+
+`central_hub_v2.glb`
+
+`central_hub_v2.manifest.json`
+
+`central_hub_v2.anchors.json`
+
+`central_hub.meeting_seats.json`
+
+`office-layout-a3.2.json`
+
+`full-office-visual-profile-v2.json`
+
+`full-office-preview-v2.png`
+
+`office_visual_upgrade_v2_production_pack.zip`
+
+The revised Full Office visual profile should document:
+
+- Camera presets.
+- Lighting profile.
+- Floor material policy.
+- Cutaway policy.
+- Room assembly transforms.
+- Meeting seat configuration.
+- Known runtime dependencies.
+
+Only include actual generated files.
+
+Do not invent an export.
+
+Do not overwrite existing production assets without preserving a recoverable prior version.
+
+---
+
+# 39. GLB EXPORT RULES
+
+For Central Hub:
+
+Include:
+
+- Permanent floor.
+- Permanent meeting table.
+- All chairs.
+- Rug.
+- Permanent decoration.
+- Entrance structure owned by the Hub.
+- Relevant materials and embedded textures.
+
+Exclude:
+
+- Character instances.
+- UI panels.
+- Debug markers.
+- Camera.
+- Runtime-only lights.
+- Navigation helper geometry.
+- Temporary selected-object outlines.
+- Live demo state indicators.
+
+Keep Hub GLB local origin at [0,0,0].
+
+Apply [8,0,0] as the Full Office wrapper offset.
+
+Do not bake global scene placement into the exported Hub mesh vertices.
+
+The Main Office should still load all independent modules by manifest.
+
+---
+
+# 40. INDEPENDENT EXPORT REIMPORT VALIDATION
+
+After generating the revised asset pack:
+
+Reimport the actual GLB files using GLTFLoader.
+
+Verify:
+
+- Binary parses.
+- Root exists.
+- Geometry is complete.
+- Local origin preserved.
+- Bounds are correct.
+- Materials survive.
+- Textures survive.
+- Table is present.
+- All 10 chairs are present.
+- Large rug is present.
+- Floor composition is correct.
+- Decorations remain present.
+- Entrance geometry is present.
+- No duplicate floor slabs.
+- No missing textures.
+- No inappropriate monitor double-sided screens.
+- No debug geometry.
+- No character mesh baked into the Hub.
+
+For Full Office:
+
+- Validate world transforms.
+- Validate correct module positions.
+- Validate geometry overlaps.
+- Validate connector alignment.
+- Validate expected visible structural walls.
+
+Do not claim success without loading the actual generated files.
+
+---
+
+# 41. VISUAL COMPARISON REQUIREMENT
+
+Generate or expose useful BEFORE / AFTER views.
+
+Required comparisons:
+
+1. Current Full Office Isometric vs revised True Isometric.
+2. Current Top View vs Exact Orthographic Top View.
+3. Current floor pattern vs upgraded flooring.
+4. Current Engineering walls vs corrected visibility.
+5. Current main entrance vs restored entrance.
+6. Current Central Hub vs upgraded meeting area.
+7. Current lighting vs refined lighting.
+
+Use the actual live Three.js scene.
+
+Do not substitute generated illustrations as evidence of implementation.
+
+If screenshot capture is supported, export comparison PNGs.
+
+If capture is unavailable, provide reliable interactive camera presets for manual verification.
+
+---
+
+# 42. REGRESSION PROTECTION
+
+After changes, verify the following.
+
+## ROOM BASELINES
+
+[ ] Research Room remains intact.
+
+[ ] PM Room remains intact.
+
+[ ] CEO Room remains intact.
+
+[ ] UI/UX Room remains intact.
+
+[ ] Engineering Room remains 8×16.
+
+[ ] QA/DevOps combined room remains 8×16 or retains its honest current planned status.
+
+[ ] No room changes its global slot.
+
+[ ] Central Hub remains 16×16.
+
+[ ] Corridor remains 2 units wide.
+
+[ ] Full building footprint remains 32×26.
+
+## CHARACTER BASELINES
+
+[ ] Boss PM still works.
+
+[ ] CEO character still works.
+
+[ ] UI/UX character still works.
+
+[ ] Frontend still works.
+
+[ ] Backend still works.
+
+[ ] Database still works.
+
+[ ] Research Professor still works if present.
+
+[ ] QA and DevOps character status is not fabricated.
+
+[ ] Existing animations are unaffected outside the new meeting demo.
+
+## VIEW SYSTEMS
+
+[ ] Single Room remains functional.
+
+[ ] Full Office remains functional.
+
+[ ] Room Selector works.
+
+[ ] Camera focus works.
+
+[ ] Full Office True Isometric works.
+
+[ ] Full Office Top works.
+
+[ ] Character focus works.
+
+## EXPORTS
+
+[ ] Existing exports remain available.
+
+[ ] New Hub export works.
+
+[ ] New manifest/anchor files are valid.
+
+[ ] Independent reimport works.
+
+[ ] Source backup remains intact.
+
+---
+
+# 43. IMPLEMENTATION ORDER — FOLLOW STRICTLY
+
+The owner requests a complete visual overhaul, but the implementation must remain controlled.
+
+## PHASE A — BASELINE AUDIT
+
+Inspect source and actual scene.
+
+Create checkpoint.
+
+Identify current A3.2 status.
+
+## PHASE B — GEOMETRIC PRECISION AUDIT
+
+Measure module bounds, rotations, offsets and scales.
+
+Repair actual assembly transform errors.
+
+Do not change approved local asset geometry unnecessarily.
+
+## PHASE C — CAMERA CORRECTION
+
+Implement proper Full Office orthographic camera presets.
+
+Validate top-view geometry and isometric symmetry.
+
+## PHASE D — ENGINEERING WALL REPAIR
+
+Diagnose missing Engineering walls.
+
+Correct structural geometry or cutaway behavior.
+
+Preserve access and exports.
+
+## PHASE E — MAIN ENTRANCE RESTORATION
+
+Build or restore visible architectural main entrance.
+
+Validate doorway access and camera visibility.
+
+## PHASE F — FLOOR MATERIAL UPGRADE
+
+Implement:
+
+- Central Hub oak parquet/herringbone.
+- Warm greige stone perimeter.
+- Corridor stone continuity.
+- Restrained transition trims.
+- Calmer departmental floors where safely supported.
+
+## PHASE G — CENTRAL HUB TABLE AND SEATING
+
+Replace the undersized meeting furniture.
+
+Create a properly scaled meeting table and 10 chairs.
+
+## PHASE H — CENTRAL HUB DECORATION
+
+Add rug, planters, lighting details, entrance decor, restrained sideboard/refreshment features and purposeful meeting props.
+
+## PHASE I — LIGHTING AND GRAPHICS
+
+Improve global lighting and sharpness through scoped rendering-profile corrections.
+
+## PHASE J — RENDERING DEFECT AUDIT
+
+Inspect flicker, duplicate surfaces, monitor orientation, depth and shadow issues.
+
+Repair verified causes.
+
+## PHASE K — SEAT ANCHORS
+
+Generate measured seat metadata and safe approach anchors.
+
+## PHASE L — MEETING DEMO
+
+Use real actor registry.
+
+Implement safe meeting navigation and seating for supported existing actors.
+
+Preserve original character animations.
+
+## PHASE M — FULL OFFICE VISUAL REVIEW
+
+Inspect all cameras and room views.
+
+Compare before and after.
+
+## PHASE N — PRODUCTION EXPORT
+
+Export revised Hub and updated office metadata.
+
+## PHASE O — ROUND-TRIP TEST
+
+Reimport the actual exported assets.
+
+## PHASE P — REGRESSION TEST
+
+Verify every existing room and character still functions.
+
+STOP FOR OWNER REVIEW.
+
+Do not begin unrelated rooms or characters.
+
+---
+
+# 44. CRITICAL ACCEPTANCE CRITERIA
+
+## CAMERA / SHAPE
+
+[ ] Actual office footprint remains 32×26.
+
+[ ] Office modules have correct world dimensions.
+
+[ ] No unintended nonuniform scaling.
+
+[ ] No arbitrary room rotations.
+
+[ ] Top View shows the true rectangular footprint.
+
+[ ] Isometric View has no perspective taper.
+
+[ ] Whole office fits the screen.
+
+[ ] Camera roll is controlled.
+
+[ ] Room focus does not distort geometry.
+
+## FLOORS
+
+[ ] Busy narrow-plank pattern is significantly reduced.
+
+[ ] Central Hub parquet is elegant and readable.
+
+[ ] Greige stone perimeter is coherent.
+
+[ ] Corridor connects naturally.
+
+[ ] Department floor improvements do not break furniture materials.
+
+[ ] No duplicate coplanar floors.
+
+[ ] No major texture shimmer.
+
+## ARCHITECTURE
+
+[ ] Engineering missing-wall issue investigated and corrected.
+
+[ ] Exterior boundaries are coherent.
+
+[ ] Room dividers align.
+
+[ ] Doorways remain open.
+
+[ ] Main entrance is visibly present.
+
+[ ] Main entrance is physically accessible.
+
+## LIGHTING
+
+[ ] Lighting feels warmer and more polished.
+
+[ ] Rooms remain readable.
+
+[ ] No extreme overexposure.
+
+[ ] No excessive bloom.
+
+[ ] Character colors remain correct.
+
+[ ] Voxel detail stays sharp.
+
+## CENTRAL HUB
+
+[ ] Large premium meeting table.
+
+[ ] Ten realistic meeting chairs.
+
+[ ] One reserved owner seat.
+
+[ ] Large elegant rug.
+
+[ ] Improved greenery.
+
+[ ] Better warm decorative lighting.
+
+[ ] Additional functional decor.
+
+[ ] Spacious and coherent circulation.
+
+[ ] Hub no longer feels empty.
+
+## MEETING DEMO
+
+[ ] Unique seat mapping.
+
+[ ] Existing characters are reused.
+
+[ ] No fake characters.
+
+[ ] Valid path-based meeting arrivals where supported.
+
+[ ] Compatible seated animations.
+
+[ ] Meeting Focus camera.
+
+[ ] Stop/Reset controls.
+
+[ ] No real AI orchestration is falsely claimed.
+
+## EXPORT
+
+[ ] Hub GLB exists.
+
+[ ] Hub manifest exists.
+
+[ ] Seat and anchor metadata exists.
+
+[ ] Updated office visual profile exists.
+
+[ ] Actual GLB reimport succeeds.
+
+[ ] Existing room and character exports remain intact.
+
+---
+
+# 45. REQUIRED FINAL IMPLEMENTATION REPORT
+
+Provide an honest technical report containing:
+
+1. Files inspected.
+2. Files changed.
+3. Baseline checkpoint status.
+4. Confirmed current layout version.
+5. Actual office bounds.
+6. Root cause of camera distortion.
+7. Camera configuration before/after.
+8. Geometric precision validation.
+9. Engineering wall issue root cause and fix.
+10. Main entrance implementation.
+11. Flooring implementation and materials.
+12. Central Hub furniture inventory.
+13. Meeting table and seat dimensions.
+14. Seat anchor mapping.
+15. Lighting and renderer changes.
+16. Rendering defects found and repaired.
+17. Current actor availability.
+18. Meeting demo implementation status.
+19. Characters able to participate.
+20. Characters not yet available or not yet supported.
+21. Exported files.
+22. Actual GLB round-trip results.
+23. Regression test results.
+24. Before/after visual comparison.
+25. Remaining issues.
+
+Use explicit statuses:
+
+COMPLETED
+
+PARTIAL
+
+BLOCKED
+
+NOT IMPLEMENTED
+
+NOT VERIFIED
+
+Do not claim a missing test passed.
+
+Do not claim an unavailable character participated.
+
+Do not claim a runtime seating pose is already embedded in GLB unless verified.
+
+Do not report the entire Full Office as final/approved without owner review.
+
+---
+
+# 46. STRICT PROHIBITIONS
+
+DO NOT:
+
+- Rebuild all rooms.
+- Recreate existing characters.
+- Change approved character designs.
+- Modify unrelated animation clips.
+- Convert the office into one giant permanent mesh.
+- Change the overall 32×26 footprint.
+- Convert Engineering to 16×8.
+- Divide the Central Hub into rooms.
+- Rotate individual room geometry to compensate for bad camera projection.
+- Distort the office to make an isometric projection look rectangular.
+- Add fake missing characters.
+- Invent genuine multi-agent meetings.
+- Execute real AI tasks.
+- Trigger real Telegram actions.
+- Change repositories or backend business logic.
+- Connect production infrastructure.
+- Overwrite production exports without versioning.
+- Use a flat concept image as a substitute for the live 3D environment.
+- Hide existing defects without repairing or documenting them.
+
+---
+
+# FINAL DIRECTIVE
+
+IMPROVE THE EXISTING AI OFFICE FULL OFFICE VIEW.
+
+Make the entire office structurally precise, architecturally coherent, visually balanced, and more attractive.
+
+Use a true orthographic isometric camera without perspective taper.
+
+Provide an exact top-down rectangular view.
+
+Preserve all approved A3.2 coordinates and room dimensions.
+
+Repair missing Engineering walls and incorrect cutaway behavior.
+
+Restore the visible main office entrance.
+
+Replace the visually exhausting narrow-plank floors with the owner-approved elegant flooring system:
+
+- Warm oak parquet/herringbone Central Hub.
+- Warm greige stone circulation perimeter.
+- Restrained transition trim.
+- Calmer wooden floors in departments where safely supported.
+
+Improve global lighting, graphics, and voxel readability.
+
+Redesign Central Hub with:
+
+- A larger high-quality conference table.
+- 10 correctly sized meeting chairs.
+- A large elegant rug.
+- Rich but tasteful decorative elements.
+- Plants, lighting, meeting props, and entrance details.
+- Safe navigation and comfortable circulation.
+
+Prepare and implement a visual all-agent meeting demo using only existing verified actor assets and supported animation/nav systems.
+
+Keep one seat reserved for the Human Owner.
+
+Prevent flickering, duplicate surfaces, monitor orientation problems, shadow defects, and GLB export regressions.
+
+Preserve the modular architecture and production export standard.
+
+Perform measurable camera, geometry, rendering, meeting, export and regression checks.
+
+**DELIVER THE REFINED FULL OFFICE ENVIRONMENT AND VERIFIED MEETING DEMO CAPABILITIES, THEN STOP FOR OWNER APPROVAL.**

@@ -1,0 +1,1450 @@
+# AI OFFICE — MODULAR ROOM LAB V2
+## MASTER PROMPT: A3 FULL OFFICE FRAMEWORK + CEO EXECUTIVE BRAIN OFFICE
+### Incremental Development | Preserve PM Room | Production-Ready Asset Export
+
+# 0. YOUR ROLE
+
+You are a Senior Three.js Engineer, React Three Fiber Developer, Voxel Environment Artist, 3D Technical Director, Modular Level Designer, and Asset Pipeline Engineer.
+
+You are working inside the EXISTING Google AI Studio project:
+
+**AI Office — Modular Room Lab**
+
+This project already contains a completed and visually approved:
+
+**Module 01 — PM & Strategy Room (8×8)**
+
+It also includes:
+
+- Original Room-Native Boss PM character.
+- Working PM character animations.
+- Navigation and activity anchors.
+- Visual simulation controls.
+- Room GLB export.
+- Character GLB export.
+- JSON simulation configurations.
+- Camera controls.
+- Existing GLB import functionality.
+- Existing visual stability fixes.
+
+YOUR MISSION:
+
+1. Extend the existing application with a modular Room Selector.
+2. Create a Full Office Preview following the approved Master Layout A3.
+3. Reuse the existing PM Room without modifying its design.
+4. Build Module 02 — CEO Office / Executive Brain Command Center.
+5. Integrate CEO Office into Full Office Preview.
+6. Create production-compatible GLB and JSON export capabilities.
+7. Preserve the existing PM animations, simulation, and project functionality.
+
+This task is about VISUAL ASSET PRODUCTION.
+
+Do not implement the real AI Office backend.
+
+Do not rebuild the application.
+
+Do not replace the approved PM Room.
+
+---
+
+# 1. AUTHORITATIVE REFERENCES
+
+Three reference images are supplied:
+
+REFERENCE A — MASTER FLOOR PLAN A3
+
+This image is the authoritative source for:
+
+- Overall office geometry.
+- Room placement.
+- Room count.
+- Room dimensions.
+- Open Central Hub.
+- Corridor.
+- Entrance.
+- Outdoor terrace.
+- Modular alignment.
+
+REFERENCE B — ISOMETRIC OFFICE CONCEPT
+
+This image provides visual inspiration for:
+
+- Cutaway building presentation.
+- Room atmosphere.
+- Overall composition.
+- Interior density.
+- Warm voxel rendering.
+- Visual differences between departments.
+
+IMPORTANT:
+
+If Reference B shows additional rooms, lobby modules, knowledge rooms, or an inconsistent floor plan, IGNORE those layout differences.
+
+REFERENCE A takes priority for architecture.
+
+REFERENCE C — APPROVED PM ROOM SCREENSHOT
+
+This image defines the accepted visual quality:
+
+- Cozy handcrafted voxel styling.
+- Warm wooden floors.
+- Beige walls.
+- Crisp pixel-inspired geometry.
+- Detailed furniture.
+- Warm sunlight.
+- Soft shadows.
+- Natural color balance.
+- Small attractive office decorations.
+
+The new CEO Office must look like it belongs to the same game world.
+
+Do not reproduce the reference imagery as a flat image.
+
+Everything must remain genuine, rotatable 3D geometry.
+
+---
+
+# 2. NON-NEGOTIABLE PRESERVATION RULES
+
+Before making changes, inspect the current codebase.
+
+Identify all existing room geometry generators, character systems, camera controllers, simulation components, and exporters.
+
+Create a recoverable source checkpoint.
+
+PRESERVE:
+
+- Existing PM Room geometry.
+- PM Room scale.
+- Original materials and textures.
+- Existing furniture arrangements.
+- Existing windows and wall geometry.
+- Existing warm lighting style.
+- PM Room anchors.
+- Original Room-Native Boss PM.
+- Eleven existing PM animation actions.
+- Existing animation clips and procedural controllers.
+- Existing activity buttons.
+- Existing camera modes.
+- Original GLB import.
+- Original room and character export.
+- Existing UI functionality.
+
+DO NOT:
+
+- Rebuild the PM Room.
+- Generate another Boss PM.
+- Remove current animations.
+- Merge the PM character permanently into room geometry.
+- Replace the existing app shell.
+- Rename stable character IDs unnecessarily.
+- Change PM furniture positions.
+- Rewrite existing systems simply to add new components.
+
+Use additive, backward-compatible changes wherever possible.
+
+---
+
+# 3. APPLICATION ARCHITECTURE — TWO VIEWING MODES
+
+Extend the current interface with two modes:
+
+### MODE A — SINGLE ROOM
+
+Purpose:
+
+Detailed visual inspection, individual room development, character simulation, and asset export.
+
+Allow selecting a room using a dropdown.
+
+Initial entries:
+
+- PM & Strategy Room — READY
+- CEO Executive Brain Office — NEW
+- Research & Shared Brain — PLANNED
+- UI/UX Design Studio — PLANNED
+- Engineering — PLANNED
+- QA & Review — PLANNED
+- DevOps & AI Engine Hub — PLANNED
+
+For completed rooms, display the actual 3D scene.
+
+For planned rooms, display a clear placeholder or planning state.
+
+Do not generate incomplete permanent room geometry simply to fill the dropdown.
+
+PM Room must remain the default selected room on initial application load unless the current application already has a documented user selection preference.
+
+When PM Room is selected:
+
+- Original PM character appears.
+- PM animations remain available.
+- Existing simulation panel works.
+- Existing camera modes work.
+- Existing exports work.
+
+When CEO Room is selected:
+
+- Show the actual CEO Room geometry.
+- Show CEO Room controls and export options.
+- Do not automatically spawn a CEO character yet.
+- Do not show PM-specific animation controls as if they belong to CEO.
+
+### MODE B — FULL OFFICE PREVIEW
+
+Purpose:
+
+Display multiple room modules assembled into one permanent virtual office.
+
+The Full Office Preview should:
+
+- Show completed modules in their correct A3 locations.
+- Show unbuilt modules as simple labeled placeholders.
+- Display the open Central Collaboration Hub.
+- Show shared corridor geometry.
+- Show the main entrance.
+- Show the terrace.
+- Preserve consistent floor elevation.
+- Allow orbit, zoom, pan, and camera reset.
+- Allow clicking a room to inspect or open Single Room mode.
+
+Do not build the entire office interior in one procedural function.
+
+Use a modular OfficeAssembler architecture.
+
+Completed room modules must be reusable independently.
+
+---
+
+# 4. MASTER FLOOR PLAN A3 — EXACT GEOMETRY
+
+IMPORTANT:
+
+This section is a coordinate specification intended to eliminate ambiguity.
+
+Use the existing Three.js Y-up coordinate system.
+
+World axes:
+
+- +X = East.
+- -X = West.
+- +Z = North.
+- -Z = South.
+- +Y = Up.
+
+The complete office footprint is:
+
+WIDTH: 32 units.
+
+DEPTH: 26 units.
+
+Coordinate range:
+
+X = 0 to 32.
+
+Z = 0 to 26.
+
+Floor elevation: Y = 0.
+
+Each enclosed room occupies a base 8×8 module.
+
+There are exactly SEVEN enclosed office rooms.
+
+The Central Hub is NOT an enclosed room.
+
+The terrace is NOT an extra agent department.
+
+## 4.1 TOP ROW
+
+Top row occupies:
+
+Z = 18 to 26.
+
+WEST TO EAST:
+
+### ROOM 01 — RESEARCH
+
+Size: 8×8.
+
+Global origin: (0, 0, 18).
+
+X = 0..8.
+
+Z = 18..26.
+
+Status: PLANNED.
+
+### ROOM 02 — PM & STRATEGY
+
+Size: 8×8.
+
+Global origin: (8, 0, 18).
+
+X = 8..16.
+
+Z = 18..26.
+
+Status: COMPLETE / EXISTING ASSET.
+
+Use the real current PM Room.
+
+Do not remodel it.
+
+### ROOM 03 — CEO OFFICE
+
+Size: 8×8.
+
+Global origin: (16, 0, 18).
+
+X = 16..24.
+
+Z = 18..26.
+
+Status: BUILD IN THIS TASK.
+
+This room must sit immediately EAST of the PM Room.
+
+### ROOM 04 — UI/UX STUDIO
+
+Size: 8×8.
+
+Global origin: (24, 0, 18).
+
+X = 24..32.
+
+Z = 18..26.
+
+Status: PLANNED.
+
+## 4.2 SHARED CORRIDOR
+
+The connecting corridor occupies:
+
+X = 0..32.
+
+Z = 16..18.
+
+Width in the north-south direction: 2 units.
+
+This corridor runs in front of all four upper rooms.
+
+It must visually and physically connect to the Central Hub.
+
+Do not obstruct the walkway with unnecessary furniture.
+
+## 4.3 LEFT SIDE
+
+### ROOM 05 — ENGINEERING
+
+Size: 8×8.
+
+Global origin: (0, 0, 8).
+
+X = 0..8.
+
+Z = 8..16.
+
+Status: PLANNED.
+
+Future workstations:
+
+- Frontend.
+- Backend.
+- Database.
+
+### ROOM 07 — DEVOPS & AI ENGINE
+
+Size: 8×8.
+
+Global origin: (0, 0, 0).
+
+X = 0..8.
+
+Z = 0..8.
+
+Status: PLANNED.
+
+## 4.4 RIGHT SIDE
+
+### ROOM 06 — QA & REVIEW
+
+Size: 8×8.
+
+Global origin: (24, 0, 8).
+
+X = 24..32.
+
+Z = 8..16.
+
+Status: PLANNED.
+
+### OUTDOOR TERRACE
+
+Size: 8×8.
+
+Global origin: (24, 0, 0).
+
+X = 24..32.
+
+Z = 0..8.
+
+Status: SIMPLE COMMON-AREA PLACEHOLDER.
+
+This is an open terrace, not another enclosed room.
+
+Do not create an additional permanent department here.
+
+## 4.5 CENTRAL COLLABORATION HUB
+
+CENTRAL HUB:
+
+X = 8..24.
+
+Z = 0..16.
+
+Size: 16×16.
+
+This is an OPEN shared office area.
+
+No surrounding enclosed room walls.
+
+The Hub contains an accessible open meeting area and space for agent movement.
+
+Future uses:
+
+- Team meetings.
+- Cross-department discussions.
+- Project briefings.
+- Collaborative planning.
+- Informal agent interactions.
+
+Do not replace the Central Hub with an enclosed 8×8 room.
+
+Do not create a second lobby room in the middle.
+
+## 4.6 MAIN ENTRANCE
+
+The main entrance is on the SOUTH side of Central Hub.
+
+Centered near:
+
+X = 16.
+
+Z = 0.
+
+The entrance must have a clearly readable access opening.
+
+Do not close the main entrance with an exterior wall.
+
+---
+
+# 5. MODULE PLACEMENT AND TRANSFORM RULES
+
+Use module-local coordinates for exported room assets.
+
+Each 8×8 enclosed room must keep its own local origin at:
+
+(0, 0, 0)
+
+Do not permanently bake global A3 coordinates into individual room GLBs.
+
+Instead, use wrapper transforms in Full Office Preview.
+
+Example:
+
+PM Room local origin: (0, 0, 0).
+
+PM Room global placement: (8, 0, 18).
+
+CEO Room local origin: (0, 0, 0).
+
+CEO Room global placement: (16, 0, 18).
+
+This allows the same room GLB to be reused elsewhere if the office layout changes.
+
+### IMPORTANT — NO RECENTERING
+
+When loading an exported room GLB:
+
+- Preserve its authored local origin.
+- Preserve its source scale.
+- Do not auto-center its vertices.
+- Do not normalize its bounding box destructively.
+- Do not rotate the module to match a screenshot unless explicitly required by verified metadata.
+
+Read room transforms from the layout configuration.
+
+---
+
+# 6. PM ROOM CONNECTOR COMPATIBILITY
+
+The existing PM Room has previously reported these local connectors:
+
+CONNECTOR_A_EAST:
+
+Position: [8, 0, 4].
+
+CONNECTOR_B_SOUTH:
+
+Position: [4, 0, 0].
+
+These are expected metadata values, not proof of a correctly cut physical doorway.
+
+Inspect actual PM Room geometry and source code before using them.
+
+Under A3 placement at [8, 0, 18], the expected global positions are:
+
+EAST: [16, 0, 22].
+
+SOUTH: [12, 0, 18].
+
+### SOUTH ACCESS
+
+The southern connector should lead toward the shared upper corridor.
+
+### EAST ACCESS
+
+If the eastern connector is physically valid, it may support direct PM-to-CEO access.
+
+The CEO's corresponding WEST connector would be:
+
+Local: [0, 0, 4].
+
+Global: [16, 0, 22].
+
+However:
+
+Do not cut, move, or reconstruct the PM Room walls just to create direct access.
+
+If the original geometry does not support this doorway safely, preserve the existing room and use the southern corridor route.
+
+Report the actual connector compatibility.
+
+CEO Room must independently provide an accessible SOUTH connector for the common corridor.
+
+Do not invent a successfully connected doorway when actual geometry blocks passage.
+
+---
+
+# 7. CORRIDOR, HUB AND FLOOR CONSTRUCTION
+
+Create shared office common areas separately from enclosed room roots.
+
+Suggested structure:
+
+OFFICE_A3_ROOT
+- ROOM_MODULES
+- SHARED_CORRIDOR_ROOT
+- CENTRAL_HUB_ROOT
+- TERRACE_ROOT
+- ENTRANCE_ROOT
+- OFFICE_HELPERS
+
+Do not permanently merge all room geometry.
+
+### FLOOR REQUIREMENTS
+
+- All modules share a consistent floor height.
+- Each module retains the correct authored local origin.
+- Shared floor areas fill only their assigned regions.
+- Avoid duplicate coplanar floor surfaces.
+- Avoid cracks and overlapping slabs at module boundaries.
+- Preserve the room-specific flooring where it has already been approved.
+- Use visually compatible transitions between different floor materials.
+
+The PM Room's existing wood floor must not be overwritten by a giant office-wide floor slab.
+
+### SHARED HUB
+
+Create a simple but attractive shared-area scaffold.
+
+Suggested temporary visual elements:
+
+- Consistent warm floor.
+- Central meeting table.
+- A few chairs.
+- Small indoor plants.
+- Clean walking paths.
+- Simple meeting-area boundary decoration.
+
+Do not overdesign the Hub during this phase.
+
+Its detailed production design will be handled later.
+
+For now, its primary role is to validate the office layout and connection between modules.
+
+---
+
+# 8. NEW MODULE 02 — CEO EXECUTIVE BRAIN OFFICE
+
+Create a fully furnished 8×8 room.
+
+Room ID:
+
+`AI_OFFICE_ROOM_CEO_v1`
+
+Display Name:
+
+**CEO Office — Executive Brain Command Center**
+
+The CEO Office is the visual headquarters for executive oversight, organizational reporting, and strategic communication.
+
+It must look visually distinct from the PM Room while sharing the same art direction.
+
+## 8.1 ART DIRECTION
+
+Style:
+
+**Premium Cozy Handcrafted Isometric Voxel Art**
+
+Use the existing PM Room as the quality benchmark.
+
+Visual character:
+
+- Premium but warm.
+- Executive.
+- Intelligent.
+- Organized.
+- Cozy.
+- Professional.
+- Strategically important.
+
+Do not make the room look like a futuristic spaceship or a neon science-fiction control center.
+
+This is an executive office inside the same cozy voxel world.
+
+## 8.2 COLOR PALETTE
+
+Recommended palette:
+
+- Cream and warm beige walls.
+- Warm oak floor.
+- Walnut furniture.
+- Muted dark green.
+- Soft brass/gold details.
+- Warm white lighting.
+- Muted charcoal electronics.
+- Small restrained teal or amber interface accents.
+
+Avoid:
+
+- Excessive neon.
+- Blue glowing holograms everywhere.
+- Glossy plastic furniture.
+- Photorealistic marble and glass overload.
+- Generic low-poly primitive boxes.
+- Empty oversized surfaces.
+
+The final room should have the same handcrafted detail density as the PM Room.
+
+---
+
+# 9. CEO ROOM — REQUIRED INTERIOR FURNITURE
+
+## A. EXECUTIVE DESK
+
+A premium walnut executive desk.
+
+Include:
+
+- Layered desk geometry.
+- Drawers.
+- Distinct handles.
+- Writing surface.
+- Keyboard.
+- Mouse.
+- Documents.
+- Elegant desk lamp.
+- Small decorative accessories.
+
+The desk must be a genuine detailed voxel model.
+
+## B. EXECUTIVE COMPUTER STATION
+
+Provide a workstation with:
+
+- Main monitor.
+- Secondary executive dashboard display where suitable.
+- Compact keyboard.
+- Mouse.
+- Organized desk cables or small cable-management details.
+- Abstract information panels.
+
+Screens may display simulated:
+
+- Project status.
+- Milestone summary.
+- Pending approvals.
+- Department overview.
+- Executive reporting queue.
+
+Do not connect these displays to real backend systems yet.
+
+## C. EXECUTIVE BRAIN CONSOLE
+
+This is the most distinctive part of the CEO Room.
+
+Create a carefully designed voxel information console or wall-mounted strategic display.
+
+It represents the Executive Brain concept.
+
+Suggested panels:
+
+- Organization Overview.
+- Active Projects.
+- PM Reports.
+- Strategic Decisions.
+- Pending Approval.
+- Telegram Reporting Status.
+- Memory/Knowledge Overview.
+
+IMPORTANT:
+
+The console only VISUALIZES data.
+
+It is not the actual database, memory service, or state store.
+
+Future real data will come from the AI Office backend.
+
+The Brain Console should feel advanced but remain harmonious with the cozy office.
+
+Prefer tasteful screens and physical display furniture over huge glowing sci-fi holograms.
+
+## D. REPORT REVIEW AREA
+
+Create a small area for reviewing reports from PM.
+
+Include:
+
+- Compact discussion table or guest desk.
+- One or two guest chairs.
+- Document trays.
+- Report folders.
+- A small display or folder shelf.
+
+This area will later support the visual simulation of PM visiting CEO to deliver a consolidated report.
+
+## E. BOOKSHELF / STRATEGY CABINET
+
+Add a detailed storage cabinet containing:
+
+- Business and strategy books.
+- Report binders.
+- Small document archives.
+- Awards or decorative objects.
+- Technical reference items where appropriate.
+
+Ensure geometric detail is deliberate and readable.
+
+Avoid flickering or overlapping panels.
+
+## F. WALL DESIGN
+
+Use the same room architecture language as PM Room.
+
+Include:
+
+- Warm beige walls.
+- Wooden trims.
+- A window arrangement compatible with the office layout.
+- Small wall art.
+- Executive planning board.
+- Elegant framed graphics.
+- Appropriate architectural details.
+
+Do not blindly copy PM's exact furniture layout.
+
+## G. COZY DECORATION
+
+Include tasteful details:
+
+- Indoor plants.
+- Small rug.
+- Desk accessories.
+- Warm accent lighting.
+- Coffee cup.
+- Small storage boxes.
+- Wall decor.
+- Small office clock where appropriate.
+
+The CEO Room should feel lived-in, not empty.
+
+---
+
+# 10. CEO ROOM NAVIGATION PLANNING
+
+Do not create the CEO character in this task.
+
+However, prepare the room for future character simulation.
+
+Create editable anchor definitions:
+
+- CEO_ROOM_SPAWN.
+- CEO_DESK_APPROACH.
+- CEO_DESK_WORK.
+- CEO_CHAIR_POSITION.
+- CEO_BRAIN_CONSOLE.
+- CEO_REPORT_RECEPTION.
+- CEO_DISCUSSION_AREA.
+- CEO_WINDOW_VIEW.
+- CEO_ROOM_IDLE.
+- CEO_SOUTH_EXIT.
+- CEO_WEST_CONNECTION (only if physically implemented).
+
+Each anchor should have:
+
+- ID.
+- Local position.
+- Facing direction.
+- Intended activity.
+- Posture.
+- Optional interaction object.
+- Optional approach anchor.
+
+Do not fabricate final anchor coordinates before furniture construction.
+
+Derive and validate them from actual room geometry.
+
+All anchors must be stored in LOCAL CEO Room coordinates.
+
+Do not permanently embed these global positions into the room model.
+
+---
+
+# 11. CEO FUTURE BEHAVIOR CONTRACT
+
+Prepare metadata for future executive simulation.
+
+Possible future actions:
+
+- Idle.
+- Walk to Desk.
+- Review PM Report.
+- Inspect Executive Brain.
+- Review Project Status.
+- Prepare Executive Summary.
+- Discuss with PM.
+- Review Pending Approval.
+- Prepare Telegram Report.
+- Report Sent.
+- Waiting for Owner Decision.
+
+These are FUTURE action definitions only.
+
+Do not implement the full animations yet.
+
+Do not invent a completed CEO character.
+
+Do not claim these actions are already executable.
+
+### AUTHORITY MODEL
+
+The human user remains the real Owner / CEO.
+
+The future CEO Office character represents an Executive Assistant / AI Chief of Staff.
+
+The character must not be designed as an autonomous agent with unrestricted authority.
+
+The future PM-to-CEO-to-Telegram workflow will be implemented in the main AI Office system.
+
+Do not implement real Telegram integration here.
+
+---
+
+# 12. TEMPORARY DEMO SCREEN DATA
+
+For CEO Room visualization, use fictional but clearly labeled demo content.
+
+Examples:
+
+- Active Projects: 3.
+- PM Reports: 2.
+- Pending Approvals: 1.
+- Weekly Summary: Prepared.
+- Telegram Report: Demo / Not Sent.
+
+All data must be marked as:
+
+`DEMO DATA`
+
+Do not claim real AI work is occurring.
+
+Do not store important runtime state only in visual mesh components.
+
+Future production data bindings will be managed separately.
+
+---
+
+# 13. CAMERA SYSTEM
+
+Preserve existing camera functionality.
+
+Support:
+
+- Isometric.
+- Front.
+- Back.
+- Left.
+- Right.
+- Top.
+- Full 360-degree orbit.
+- Pan.
+- Zoom.
+- Reset Camera.
+
+### SINGLE ROOM CAMERA
+
+Automatically frame the selected room.
+
+Preserve the approved PM camera framing.
+
+CEO camera must show the entire furnished room without cropping essential furniture.
+
+### FULL OFFICE CAMERA
+
+Provide a separate camera preset:
+
+**Full Office Overview**
+
+Frame the entire A3 footprint.
+
+Allow orbit and zoom without clipping large parts of the scene.
+
+Offer:
+
+- Overview.
+- Focus PM.
+- Focus CEO.
+- Return to Full Office.
+
+Do not automatically spin the camera.
+
+Do not rotate rooms to create different camera views.
+
+---
+
+# 14. PREVENT Z-FIGHTING AND RENDERING ARTIFACTS
+
+The previous PM Room experienced overlapping geometry and flickering problems.
+
+Apply those lessons to all new geometry.
+
+Avoid:
+
+- Coplanar overlapping faces.
+- Duplicate wall panels.
+- Duplicate floors.
+- Intersecting decorative surfaces.
+- Unnecessary transparent materials.
+- Extreme camera depth ranges.
+- Duplicate renderer meshes.
+
+Use carefully designed geometry and appropriate material settings.
+
+Only use polygon offset where justified.
+
+Do not globally disable depth testing.
+
+Do not globally enable polygon offset.
+
+Match the established crisp pixel-art rendering style.
+
+Use appropriate texture filtering for pixel-authored textures without damaging materials that need different sampling.
+
+Ensure the exported GLB retains stable geometry independent of preview-only postprocessing.
+
+---
+
+# 15. ROOM SELECTOR INTERFACE
+
+Preserve the current application UI.
+
+Add a compact control near existing room/camera controls.
+
+Suggested title:
+
+**Office View**
+
+Controls:
+
+- Single Room.
+- Full Office.
+
+When Single Room is selected:
+
+Show:
+
+**Pilih Ruangan**
+
+Dropdown:
+
+- PM & Strategy.
+- CEO Executive Brain.
+- Research.
+- UI/UX Studio.
+- Engineering.
+- QA & Review.
+- DevOps & AI Engine.
+
+Indicate current asset state:
+
+- READY.
+- IN DEVELOPMENT.
+- PLANNED.
+
+Do not make unavailable rooms appear fully completed.
+
+When Full Office is selected:
+
+- Hide room-specific editing controls unless needed.
+- Show office overview.
+- Display completed and planned modules.
+- Allow selecting a completed room.
+
+Keep the UI clean.
+
+Do not build the final AI Office productivity dashboard yet.
+
+Do not add project-management sidebars, model-engine controls, or live agent orchestration.
+
+---
+
+# 16. ASSET REGISTRY
+
+Add a simple registry describing all office modules.
+
+Suggested fields:
+
+- module_id.
+- display_name.
+- size.
+- local_origin.
+- global_offset.
+- asset_status.
+- asset_path.
+- manifest_path.
+- anchor_path.
+- preview_path.
+- room_type.
+- connector_definitions.
+
+Use one stable module ID per room.
+
+Do not couple room IDs to UI labels.
+
+The OfficeAssembler must use metadata rather than hardcoded mesh coordinates scattered across the application.
+
+Support adding future room assets by registering new modules.
+
+Do not require rewriting the entire OfficeAssembler when the UI/UX Room is eventually completed.
+
+---
+
+# 17. PRODUCTION EXPORT STANDARD
+
+All new assets must be compatible with the future AI Work Project.
+
+Use the established:
+
+**AI Office Asset Standard V1**
+
+## CEO ROOM EXPORT
+
+Provide:
+
+`ceo_room.glb`
+
+`ceo_room.manifest.json`
+
+`ceo_room.anchors.json`
+
+`ceo_room.preview.png`
+
+`ceo_room.behavior.json` (future behavior contract only)
+
+The room GLB must include permanent room geometry, furniture, and materials.
+
+Exclude:
+
+- Temporary debug markers.
+- Camera.
+- Editor controls.
+- Preview lights.
+- Future CEO character.
+- Navigation helper meshes.
+- Temporary status labels.
+
+## PM ROOM EXPORT
+
+Preserve the existing production export:
+
+`pm_room.glb`
+
+Do not replace it with a combined office scene.
+
+Keep the Boss PM character independent.
+
+Keep its animation and behavior metadata intact.
+
+## OFFICE LAYOUT EXPORT
+
+Add:
+
+`office-layout-a3.json`
+
+It should contain:
+
+- Layout ID.
+- Coordinate system.
+- 32×26 footprint.
+- All seven enclosed room slots.
+- Local room origins.
+- Global room offsets.
+- Shared corridor bounds.
+- Central Hub bounds.
+- Terrace bounds.
+- Main entrance.
+- Room connector references.
+- Module readiness status.
+- Asset references.
+
+## COMMON AREA EXPORT
+
+Where supported, provide independently reusable common-area assets for:
+
+- Central Hub.
+- Shared Corridor.
+- Entrance.
+- Terrace.
+
+These assets must remain separate from room GLBs.
+
+## SOURCE BACKUP
+
+Preserve the existing project source.
+
+Provide or document the source ZIP export workflow.
+
+Do not assume a GLB automatically preserves React components, JavaScript animation controllers, or application state machines.
+
+---
+
+# 18. GLB EXPORT AND REIMPORT VALIDATION
+
+After exporting the new CEO Room GLB:
+
+Reimport it using an independent GLTFLoader test.
+
+Verify:
+
+- Geometry is present.
+- Materials survive export.
+- Texture appearance is acceptable.
+- Room dimensions remain 8×8.
+- Local origin is preserved.
+- Furniture remains in correct positions.
+- No unintended character is embedded.
+- No essential permanent geometry is missing.
+- Camera can orbit around the imported model.
+- There are no obvious flickering surfaces.
+
+Also verify that the original PM Room GLB still exports and reimports correctly.
+
+Do not assume export success simply because a file download was triggered.
+
+---
+
+# 19. FULL OFFICE ASSEMBLY VALIDATION
+
+Test the real completed PM and CEO modules side by side.
+
+Expected global room origins:
+
+PM: [8, 0, 18].
+
+CEO: [16, 0, 18].
+
+Verify:
+
+- Both rooms occupy the intended positions.
+- There is no unexplained gap between modules.
+- Shared boundaries do not create visible z-fighting.
+- Floors align.
+- Walls do not visibly double or overlap.
+- Camera views remain correct.
+- Actual doorways match the connector contract.
+- PM Room appearance is unchanged.
+
+If shared walls overlap, use a clear non-destructive assembly strategy.
+
+Possible approaches:
+
+- Connector-specific wall visibility.
+- Removable wall caps.
+- Shared-wall ownership rules.
+- Authored doorway openings.
+
+Do not destructively edit the PM Room just to make assembly easier.
+
+Any assembly-only visibility changes must not alter the original exported room asset.
+
+---
+
+# 20. PERFORMANCE AND STABILITY
+
+Keep the project responsive.
+
+Recommended approach:
+
+- Load only the selected detailed room in Single Room mode.
+- Reuse or cache completed assets appropriately.
+- Use simplified placeholders for unfinished rooms.
+- Avoid unnecessary duplicate room rendering.
+- Dispose unused temporary geometries and materials safely.
+- Avoid repeatedly rebuilding all room meshes when switching rooms.
+- Keep simulation update loops separate from the office overview.
+- Maintain stable camera and controls.
+
+Full Office Preview should work smoothly even before every room is complete.
+
+Do not add an unnecessary game engine dependency if the existing Three.js stack can handle the job.
+
+---
+
+# 21. IMPLEMENTATION ORDER
+
+Implement in the following sequence.
+
+### PHASE A — SOURCE INSPECTION AND CHECKPOINT
+
+Inspect the existing Modular Room Lab.
+
+Verify PM Room, PM character, animation system, and export systems.
+
+Create a recoverable checkpoint.
+
+### PHASE B — ROOM SELECTOR
+
+Add Single Room and Full Office modes.
+
+Keep PM Room as default.
+
+Verify original PM simulation is unaffected.
+
+### PHASE C — A3 OFFICE ASSEMBLER
+
+Build the metadata-driven 32×26 office scaffold.
+
+Place the PM Room at the correct global offset.
+
+Create placeholders for unfinished rooms.
+
+Build simple common-area geometry.
+
+### PHASE D — FULL OFFICE CAMERA AND SELECTION
+
+Allow office overview and selecting room modules.
+
+Verify camera controls.
+
+### PHASE E — CEO ROOM GEOMETRY
+
+Build the new 8×8 CEO Office.
+
+Prioritize architectural accuracy, furniture quality, and reference-matched materials.
+
+### PHASE F — CEO ROOM VISUAL REVIEW
+
+Check:
+
+- Default isometric view.
+- Front view.
+- Side views.
+- Rear view.
+- Top view.
+- Furniture details.
+- Materials.
+- Lighting.
+- Shadows.
+- Room scale.
+- Connector compatibility.
+
+Refine major visual discrepancies.
+
+### PHASE G — ADD CEO ROOM TO FULL OFFICE
+
+Replace CEO placeholder with actual module.
+
+Test adjacency with PM.
+
+Do not modify PM Room.
+
+### PHASE H — EXPORT
+
+Create CEO GLB, JSON manifests, anchors, preview, and office-layout-a3.json.
+
+Keep original PM exports intact.
+
+### PHASE I — REGRESSION AND VALIDATION
+
+Test all previously working features.
+
+Verify export and reimport.
+
+Fix critical bugs.
+
+STOP BEFORE CREATING THE CEO CHARACTER.
+
+The owner will review and approve the CEO Room design before character and animation development begins.
+
+---
+
+# 22. ACCEPTANCE CRITERIA
+
+## Existing PM Room
+
+[ ] PM Room design unchanged.
+
+[ ] Original Boss PM visible.
+
+[ ] All 11 existing PM demo actions remain available.
+
+[ ] Existing navigation works.
+
+[ ] Existing camera works.
+
+[ ] Existing GLB import works.
+
+[ ] Existing room export works.
+
+[ ] Existing character export works.
+
+## Room Selector
+
+[ ] Single Room mode works.
+
+[ ] Full Office mode works.
+
+[ ] PM Room can be selected.
+
+[ ] CEO Room can be selected.
+
+[ ] Planned rooms show honest placeholders.
+
+[ ] Switching modes does not break the viewer.
+
+## Full Office
+
+[ ] Footprint follows 32×26 units.
+
+[ ] Seven enclosed 8×8 room slots exist.
+
+[ ] Research, PM, CEO, UI/UX occupy the upper row in that order.
+
+[ ] Engineering and DevOps occupy the left side.
+
+[ ] QA occupies the right side.
+
+[ ] Central Hub remains open, 16×16.
+
+[ ] Shared upper corridor has 2-unit width.
+
+[ ] Right-lower terrace remains an open area.
+
+[ ] Main entrance is accessible.
+
+[ ] Office overview camera works.
+
+[ ] No major duplicated-floor or shared-wall flicker exists.
+
+## CEO Office
+
+[ ] CEO Room is exactly 8×8.
+
+[ ] CEO Room uses the same visual quality standard as PM Room.
+
+[ ] Executive desk is detailed.
+
+[ ] Executive Brain Console exists.
+
+[ ] Report review area exists.
+
+[ ] Furniture is well arranged.
+
+[ ] Windows, walls, lighting and flooring match the office universe.
+
+[ ] Walkable paths remain available.
+
+[ ] CEO room connectors are defined.
+
+[ ] No permanent CEO character is added yet.
+
+## Export
+
+[ ] CEO GLB export works.
+
+[ ] CEO GLB reimport works.
+
+[ ] CEO manifest is valid.
+
+[ ] CEO anchors are valid.
+
+[ ] CEO preview PNG exists.
+
+[ ] Office layout JSON exists.
+
+[ ] PM exports remain valid.
+
+[ ] Independent room assets remain separate.
+
+---
+
+# 23. REQUIRED FINAL REPORT
+
+After implementation, provide:
+
+1. Source files added or modified.
+2. Confirmation that PM Room was preserved.
+3. Confirmation that existing PM animations still work.
+4. Room Selector implementation status.
+5. Full Office A3 scaffold status.
+6. Correct room coordinates and dimensions.
+7. CEO Room visual features completed.
+8. Actual connector positions.
+9. Any PM-to-CEO adjacency issues.
+10. Exported filenames.
+11. GLB reimport test results.
+12. Known remaining issues.
+13. Recommended next development phase.
+
+Do not invent successful test results.
+
+Distinguish completed functionality from placeholders.
+
+---
+
+# FINAL DIRECTIVE
+
+Extend the EXISTING AI Office Modular Room Lab into a modular multi-room environment builder.
+
+Preserve the completed PM Room and its original working Boss PM simulation.
+
+Implement a Room Selector with Single Room and Full Office Preview modes.
+
+Use Master Layout A3 as the exact architectural specification.
+
+Create the correct 32×26 office footprint with seven enclosed 8×8 rooms, a 2-unit upper corridor, an open 16×16 Central Hub, a lower-right terrace, and a main entrance.
+
+Build Module 02 — CEO Executive Brain Office as a richly detailed, premium cozy voxel environment matching the existing PM Room quality.
+
+Integrate PM and CEO into the office preview without destructively changing the original modules.
+
+Implement production-compatible GLB, JSON, and PNG exports with genuine reimport validation.
+
+Do not build the real AI Office backend.
+
+Do not create the CEO character yet.
+
+Do not generate other finished department rooms.
+
+**COMPLETE THE A3 OFFICE FRAMEWORK AND CEO ROOM VISUAL PRODUCTION, THEN STOP FOR OWNER APPROVAL.**

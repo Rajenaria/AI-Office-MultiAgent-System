@@ -1,0 +1,1843 @@
+# AI OFFICE — RESEARCH PROFESSOR CHARACTER PRODUCTION V1
+## Module 05 — Research & Shared Brain Agent
+### Premium Voxel Modeling | Research Animations | Shared Brain Demo | Production Asset Export
+### EXISTING GOOGLE AI STUDIO MODULAR ROOM LAB — DO NOT REBUILD
+
+---
+
+# 0. ROLE AND MISSION
+
+You are a Senior Three.js Character Technical Artist, Voxel Character Designer, 3D Animation Engineer, React/TypeScript Developer, Character Systems Architect, and Production GLB Pipeline Specialist.
+
+You are working inside the EXISTING:
+
+**AI Office — Modular Room Lab**
+
+The application already contains multiple office modules, animated characters, room selectors, camera controls, simulation systems, and production export tools.
+
+Your mission is to create ONE new character:
+
+**Research Professor — Senior Research & Shared Brain Agent**
+
+The character must be based on the APPROVED Research Professor character reference sheet.
+
+Required production scope:
+
+1. Create the Research Professor as a genuine 3D voxel character.
+2. Match the existing Room-Native character visual style.
+3. Faithfully reproduce the distinctive white layered hairstyle.
+4. Model the recognizable professor face, glasses, and facial hair.
+5. Create the academic outfit and Shared Brain backpack.
+6. Implement genuine research-specific animations.
+7. Implement lightweight facial expressions.
+8. Prepare contextual research accessories.
+9. Integrate the character into the existing Research Room.
+10. Connect actions to verified room-local anchors.
+11. Provide a dedicated demo simulation panel.
+12. Prepare future backend-driven state compatibility.
+13. Export a standalone GLB with real animation clips.
+14. Export compatible behavior and manifest JSON files.
+15. Independently reimport and validate the actual GLB.
+16. Preserve all previously completed assets and systems.
+
+This is a VISUAL CHARACTER PRODUCTION task.
+
+Do not implement the real Shared Brain backend.
+
+Do not rebuild Research Room.
+
+Do not modify unrelated assets.
+
+---
+
+# 1. STRICT BASELINE PROTECTION
+
+Before implementation:
+
+1. Inspect the current project source.
+2. Locate the existing character systems.
+3. Locate the Research Room and its actual anchor configuration.
+4. Inspect the current animation and exporter infrastructure.
+5. Create a recoverable source checkpoint.
+6. Record the current stable character and room IDs.
+
+Preserve all approved assets.
+
+## EXISTING ROOMS
+
+- PM & Strategy Room.
+- CEO Executive Brain Command Center.
+- UI/UX Design Studio.
+- Engineering & Development Studio.
+- Research & Shared Brain Room.
+
+Do not modify their:
+
+- Geometry.
+- Furniture.
+- Walls.
+- Floors.
+- Windows.
+- Doorways.
+- Lighting.
+- Material definitions.
+- Permanent decorations.
+- Validated export packages.
+
+## EXISTING CHARACTERS
+
+Preserve:
+
+- Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer.
+- Backend Developer.
+- Database Developer.
+
+Do not alter their geometry, hairstyles, animations, outfits, expressions, or behavior contracts.
+
+## CORE APPLICATION SYSTEMS
+
+Preserve:
+
+- Single Room.
+- Full Office.
+- Room Selector.
+- OfficeAssembler.
+- Master Layout A3.1.
+- Existing cameras.
+- Character selection.
+- Character simulation controls.
+- GLB Import.
+- GLB Export.
+- JSON asset manifests.
+- Existing source backup workflow.
+
+The owner has deferred remaining Full Office camera/layout visual corrections.
+
+DO NOT attempt to repair them in this task.
+
+If Research Room or its expected source is absent, report the missing prerequisite rather than silently generating a replacement room.
+
+---
+
+# 2. OFFICIAL CHARACTER IDENTITY
+
+Character ID:
+
+`research_professor_agent`
+
+Display Name:
+
+`Research Professor`
+
+Full Role:
+
+`Senior Research & Shared Brain Specialist`
+
+Department:
+
+`Research & Knowledge`
+
+Compatible Room:
+
+`AI_OFFICE_ROOM_RESEARCH_v1`
+
+Primary responsibilities represented visually:
+
+- Researching information.
+- Reading reference materials.
+- Comparing sources.
+- Reviewing evidence.
+- Organizing research findings.
+- Investigating documentation.
+- Exploring knowledge relationships.
+- Consulting Shared Brain information.
+- Summarizing findings.
+- Preparing research reports.
+- Presenting research results.
+- Supporting other departments with knowledge and references.
+
+The character is an academic research and knowledge specialist.
+
+Do not implement it as the real database, memory service, or autonomous organizational authority.
+
+---
+
+# 3. AUTHORITATIVE CHARACTER REFERENCES
+
+## REFERENCE A — APPROVED RESEARCH PROFESSOR CHARACTER SHEET
+
+The owner provides a full voxel Research Professor character reference.
+
+It includes:
+
+- Main character appearance.
+- Eight-direction turnaround.
+- Facial expressions.
+- Research activities.
+- Accessories.
+- Workstation concepts.
+- Outfit variations.
+
+This reference determines the character's identity.
+
+Distinctive features:
+
+- Large voluminous white voxel hairstyle.
+- Thick, intentionally stepped hair clusters.
+- Slight lavender-gray shading in the hair.
+- Thick black rectangular glasses.
+- Warm light-beige face.
+- White eyebrows.
+- Short white moustache and beard.
+- Friendly senior academic appearance.
+- Cream/off-white laboratory or academic coat.
+- Dark vest or formal inner clothing.
+- White shirt.
+- Red or burgundy tie.
+- Dark trousers.
+- Brown formal shoes.
+- Dark technical backpack.
+- Green illuminated-looking Shared Brain symbol on the backpack, with restrained glow or color accents.
+- Scholarly research book or reference tablet.
+
+The character must look recognizable in every turnaround direction.
+
+## REFERENCE B — EXISTING ROOM-NATIVE CHARACTERS
+
+Inspect actual character assets already used inside the Modular Room Lab.
+
+Use them as the technical style baseline for:
+
+- Character height.
+- Head-to-body proportions.
+- Torso dimensions.
+- Arm and leg proportions.
+- Voxel mesh construction.
+- Material roughness.
+- Lighting appearance.
+- Facial geometry density.
+- Rig hierarchy.
+- Animation controllers.
+- Export conventions.
+
+Do not generate a photorealistic model.
+
+Do not generate a smooth Pixar-like character.
+
+Do not create a character with a different voxel scale from existing agents.
+
+## REFERENCE C — RESEARCH & SHARED BRAIN ROOM
+
+Use the actual Research Room for:
+
+- Environmental lighting.
+- Workstation proportions.
+- Character positioning.
+- Walking space.
+- Bookshelf access.
+- Reading table alignment.
+- Knowledge Atlas position.
+- Door access.
+
+---
+
+# 4. STYLE CONSISTENCY — NON-NEGOTIABLE
+
+Target style:
+
+**Premium Cozy Handcrafted Room-Native Voxel Character**
+
+Requirements:
+
+- Compact stylized anatomy.
+- Purposeful block geometry.
+- Crisp readable silhouettes.
+- Matte materials.
+- Consistent voxel detail.
+- Warm facial rendering.
+- Clean clothing geometry.
+- Simple facial expressions.
+- Compatible lighting.
+- Appropriate room-scale proportions.
+
+The Professor should have a stronger and more distinctive silhouette than most characters because of the large white hairstyle.
+
+However, the hairstyle must not make the character look disproportionately gigantic.
+
+Maintain the existing AI Office technical style.
+
+The result should look as though the same 3D production pipeline built all office characters.
+
+---
+
+# 5. CRITICAL PRIORITY — PROFESSOR HAIRSTYLE
+
+THIS IS THE MOST IMPORTANT VISUAL FEATURE.
+
+The Professor's hairstyle must NOT be a single white rectangular cube.
+
+It must be a layered, voluminous, handcrafted voxel hairstyle closely following the approved reference.
+
+## 5.1 Overall silhouette
+
+Create:
+
+- Large upper hair volume.
+- Thick stepped voxel clusters.
+- Slightly irregular top silhouette.
+- Side volume around both temples.
+- Distinctive front hair shape.
+- Full rear hair volume.
+- Gentle geometric taper around the back and lower sides.
+
+The hair should look:
+
+- Soft in overall silhouette.
+- Complex in geometry.
+- Carefully sculpted.
+- Academic and mature.
+- Distinctive.
+- Consistent with the voxel world.
+
+The hair must not resemble a perfectly round cotton ball.
+
+It must not resemble white foam made from random cubes.
+
+It should have intentional structure.
+
+## 5.2 Hair hierarchy
+
+Use meaningful hair groups compatible with the current rig.
+
+Suggested:
+
+- Hair_Base
+- Hair_Crown
+- Hair_Front_Layers
+- Hair_Left_Side
+- Hair_Right_Side
+- Hair_Back_Upper
+- Hair_Back_Lower
+- Hair_Temple_Details
+
+Adapt naming to actual character conventions.
+
+Create coherent geometry rather than arbitrary duplicated blocks.
+
+## 5.3 Front hairstyle
+
+The front view should have:
+
+- Several large stepped hair clusters.
+- Slight asymmetry.
+- Visible forehead framing.
+- Clear eyebrow space.
+- No hair blocking the glasses.
+- A recognizable high-volume senior-professor silhouette.
+
+## 5.4 Side hairstyle
+
+From the sides:
+
+- Preserve large hair volume.
+- Show layered construction.
+- Avoid a flat rectangular side wall.
+- Ensure hair does not intersect the ears.
+- Maintain coherent connection to rear volume.
+
+## 5.5 Rear hairstyle
+
+The rear view must look fully modeled.
+
+Include:
+
+- Multiple thick voxel layers.
+- Upper volume.
+- Lower stepped sections.
+- Subtle tonal variation.
+- A compact lower boundary.
+
+Avoid leaving one large featureless white cube behind the head.
+
+## 5.6 Color palette
+
+Use:
+
+- Warm ivory white.
+- Soft pearl white.
+- Pale silver-gray.
+- Subtle lavender-gray shadows.
+- Slightly darker gray within recessed regions.
+
+Avoid:
+
+- Uniform pure white.
+- Metallic silver.
+- Strong purple hair.
+- Transparent hair.
+- Bright glow.
+- Realistic thin hair strands.
+
+## 5.7 Hair material
+
+Prefer:
+
+- Matte materials.
+- High roughness.
+- Low metalness.
+- Crisp geometry.
+- Stable shading.
+- Deliberate tonal variation.
+
+Do not rely only on painted texture variation over a simple cube.
+
+The actual geometry must create the distinctive hairstyle.
+
+## 5.8 Anti-flicker
+
+Inspect:
+
+- Hair layer intersections.
+- Duplicate coplanar faces.
+- Ear intersections.
+- Glasses intersections.
+- Forehead overlaps.
+- Shadow artifacts.
+
+Correct actual geometry.
+
+Do not use global rendering hacks.
+
+## 5.9 Required 360-degree validation
+
+Inspect:
+
+- Front.
+- Front-right.
+- Right.
+- Back-right.
+- Back.
+- Back-left.
+- Left.
+- Front-left.
+
+Compare silhouette and layered geometry with the supplied character sheet.
+
+Hair must remain recognizable from all angles.
+
+---
+
+# 6. PROFESSOR FACE
+
+The face must clearly communicate a friendly senior academic character.
+
+Required features:
+
+- Warm beige voxel skin.
+- Thick white eyebrows.
+- Dark rectangular eyes.
+- Small nose.
+- Short white moustache.
+- Short white beard.
+- Gentle facial proportions.
+- Simple mouth.
+- Small geometric ears.
+- Subtle cheeks.
+
+Do not make the face excessively wrinkled or realistic.
+
+Do not copy CEO's face and only change the hair.
+
+The Professor should have a unique elderly-academic identity.
+
+## GLASSES
+
+Use thick black rectangular glasses.
+
+Requirements:
+
+- Genuine 3D geometry.
+- Stable head attachment.
+- Correct temple geometry.
+- Eyes visible through frames.
+- No face intersection.
+- No flicker.
+
+Prepare a glasses visibility toggle if consistent with the existing character system.
+
+When glasses are hidden, the eyes must still render correctly.
+
+The glasses should not be permanently merged with the eyes.
+
+---
+
+# 7. FACIAL HAIR
+
+Create the Professor's distinctive short white moustache and beard.
+
+Requirements:
+
+- Voxel block construction.
+- Warm white color.
+- Slight gray shadow variation.
+- Compact volume.
+- Correct attachment to head.
+- No intersections with the mouth.
+- No floating pieces.
+- No coplanar overlap with cheeks.
+
+Use the supplied reference for facial hair proportions.
+
+Do not give the character an excessively long fantasy-wizard beard.
+
+The result must remain a modern academic researcher.
+
+---
+
+# 8. DEFAULT ACADEMIC OUTFIT
+
+Use the approved default attire.
+
+## Laboratory / Academic Coat
+
+Main material:
+
+Warm off-white or cream.
+
+Create:
+
+- Two visible coat front panels.
+- Clearly readable lapels.
+- Long sleeves.
+- Layered cuffs.
+- Subtle pocket geometry.
+- Small green research insignia.
+- Correct lower coat silhouette.
+
+The coat should feel structured and professional.
+
+Do not use a featureless white box.
+
+## Inner Clothing
+
+Include:
+
+- Dark formal vest or dark inner jacket.
+- White shirt.
+- Red/burgundy necktie.
+- Small restrained formal details.
+
+## Trousers
+
+Dark charcoal.
+
+## Shoes
+
+Dark brown formal shoes.
+
+Create distinct shoe volume and sole.
+
+## Research Badge
+
+Add a small green Shared Brain/research symbol to the coat or an appropriate badge position.
+
+Use simple readable geometry or a carefully authored compatible material.
+
+Do not use uncontrolled emissive effects.
+
+---
+
+# 9. SHARED BRAIN BACKPACK
+
+The backpack is a core signature accessory.
+
+Design:
+
+- Compact black/dark-charcoal body.
+- Structured rear shape.
+- Green accents.
+- Visible straps.
+- Green Shared Brain icon.
+- Small panel or pocket detail.
+
+The icon may resemble a stylized brain or knowledge-network symbol.
+
+It should remain readable from rear and three-quarter views.
+
+Do not create a large glowing 3D hologram attached to the backpack.
+
+Use restrained green emissive material only if the established rendering style supports it.
+
+The backpack must not intersect the coat during animation.
+
+Provide a visibility policy for seated desk work if it collides with the chair.
+
+Do not permanently remove it from the model.
+
+---
+
+# 10. CHARACTER SCALE
+
+Inspect the actual current PM, CEO, UI/UX and Engineering character dimensions.
+
+The previous Boss PM GLB was approximately 1.72 world units tall, but verify the actual current baseline.
+
+Use the established character scale.
+
+Requirements:
+
+- Feet at floor level.
+- Correct local character origin.
+- Comparable overall body size.
+- Head dimensions consistent with the cast.
+- Slightly larger visual hair silhouette is acceptable.
+- Arms compatible with books and tablets.
+- Correct seated desk height.
+- Correct bookshelf interaction height.
+
+Do not resize Research Room furniture to hide character proportion problems.
+
+Do not use nonuniform scaling.
+
+---
+
+# 11. CHARACTER RIG ARCHITECTURE
+
+Reuse the existing working character rig architecture.
+
+Create an independent runtime root:
+
+`RESEARCH_PROFESSOR_AGENT_RUNTIME_ROOT`
+
+Suggested hierarchy:
+
+RESEARCH_PROFESSOR_AGENT_RUNTIME_ROOT
+- NavigationRoot
+- OrientationRoot
+- CharacterModelRoot
+  - BodyPivot
+  - HeadPivot
+    - Face
+    - Hair
+    - Glasses
+    - Beard
+    - Moustache
+  - LeftArmPivot
+  - RightArmPivot
+  - LeftLegPivot
+  - RightLegPivot
+  - AcademicCoat
+  - InnerClothing
+  - BackpackAttachment
+  - HandPropAttachments
+
+Use the existing project hierarchy when it differs from this example.
+
+Rig requirements:
+
+- Stable pivots.
+- Independent limbs.
+- Stable facial attachments.
+- Correct head rotation.
+- Controlled seated/standing transitions.
+- Safe pose reset.
+- GLB-compatible animation targets.
+- No detached body parts.
+
+Do not introduce an incompatible animation engine.
+
+---
+
+# 12. RESEARCH ROOM INTEGRATION
+
+Use the existing:
+
+`AI_OFFICE_ROOM_RESEARCH_v1`
+
+Room dimensions:
+
+8×8 units.
+
+Local origin:
+
+[0,0,0]
+
+A3.1 global offset:
+
+[0,0,18]
+
+Room functions:
+
+- Knowledge Archive Library.
+- Research Professor Workstation.
+- Shared Brain Knowledge Atlas.
+- Evidence and Reading Corner.
+
+The character must be a separate runtime entity.
+
+Do not bake the character into the Research Room GLB.
+
+In Single Room mode:
+
+- Load the actual Research Room.
+- Spawn Research Professor at the validated idle anchor.
+- Show Research simulation controls.
+- Allow character selection.
+- Allow camera focus.
+- Allow room view reset.
+
+In Full Office mode:
+
+- Use the existing OfficeAssembler.
+- Apply the module offset through the parent transform.
+- Do not create duplicate actors.
+- Do not modify the deferred camera system.
+
+---
+
+# 13. RESEARCH ROOM ANCHORS
+
+Inspect the actual Research Room anchor configuration.
+
+Potential semantic anchors include:
+
+- RESEARCH_ROOM_SPAWN
+- RESEARCH_ROOM_IDLE
+- RESEARCH_DESK_APPROACH
+- RESEARCH_DESK_WORK
+- RESEARCH_CHAIR_POSITION
+- RESEARCH_BOOKSHELF_ACCESS
+- RESEARCH_ARCHIVE_DRAWER
+- RESEARCH_KNOWLEDGE_ATLAS
+- RESEARCH_EVIDENCE_BOARD
+- RESEARCH_READING_TABLE
+- RESEARCH_REFERENCE_REVIEW
+- RESEARCH_PRESENTATION_POSITION
+- RESEARCH_SOUTH_EXIT
+
+These names are expected candidates.
+
+Verify the actual source.
+
+Do not invent coordinates.
+
+Validate:
+
+- Workstation orientation.
+- Reading table access.
+- Bookshelf access.
+- Knowledge Atlas facing.
+- South doorway access.
+- Chair clearance.
+- Character floor alignment.
+
+The Research Professor must not walk through furniture.
+
+Keep anchor coordinates local to Research Room.
+
+---
+
+# 14. REQUIRED ANIMATION SET
+
+Create real 3D animations using the existing AnimationMixer-compatible character system.
+
+Animations must demonstrate genuine movement.
+
+Changing a state label is not sufficient.
+
+The animations below define the required action set.
+
+## 01 — Idle_Breathing
+
+A calm academic standing pose.
+
+Subtle breathing.
+
+Occasional small head movement.
+
+Loopable.
+
+## 02 — Walk_Cycle
+
+Gentle senior-professor walk.
+
+Slightly more measured than Frontend or Backend.
+
+Natural alternating limb motion.
+
+No exaggerated elderly wobbling.
+
+Keep feet grounded.
+
+## 03 — Read_Research_Book
+
+Hold an open research book.
+
+Look at the pages.
+
+Subtle head movement.
+
+Occasional small hand movement.
+
+This is one of the signature animations.
+
+## 04 — Research_Desk_Work
+
+Walk to the research workstation.
+
+Sit or enter the supported working posture.
+
+Look at the computer and documents.
+
+Type or write short notes.
+
+## 05 — Search_References_Demo
+
+Review fictional reference information.
+
+Use the workstation monitor or a research document.
+
+Alternate attention between a display and notes.
+
+Clearly a visual demo, not real web browsing.
+
+## 06 — Inspect_Knowledge_Atlas
+
+Walk toward the Shared Brain Knowledge Atlas.
+
+Face the board.
+
+Look at connected knowledge nodes.
+
+Make small analysis gestures.
+
+## 07 — Analyze_Evidence
+
+Inspect the Research Evidence Board.
+
+Use focused pointing and thoughtful gestures.
+
+This action must be visibly different from ordinary reading.
+
+## 08 — Compare_Sources
+
+Review two research documents or a document and tablet.
+
+Use small alternating hand/head motions.
+
+Visualize source comparison.
+
+Do not claim actual source verification occurred.
+
+## 09 — Organize_Archive
+
+Approach the bookcase or archive drawer.
+
+Reach toward a book or reference folder.
+
+Perform a short organizing/retrieval gesture.
+
+Do not remove permanent room geometry unless the interaction system supports a reversible attachment.
+
+## 10 — Write_Research_Notes
+
+Use a desk notebook, document or tablet.
+
+Perform a simple writing motion.
+
+The character should look different from keyboard typing.
+
+## 11 — Think_Research
+
+Thoughtful academic pose.
+
+Small head tilt.
+
+Optional hand-to-chin gesture.
+
+Subtle focused expression.
+
+## 12 — Discuss_Research
+
+Natural scholarly conversation gesture.
+
+Small hand movements.
+
+Talking expression.
+
+This should be reusable for future interactions with PM or other agents.
+
+Do not invent another character for the demonstration.
+
+## 13 — Present_Findings
+
+Walk to a valid board or presentation anchor.
+
+Face the evidence board or Knowledge Atlas.
+
+Point to specific display regions.
+
+Perform a clear presentation gesture.
+
+## 14 — Consult_Shared_Brain_Demo
+
+Interact with the Knowledge Atlas or workstation.
+
+Use a distinct inspection/consultation sequence.
+
+This is a visual representation only.
+
+Do not implement actual memory retrieval.
+
+Do not claim private data has been accessed.
+
+## 15 — Prepare_Research_Summary
+
+Return to the workstation or reading area.
+
+Read a document.
+
+Write or type a short summary.
+
+Use a focused research posture.
+
+## 16 — Coffee_Break
+
+Use a coffee cup.
+
+Perform a modest drinking gesture.
+
+Return the prop safely.
+
+## 17 — Waiting_For_Review
+
+Calm waiting pose.
+
+May include holding a document or checking notes.
+
+Do not imply approval has been received.
+
+## 18 — Research_Completed
+
+Professional positive acknowledgment.
+
+Small satisfied nod.
+
+Subtle pleased expression.
+
+Return to idle.
+
+---
+
+# 15. ANIMATION QUALITY RULES
+
+All animations must:
+
+- Use genuine 3D transform animation.
+- Preserve body proportions.
+- Move the correct pivots.
+- Preserve hairstyle attachment.
+- Preserve glasses position.
+- Preserve beard and moustache attachment.
+- Avoid clipping through furniture.
+- Avoid floating books.
+- Avoid detached accessories.
+- Avoid sudden pose snapping.
+- Support interruption and reset.
+- Return to a valid idle posture.
+
+Navigation must remain separate from local body animation.
+
+A walk cycle should not be tied permanently to a single room coordinate.
+
+For workstation actions:
+
+1. Navigate to approach anchor.
+2. Stop walking.
+3. Align with chair.
+4. Transition into sitting.
+5. Perform action.
+6. Return to standing before leaving.
+
+Do not allow walking and sitting animations to play incompatibly.
+
+Prioritize reliable and visually distinct animations over unsupported claims of completeness.
+
+---
+
+# 16. FACIAL EXPRESSIONS
+
+Implement lightweight voxel expressions inspired by the supplied character sheet.
+
+Required:
+
+- Neutral.
+- Idea / Inspired.
+- Surprised.
+- Curious.
+- Talking.
+- Focused.
+- Sleepy / Tired.
+- Pleased / Confident.
+- Concerned.
+- Thinking.
+
+Use:
+
+- Eyebrow geometry.
+- Eye variants.
+- Mouth geometry.
+- Subtle head movement.
+- Small cheek changes.
+
+Avoid realistic facial morphing.
+
+Keep expressions readable with black glasses.
+
+If glasses are toggled off, eye geometry must remain visible.
+
+Expression changes must not break the beard, moustache, or glasses.
+
+Avoid facial Z-fighting.
+
+If some expression variants depend on runtime controllers rather than exportable keyframes, preserve and document that dependency.
+
+---
+
+# 17. RESEARCH ACCESSORIES
+
+Follow the character sheet while preserving portability.
+
+## Default accessories
+
+- Black glasses.
+- Academic coat.
+- Shared Brain backpack.
+
+## Contextual handheld props
+
+- Research book.
+- Notebook.
+- Tablet.
+- Research paper.
+- Clipboard.
+- Coffee cup.
+- Small reference folder.
+
+## Runtime indicators
+
+Possible:
+
+- Idea icon.
+- Question indicator.
+- Research focus indicator.
+- Small Shared Brain symbol.
+- Completion marker.
+
+These indicators should be runtime UI/FX, not permanently embedded in the character GLB.
+
+## IMPORTANT
+
+The character sheet includes:
+
+- Bookshelves.
+- Globe.
+- Lamps.
+- Research workstation.
+- Archive boxes.
+- Small decorative items.
+
+These are environmental concepts.
+
+Do not permanently attach an entire bookshelf, desk or globe to the character GLB.
+
+Reuse appropriate permanent Research Room objects.
+
+---
+
+# 18. SHARED BRAIN FUNCTIONAL BOUNDARY
+
+This character visually represents knowledge-oriented work.
+
+Do not implement:
+
+- A real vector database.
+- Embedding generation.
+- Persistent memory storage.
+- Document ingestion.
+- RAG retrieval.
+- External source searching.
+- Live knowledge indexing.
+- Permission management.
+- Real organization-wide memory access.
+
+These belong in the main AI Office system.
+
+For the current project, all such activities must be simulated.
+
+Use labels such as:
+
+SIMULASI / DEMO
+
+Do not claim the agent actually retrieved or validated a source.
+
+Do not invent real research findings.
+
+The character is a visual actor, not the authoritative Shared Brain service.
+
+---
+
+# 19. RESEARCH DEMO STATE CONTRACT
+
+Create a demo state mapping compatible with existing agent behavior systems.
+
+Suggested states:
+
+- IDLE
+- MOVING
+- READING
+- RESEARCHING
+- SEARCHING_REFERENCES_DEMO
+- ANALYZING_EVIDENCE
+- COMPARING_SOURCES
+- ORGANIZING_ARCHIVE
+- WRITING_NOTES
+- INSPECTING_KNOWLEDGE
+- CONSULTING_SHARED_BRAIN_DEMO
+- THINKING
+- DISCUSSING
+- PRESENTING
+- PREPARING_SUMMARY
+- COFFEE_BREAK
+- WAITING_REVIEW
+- COMPLETED
+- BLOCKED_DEMO
+
+Map:
+
+ACTION
+→ DEMO STATE
+→ TARGET ANCHOR
+→ ANIMATION CLIP
+→ EXPRESSION
+→ OPTIONAL PROP.
+
+The real AI Office task-state system will be integrated later.
+
+Do not create duplicate independent business-state logic inside the renderer.
+
+The future backend must remain the source of truth.
+
+---
+
+# 20. SIMULATION PANEL
+
+Reuse the existing character simulation interface.
+
+Panel title:
+
+**Research Professor — Simulasi Aktivitas**
+
+Controls:
+
+1. Idle.
+2. Jalan.
+3. Baca Buku.
+4. Kerja di Meja.
+5. Cari Referensi (Demo).
+6. Inspeksi Knowledge Atlas.
+7. Analisis Evidence.
+8. Bandingkan Sumber.
+9. Kelola Arsip.
+10. Tulis Catatan.
+11. Berpikir.
+12. Diskusi Riset.
+13. Presentasi Temuan.
+14. Konsultasi Shared Brain (Demo).
+15. Siapkan Ringkasan.
+16. Coffee Break.
+17. Menunggu Review.
+18. Riset Selesai.
+
+Every control must trigger an actual animation or documented multi-step visual behavior.
+
+Display:
+
+- Current State.
+- Active Clip.
+- Current Anchor.
+- Character Position.
+- Current Expression.
+- Active Accessory.
+- Simulation Status.
+
+Do not replace the current PM, CEO, UI/UX or Engineering simulation controls.
+
+---
+
+# 21. AUTOMATIC RESEARCH DEMO
+
+Add:
+
+**Jalankan Demo Research**
+
+Suggested sequence:
+
+Idle
+→ Walk to Library
+→ Organize Archive
+→ Read Research Book
+→ Walk to Workstation
+→ Search References Demo
+→ Compare Sources
+→ Walk to Knowledge Atlas
+→ Analyze Evidence
+→ Consult Shared Brain Demo
+→ Prepare Research Summary
+→ Present Findings
+→ Research Completed
+→ Return to Idle.
+
+Requirements:
+
+- Smooth transitions.
+- Correct anchors.
+- Valid path movement.
+- Appropriate facial expressions.
+- Appropriate contextual props.
+- No unnecessary teleportation.
+- No furniture collisions.
+- Stop and Reset support.
+- No duplicated timers.
+- No duplicated AnimationMixer instances.
+- No lingering props.
+- Correct final idle pose.
+
+The demo must remain independent from every other character's demo.
+
+---
+
+# 22. FUTURE COLLABORATION PREPARATION
+
+Research will eventually collaborate with:
+
+- PM for research requests.
+- CEO for executive knowledge summaries.
+- UI/UX for reference and design research.
+- Frontend and Backend for technical documentation.
+- Database for schema references.
+- Other departments through the Shared Brain service.
+
+Prepare future interaction contracts only.
+
+Do not implement cross-room walking or synchronized conversations yet.
+
+For example:
+
+Research prepares a finding.
+PM receives a verified summary through the future backend.
+The visual characters may later meet to discuss it.
+
+This requires future multi-character choreography and verified system events.
+
+Do not fake completed cross-room collaboration now.
+
+---
+
+# 23. INDEPENDENT CHARACTER EXPORT
+
+Follow:
+
+**AI Office Production Asset Standard V1**
+
+Export a standalone character GLB:
+
+`research_professor_agent.glb`
+
+The file must contain:
+
+- Complete Professor geometry.
+- Large layered white hairstyle.
+- Face.
+- Black glasses.
+- White eyebrows.
+- Beard.
+- Moustache.
+- Academic coat.
+- Dark inner clothing.
+- Red/burgundy tie.
+- Dark trousers.
+- Brown shoes.
+- Shared Brain backpack.
+- Stable animation hierarchy.
+- Real exportable AnimationClips.
+
+Exclude:
+
+- Research Room geometry.
+- Bookshelves.
+- Research desk.
+- Room globe.
+- Room lamps.
+- Room floor.
+- Cameras.
+- Lighting helpers.
+- UI panels.
+- Temporary reaction icons.
+- Navigation helper geometry.
+- Debug markers.
+- Other characters.
+
+---
+
+# 24. ANIMATION EXPORT REQUIREMENTS
+
+Use the current GLTFExporter-compatible animation pipeline.
+
+Each exported animation must have actual keyframe tracks targeting nodes included in the exported scene.
+
+Do not assume JavaScript-only procedural behavior is automatically included in GLB.
+
+Separate:
+
+- Reusable animation clips.
+- Runtime navigation.
+- Contextual prop visibility.
+- Facial expression controllers.
+- Interaction sequences.
+
+If an animation needs baking, bake it into valid supported tracks.
+
+After export, reload the resulting character GLB.
+
+Create an independent AnimationMixer.
+
+Confirm that expected clips genuinely exist and visibly move the reimported model.
+
+Do not invent an exported clip count.
+
+Report unsupported procedural effects.
+
+---
+
+# 25. CHARACTER MANIFEST
+
+Export:
+
+`research_professor_agent.manifest.json`
+
+Include:
+
+- schema_version
+- asset_id
+- display_name
+- role
+- department
+- compatible_room_id
+- glb_path
+- actual_character_height
+- actual_bounds
+- default_scale
+- root_origin_policy
+- local_forward_axis
+- material_profile
+- supported_animation_clips
+- supported_expressions
+- supported_accessories
+- export_version
+- validation_summary
+
+Use real measured values.
+
+Do not invent geometry statistics.
+
+---
+
+# 26. BEHAVIOR CONFIGURATION
+
+Export:
+
+`research_professor_agent.behavior.json`
+
+Include:
+
+- schema_version
+- character_id
+- default_state
+- default_idle_anchor_id
+- action_mappings
+- animation_clip_mapping
+- target_anchor_mapping
+- expression_mapping
+- accessory_mapping
+- navigation_policy
+- animation_transition_policy
+- posture_transition_policy
+- demo_capabilities
+- external_event_contract
+
+Use the existing compatible schema.
+
+Do not create a completely separate behavior format for Research.
+
+---
+
+# 27. PREVIEW AND SOURCE EXPORT
+
+Export:
+
+`research_professor_agent_preview.png`
+
+Use the same orthographic three-quarter presentation as the existing character previews.
+
+If supported, provide an additional eight-direction turnaround preview.
+
+Preserve source code needed for:
+
+- Professor character builder.
+- Hair geometry generator.
+- Material definitions.
+- Facial expression controller.
+- Animation clip definitions.
+- Accessory controller.
+- Research navigation integration.
+- Demo action controller.
+- GLB export.
+- GLB reimport validation.
+
+The GLB must not be treated as a replacement for the required runtime controller source.
+
+---
+
+# 28. PRODUCTION FOLDER CONTRACT
+
+Create an asset package logically compatible with:
+
+production/
+  characters/
+    research_professor_agent/
+      research_professor_agent.glb
+      research_professor_agent.manifest.json
+      research_professor_agent.behavior.json
+      research_professor_agent_preview.png
+
+  rooms/
+    research/
+      research_room.glb
+      research_room.manifest.json
+      research_room.anchors.json
+
+  office/
+    office-layout-a3.1.json
+
+source/
+  modular-room-lab-source.zip
+
+Use actual current production export conventions where they differ.
+
+Do not unnecessarily restructure the Google AI Studio application.
+
+Preserve existing filenames and IDs for other characters.
+
+Do not include fake or empty placeholder files in production exports.
+
+---
+
+# 29. CRITICAL ANTI-FLICKER AUDIT
+
+The owner has experienced recurring flickering in both rooms and characters.
+
+Inspect the Research Professor for:
+
+- Hair-layer Z-fighting.
+- Ear/head intersections.
+- Glasses/face intersections.
+- Beard/mouth overlap.
+- Moustache/face overlap.
+- Coat panel intersections.
+- Backpack straps clipping.
+- Backpack icon depth conflicts.
+- Book geometry overlap.
+- Shoe geometry issues.
+- Duplicate meshes.
+- Shadow acne.
+- Transparent material sorting problems.
+
+Perform inspection during:
+
+- Idle.
+- Walking.
+- Reading.
+- Writing.
+- Thinking.
+- Presenting.
+- Turning the head.
+- Sitting.
+- Holding props.
+
+Prefer geometry corrections.
+
+Do not globally alter camera clipping or material depth settings.
+
+Do not globally disable depthTest.
+
+Do not globally apply polygonOffset.
+
+Do not use rendering tricks to hide a broken rig.
+
+---
+
+# 30. INDEPENDENT GLB ROUND-TRIP TEST
+
+Export the actual `research_professor_agent.glb`.
+
+Load it using an independent GLTFLoader test scene.
+
+Create a new AnimationMixer using the reimported model.
+
+Verify:
+
+1. GLB parses successfully.
+2. Correct character root is present.
+3. Character geometry is complete.
+4. White layered hairstyle is present.
+5. Hair colors survive export.
+6. Glasses remain attached.
+7. Eyebrows are present.
+8. Beard and moustache are present.
+9. Academic coat is correct.
+10. Inner clothing and tie remain visible.
+11. Backpack is correctly attached.
+12. Green Shared Brain icon survives.
+13. Character proportions are correct.
+14. Feet align with the floor.
+15. No unintended room geometry exists.
+16. Animation clips are actually embedded.
+17. Animation track targets resolve correctly.
+18. Idle animation plays.
+19. Walk animation plays.
+20. Reading animation plays.
+21. Writing animation plays.
+22. Thinking animation plays.
+23. Analysis animation plays.
+24. Presentation animation plays.
+25. No limbs detach.
+26. No hairstyle parts detach.
+27. No accessory geometry becomes permanently misplaced.
+28. No missing materials.
+29. No major visible flickering.
+30. No debug helpers are included.
+
+Only report PASS for tests that were actually performed.
+
+Report any unsupported runtime-only behavior separately.
+
+---
+
+# 31. GLOBAL REGRESSION CHECKS
+
+Verify:
+
+[ ] PM Room remains unchanged.
+
+[ ] Boss PM animations still work.
+
+[ ] CEO Room remains unchanged.
+
+[ ] CEO character animations still work.
+
+[ ] UI/UX Room remains unchanged.
+
+[ ] UI/UX Designer still works.
+
+[ ] Engineering Room remains 8×16.
+
+[ ] Frontend still works.
+
+[ ] Backend still works.
+
+[ ] Database still works.
+
+[ ] Research Room geometry remains unchanged.
+
+[ ] Research Professor is independently registered.
+
+[ ] Room Selector still works.
+
+[ ] Single Room works.
+
+[ ] Full Office loads.
+
+[ ] Master Layout A3.1 remains unchanged.
+
+[ ] Existing GLB exports remain available.
+
+[ ] No duplicate character instances.
+
+[ ] No global camera changes.
+
+[ ] Existing source backup remains available.
+
+---
+
+# 32. IMPLEMENTATION ORDER
+
+PHASE A — SOURCE AUDIT
+
+Inspect existing systems and create a checkpoint.
+
+PHASE B — CHARACTER BASE
+
+Create body, head, face, arms, legs, and neutral pose.
+
+PHASE C — PROFESSOR HAIRSTYLE
+
+Build and refine large layered white hair.
+
+Validate eight-direction silhouette.
+
+PHASE D — FACIAL IDENTITY
+
+Build white eyebrows, beard, moustache and glasses.
+
+PHASE E — CLOTHING AND MATERIALS
+
+Create academic coat, formal inner clothing, red tie, shoes, and Shared Brain backpack.
+
+PHASE F — SCALE AND STYLE MATCH
+
+Compare with existing Room-Native characters.
+
+PHASE G — RIG AND BASIC ANIMATION
+
+Implement Idle and Walk.
+
+PHASE H — RESEARCH ROOM INTEGRATION
+
+Validate room anchors, workstation facing, and navigation.
+
+PHASE I — RESEARCH JOB ANIMATIONS
+
+Implement reading, writing, evidence analysis, knowledge inspection, and presentation animations.
+
+PHASE J — EXPRESSIONS AND PROPS
+
+Implement lightweight expressions and contextual research accessories.
+
+PHASE K — SIMULATION PANEL
+
+Add Research-specific controls and automatic demo.
+
+PHASE L — EXPORT
+
+Export GLB, manifest, behavior JSON, preview PNG, and preserve source.
+
+PHASE M — ROUND-TRIP VALIDATION
+
+Reload the actual GLB and verify model/animation portability.
+
+PHASE N — REGRESSION
+
+Verify previously implemented rooms and characters remain unaffected.
+
+STOP AFTER RESEARCH PROFESSOR COMPLETION.
+
+Do not create another character or room.
+
+---
+
+# 33. ACCEPTANCE CRITERIA
+
+## VISUAL
+
+[ ] Research Professor matches the approved character sheet.
+
+[ ] White hairstyle is large, layered, and carefully modeled.
+
+[ ] Hair silhouette works from all angles.
+
+[ ] Hair color uses appropriate soft white/gray shading.
+
+[ ] Black rectangular glasses look correct.
+
+[ ] White eyebrows, beard and moustache are correct.
+
+[ ] Academic coat is detailed and recognizable.
+
+[ ] Dark vest and red tie are visible.
+
+[ ] Shared Brain backpack is present.
+
+[ ] Green backpack icon is recognizable.
+
+[ ] Character scale matches existing AI Office characters.
+
+[ ] Same-world voxel art style is preserved.
+
+## ANIMATION
+
+[ ] Idle works.
+
+[ ] Walk works.
+
+[ ] Reading works.
+
+[ ] Research desk work works.
+
+[ ] Reference search demo works.
+
+[ ] Knowledge Atlas inspection works.
+
+[ ] Evidence analysis works.
+
+[ ] Source comparison works.
+
+[ ] Archive interaction works.
+
+[ ] Writing notes works.
+
+[ ] Thinking works.
+
+[ ] Discussion pose works.
+
+[ ] Presentation works.
+
+[ ] Shared Brain consultation demo works.
+
+[ ] Summary preparation works.
+
+[ ] Coffee break works.
+
+[ ] Waiting review works.
+
+[ ] Completion reaction works.
+
+[ ] Animation transitions remain stable.
+
+## ROOM INTEGRATION
+
+[ ] Research Room remains unchanged.
+
+[ ] Professor spawns at a valid anchor.
+
+[ ] Desk interaction is correctly aligned.
+
+[ ] Bookcase is accessible.
+
+[ ] Knowledge Atlas is accessible.
+
+[ ] Character does not walk through furniture.
+
+[ ] Full Office placement remains valid.
+
+## EXPORT
+
+[ ] Character GLB exists.
+
+[ ] Real animation clips are embedded as reported.
+
+[ ] Manifest JSON exists.
+
+[ ] Behavior JSON exists.
+
+[ ] Preview PNG exists.
+
+[ ] Independent GLB reimport succeeds.
+
+[ ] No Research Room geometry is embedded in the character.
+
+## REGRESSION
+
+[ ] Existing PM, CEO, UI/UX and Engineering characters still function.
+
+[ ] Existing room exports remain functional.
+
+[ ] Room Selector works.
+
+[ ] Single Room works.
+
+[ ] Full Office loads.
+
+[ ] No unauthorized global changes.
+
+---
+
+# 34. REQUIRED FINAL REPORT
+
+After implementation, report:
+
+1. Source files added or modified.
+2. Character geometry summary.
+3. Actual height and bounds.
+4. Detailed hairstyle construction.
+5. Hair material palette.
+6. Facial hair and glasses implementation.
+7. Outfit and backpack details.
+8. List of implemented animations.
+9. List of clips genuinely embedded in GLB.
+10. Procedural-only behaviors if any.
+11. Facial expressions.
+12. Contextual accessories.
+13. Research anchors used.
+14. Navigation validation results.
+15. Simulation UI behavior.
+16. Exported filenames.
+17. Independent reimport test results.
+18. Regression results.
+19. Known limitations.
+
+Clearly distinguish:
+
+COMPLETED  
+PARTIAL  
+NOT IMPLEMENTED  
+NOT VERIFIED
+
+Do not invent successful test results.
+
+---
+
+# FINAL DIRECTIVE
+
+CREATE ONE RESEARCH PROFESSOR CHARACTER FOR THE EXISTING AI OFFICE MODULAR ROOM LAB.
+
+Use the supplied approved Research Professor character sheet as the authoritative identity reference.
+
+Use existing working characters as the technical-art style baseline.
+
+The character must feature:
+
+- Large detailed layered white voxel hairstyle.
+- Black rectangular glasses.
+- White eyebrows.
+- Short white moustache and beard.
+- Warm expressive professor face.
+- Cream academic/laboratory coat.
+- Dark inner formal clothing.
+- Red/burgundy tie.
+- Dark trousers.
+- Brown formal shoes.
+- Dark backpack with green Shared Brain icon.
+
+Implement genuine research-specific 3D animations.
+
+Integrate with the existing Research & Shared Brain Room using verified anchors.
+
+Prepare demo-only action and state mappings.
+
+Do not implement real memory retrieval or Shared Brain services.
+
+Keep the character independent from room geometry.
+
+Export a portable GLB with validated embedded animation clips, compatible metadata, preview, and source backup.
+
+Preserve all previous rooms, characters, camera systems, and production exports.
+
+Do not modify the deferred Full Office camera.
+
+Do not create new rooms.
+
+**COMPLETE THE RESEARCH PROFESSOR CHARACTER AND ANIMATION SYSTEM, VALIDATE ITS EXPORT, THEN STOP FOR OWNER REVIEW.**

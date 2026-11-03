@@ -1,0 +1,2169 @@
+# AI OFFICE — MODULE 06
+# QA & DEVOPS INTEGRATED STUDIO
+## Full Interior Production V1 — Premium Cozy Voxel Environment
+### Combined 8×16 Department | Visual Reference Fidelity | Zero Known Rendering Defects
+### Production Export + Independent GLB Validation
+
+---
+
+# 0. YOUR ROLE AND MISSION
+
+You are a Senior Three.js Technical Artist, Voxel Environment Designer, Architectural Visualization Engineer, React/TypeScript Developer, Modular Level Designer, Rendering Debugger, and GLB Production Pipeline Engineer.
+
+You are working inside the EXISTING:
+
+**AI Office — Modular Room Lab**
+
+This project already contains multiple finished rooms, animated AI characters, reusable asset systems, room selectors, Single Room and Full Office preview modes, and an established production export pipeline.
+
+The owner has approved a new visual concept:
+
+**QA & DevOps Integrated Studio — Elegant Cozy Edition.**
+
+The attached LAST APPROVED IMAGE is the primary ARTISTIC REFERENCE for this task.
+
+YOUR MISSION:
+
+Create ONE large, continuous 8×16 modular room combining the previous QA and DevOps departments.
+
+The room must reproduce the visual richness, decoration density, warmth, and furniture quality of the approved reference.
+
+This is a final major department environment in the current office layout.
+
+The finished environment should look carefully handcrafted, richly furnished, warm, professional, and visually distinctive.
+
+CORE PRIORITIES:
+
+1. Preserve all existing completed work.
+2. Merge QA and DevOps into one open 8×16 room.
+3. Retain the approved elegant visual reference.
+4. Preserve the complete interior richness.
+5. Create two independent functional workstations.
+6. Build a large cozy central collaboration lounge.
+7. Create detailed QA testing equipment.
+8. Create detailed DevOps infrastructure equipment.
+9. Add unique purpose-built decorations.
+10. Prevent duplicate monitor screens and reversed displays.
+11. Prevent Z-fighting, flicker, and disappearing geometry.
+12. Keep furniture and navigation physically coherent.
+13. Support production-compatible modular GLB export.
+14. Independently verify the actual exported asset.
+
+DO NOT create characters yet.
+
+DO NOT rebuild previous rooms.
+
+DO NOT implement actual backend operations.
+
+---
+
+# 1. AUTHORITATIVE DESIGN REFERENCES
+
+Follow this priority order.
+
+## REFERENCE A — APPROVED ELEGANT QA + DEVOPS IMAGE
+
+The owner's most recent reference shows a premium, cozy, voxel-style QA and DevOps studio.
+
+Important visual elements:
+
+- Warm oak wooden floor.
+- Cream/beige walls.
+- Dark charcoal/navy signs.
+- Restrained brass/gold accents.
+- Blue/teal and olive-green accents.
+- Large patterned area rug.
+- Cream three-seat sofa.
+- Matching cream armchair.
+- Wooden coffee table.
+- Several compact soft poufs.
+- QA workstation.
+- Device testing station.
+- QA testing dashboard.
+- QA checklist board.
+- Technical shelves and books.
+- DevOps workstation.
+- Infrastructure monitoring displays.
+- Two dark infrastructure racks.
+- DevOps status wall display.
+- Shared QA & DevOps review board.
+- Plants and hanging greenery.
+- Warm desk lamps.
+- Decorative trophies.
+- Storage crates.
+- Elegant wall trim.
+- Comfortable natural daylight.
+
+These major objects and visual relationships are REQUIRED.
+
+Do not produce a simplified room containing only two desks and one rug.
+
+## REFERENCE B — EXISTING ROOM-NATIVE ART STYLE
+
+Use the ACTUAL current PM, CEO, UI/UX, Engineering, and Research rooms as the technical visual baseline.
+
+Preserve:
+
+- Voxel size and density.
+- Material finish.
+- Architectural thickness.
+- Wood floor logic.
+- Warm wall construction.
+- Isometric readability.
+- Lighting family.
+- Exportable geometry conventions.
+
+Do not create a different visual universe.
+
+## REFERENCE C — APPROVED OFFICE MODULE GEOMETRY
+
+The approved image is WIDE in presentation.
+
+The actual office contains two vertically adjacent 8×8 slots.
+
+Therefore:
+
+**CREATE ONE 8×16 ROOM, NOT A 16×8 ROOM.**
+
+Adapt the composition to the vertical footprint.
+
+Do not change the overall building size to copy the picture.
+
+Do not rotate the global A3 office layout.
+
+Do not lose the major furniture and decorations while adapting the layout.
+
+---
+
+# 2. PRESERVE THE ENTIRE EXISTING PROJECT
+
+Before editing:
+
+1. Inspect current source.
+2. Identify room builders.
+3. Identify asset registries.
+4. Inspect existing layout metadata.
+5. Inspect Room Selector implementation.
+6. Inspect OfficeAssembler.
+7. Inspect exporter and round-trip validation.
+8. Create a recoverable source checkpoint.
+
+Preserve the following environments:
+
+- PM & Strategy Room.
+- CEO Executive Brain Office.
+- UI/UX Design Studio.
+- Engineering & Development Studio, 8×16.
+- Research & Shared Brain Room.
+
+Preserve existing characters and animation controllers:
+
+- Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer.
+- Backend Developer.
+- Database Developer.
+- Research Professor, if present in the current source.
+
+Preserve:
+
+- Single Room mode.
+- Full Office mode.
+- Room Selector.
+- Current camera controls.
+- OfficeAssembler.
+- Character selection.
+- Character simulation panels.
+- Existing GLB exports.
+- Existing manifests.
+- Character behavior mappings.
+- Source backup infrastructure.
+
+Do not modify previously approved room geometry.
+
+Do not overwrite existing character GLBs.
+
+Do not replace the application architecture.
+
+The Full Office camera proportion issue remains deferred by the owner.
+
+Do not attempt to repair it in this task.
+
+---
+
+# 3. OFFICE MASTER LAYOUT UPDATE — A3.2
+
+This task introduces an explicitly approved layout revision.
+
+Existing A3.1:
+
+QA Room:
+- Global origin [24,0,8].
+- Size 8×8.
+
+DevOps Room:
+- Global origin [24,0,0].
+- Size 8×8.
+
+NEW APPROVED A3.2:
+
+QA & DevOps Integrated Studio:
+- Global origin [24,0,0].
+- Size 8×16.
+
+The new combined room occupies exactly the same total space as the two previous slots.
+
+No additional building footprint is required.
+
+Overall office size stays:
+
+32×26 units.
+
+Coordinate system:
+
+- +X East.
+- -X West.
+- +Z North.
+- -Z South.
+- +Y Up.
+
+## ROOM CONTRACT
+
+Room ID:
+
+`AI_OFFICE_ROOM_QA_DEVOPS_v1`
+
+Display Name:
+
+`QA & DevOps Integrated Studio`
+
+Department Roles:
+
+- Quality Assurance.
+- DevOps & AI Engine Operations.
+
+Local room origin:
+
+[0,0,0]
+
+Local bounds:
+
+X = 0..8.
+
+Z = 0..16.
+
+Room height:
+
+Use the existing canonical wall-height standard, approximately 3.2 units.
+
+Full Office offset:
+
+[24,0,0]
+
+Global bounds:
+
+X = 24..32.
+
+Z = 0..16.
+
+## CRITICAL ARCHITECTURE RULE
+
+This is ONE room.
+
+It must not contain a full-height interior wall at Z=8.
+
+It must not be two adjacent furnished boxes separated by a wall.
+
+Do not retain duplicate internal-facing wall geometry from the old QA and DevOps placeholders.
+
+The floor must be continuous.
+
+The architectural shell must be unified.
+
+The room must remain one independently exportable GLB.
+
+## LAYOUT VERSIONING
+
+Create an A3.2 layout contract.
+
+Suggested filename:
+
+`office-layout-a3.2.json`
+
+Preserve the previous A3.1 layout specification as a historical checkpoint where supported.
+
+Update only the necessary room registry and placeholder definitions.
+
+If current code refers to legacy `qa_review` and `devops_engine_hub` identifiers, preserve them as functional zone aliases or documented migration references where needed.
+
+Do not register two extra physical rooms occupying the same 8×16 footprint.
+
+There must be one new physical room and two logical departments.
+
+---
+
+# 4. ROOM ARRANGEMENT — 8×16 LONGITUDINAL ADAPTATION
+
+Because the real module is 8×16, organize the interior along the long Z axis.
+
+Recommended functional arrangement:
+
+NORTH:
+QA testing zone.
+
+CENTRAL:
+Cozy collaboration lounge and review space.
+
+SOUTH:
+DevOps operations zone.
+
+These are connected areas inside ONE open room.
+
+Do not add partition walls.
+
+Approximate planning regions:
+
+QA area:
+Z = 10..16.
+
+Lounge:
+Z = 5..11.
+
+DevOps:
+Z = 0..6.
+
+These regions may overlap slightly through shared furnishings and visual transitions.
+
+They are design regions, not rigid walls.
+
+Final furniture positions must be derived from actual room dimensions.
+
+## SPATIAL RELATIONSHIPS
+
+QA should be visually recognizable through:
+
+- QA workstation.
+- Device testing.
+- Checklist board.
+- Test documentation.
+
+DevOps should be visually recognizable through:
+
+- Monitoring workstation.
+- Infrastructure racks.
+- Operations status display.
+- Technical storage.
+
+The CENTRAL lounge should connect both visually and functionally.
+
+It is the room's main signature feature.
+
+Do not sacrifice the lounge to fit oversized technical furniture.
+
+---
+
+# 5. VISUAL STYLE — ELEGANT AND COZY
+
+The approved visual reference uses a refined, gender-neutral professional style.
+
+Use:
+
+- Warm oak flooring.
+- Beige walls.
+- Natural walnut furniture.
+- Cream upholstery.
+- Navy/charcoal display panels.
+- Dusty teal.
+- Muted olive green.
+- Warm brass/gold accents.
+- Off-white textiles.
+- Soft warm lighting.
+
+## STRICT COLOR RESTRICTION
+
+DO NOT use purple as the main accent.
+
+Do not add:
+
+- Purple rugs.
+- Lavender chairs.
+- Violet neon signs.
+- Pink-magenta lighting.
+- Bright purple wall panels.
+
+The owner has explicitly rejected the previous purple-heavy design.
+
+Use understated blue, charcoal, sage, olive, cream, and brass instead.
+
+## VISUAL MOOD
+
+The room should feel:
+
+- Mature.
+- Elegant.
+- Calm.
+- Modern.
+- Professional.
+- Comfortable.
+- Highly detailed.
+- Premium.
+- Cohesive.
+
+Avoid a cold datacenter atmosphere.
+
+Avoid a childish gaming room.
+
+Avoid a generic corporate meeting room.
+
+The result should feel like a luxury-cozy technology studio.
+
+---
+
+# 6. MANDATORY INTERIOR INVENTORY
+
+The following is the minimum target inventory derived from the approved visual.
+
+All major items must be implemented unless an actual geometric conflict makes an item impossible.
+
+If an item cannot fit, redesign its proportions or placement before deciding to remove it.
+
+Do not silently omit objects.
+
+## QA FUNCTIONAL AREA
+
+Required:
+
+- 1 detailed QA workstation desk.
+- 1 proper QA office chair.
+- 2 QA display monitors.
+- Keyboard and mouse.
+- Desk storage drawers.
+- QA dashboard display.
+- QA checklist wall board.
+- Test documentation shelves.
+- Device testing counter.
+- 1 testing laptop.
+- At least 2 small testing devices representing phone/tablet usage.
+- Small desk lamp.
+- Organized test document props.
+
+## DEVOPS FUNCTIONAL AREA
+
+Required:
+
+- 1 detailed DevOps workstation desk.
+- 1 proper DevOps office chair.
+- 2 DevOps monitoring displays.
+- Keyboard and mouse.
+- Workstation drawers.
+- 2 separate compact infrastructure rack cabinets.
+- System monitoring wall board.
+- DevOps identity signage.
+- Small cloud/infrastructure-themed technical objects.
+- Organized technical storage.
+- Equipment cases or toolboxes.
+- Desk lamp or localized warm lighting.
+
+## SHARED COZY AREA
+
+Required:
+
+- 1 large premium patterned area rug.
+- 1 cream three-seat sofa.
+- 1 matching cream armchair.
+- 1 wooden coffee table.
+- 3 small soft poufs or equivalent compact seats.
+- Sofa cushions in navy/teal/olive.
+- A folded sofa throw blanket.
+- Small stack of books or review notes.
+- Compact centerpiece plant.
+- Warm table or floor lamp.
+- Comfortable natural circulation around the seating.
+
+## SHARED REVIEW FEATURE
+
+Required:
+
+- 1 QA & DevOps review board.
+- Physical board stand or verified wall mounting.
+- Demo review checklist.
+- A clear relationship between testing and release readiness.
+
+## ROOM DECOR
+
+Include:
+
+- Bookshelves.
+- Archive binders.
+- Storage boxes.
+- A few hanging plants.
+- Additional potted plants.
+- Window-side shelf.
+- Small framed objects.
+- Award/trophy objects.
+- Decorative lighting.
+- Warm wall trims.
+- Detailed floor edges.
+
+The overall detail density must be comparable to the approved image.
+
+Do not replace all of these objects with a handful of random cubes.
+
+---
+
+# 7. QA WORKSTATION — DETAILED DESIGN
+
+This is the primary workstation for the future QA Agent.
+
+Create a distinctive desk.
+
+Suggested design:
+
+- Oak desktop.
+- Dark supporting frame.
+- Side drawers.
+- Compact storage compartment.
+- Charcoal ergonomic chair.
+- Dual displays.
+- Real monitor stands.
+- Keyboard.
+- Mouse.
+- Small test notes.
+- Documentation tray.
+- Coffee mug.
+- Subtle desktop decoration.
+
+## SCREEN CONTENT
+
+Use fictional static demo visuals representing:
+
+- Test execution.
+- Test result overview.
+- Regression checklist.
+- Bug tracker.
+- Failure and pass counts.
+- Verification progress.
+
+Do not invent real test results.
+
+Labels like DEMO or SAMPLE may appear where suitable.
+
+The screens must look like professional testing interfaces rather than generic code monitors.
+
+## QA SIGNAGE
+
+Create a refined QA sign:
+
+`QA`
+
+or
+
+`QUALITY ASSURANCE`
+
+Use charcoal/navy with restrained brass detailing.
+
+Do not use purple neon.
+
+Do not make signage overly large.
+
+---
+
+# 8. DEDICATED DEVICE TESTING COUNTER
+
+This is an important distinguishing feature.
+
+The QA area must contain a compact physical device testing station.
+
+Required:
+
+- Small wooden testing counter.
+- One laptop.
+- At least one smartphone.
+- At least one tablet or second phone.
+- Small device stands.
+- Organized test cables represented with minimal suitable geometry.
+- Compact storage below.
+- Small test status indicator.
+
+Screen visuals should suggest:
+
+- UI test.
+- Responsive test.
+- Device verification.
+- Check marks.
+- Test cases.
+
+IMPORTANT:
+
+The devices must be genuinely modeled in 3D.
+
+Do not substitute a single flat image showing several devices.
+
+Avoid fragile cable geometry that flickers.
+
+Keep the counter accessible.
+
+This should be a recognizable QA-specific object not found in the PM or CEO rooms.
+
+---
+
+# 9. QA CHECKLIST AND BUG REVIEW
+
+Create a substantial wall-mounted QA checklist board.
+
+Suggested sections:
+
+- Test Cases.
+- Regression.
+- Edge Cases.
+- Bug Review.
+- Verification.
+- Release Sign-Off.
+
+Use controlled:
+
+- Green check icons.
+- Amber review indicators.
+- Red bug markers only where necessary.
+- Navy headings.
+- Warm cream board background.
+
+The display must be visually readable from the room's default camera.
+
+Do not fill the board with unreadable high-frequency text.
+
+Create actual frame geometry.
+
+Use a correct wall offset to avoid Z-fighting.
+
+Do not mount board surfaces over opaque duplicated wall geometry at the same depth.
+
+## UNIQUE QA DECOR
+
+Add one small custom-made bug-themed object or testing trophy.
+
+This object must fit the existing voxel aesthetic.
+
+Avoid copying an identical object from a previous room.
+
+---
+
+# 10. DEVOPS WORKSTATION — DETAILED DESIGN
+
+Create a different workstation identity from QA.
+
+The desk should feel technical and operations-focused.
+
+Include:
+
+- Warm wood desktop.
+- Dark frame.
+- Dual screens.
+- Charcoal ergonomic chair.
+- Keyboard.
+- Mouse.
+- Small equipment dock.
+- Technical notebook.
+- Coffee mug.
+- Desk storage.
+- Compact monitoring accessory.
+- Warm task lamp.
+
+The workstation should not look like the QA desk with monitor colors changed.
+
+Use a different layout of drawers, shelves, and equipment.
+
+## SCREEN CONTENT
+
+Use fictional visuals representing:
+
+- System status.
+- Monitoring.
+- Build pipeline.
+- Service health.
+- Infrastructure topology.
+- Resource usage.
+- Deployment checklist.
+
+All values are DEMO data.
+
+Do not connect actual infrastructure.
+
+---
+
+# 11. DEVOPS RACK CABINETS
+
+Create TWO visually detailed compact infrastructure racks.
+
+These are permanent environment objects.
+
+The racks should include:
+
+- Dark charcoal cabinet bodies.
+- Multiple individual rack modules.
+- Thin ventilation details.
+- Controlled cyan/green indicator lights.
+- Real visible frame depth.
+- Appropriate feet or base.
+- Simple maintenance-access appearance.
+
+Do not create giant industrial racks larger than the office wall.
+
+Do not block windows.
+
+Do not block the walking corridor.
+
+Do not create hundreds of tiny glowing elements.
+
+These cabinets must be visually distinct from Engineering's technical shelving.
+
+DevOps infrastructure should look purpose-built.
+
+## MATERIAL RULE
+
+Avoid emissive bloom that changes the entire room atmosphere.
+
+Small status lights are appropriate.
+
+Massive neon blue light spill is not.
+
+---
+
+# 12. DEVOPS OPERATIONS WALL
+
+Create a high-quality wall-mounted board:
+
+`DEVOPS — INFRASTRUCTURE & OPERATIONS`
+
+Add a status display with fictional data such as:
+
+- Build.
+- Services.
+- Infrastructure.
+- Monitoring.
+- Deployment Review.
+
+Use:
+
+- Navy or dark charcoal panel.
+- Subtle brass frame.
+- Green health symbols.
+- Blue technical data accents.
+- Controlled orange warning state.
+
+The panel must remain physically correct after GLB export.
+
+Do not rely on runtime HTML overlays for essential permanent content.
+
+Do not invent verified production statuses.
+
+---
+
+# 13. THE CENTRAL LOUNGE — HIGHEST INTERIOR PRIORITY
+
+The cozy lounge is the MOST IMPORTANT aesthetic signature of this combined room.
+
+The reference uses a strong central seating composition.
+
+Reproduce its design quality.
+
+## LARGE AREA RUG
+
+Create one substantial premium decorative rug.
+
+Requirements:
+
+- Clearly visible.
+- Occupies most of the central lounge zone.
+- Large enough to visually anchor sofa, armchair and coffee table.
+- Elegant geometric woven pattern.
+- Navy/charcoal outer detailing.
+- Warm cream main field.
+- Muted olive or blue-gray accents.
+- Visible border.
+- Subtle thickness.
+- Correct positioning above the floor.
+
+Do not use purple.
+
+Do not create a tiny simple rectangular rug.
+
+Do not cover the full 8×16 room with carpet.
+
+The rug should visually define the lounge while preserving the wood floor around it.
+
+## SOFA
+
+Create one cream three-seat sofa.
+
+Required detail:
+
+- Full upholstered back.
+- Three seat cushion volumes or equivalent natural segmentation.
+- Side armrests.
+- Base structure.
+- Small legs.
+- Navy/teal/olive pillows.
+- Folded knitted-style throw blanket using voxel-friendly geometry.
+
+The sofa must look comfortable.
+
+Do not use one plain beige cuboid to represent it.
+
+## ARMCHAIR
+
+Create one matching cream lounge armchair.
+
+It should have:
+
+- Readable backrest.
+- Seat cushion.
+- Armrests.
+- Small legs.
+- Subtle olive or teal pillow.
+
+Do not simply shrink the sofa into a cube.
+
+## COFFEE TABLE
+
+Create a medium wooden coffee table.
+
+Include:
+
+- Real tabletop thickness.
+- Visible supports.
+- A few books or review documents.
+- Small plant or decorative centerpiece.
+- Optional warm lamp.
+
+## POUFS
+
+Add approximately three compact poufs.
+
+Use:
+
+- Dark slate-blue.
+- Muted teal.
+- Olive-green.
+
+These must be consistent with the mature palette.
+
+Do not use purple/pink fabric.
+
+## LIGHTING
+
+Add warm local light sources or appropriate preexisting scene illumination.
+
+The sofa and central table should feel cozy.
+
+Do not use excessive emissive panels.
+
+---
+
+# 14. COZY ATMOSPHERE AND NEW DECOR
+
+The owner explicitly wants new decoration rather than repeating previous room assets.
+
+Create several distinctive QA/DevOps props.
+
+Suggestions:
+
+## New QA-specific assets
+
+- Device testing display counter.
+- Compact test device stands.
+- Quality assurance trophy.
+- Test document organizer.
+- Bug triage card rack.
+- QA quality-gate indicator.
+- Test-result reference folders.
+
+## New DevOps-specific assets
+
+- Compact dual infrastructure racks.
+- Monitoring indicator tower.
+- Network topology model.
+- Equipment transport cases.
+- Cloud operations decorative sign.
+- Build pipeline reference display.
+
+## New shared assets
+
+- Premium cream upholstered sofa.
+- Matching lounge armchair.
+- Elegant large woven rug.
+- Compact fabric poufs.
+- Low console under a large window.
+- Warm brass-accent lamp.
+- Hanging greenery.
+- Purpose-built QA/DevOps review board.
+
+Use existing shared low-level material utilities where useful.
+
+But do not copy-paste whole furniture assemblies from PM or CEO.
+
+The new room must have a distinctive identity.
+
+---
+
+# 15. WINDOW AND WALL DESIGN
+
+Keep the same architectural family as other AI Office rooms.
+
+Use:
+
+- Warm cream wall material.
+- Compatible wall thickness.
+- Clean dark trim.
+- Warm floor skirting.
+- Proper window frames.
+- Natural daylight appearance.
+
+The combined studio should feature generous daylight, as in the approved reference.
+
+However, actual windows must be placed only on physically appropriate exterior-facing walls.
+
+## EAST EXTERIOR WALL
+
+Local X=8.
+
+This is an outer building edge.
+
+Use attractive windows where they do not conflict with the DevOps infrastructure wall.
+
+## SOUTH EXTERIOR WALL
+
+Local Z=0.
+
+This is also an outer boundary.
+
+Use compatible wall construction.
+
+## NORTH WALL
+
+Local Z=16.
+
+Faces the upper common corridor.
+
+Do not automatically add exterior windows facing the corridor.
+
+## WEST WALL
+
+Local X=0.
+
+Faces Central Hub.
+
+Provide correct accessible connectors.
+
+Do not cover connector openings with decorative objects.
+
+## ARCHITECTURAL CUTAWAY
+
+Preserve existing viewer cutaway conventions.
+
+Do not permanently delete export geometry simply because a camera sees through the wall.
+
+---
+
+# 16. ACCESS AND CONNECTOR CONTRACT
+
+Because this room combines two former modules, it may need multiple access points.
+
+Inspect the existing A3.1 room and corridor geometry before finalizing openings.
+
+## PRIMARY WEST CONNECTION
+
+To Central Hub.
+
+Design target:
+
+Local center:
+
+[0,0,8]
+
+Direction:
+
+West / -X.
+
+Nominal opening width:
+
+2 units.
+
+## OPTIONAL SECONDARY WEST ACCESS
+
+Where supported by existing corridor/Hub structure, a second access near one of the role zones may be appropriate.
+
+Do not invent it unless physically useful and compatible.
+
+## NORTH CORRIDOR ACCESS
+
+Design target:
+
+Local center:
+
+[4,0,16]
+
+Direction:
+
+North / +Z.
+
+Nominal opening width:
+
+2 units.
+
+This reaches the shared upper corridor, if the assembled geometry supports a continuous opening.
+
+### CONNECTOR VALIDATION
+
+For each declared connector:
+
+- Geometry opening exists.
+- Doorframe fits.
+- No solid hidden wall blocks it.
+- Floor elevation aligns.
+- Walking clearance exists.
+- No furniture intersects the doorway.
+- Metadata matches geometry.
+- Adjacent corridor or hub really exists.
+
+Do not mark an unbuilt doorway as valid.
+
+Do not modify adjacent approved rooms merely to satisfy a planned opening.
+
+---
+
+# 17. NAVIGATION — TWO FUTURE AGENTS
+
+This combined studio will contain:
+
+- One QA Agent.
+- One DevOps Agent.
+
+Do not create characters now.
+
+Plan room movement for:
+
+QA Agent:
+- QA workstation.
+- Device testing counter.
+- Bug review board.
+- Shared review board.
+- Central lounge.
+- Exit.
+
+DevOps Agent:
+- DevOps workstation.
+- Rack inspection point.
+- Operations status board.
+- Shared review board.
+- Central lounge.
+- Exit.
+
+Both characters should be able to meet near the central lounge and review board.
+
+The layout must support:
+
+- Walking.
+- Desk work.
+- Standing review.
+- Reading screen.
+- Meeting/discussion.
+- Equipment inspection.
+
+Do not block circulation with plants, stools, or server racks.
+
+Prefer a usable circulation path along one side of the lounge.
+
+Allow approximately 1.2 world units or more for main movement clearance where feasible, subject to the actual character collision dimensions.
+
+Do not shrink furniture to an unnatural scale merely to satisfy a rigid numerical target.
+
+Test actual clearance.
+
+---
+
+# 18. ANCHOR PREPARATION
+
+Use the existing compatible anchor schema.
+
+Required semantic anchor groups:
+
+## General
+
+- QA_DEVOPS_ROOM_SPAWN
+- QA_DEVOPS_ROOM_IDLE
+- QA_DEVOPS_WEST_EXIT
+- QA_DEVOPS_NORTH_EXIT
+
+## QA
+
+- QA_WORKSTATION_APPROACH
+- QA_DESK_WORK
+- QA_CHAIR
+- QA_DEVICE_TESTING
+- QA_CHECKLIST_BOARD
+- QA_BUG_REVIEW
+- QA_TEST_REPORT_REVIEW
+
+## DevOps
+
+- DEVOPS_WORKSTATION_APPROACH
+- DEVOPS_DESK_WORK
+- DEVOPS_CHAIR
+- DEVOPS_RACK_INSPECTION
+- DEVOPS_MONITORING_DISPLAY
+- DEVOPS_INFRASTRUCTURE_REVIEW
+
+## Shared
+
+- QA_DEVOPS_REVIEW_BOARD
+- QA_DEVOPS_LOUNGE_SOFA
+- QA_DEVOPS_LOUNGE_ARMCHAIR
+- QA_DEVOPS_COFFEE_TABLE
+- QA_DEVOPS_DISCUSSION_POSITION
+- QA_DEVOPS_PRESENTATION_POSITION
+
+Do not invent final anchor coordinates.
+
+Generate positions from actual final geometry.
+
+Use room-local positions only.
+
+Record intended facing direction, posture, target object, and safe approach point.
+
+Do not insert runtime anchor markers into exported room GLB.
+
+---
+
+# 19. CRITICAL BUG PREVENTION — MONITOR FRONT/BACK
+
+This is a mandatory engineering requirement.
+
+Previous modules suffered from monitor surfaces appearing on both sides.
+
+DO NOT REPEAT THIS BUG.
+
+For EVERY monitor and wall display:
+
+1. Identify the display owner/viewing position.
+2. Identify the screen's actual front-facing normal.
+3. Confirm front orientation.
+4. Create only ONE intended display plane for each display.
+5. Use an opaque rear casing.
+6. Keep display plane physically in front of its bezel/back casing.
+7. Do not duplicate the display texture on the rear.
+8. Prevent mirrored text.
+9. Check monitor stands.
+10. Verify screen orientation after GLB export and reimport.
+
+## QA DISPLAYS
+
+Both QA monitors must face the QA chair.
+
+## DEVOPS DISPLAYS
+
+Both DevOps monitors must face the DevOps chair.
+
+## WALL BOARDS
+
+Wall displays must face their room-side viewers.
+
+## TESTING DEVICES
+
+Phone and tablet screens must face the intended testing viewpoint.
+
+## NO SHORTCUTS
+
+Do not use DoubleSide rendering as a substitute for correct geometry orientation.
+
+Do not rotate screens toward the public camera if doing so makes them face away from their users.
+
+Do not show a bright screen on the rear of a physical monitor.
+
+## VALIDATION
+
+Perform a screen-facing check in world space where feasible:
+
+`dot(screenNormal, normalize(viewerPosition - screenPosition)) > 0.7`
+
+Use actual transformed vectors and correct local front axes.
+
+This test should not blindly substitute for visual inspection.
+
+Inspect each display from front, side, rear, and user seating position.
+
+---
+
+# 20. CRITICAL BUG PREVENTION — FLICKER AND Z-FIGHTING
+
+The owner has repeatedly encountered blinking and disappearing surfaces.
+
+This room must receive a dedicated rendering stability pass.
+
+Possible causes include:
+
+- Coplanar duplicate polygons.
+- Duplicate floor surfaces.
+- Overlapping wall panels.
+- Incorrect trim placement.
+- Screen-plane overlap.
+- Shelf face overlap.
+- Shadow acne.
+- Depth precision issues.
+- Transparent sorting.
+- Texture shimmer.
+- Incorrect object mounting.
+- Cutaway logic.
+- Repeated procedural geometry creation.
+
+Diagnose the actual causes rather than assuming one universal problem.
+
+## INSPECT
+
+- Rug and floor.
+- Floor plank seams.
+- Sofa cushion layers.
+- Armchair geometry.
+- Wall trim.
+- Window frames.
+- Testing devices.
+- Monitor displays.
+- Checklist board.
+- Wall signage.
+- Server racks.
+- Rack status lights.
+- Shelves.
+- Storage drawers.
+- Plants.
+- Lounge table.
+- Equipment cases.
+
+## FIXING RULES
+
+- Prefer source geometry corrections.
+- Remove verified duplicate surfaces.
+- Separate intentional layered planes by a small appropriate depth.
+- Use correct material transparency.
+- Avoid uncontrolled material overlays.
+- Fix shadow bias only if the artifact actually comes from shadows.
+- Keep texture frequencies appropriate for viewing distance.
+
+Do NOT:
+
+- Disable global depthTest.
+- Disable global depthWrite.
+- Apply polygonOffset to everything.
+- Make everything double-sided.
+- Remove shadows globally.
+- Modify every existing room's rendering profile.
+- Hide broken meshes from one camera angle only.
+
+Do not claim the room has zero flicker without testing.
+
+The acceptance target is no reproducible known flicker under the defined camera test sweep.
+
+---
+
+# 21. FLOOR AND RUG DEPTH CORRECTNESS
+
+The merged room must have a continuous 8×16 floor.
+
+The old QA/DevOps boundary lies at local Z=8.
+
+Verify:
+
+- No duplicate structural floor at Z=8.
+- No internal wall.
+- No unnecessary seam.
+- No overlapping floor slab.
+- No inconsistent floor elevations.
+
+The big lounge rug must:
+
+- Sit correctly above the floor.
+- Have real thickness or a safe justified offset.
+- Not flicker.
+- Not intersect stool/pouf bottoms unexpectedly.
+- Not become a giant opaque overlay hiding other props.
+- Remain within room bounds.
+
+If a patterned rug uses a texture, ensure the pattern stays sharp and stable in the exported GLB.
+
+---
+
+# 22. GLB-COMPATIBLE MATERIALS AND TEXTURES
+
+Prefer stable Three.js materials supported by glTF export.
+
+Use:
+
+- Matte wood.
+- Matte upholstery.
+- Warm wall materials.
+- Dark metal-like equipment.
+- Subtle brass accents.
+- Controlled emissive indicator lights.
+- Appropriate display materials.
+
+For generated CanvasTextures:
+
+- Set correct color space.
+- Use correct UV orientation.
+- Verify actual export embedding.
+- Avoid inverted text.
+- Avoid duplicate screen textures.
+- Verify mipmapping and filtering behavior at several distances.
+
+Do not render critical visual elements only through DOM overlays.
+
+Room signage, dashboards, checklists, and monitor textures must remain visible after independent GLB import where claimed.
+
+Runtime-only effects must be documented separately.
+
+---
+
+# 23. INTERIOR DENSITY QUALITY STANDARD
+
+The owner explicitly requires:
+
+**DO NOT REDUCE THE INTERIOR RICHNESS SHOWN IN THE APPROVED REFERENCE.**
+
+The output must not look sparse.
+
+The output must not look unfinished.
+
+The output must not contain large blank wall regions without intentional composition.
+
+The output must not contain only basic placeholder furniture.
+
+Visual density should come from:
+
+- Properly designed furniture.
+- Functional props.
+- Detailed monitors.
+- Shelves and binders.
+- Equipment.
+- Lighting.
+- Plants.
+- Decorative objects.
+- Textiles.
+- Wall displays.
+- Meaningful visual storytelling.
+
+Do not create random clutter.
+
+Keep the room elegant and walkable.
+
+If some objects do not fit their original arrangement in 8×16, reorganize them into the longitudinal arrangement.
+
+Do not omit the lounge, device testing station, server racks, or major wall displays.
+
+If the entire target inventory cannot physically fit with valid circulation, report the specific measured conflict and the smallest proposed compromise.
+
+Do not silently delete requested major features.
+
+---
+
+# 24. PERFORMANCE CONTROL
+
+The room must remain practical for Full Office rendering.
+
+Use:
+
+- Reusable material definitions.
+- Sensible mesh grouping.
+- Efficient procedural shapes.
+- Shared geometry where safe.
+- Deliberate object counts.
+- Appropriate texture resolutions.
+- Semantic object naming.
+
+Avoid:
+
+- Thousands of invisible decorative meshes.
+- Extreme tiny details that create shimmer.
+- Excessively high-resolution textures on small displays.
+- Reconstructing every prop each animation frame.
+- Massive unoptimized transparency layers.
+- Duplicate instantiation of the same room.
+
+Do not sacrifice the approved visual richness purely to reduce mesh count.
+
+Optimize intelligently.
+
+---
+
+# 25. SCENE HIERARCHY
+
+Create one independent root:
+
+`ROOM_QA_DEVOPS_ROOT`
+
+Suggested hierarchy:
+
+ROOM_QA_DEVOPS_ROOT
+- STRUCTURE
+- FLOOR
+- WALLS
+- WINDOWS
+- CONNECTORS
+- FURNITURE
+  - QA_WORKSTATION
+  - QA_DEVICE_TESTING
+  - QA_STORAGE
+  - DEVOPS_WORKSTATION
+  - DEVOPS_RACKS
+  - SHARED_LOUNGE
+- PROPS
+  - QA_REVIEW_PROPS
+  - DEVOPS_OPERATIONS_PROPS
+  - SHARED_REVIEW_PROPS
+- DECORATION
+  - PLANTS
+  - LAMPS
+  - WALL_DECOR
+  - LOUNGE_DETAILS
+
+Adapt naming to the existing project's canonical group conventions.
+
+Keep semantic nodes inspectable.
+
+Do not flatten the entire room into one anonymous mesh.
+
+Avoid nested duplicate room roots.
+
+---
+
+# 26. SINGLE ROOM MODE
+
+Register the new combined room as:
+
+`QA & DevOps Integrated Studio`
+
+Status:
+
+IN DEVELOPMENT until validation completes.
+
+When selected:
+
+- Display the full 8×16 room.
+- Show the complete room geometry.
+- Frame the elongated footprint appropriately.
+- Support Isometric.
+- Support Top.
+- Support Front.
+- Support Back.
+- Support Left.
+- Support Right.
+- Support Orbit.
+- Support Zoom.
+- Support Pan.
+- Support Fit Room.
+- Support Reset.
+
+The room must be visually attractive in default Single Room Isometric view.
+
+Ensure both QA and DevOps areas remain reasonably visible.
+
+The central lounge must be clearly recognizable.
+
+Do not deform room geometry to improve camera framing.
+
+Only adjust Single Room camera framing where necessary.
+
+Do not modify the deferred Full Office camera system.
+
+---
+
+# 27. FULL OFFICE INTEGRATION
+
+Update OfficeAssembler to use A3.2.
+
+Place the combined room at:
+
+[24,0,0]
+
+Size:
+
+8×16.
+
+Remove or disable the old separate QA and DevOps physical placeholders in this combined area.
+
+Do not allow overlapping placeholder geometry.
+
+Do not create two physical room shells within the new room.
+
+Preserve:
+
+- Research at [0,0,18].
+- PM at [8,0,18].
+- CEO at [16,0,18].
+- UI/UX at [24,0,18].
+- Engineering at [0,0,0], size 8×16.
+- Central Hub at X=8..24, Z=0..16.
+- Upper corridor Z=16..18.
+- Existing entrance and other approved structures.
+
+Total footprint remains 32×26.
+
+Do not modify unrelated room assets.
+
+---
+
+# 28. FUTURE QA AND DEVOPS CHARACTERS
+
+After this room is approved, the owner will create:
+
+1. QA & Review Agent.
+2. DevOps & AI Engine Agent.
+
+They will be separate character GLBs with separate animation and behavior JSON files.
+
+Do not create these characters now.
+
+Prepare the environment for their future job activities.
+
+## QA FUTURE ACTIONS
+
+- Idle.
+- Walk.
+- Work at QA desk.
+- Run Tests Demo.
+- Inspect Test Results.
+- Reproduce Bug.
+- Review Bug Report.
+- Inspect Device.
+- Verify Fix.
+- Review Regression.
+- Discuss with DevOps.
+- Present QA Results.
+- Waiting Review.
+- Quality Gate Review.
+- Task Completed.
+
+## DEVOPS FUTURE ACTIONS
+
+- Idle.
+- Walk.
+- Monitor Infrastructure.
+- Review Pipeline.
+- Inspect Rack.
+- Analyze Service Health.
+- Review Deployment Plan.
+- Diagnose Incident.
+- Examine Monitoring Data.
+- Discuss Release Readiness.
+- Read Runbook.
+- Present Operations Status.
+- Waiting Approval.
+- Task Completed.
+
+All future visual state changes will eventually be driven by backend events from the main AI Office system.
+
+For now, this room is an environment-only asset.
+
+Do not fake real activity logs or real deployments.
+
+---
+
+# 29. PRODUCTION EXPORT STANDARD
+
+Follow the existing:
+
+**AI OFFICE PRODUCTION ASSET STANDARD V1**
+
+Required outputs:
+
+`qa_devops_room.glb`
+
+`qa_devops_room.manifest.json`
+
+`qa_devops_room.anchors.json`
+
+`qa_devops_room.preview.png`
+
+`office-layout-a3.2.json`
+
+`qa_devops_room_production_pack_v1.zip`
+
+Optional:
+
+`qa_devops_room.display_slots.json`
+
+Only create optional metadata when supported by actual project architecture.
+
+## GLB CONTENTS
+
+Include:
+
+- Unified room floor.
+- All permanent walls.
+- Windows.
+- Actual connectors.
+- QA workstation.
+- Device testing counter.
+- QA testing displays.
+- QA checklist board.
+- DevOps workstation.
+- Infrastructure racks.
+- Operations status board.
+- Review board.
+- Large patterned rug.
+- Cream sofa.
+- Cream armchair.
+- Coffee table.
+- Three small poufs.
+- Permanent shelves.
+- Permanent decorative objects.
+- Lighting fixtures represented as room geometry.
+- Compatible embedded textures.
+- Permanent plants.
+
+Exclude:
+
+- QA character.
+- DevOps character.
+- Other characters.
+- Cameras.
+- UI.
+- Temporary lights intended only for preview.
+- Debug arrows.
+- Anchor marker geometry.
+- Room selection outlines.
+- Runtime helper meshes.
+- Duplicate old QA/DevOps placeholders.
+
+Keep the GLB in room-local coordinates.
+
+Do not bake global [24,0,0] into its mesh vertices.
+
+---
+
+# 30. MANIFEST CONTRACT
+
+Export:
+
+`qa_devops_room.manifest.json`
+
+Include:
+
+- schema_version
+- module_id
+- display_name
+- departments
+- layout_version
+- room_dimensions
+- local_origin
+- global_layout_offset
+- coordinate_system
+- room_connectors
+- rendering_profile
+- material_profile
+- asset_version
+- geometry_statistics
+- room_glb_path
+- preview_path
+- anchor_file_path
+- display_slots_path if applicable
+- validation_summary
+- known_limitations
+
+Use actual measured values.
+
+Do not invent mesh counts or file sizes.
+
+---
+
+# 31. DISPLAY SLOT METADATA
+
+If the existing project supports display slot metadata, create stable bindings for:
+
+- QA_TEST_DASHBOARD
+- QA_BUG_TRACKER
+- QA_CHECKLIST
+- QA_DEVICE_TESTING
+- QA_DEVOPS_REVIEW_BOARD
+- DEVOPS_SYSTEM_STATUS
+- DEVOPS_PIPELINE_DISPLAY
+- DEVOPS_MONITORING_SCREEN
+
+Mark each slot:
+
+- DEMO DATA.
+- Static or dynamic display.
+- Associated mesh.
+- Expected future data category.
+- Update capability.
+- Export behavior.
+
+Do not connect real AI orchestration, test runners, cloud infrastructure, or deployment APIs.
+
+Do not display fabricated production statuses as real.
+
+---
+
+# 32. INDEPENDENT GLB ROUND-TRIP VALIDATION
+
+After exporting the actual binary GLB:
+
+Reload it using an independent GLTFLoader test.
+
+Validate the REIMPORTED asset, not only the live builder.
+
+Check:
+
+1. GLB binary header is valid.
+2. GLB parses successfully.
+3. Correct room root exists.
+4. Room measures 8×16.
+5. Local origin is preserved.
+6. Floor is continuous.
+7. No internal wall exists at Z=8.
+8. QA workstation is present.
+9. DevOps workstation is present.
+10. QA monitors are physically correct.
+11. DevOps monitors are physically correct.
+12. Device testing counter is present.
+13. Device screens face the correct direction.
+14. Both infrastructure racks exist.
+15. Checklist board exists.
+16. DevOps wall display exists.
+17. Shared review board exists.
+18. Large rug exists.
+19. Cream sofa exists.
+20. Cream armchair exists.
+21. Coffee table exists.
+22. Poufs exist.
+23. Bookshelves and technical storage exist.
+24. Decorative greenery exists.
+25. Materials survive.
+26. Display textures survive.
+27. No mirrored text.
+28. No duplicated rear screens.
+29. No unexpected missing meshes.
+30. No debug helpers.
+31. No character geometry.
+32. Connector geometry matches metadata.
+33. No known reproducible major flicker.
+34. Scene is readable from multiple camera directions.
+35. The exported room is independent from OfficeAssembler global transforms.
+
+Do not claim every check passed without executing it.
+
+If an artifact cannot be checked automatically, use direct visual inspection and state the limitation.
+
+---
+
+# 33. REQUIRED RENDERING STABILITY SWEEP
+
+Perform a deliberate camera inspection through:
+
+- Default Isometric.
+- Opposite Isometric.
+- Front.
+- Rear.
+- Left.
+- Right.
+- Top.
+- Close-up QA workstation.
+- Close-up DevOps workstation.
+- Close-up lounge.
+- Close-up server racks.
+- Close-up wall boards.
+
+Look for:
+
+- Flickering.
+- Blinking.
+- Missing surfaces.
+- Incorrect shadows.
+- Monitor double-sided displays.
+- Mirrored content.
+- Sofa cushion intersections.
+- Rug shimmer.
+- Floor seam artifacts.
+- Window frame instability.
+- Shelf drawer overlaps.
+- Plant surface clipping.
+
+Repeat key checks on the reimported GLB.
+
+Do not hide an artifact by choosing only one attractive screenshot.
+
+If a visual issue survives, report it as unresolved rather than declaring the room defect-free.
+
+---
+
+# 34. REGRESSION TESTS
+
+After integration, verify:
+
+[ ] PM Room still loads.
+
+[ ] Boss PM animations remain functional.
+
+[ ] CEO Room still loads.
+
+[ ] CEO character remains functional.
+
+[ ] UI/UX Room still loads.
+
+[ ] UI/UX character remains functional.
+
+[ ] Engineering Room remains 8×16.
+
+[ ] Frontend remains functional.
+
+[ ] Backend remains functional.
+
+[ ] Database remains functional.
+
+[ ] Research Room still loads.
+
+[ ] Research Professor remains functional if implemented.
+
+[ ] Room Selector works.
+
+[ ] Single Room mode works.
+
+[ ] Full Office mode works.
+
+[ ] Office layout is now A3.2.
+
+[ ] Other completed room offsets are unchanged.
+
+[ ] Old QA/DevOps physical placeholders do not overlap the combined room.
+
+[ ] GLB room export works.
+
+[ ] Character export still works.
+
+[ ] Source backup remains available.
+
+[ ] No unexpected camera changes.
+
+Do not rebuild existing modules to pass these checks.
+
+---
+
+# 35. IMPLEMENTATION ORDER
+
+Execute in the following order.
+
+## PHASE A — AUDIT AND CHECKPOINT
+
+Inspect existing project and protect approved assets.
+
+## PHASE B — A3.2 LAYOUT REGISTRY
+
+Update QA and DevOps physical slots into one 8×16 combined-room entry.
+
+Keep all other positions unchanged.
+
+## PHASE C — BASE ARCHITECTURE
+
+Build one continuous 8×16 floor and room perimeter.
+
+Implement real accessible openings.
+
+Avoid internal walls.
+
+## PHASE D — DETAILED QA ZONE
+
+Build workstation, testing counter, documentation shelves, QA signage, testing displays and checklist board.
+
+## PHASE E — DETAILED DEVOPS ZONE
+
+Build workstation, infrastructure racks, monitoring displays, operations signage and storage.
+
+## PHASE F — CENTRAL LOUNGE
+
+Build the large patterned rug, cream sofa, matching armchair, wooden coffee table, poufs and cushions.
+
+This phase is mandatory.
+
+## PHASE G — REVIEW BOARD AND SHARED PROPS
+
+Implement the shared QA/DevOps review board and distinctive collaborative details.
+
+## PHASE H — ENVIRONMENT DECORATION
+
+Build:
+
+- Bookshelves.
+- Binders.
+- Greenery.
+- Hanging plants.
+- Window shelf.
+- Small trophies.
+- Warm lamps.
+- Equipment cases.
+- Storage boxes.
+- Architectural decorative details.
+
+## PHASE I — COMPOSITION REVIEW
+
+Compare the current actual 3D room against the approved image.
+
+Ensure the result is equally rich and elegant.
+
+Do not simplify.
+
+## PHASE J — SCREEN ORIENTATION AUDIT
+
+Verify all monitor front normals, rear casings, display text, texture positions, and screen-plane depth.
+
+## PHASE K — FLICKER AUDIT
+
+Inspect and repair actual geometry, materials, shadows, and texture stability issues.
+
+## PHASE L — NAVIGATION AND ANCHORS
+
+Prepare room-local QA, DevOps, and shared lounge anchors.
+
+Verify safe movement routes.
+
+## PHASE M — ROOM SELECTOR INTEGRATION
+
+Add the combined room to Single Room selection.
+
+Ensure correct framing.
+
+## PHASE N — FULL OFFICE INTEGRATION
+
+Replace the old QA and DevOps placeholders with the finished combined room.
+
+## PHASE O — PRODUCTION EXPORT
+
+Export GLB, JSON metadata, preview, layout contract, and production ZIP.
+
+## PHASE P — INDEPENDENT REIMPORT
+
+Reimport the actual GLB and inspect all major visual features.
+
+## PHASE Q — REGRESSION CHECK
+
+Verify previously completed rooms and characters still work.
+
+STOP AFTER ROOM COMPLETION.
+
+Do not create QA or DevOps characters yet.
+
+---
+
+# 36. ACCEPTANCE CRITERIA
+
+## ROOM STRUCTURE
+
+[ ] Exact 8×16 continuous room.
+
+[ ] Correct local origin [0,0,0].
+
+[ ] Correct global A3.2 offset [24,0,0].
+
+[ ] No internal dividing wall.
+
+[ ] Continuous floor.
+
+[ ] Actual doorways.
+
+[ ] Safe circulation.
+
+## VISUAL QUALITY
+
+[ ] Matches the approved elegant reference.
+
+[ ] No dominant purple accent.
+
+[ ] Cozy warm wood and cream materials.
+
+[ ] Navy/charcoal, olive and brass details.
+
+[ ] Large detailed patterned rug.
+
+[ ] Full cream sofa.
+
+[ ] Matching armchair.
+
+[ ] Coffee table.
+
+[ ] Three compact poufs.
+
+[ ] QA workstation fully detailed.
+
+[ ] DevOps workstation fully detailed.
+
+[ ] Device testing station.
+
+[ ] Two infrastructure racks.
+
+[ ] QA checklist board.
+
+[ ] DevOps system status board.
+
+[ ] Shared QA/DevOps review board.
+
+[ ] Detailed shelves, plants, trophies and lighting.
+
+[ ] Room feels richly furnished.
+
+[ ] New decor is visibly different from previous rooms.
+
+## RENDERING QUALITY
+
+[ ] No duplicate front/back monitor screens.
+
+[ ] Correct user-facing monitor orientation.
+
+[ ] No mirrored text.
+
+[ ] No known reproducible surface flicker.
+
+[ ] No double floor surfaces.
+
+[ ] No overlapping coplanar wall panels.
+
+[ ] No rug/floor Z-fighting.
+
+[ ] No unstable server status lights.
+
+[ ] No furniture disappearing during camera movement.
+
+[ ] No unsupported exported textures.
+
+## MODULAR INTEGRATION
+
+[ ] Room Selector works.
+
+[ ] Single Room supports the 8×16 footprint.
+
+[ ] Full Office loads.
+
+[ ] Old placeholders are not duplicated.
+
+[ ] Existing rooms remain unchanged.
+
+[ ] Existing characters remain unchanged.
+
+[ ] Future QA and DevOps anchors are documented.
+
+## EXPORT
+
+[ ] Standalone GLB exists.
+
+[ ] Manifest JSON exists.
+
+[ ] Anchor JSON exists.
+
+[ ] Preview PNG exists.
+
+[ ] A3.2 layout JSON exists.
+
+[ ] Production ZIP contains genuine files.
+
+[ ] Independent GLB reimport succeeds.
+
+[ ] All major furniture survives export.
+
+[ ] No debug geometry contaminates GLB.
+
+---
+
+# 37. REQUIRED FINAL REPORT
+
+After implementation, report:
+
+1. Existing project baseline inspected.
+2. Files added or modified.
+3. A3.2 registry changes.
+4. Actual room dimensions.
+5. Local and global origin.
+6. QA interior inventory.
+7. DevOps interior inventory.
+8. Lounge furniture inventory.
+9. New custom-made assets.
+10. Material and color palette.
+11. Window and doorway placement.
+12. Actual connector coordinates.
+13. Future character anchors.
+14. Monitor orientation tests.
+15. Flicker and rendering tests.
+16. Exported filenames and actual sizes.
+17. Independent GLB reimport result.
+18. Regression test results.
+19. Comparison against the approved visual reference.
+20. Remaining limitations.
+
+Clearly label findings:
+
+- COMPLETED.
+- PARTIAL.
+- NOT IMPLEMENTED.
+- NOT VERIFIED.
+
+Do not invent successful tests.
+
+Do not report production readiness merely because the model renders once.
+
+Do not mark the room owner-approved without the owner's explicit review.
+
+---
+
+# FINAL DIRECTIVE
+
+BUILD ONE COMBINED QA & DEVOPS INTEGRATED STUDIO.
+
+Use the OWNER-APPROVED ELEGANT COZY VOXEL IMAGE as the primary design reference.
+
+Do not reduce interior richness.
+
+Do not remove major reference furniture.
+
+Create one continuous 8×16 room at global offset [24,0,0].
+
+Reproduce the approved aesthetic:
+
+- Warm oak flooring.
+- Cream walls.
+- Navy and charcoal technical panels.
+- Muted teal and olive accents.
+- Restrained brass details.
+- Big patterned lounge rug.
+- Cream sofa and armchair.
+- Wooden coffee table.
+- Soft poufs.
+- Detailed QA testing workstation.
+- Device testing station.
+- Detailed DevOps operations workstation.
+- Two infrastructure racks.
+- QA checklist board.
+- Operations status board.
+- Shared review board.
+- Rich shelves, plants, decorative objects and warm lighting.
+
+Use NEW appropriate QA/DevOps props instead of repeatedly cloning old executive or engineering furniture.
+
+Build all permanent elements as real exportable 3D geometry with compatible materials.
+
+Ensure monitor displays exist only on their physically correct FRONT sides.
+
+Prevent mirrored screen content.
+
+Prevent duplicated surfaces, flickering geometry, rug Z-fighting, unstable shelves and broken wall details.
+
+Preserve every existing office module and character.
+
+Update only the approved A3.2 physical room registration.
+
+Do not implement QA or DevOps characters yet.
+
+Do not implement live test runners, cloud monitoring or deployment operations.
+
+Do not modify the deferred Full Office camera issue.
+
+Export genuine production-ready GLB and metadata.
+
+Perform actual reimport and regression testing.
+
+**DELIVER A FULLY FURNISHED, DENSELY DETAILED, ELEGANT QA & DEVOPS STUDIO THAT VISUALLY MATCHES THE APPROVED REFERENCE — THEN STOP FOR OWNER REVIEW.**

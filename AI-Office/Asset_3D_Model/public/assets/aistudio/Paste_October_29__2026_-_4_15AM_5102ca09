@@ -1,0 +1,1364 @@
+# AI OFFICE — CEO CHARACTER & ANIMATION PRODUCTION V1
+## Executive Assistant / Chief of Staff
+### Existing Modular Room Lab Extension | Approved Voxel Style | Production-Ready Export
+
+# 0. YOUR ROLE AND MISSION
+
+You are a Senior Voxel Character Artist, Three.js Technical Artist, Character Animation Engineer, Gameplay Systems Engineer, and GLB Asset Pipeline Specialist.
+
+You are working inside the EXISTING AI Office Modular Room Lab.
+
+The following already exist:
+
+- Completed PM & Strategy Room.
+- Original Room-Native Boss PM.
+- Existing working PM animations and activity simulation.
+- Completed CEO Executive Brain Office.
+- Single Room / Full Office modes.
+- Master Floor Plan A3.
+- Room Selector.
+- Existing independent GLB exports.
+- Character animation and navigation infrastructure.
+
+YOUR TASK:
+
+Create a NEW CEO Executive Assistant character inside the existing CEO Office, model the character using the approved reference, implement job-specific animations, and prepare a portable character asset package for the future AI Office main application.
+
+This is a VISUAL SIMULATION task.
+
+Do not implement actual AI orchestration, Shared Brain connectivity, database integration, or Telegram messaging.
+
+Do not rebuild the application.
+
+---
+
+# 1. CRITICAL PROJECT PROTECTION
+
+Before editing, inspect the current project structure and create a recoverable checkpoint.
+
+Preserve:
+
+- Original PM Room.
+- Original Boss PM character.
+- All existing PM animation clips.
+- PM navigation and activity controls.
+- CEO Room geometry.
+- CEO furniture.
+- Executive Brain Console.
+- Corrected dual-monitor orientation.
+- Existing office layout A3.
+- Room selection.
+- Single Room mode.
+- Full Office Preview.
+- Camera controls.
+- Room exports.
+- Existing character exports.
+- Simulation configuration and asset manifests.
+
+IMPORTANT:
+
+The Full Office camera proportions still have some owner-observed visual inconsistencies.
+
+THIS ISSUE IS DEFERRED.
+
+Do not redesign or attempt to repair the Full Office camera in this task.
+
+Do not change room dimensions, layout coordinates, OfficeAssembler transforms, or camera projection to accommodate the CEO character.
+
+Do not introduce regressions to existing rooms.
+
+---
+
+# 2. OFFICIAL CHARACTER REFERENCES
+
+There are two authoritative visual references.
+
+## REFERENCE A — APPROVED SENIOR CEO CHARACTER SHEET
+
+This defines the NEW character's identity.
+
+Specific features:
+
+- Mature, experienced executive appearance.
+- Dark brown hair with visible gray/silver highlights.
+- Subtle gray hair around the temples and upper hair clusters.
+- Neatly layered short voxel hairstyle.
+- Black rectangular eyeglasses.
+- Warm beige voxel skin.
+- Calm, professional facial expression.
+- Dark charcoal executive suit.
+- White inner shirt.
+- Deep emerald-green necktie.
+- Subtle gold executive details.
+- Green-lanyard executive identification card.
+- Dark trousers.
+- Dark brown formal shoes.
+- Compact geometric proportions.
+
+The character should look experienced and dependable.
+
+Do not turn the character into the elderly Research Professor.
+
+Do not make all hair completely white.
+
+Do not add a long white beard.
+
+The gray highlights are an important identity feature.
+
+## REFERENCE B — EXISTING ROOM-NATIVE BOSS PM
+
+This defines the actual 3D ART STYLE.
+
+The current Boss PM is the strongest source of truth for:
+
+- Block proportions.
+- Head-to-body ratio.
+- Torso size.
+- Leg length.
+- Hand geometry.
+- Voxel edge treatment.
+- Material finish.
+- Facial detail density.
+- Character scale.
+- Rig architecture.
+- Animation style.
+
+The CEO must appear to belong to the same office world as the existing Boss PM.
+
+Do not simply make a more detailed or more realistic character because the concept sheet contains studio-rendered lighting.
+
+The final CEO model should be stylistically equivalent to the ACTUAL PM model in the running application.
+
+## REFERENCE PRIORITY
+
+For actual 3D integration:
+
+1. Existing PM model — technical style, scale, rig convention.
+2. Approved CEO reference — appearance and identity.
+3. Existing CEO Room — environmental lighting and materials.
+
+Do not copy the PM's exact face, hair, sunglasses, or outfit.
+
+Reuse the technical approach, not the identity.
+
+---
+
+# 3. OFFICIAL ROLE
+
+Character ID:
+
+`ceo_executive_assistant`
+
+Display Name:
+
+`CEO Executive Assistant`
+
+Functional Role:
+
+`Executive Brain / Chief of Staff`
+
+Department:
+
+`Executive Office`
+
+IMPORTANT AUTHORITY DISTINCTION:
+
+The human Owner remains the real CEO and ultimate decision maker.
+
+This 3D character is an AI Executive Assistant representing:
+
+- Executive reporting.
+- Strategic oversight.
+- Reviewing PM reports.
+- Monitoring organizational summaries.
+- Preparing owner-facing digests.
+- Coordinating strategic communications.
+- Waiting for owner decisions.
+
+The character is not an independent authority allowed to approve sensitive actions.
+
+This distinction must be preserved in future metadata and user-facing labels.
+
+---
+
+# 4. REUSE THE EXISTING CHARACTER ARCHITECTURE
+
+Inspect the current Room-Native Boss PM implementation.
+
+Find:
+
+- Character model builder.
+- Head group.
+- Hair geometry construction.
+- Eyeglasses and facial geometry.
+- Torso and clothing construction.
+- Arm and leg pivots.
+- Character navigation root.
+- Pose controller.
+- AnimationClip construction.
+- AnimationMixer integration.
+- Procedural animation fallback.
+- Character selection.
+- Actor state machine.
+- GLB exporter.
+
+Extend the existing architecture instead of introducing a completely separate incompatible character system.
+
+Create an independent CEO character module.
+
+Suggested structure:
+
+CEO_AGENT_RUNTIME_ROOT
+- NavigationRoot
+- OrientationRoot
+- CharacterModelRoot
+  - HeadPivot
+  - Face
+  - Hair
+  - Glasses
+  - Torso
+  - LeftArmPivot
+  - RightArmPivot
+  - LeftLegPivot
+  - RightLegPivot
+  - Accessories
+- AnimationController
+- InteractionAnchor
+
+Adapt to the actual current project conventions.
+
+Do not force these exact names if they conflict with the existing implementation.
+
+Do not clone the PM mesh and merely change colors.
+
+Produce genuinely distinct CEO geometry.
+
+---
+
+# 5. CHARACTER VISUAL CONSTRUCTION
+
+## 5.1 SCALE AND PROPORTIONS
+
+Use the existing PM character as the scale reference.
+
+The previously exported PM character is approximately 1.72 world units tall.
+
+Confirm the ACTUAL current PM height and scale before building CEO.
+
+Target a comparable full character height, unless a minor adjustment improves the approved character silhouette.
+
+The CEO should:
+
+- Stand naturally beside the executive desk.
+- Match the height of the CEO chair and workstation.
+- Look proportional next to Boss PM.
+- Have a compact blocky silhouette.
+- Use similar head width and body scale conventions.
+- Have grounded feet.
+
+Do not use nonuniform character scale to fix camera-perspective problems.
+
+Preserve a consistent character origin near the feet.
+
+## 5.2 HEAD
+
+Create a distinct voxel executive head.
+
+Requirements:
+
+- Clean cubic base silhouette.
+- Warm matte skin.
+- Subtle cheek variation.
+- Compact geometric ears.
+- Small nose.
+- Readable eyebrows.
+- Minimal voxel mouth.
+- Appropriate eye spacing.
+
+Do not create round realistic eyeballs.
+
+## 5.3 SENIOR HAIRSTYLE
+
+The hairstyle is the primary identity difference from PM.
+
+Use:
+
+- Short layered dark brown voxel hair.
+- Visible medium-gray and silver voxel clusters.
+- Gray touches at the temples.
+- Subtle graying around the top and sides.
+- Neatly arranged masculine executive hairstyle.
+- Deliberately stepped geometry.
+
+Hair color must not be uniformly white or uniformly black.
+
+Maintain a mature but active senior-professional appearance.
+
+Use a controlled number of authored block clusters.
+
+Avoid random hair cubes and overcomplicated geometry.
+
+The silhouette must remain consistent in front, side, rear, and three-quarter views.
+
+## 5.4 EYEGLASSES
+
+Use black square or rectangular glasses.
+
+Unlike Boss PM:
+
+- These are transparent or open-frame executive eyeglasses.
+- The eyes should remain visible.
+- Do not use opaque black sunglasses.
+- Preserve facial expression visibility.
+
+Glasses should have proper 3D frame components and a stable head attachment.
+
+Provide a working glasses toggle if compatible with the existing shared character customization system.
+
+## 5.5 EXECUTIVE SUIT
+
+Default clothing:
+
+- Dark charcoal suit jacket.
+- White dress shirt.
+- Emerald-green tie.
+- Subtle gold lapel or pocket detail.
+- Dark matching trousers.
+- Brown or very dark formal shoes.
+
+The geometry should follow the simple room-native voxel style.
+
+Avoid overly elaborate tailoring that makes CEO visually incompatible with PM.
+
+Use a few controlled material shades to define jacket layers, lapels, cuffs, and shoes.
+
+## 5.6 ID CARD
+
+The executive identification card uses:
+
+- Green lanyard.
+- Small rectangular badge.
+- Subtle gold/cream detail.
+
+The badge should be attached to the torso or a stable character pivot.
+
+It must not float or flicker during walking.
+
+## 5.7 DEFAULT OUTFIT FIRST
+
+The approved reference also shows optional outfits.
+
+However, this task prioritizes the DEFAULT formal executive outfit.
+
+Do not sacrifice model and animation quality to build many costume variations.
+
+Future options may include:
+
+- Smart Casual.
+- Executive Vest.
+- Formal Executive Default.
+
+Design clothing groups to support later customization.
+
+Only implement extra outfits if the default character and core animations are already validated.
+
+---
+
+# 6. CEO ROOM INTEGRATION
+
+Use the EXISTING CEO Office.
+
+Existing room ID:
+
+`AI_OFFICE_ROOM_CEO_v1`
+
+The room is already visually approved and must not be rebuilt.
+
+Current CEO Room originally had a character policy of NONE because no CEO avatar had been approved.
+
+Now update this intentionally to support an OPTIONAL runtime CEO Executive Assistant actor.
+
+This change must affect runtime character placement only.
+
+It must NOT merge the character into the room geometry.
+
+### Default behavior
+
+When selecting CEO Office in Single Room mode:
+
+- Load the CEO character automatically.
+- Place the character at a validated idle anchor.
+- Show CEO-specific simulation controls.
+- Allow character selection and camera focus.
+
+When selecting PM Room:
+
+- Preserve the existing Boss PM behavior.
+- Do not show CEO controls instead of PM controls.
+
+In Full Office Preview:
+
+- Support an optional Show Agents toggle.
+- Avoid duplicating the CEO character or PM character.
+- Keep actor transforms relative to their module origins.
+
+### Scene hierarchy
+
+ROOM_CEO_ROOT contains permanent room geometry.
+
+CEO_AGENT_RUNTIME_ROOT contains the character.
+
+These must remain independent.
+
+---
+
+# 7. CEO ANCHOR CALIBRATION
+
+The current CEO Room reportedly has 11 predefined anchors.
+
+Inspect the ACTUAL current CEO anchor file and furniture coordinates.
+
+Reuse and validate existing anchors instead of generating another conflicting set.
+
+Check:
+
+- Actual CEO desk position.
+- Executive chair position.
+- Brain Console location.
+- Report review table location.
+- South exit.
+- West connector if available.
+- Walkable floor.
+- Furniture collision zones.
+
+The existing executive chair was previously reported near:
+
+[4.50, 0.00, 6.68]
+
+Treat this as a value to VERIFY, not a guaranteed current coordinate.
+
+Create or map the following semantic anchors:
+
+- CEO_ROOM_IDLE
+- CEO_ROOM_SPAWN
+- CEO_DESK_APPROACH
+- CEO_DESK_SEAT
+- CEO_REPORT_REVIEW
+- CEO_BRAIN_CONSOLE
+- CEO_DISCUSSION_POSITION
+- CEO_PRESENTATION_POSITION
+- CEO_PHONE_POSITION
+- CEO_COFFEE_POSITION
+- CEO_SOUTH_EXIT
+- CEO_WEST_CONNECTION if physically valid
+
+Do not invent final anchor positions.
+
+Derive them from existing actual room geometry.
+
+All character navigation anchors must use CEO ROOM LOCAL coordinates.
+
+The CEO character must not walk through furniture.
+
+---
+
+# 8. CORE ANIMATION SYSTEM
+
+Create real 3D character animations.
+
+The CEO character must support:
+
+- AnimationMixer-based playback.
+- Compatible keyframed AnimationClips.
+- Smooth transitions.
+- State-aware pose resets.
+- Delta-time-based updates.
+- Correct parent pivot animation.
+- Stable accessory attachments.
+- Standing and seated poses where physically supported.
+
+Reuse the original Boss PM animation technique where appropriate.
+
+The CEO must have independently animated head, arms, and legs.
+
+Do not implement actions by changing only UI labels.
+
+Do not use flat animated sprite sheets.
+
+Do not place a static image in place of the 3D model.
+
+## CORE ANIMATION TARGETS
+
+Create the following CEO-specific animation clips or compatible equivalents.
+
+### 01 — Idle_Breathing
+
+Relaxed standing posture.
+
+Subtle breathing and head movement.
+
+Natural resting expression.
+
+### 02 — Walk_Cycle
+
+Short voxel walking cycle.
+
+Alternate arms and legs appropriately.
+
+Use actual route movement and orientation.
+
+Feet should remain visually grounded.
+
+### 03 — Work_Desk
+
+Approach the executive workstation.
+
+Transition into an appropriate seated pose.
+
+Use subtle typing and computer-review motions.
+
+Face the actual CEO monitor screens.
+
+### 04 — Review_PM_Report
+
+Walk to the report reception area.
+
+Read or review a report folder.
+
+Use small head and hand movements.
+
+This may be demonstrated with a report prop without requiring another character.
+
+### 05 — Analyze_Executive_Brain
+
+Walk toward the Executive Brain Console.
+
+Face the correct screen direction.
+
+Inspect simulated department or project summaries.
+
+Use small pointing and analytical gestures.
+
+### 06 — Discuss_With_PM
+
+Demonstrate an executive discussion pose.
+
+Look toward a designated conversation anchor.
+
+Use subtle talking and hand movements.
+
+Do not generate a duplicate PM character in the CEO Room.
+
+A real PM-to-CEO meeting sequence will be integrated later when cross-room movement is stable.
+
+### 07 — Present_Strategy
+
+Stand near the appropriate strategic display.
+
+Perform a short presenting gesture.
+
+Turn naturally between the board and the audience.
+
+### 08 — Think_Strategy
+
+Thoughtful standing or seated pose.
+
+Subtle head movement.
+
+Optional hand-to-chin gesture if compatible with the rig.
+
+### 09 — Phone_Call
+
+Use a small smartphone accessory.
+
+Raise the appropriate arm.
+
+Perform a subtle conversation gesture.
+
+Return the arm to the correct resting pose when finished.
+
+### 10 — Coffee_Break
+
+Move to a suitable refreshment or desk location.
+
+Hold a coffee cup if available.
+
+Perform a simple drinking or relaxing gesture.
+
+Return the accessory to its appropriate state.
+
+### 11 — Waiting_Owner_Approval
+
+Stop conflicting activity.
+
+Use a calm waiting pose.
+
+Optionally show a small approval-waiting indicator.
+
+Do not automatically approve the owner's decision.
+
+### 12 — Prepare_Executive_Digest
+
+Work at the executive computer.
+
+Review a simulated summary.
+
+Use a distinctive typing or document-preparation pose.
+
+The monitor may display a fictional executive digest.
+
+### 13 — Send_Report_Demo
+
+Interact with the executive workstation.
+
+Perform a short sending/confirmation animation.
+
+Show:
+
+"SIMULASI — LAPORAN DISIAPKAN"
+
+or
+
+"DEMO REPORT SENT"
+
+This MUST NOT send a real Telegram message.
+
+No external API call is permitted for this visual simulation.
+
+### 14 — Task_Completed
+
+Short positive acknowledgment.
+
+Subtle nod or professional completion gesture.
+
+Return to Idle.
+
+## ANIMATION QUALITY RULES
+
+All these animations must use genuinely animated 3D transforms.
+
+Do not fake working animation by replacing the character with a different pose image.
+
+Do not permanently distort geometry.
+
+Do not animate the character's entire root when only an arm should move.
+
+Do not allow hands to detach.
+
+Avoid walking while typing.
+
+Avoid standing gestures overlapping seated actions.
+
+Restore a clean pose between incompatible actions.
+
+Prioritize high-quality working clips over claiming that all fourteen clips are complete when some are not.
+
+---
+
+# 9. STATE & STATUS — PREPARE CONTRACT ONLY
+
+IMPORTANT DEVELOPMENT DECISION:
+
+The real AI Office state and status system will be designed and implemented later in the MAIN AI WORK PROJECT.
+
+For now, build a DEMO state machine supporting the animations.
+
+Example visual states:
+
+- IDLE
+- MOVING
+- WORKING
+- REVIEWING_REPORT
+- ANALYZING
+- DISCUSSING
+- PRESENTING
+- THINKING
+- PHONE_CALL
+- COFFEE_BREAK
+- WAITING_APPROVAL
+- PREPARING_SUMMARY
+- SENDING_REPORT_DEMO
+- TASK_COMPLETED
+- BLOCKED_DEMO
+
+These states are for visual simulation and testing only.
+
+Create a clear mapping:
+
+DEMO ACTION → CHARACTER STATE → TARGET ANCHOR → ANIMATION CLIP → OPTIONAL PROP.
+
+Do not define actual business logic or real agent authority in the renderer.
+
+Provide a clean future integration interface that can receive external state/event data later.
+
+For example, a future backend event may request a predefined animation.
+
+The 3D character controller must not independently decide whether a project is complete or an approval has been granted.
+
+Backend state will remain the authoritative source in the main system.
+
+Do not integrate real LLM providers, Telegram, or task databases at this stage.
+
+---
+
+# 10. FACIAL EXPRESSIONS
+
+Use the existing PM visual style.
+
+Create simple geometric expressions:
+
+- Neutral.
+- Focused.
+- Happy.
+- Thinking.
+- Concerned.
+- Talking.
+- Confident.
+
+Expressions should use real face component transforms, material/mesh visibility changes, or appropriate lightweight geometry.
+
+Do not overcomplicate the face with realistic morphing.
+
+The eyeglasses must not hide all expressive elements.
+
+Expressions should work in combination with animation states when compatible.
+
+For this phase, they remain demo-controlled.
+
+Real emotional or task-state mapping will be finalized later.
+
+---
+
+# 11. ACCESSORIES AND PROPS
+
+Implement only practical accessories needed for CEO activities.
+
+Required default accessories:
+
+- Executive ID badge.
+- Glasses.
+
+Optional activity props:
+
+- Report document or binder.
+- Executive tablet.
+- Smartphone.
+- Coffee cup.
+- Pen or small clipboard.
+
+Use existing compatible room props when suitable.
+
+If a handheld accessory is needed, attach it to the correct character hand pivot.
+
+When not in use, hide or return it cleanly.
+
+Do not leave props floating in the room.
+
+Do not embed preview furniture in the character GLB by default.
+
+No full costume editor is needed yet.
+
+---
+
+# 12. CEO SIMULATION CONTROL PANEL
+
+Reuse the EXISTING PM simulation UI architecture wherever practical.
+
+The CEO panel should be character-specific.
+
+Suggested label:
+
+**CEO Agent — Simulasi Eksekutif**
+
+Controls:
+
+- Idle.
+- Jalan.
+- Kerja di Meja.
+- Review Laporan PM.
+- Analisis Executive Brain.
+- Diskusi dengan PM.
+- Presentasi.
+- Berpikir.
+- Telepon.
+- Istirahat Kopi.
+- Menunggu Approval.
+- Siapkan Ringkasan.
+- Kirim Laporan (Demo).
+- Tugas Selesai.
+
+Preserve:
+
+- Play.
+- Pause.
+- Resume.
+- Stop.
+- Reset Pose.
+- Reset Position.
+- Speed adjustment when supported.
+- Character Focus.
+- Return to Room View.
+
+All controls must perform real actions.
+
+The current state and active clip should be visible.
+
+Mark simulated information clearly:
+
+"SIMULASI / DEMO"
+
+Do not display fake real-time AI execution as if it were active backend processing.
+
+### Automatic CEO Demo
+
+Create one optional button:
+
+"Jalankan Demo CEO"
+
+Suggested sequence:
+
+Idle
+→ Walk to Desk
+→ Work
+→ Review PM Report
+→ Walk to Executive Brain
+→ Analyze
+→ Prepare Executive Digest
+→ Send Report Demo
+→ Return to Idle.
+
+This sequence is independent of the PM demo.
+
+Do not modify the existing PM automatic demo.
+
+Avoid accumulating timers or animation instances.
+
+---
+
+# 13. CHARACTER NAVIGATION
+
+Use the existing room navigation conventions.
+
+Required:
+
+- Waypoint-based or equivalent safe movement.
+- Smooth orientation during walking.
+- No walking through furniture.
+- No walking through walls.
+- No teleportation during ordinary actions.
+- Appropriate standing positions.
+- Correct seated desk position.
+- Consistent floor height.
+
+Separate:
+
+- Navigation root movement.
+- Character orientation.
+- Animated body pivots.
+
+Do not bake global office coordinates into character geometry.
+
+CEO Room local coordinates must be reusable wherever the room module is placed.
+
+When Full Office assembles the CEO Room at:
+
+[16, 0, 18]
+
+apply this offset through the room/agent wrapper.
+
+Do not destructively re-center the CEO character or CEO Room geometry.
+
+Cross-room navigation and actual PM-to-CEO visits are NOT required yet.
+
+Prepare compatible anchors only.
+
+---
+
+# 14. PRODUCTION EXPORT STANDARD
+
+This task must follow:
+
+**AI OFFICE ASSET STANDARD V1**
+
+The future AI Work Project must be able to import the CEO character without regenerating geometry.
+
+## A. CHARACTER GLB
+
+Export a standalone binary glTF 2.0 character.
+
+Filename:
+
+`ceo_executive_assistant.glb`
+
+Include:
+
+- Complete CEO mesh.
+- Hairstyle and gray highlights.
+- Face.
+- Glasses.
+- Formal outfit.
+- ID card.
+- Character materials.
+- Stable transform hierarchy.
+- Animation pivot nodes.
+- Actual exportable AnimationClips.
+
+Exclude:
+
+- Permanent CEO Room geometry.
+- Furniture.
+- Studio camera.
+- UI controls.
+- Scene grid.
+- Navigation debug markers.
+- Preview-only effects.
+- Temporary speech bubbles.
+- Duplicated PM character.
+
+## B. ANIMATION EXPORT
+
+Use a real GLTFExporter animation export process.
+
+Animation clips must contain actual valid keyframes bound to exported nodes.
+
+If the live animations use JavaScript procedural transforms, convert or bake compatible actions into genuine THREE.AnimationClip tracks.
+
+Validate clip names and playback in a separate imported instance.
+
+Do not report exported clips unless they exist in the resulting glTF animation array.
+
+If some procedural effects cannot be embedded, retain their controller source and describe the limitation.
+
+Do not invent successful exports.
+
+## C. CHARACTER MANIFEST
+
+Export:
+
+`ceo_executive_assistant.manifest.json`
+
+Include:
+
+- schema_version
+- asset_id
+- display_name
+- character_role
+- compatible_room_id
+- glb_path
+- target_height_units
+- local_forward
+- root_origin_policy
+- default_scale
+- material_profile
+- supported_animation_clips
+- supported_expressions
+- supported_accessories
+- export_version
+- validation_summary
+
+## D. BEHAVIOR CONFIGURATION
+
+Export:
+
+`ceo_executive_assistant.behavior.json`
+
+Include:
+
+- schema_version
+- character_id
+- default_state
+- default_idle_anchor_id
+- action_mappings
+- expected_clip_names
+- target_anchor_ids
+- required_props
+- animation transition configuration
+- animation fallback information
+- demo/production capability flags
+- external event binding contract
+
+Keep these action mappings engine-independent where possible.
+
+## E. ROOM ANCHORS
+
+Preserve and extend:
+
+`ceo-room.anchors.json`
+
+Use existing verified room-local coordinates.
+
+Do not create incompatible duplicate anchor schemas.
+
+Document the expected character spawn point, workstation, chair, report table, console, and exit anchors.
+
+## F. PREVIEW
+
+Export:
+
+`ceo_executive_assistant_preview.png`
+
+Use a consistent orthographic three-quarter view.
+
+Include a separate simple turnaround preview where practical.
+
+## G. SOURCE BACKUP
+
+Preserve all relevant source code.
+
+The portable source archive should retain:
+
+- CEO character builder.
+- Animation definitions.
+- Expression controller.
+- Accessory controller.
+- Navigation integration.
+- State/action mapping.
+- GLB exporter.
+- Import/reimport validation routines.
+
+Do not assume the GLB contains JavaScript logic.
+
+---
+
+# 15. SUGGESTED PRODUCTION FOLDER CONTRACT
+
+The final asset package should be logically compatible with:
+
+production/
+  characters/
+    ceo_executive_assistant/
+      ceo_executive_assistant.glb
+      ceo_executive_assistant.manifest.json
+      ceo_executive_assistant.behavior.json
+      ceo_executive_assistant_preview.png
+  rooms/
+    ceo_office/
+      ceo_room.glb
+      ceo-room.manifest.json
+      ceo-room.anchors.json
+      ceo-room.behavior.json
+  office/
+    office-layout-a3.json
+
+source/
+  modular-room-lab-source.zip
+
+Do not require the Google AI Studio project itself to have this exact source folder structure.
+
+The asset pack is the integration boundary.
+
+Use the current app architecture for source files.
+
+The production pack can be generated as a ZIP containing the appropriate actual exported files.
+
+If some referenced file does not exist, do not silently add a fake empty file.
+
+Clearly report missing artifacts.
+
+---
+
+# 16. GLB REIMPORT VALIDATION
+
+After export, reload the actual generated CEO GLB using GLTFLoader.
+
+Verify:
+
+- Character mesh exists.
+- Geometry is visible.
+- Materials survive export.
+- Gray hair highlights are present.
+- Glasses are correctly attached.
+- Suit colors remain correct.
+- Feet align with the floor.
+- Model scale is correct.
+- Model orientation is correct.
+- Root hierarchy is stable.
+- Actual animation clips are detected.
+- Keyframe tracks resolve to existing nodes.
+- Exported clips visibly animate the loaded model.
+- No extreme pose explosions.
+- No missing limbs.
+- No detached accessories.
+- No unrelated room geometry inside the character file.
+
+Do not validate only the live source model.
+
+Use the reimported GLB.
+
+The exported asset must work independently from the original procedural model builder wherever possible.
+
+---
+
+# 17. PRESERVE EXISTING PM EXPORTS
+
+Do not overwrite:
+
+- boss_pm.glb
+- boss_pm behavior JSON
+- pm_room.glb
+- pm_room manifest
+- pm_room anchor data
+- PM simulation source
+
+CEO exports must use independent character IDs and filenames.
+
+Room export must remain room-only.
+
+Character export must remain character-only.
+
+Do not silently overwrite the current CEO Room GLB with a combined room-plus-character model.
+
+---
+
+# 18. IMPLEMENTATION ORDER
+
+Work in controlled phases.
+
+## PHASE A — PROJECT INSPECTION
+
+Inspect current source.
+
+Confirm stable PM Room and CEO Room.
+
+Identify reusable Boss PM rig, animation, and export infrastructure.
+
+Create a recoverable checkpoint.
+
+## PHASE B — CEO CHARACTER GEOMETRY
+
+Build the approved senior CEO model.
+
+Prioritize:
+
+- Shape and proportions.
+- Brown-gray hairstyle.
+- Square eyeglasses.
+- Formal charcoal suit.
+- Emerald tie.
+- Executive ID card.
+- Correct scale.
+
+## PHASE C — VISUAL MATCH
+
+Compare the actual 3D model against:
+
+1. Approved CEO character sheet.
+2. Actual Boss PM room-native model.
+
+Check front, side, back, and three-quarter views.
+
+Ensure stylistic consistency.
+
+## PHASE D — RIG AND BASIC MOVEMENT
+
+Implement body pivots.
+
+Implement Idle and Walk.
+
+Calibrate the model to the CEO Room.
+
+## PHASE E — CORE EXECUTIVE ACTIONS
+
+Implement the executive job animations.
+
+Prioritize:
+
+- Work Desk.
+- Review PM Report.
+- Analyze Executive Brain.
+- Discuss.
+- Prepare Executive Digest.
+- Send Report Demo.
+
+Then complete supporting gestures.
+
+## PHASE F — EXPRESSIONS AND PROPS
+
+Implement compatible facial expressions.
+
+Add minimal necessary activity props.
+
+## PHASE G — CEO SIMULATION UI
+
+Reuse existing simulation controls.
+
+Keep the PM UI unaffected.
+
+## PHASE H — EXPORT
+
+Export GLB, manifest, behavior, preview, and source configuration.
+
+## PHASE I — INDEPENDENT REIMPORT
+
+Reimport actual CEO GLB.
+
+Test keyframes, materials, and hierarchy.
+
+## PHASE J — REGRESSION
+
+Verify:
+
+- PM Room still works.
+- CEO Room still works.
+- Original Boss PM animation still works.
+- Room Selector still works.
+- Full Office mode still loads.
+- Exports still work.
+
+Do not change the existing Full Office camera/layout issue during this task.
+
+---
+
+# 19. ACCEPTANCE CRITERIA
+
+## CEO VISUAL
+
+[ ] CEO is visually consistent with Room-Native Boss PM.
+
+[ ] CEO has a genuinely distinct identity.
+
+[ ] Hair includes subtle gray/silver highlights.
+
+[ ] Glasses are rectangular and eyes remain visible.
+
+[ ] Charcoal suit and green tie match the reference.
+
+[ ] ID card is correctly attached.
+
+[ ] Materials match the office's cozy voxel style.
+
+[ ] Character height matches office scale.
+
+## ANIMATION
+
+[ ] Idle works.
+
+[ ] Walk works.
+
+[ ] CEO navigates to valid room anchors.
+
+[ ] Desk work animation works.
+
+[ ] Report review animation works.
+
+[ ] Executive Brain analysis works.
+
+[ ] Discussion animation works.
+
+[ ] Presentation works.
+
+[ ] Phone interaction works.
+
+[ ] Coffee interaction works.
+
+[ ] Owner approval waiting pose works.
+
+[ ] Executive digest preparation works.
+
+[ ] Report sending DEMO works.
+
+[ ] Completed reaction works.
+
+[ ] Animation transitions do not break the model.
+
+## STATE DEMO
+
+[ ] CEO simulation panel is functional.
+
+[ ] All statuses are clearly marked DEMO.
+
+[ ] No actual Telegram message is sent.
+
+[ ] No real AI task is claimed.
+
+[ ] Future external event mappings are documented.
+
+## EXPORT
+
+[ ] CEO character GLB exists.
+
+[ ] CEO animation clips are genuinely embedded where reported.
+
+[ ] CEO GLB reimport succeeds.
+
+[ ] Character manifest exists.
+
+[ ] Behavior JSON exists.
+
+[ ] Room anchors remain valid.
+
+[ ] Preview PNG exists.
+
+[ ] Source backup remains available.
+
+[ ] Room and character GLBs remain independent.
+
+## REGRESSION
+
+[ ] PM Room is unchanged.
+
+[ ] Boss PM geometry is unchanged.
+
+[ ] Boss PM animations still work.
+
+[ ] CEO Room geometry is unchanged.
+
+[ ] Corrected CEO monitors remain correct.
+
+[ ] Single Room mode works.
+
+[ ] Full Office mode still loads.
+
+[ ] Camera controls are not modified.
+
+[ ] Existing production exports remain available.
+
+---
+
+# 20. FINAL VALIDATION REPORT
+
+After implementation, report:
+
+1. Files added or modified.
+2. CEO character geometry summary.
+3. Comparison against Boss PM art style.
+4. Detected CEO character height and bounds.
+5. List of actual completed animations.
+6. List of embedded exported clips.
+7. List of procedural-only effects, if any.
+8. Character expression and accessory support.
+9. CEO Room navigation validation.
+10. CEO simulation UI validation.
+11. GLB export/reimport test results.
+12. Confirmation that PM behavior is unaffected.
+13. Any remaining limitations.
+
+Do not claim successful validation without evidence.
+
+Do not describe planned states as real backend functionality.
+
+---
+
+# FINAL DIRECTIVE
+
+Extend the EXISTING AI Office Modular Room Lab.
+
+Build the approved Senior CEO Executive Assistant character using the existing Room-Native Boss PM as the authoritative TECHNICAL ART STYLE reference.
+
+Preserve the approved gray-highlighted hairstyle, executive glasses, charcoal formal suit, green tie, and ID badge.
+
+Create genuine 3D job-specific executive animations.
+
+Prepare a clear demo state and behavior mapping for future integration.
+
+Keep CEO Room geometry, PM Room geometry, PM animations, OfficeAssembler, and current camera behavior intact.
+
+Provide independent production-compatible character GLB, manifest JSON, behavior JSON, preview PNG, and source backup with genuine reimport validation.
+
+Do not implement real AI backend operations.
+
+Do not send Telegram messages.
+
+Do not fix the deferred Full Office camera issue.
+
+**COMPLETE THE CEO CHARACTER AND ITS VISUAL SIMULATION SYSTEM, THEN STOP FOR OWNER REVIEW.**
