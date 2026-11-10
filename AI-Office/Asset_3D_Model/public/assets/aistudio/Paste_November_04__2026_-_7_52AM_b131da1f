@@ -1,0 +1,2550 @@
+# AI OFFICE — DEVOPS & AI ENGINE ENGINEER CHARACTER PRODUCTION V1
+## Agent 09 — DevOps, Infrastructure & AI Engine Operations
+### Premium Room-Native Voxel Character | Reference-Accurate Modeling | Detailed Curly Hair | Real Animations | Demo States | Portable GLB Export
+### EXISTING GOOGLE AI STUDIO MODULAR ROOM LAB — STRICT NON-DESTRUCTIVE IMPLEMENTATION
+
+---
+
+# 0. YOUR ROLE AND PRIMARY MISSION
+
+You are a Senior Three.js Voxel Character Technical Artist, Character Modeling Specialist, Animation Engineer, React/TypeScript Developer, Interactive Simulation Architect, and Production GLB Pipeline Engineer.
+
+You are working inside the EXISTING project:
+
+**AI Office — Modular Room Lab**
+
+The project already contains multiple completed rooms, animated characters, asset registries, simulation systems, camera controls, and production export tools.
+
+Your mission is to create ONE final department character:
+
+**DEVOPS ENGINEER — DEVOPS & AI ENGINE OPERATIONS AGENT**
+
+This character must follow the attached approved DevOps Engineer Voxel Character Sheet as closely as possible.
+
+Your implementation must include:
+
+1. Accurate 3D voxel character geometry.
+2. Distinctive dark curly voxel hairstyle.
+3. Correct dark-brown skin tone.
+4. Detailed technical outfit and accessories.
+5. Stable character rig.
+6. Role-specific DevOps animations.
+7. Facial expressions.
+8. Contextual props.
+9. Dedicated DevOps demo states.
+10. Automatic DevOps activity demonstration.
+11. Integration into the existing QA & DevOps room.
+12. Independent coexistence with QA Engineer.
+13. Compatibility with the existing Central Hub meeting system.
+14. Genuine embedded GLB animation clips.
+15. Portable manifest and behavior JSON.
+16. Independent export/reimport validation.
+17. Complete regression protection.
+
+DO NOT REBUILD THE APPLICATION.
+
+DO NOT CREATE ANOTHER ROOM.
+
+DO NOT MODIFY EXISTING CHARACTERS.
+
+DO NOT IMPLEMENT REAL INFRASTRUCTURE OPERATIONS.
+
+---
+
+# 1. BASELINE INSPECTION AND CHECKPOINT
+
+Before implementation:
+
+1. Inspect the actual project source.
+2. Locate current character builders.
+3. Inspect existing rigs and animation definitions.
+4. Inspect character runtime controllers.
+5. Inspect the QA Engineer implementation.
+6. Inspect QA & DevOps room anchors.
+7. Inspect the existing character registry.
+8. Inspect the Central Hub meeting controller.
+9. Inspect the production export system.
+10. Create a recoverable source checkpoint.
+
+Do not assume that every previously requested feature has been completed.
+
+Check actual files and runtime behavior.
+
+Preserve the last working project state.
+
+---
+
+# 2. PROTECTED ASSETS AND SYSTEMS
+
+Preserve all existing rooms:
+
+- Research & Shared Brain.
+- PM & Strategy.
+- CEO Executive Brain.
+- UI/UX Design.
+- Engineering & Development.
+- QA & DevOps Integrated Studio.
+- Central Collaboration Hub.
+
+Preserve the existing character implementations:
+
+- Boss PM.
+- CEO Executive Assistant.
+- UI/UX Designer.
+- Frontend Developer.
+- Backend Developer.
+- Database Developer.
+- Research Professor.
+- QA Engineer.
+
+Do not change their:
+
+- Geometry.
+- Hairstyles.
+- Skin colors.
+- Outfits.
+- Expressions.
+- Animation clips.
+- Behavior contracts.
+- Runtime controllers.
+- Exported asset packages.
+
+Preserve:
+
+- Single Room mode.
+- Full Office mode.
+- Room Selector.
+- Master Floor Plan A3.2.
+- OfficeAssembler.
+- Smart Cutaway.
+- Show Architecture.
+- Cinema Mode.
+- Camera presets.
+- Constrained zoom.
+- Character selection.
+- Existing meeting system.
+- GLB export/reimport.
+- Production manifests.
+- Source backup system.
+
+Do not alter the Full Office camera or architectural layout during this task.
+
+---
+
+# 3. OFFICIAL CHARACTER IDENTITY
+
+Character ID:
+
+`devops_engineer_agent`
+
+Display Name:
+
+`DevOps Engineer`
+
+Full Role:
+
+`DevOps & AI Engine Operations Specialist`
+
+Department:
+
+`DevOps & AI Engine`
+
+Physical Room:
+
+`AI_OFFICE_ROOM_QA_DEVOPS_v1`
+
+Functional specialization:
+
+- Infrastructure monitoring.
+- CI/CD pipeline review.
+- Build and release orchestration preparation.
+- Deployment readiness review.
+- Service health observation.
+- Log inspection.
+- Incident analysis.
+- Infrastructure troubleshooting.
+- Runtime environment verification.
+- AI engine availability monitoring.
+- Provider health visualization.
+- Resource and quota telemetry review.
+- Operational documentation.
+- Coordination with QA and Backend.
+- Reporting operational findings to PM.
+
+IMPORTANT:
+
+This character represents the visual actor for DevOps activities.
+
+It does not independently obtain authority to deploy, restart services, switch providers, spend API quota, or change production systems.
+
+The actual future AI Office backend must enforce those decisions through its own verified workflows, permissions, and approval policies.
+
+---
+
+# 4. VISUAL REFERENCE PRIORITY
+
+Use the following references.
+
+## REFERENCE A — ATTACHED DEVOPS ENGINEER VOXEL CHARACTER SHEET
+
+This is the AUTHORITATIVE VISUAL IDENTITY REFERENCE.
+
+The supplied image contains:
+
+- Large hero character.
+- Eight-direction turnaround.
+- Facial expressions.
+- Idle and walk poses.
+- Talking pose.
+- Workstation typing pose.
+- Deployment action.
+- Infrastructure monitoring action.
+- Server and incident-related activities.
+- Troubleshooting.
+- Phone interaction.
+- Technical accessories.
+- Multiple workstation variations.
+- Outfit variants.
+
+Use the sheet to reproduce the character's recognizable appearance.
+
+## REFERENCE B — EXISTING ROOM-NATIVE CHARACTERS
+
+Inspect the real working character assets:
+
+- Boss PM.
+- CEO.
+- UI/UX.
+- Frontend.
+- Backend.
+- Database.
+- Research Professor.
+- QA Engineer.
+
+These determine the ACTUAL technical art style:
+
+- Body proportions.
+- World-unit height.
+- Mesh density.
+- Head scale.
+- Limb proportions.
+- Pivot placement.
+- Voxel geometry conventions.
+- Material roughness.
+- Lighting compatibility.
+- Animation technique.
+- Export structure.
+
+## REFERENCE C — EXISTING QA & DEVOPS ROOM
+
+Use the current room for:
+
+- Desk height.
+- Chair alignment.
+- Monitor orientation.
+- Server rack positions.
+- Walking routes.
+- Lighting.
+- Character spawn and action anchors.
+
+Do not substitute an imaginary workstation for the real room geometry.
+
+---
+
+# 5. STRICT VISUAL IDENTITY
+
+The DevOps Engineer must have:
+
+- Dark brown skin.
+- Short, dense, naturally curly black hairstyle.
+- Distinct geometric curl clusters.
+- Layered hair crown.
+- Clearly modeled side and rear hair.
+- Simple dark expressive eyes.
+- No default eyeglasses.
+- Dark charcoal technical jacket.
+- Off-white/light inner shirt or hood detail.
+- Cyan/blue technical accents.
+- White/silver headphones with blue earcup details.
+- Dark trousers.
+- White/light-gray sneakers with blue accents.
+- Black technical backpack.
+- Recognizable cyan cloud icon on the backpack.
+
+The overall impression should be:
+
+**A capable, calm, modern DevOps engineer with a distinctive curly-haired voxel silhouette.**
+
+The character must be visually different from:
+
+- Backend, who wears glasses and has layered brown hair.
+- Frontend, who has an orange hoodie.
+- Database, who has green accents.
+- QA, who has a tied-up brown hairstyle and yellow accents.
+
+DO NOT create a generic black-haired developer by recoloring Backend.
+
+DO NOT copy another character's head without meaningful reconstruction.
+
+---
+
+# 6. HIGHEST PRIORITY — CURLY VOXEL HAIR
+
+THE HAIRSTYLE IS A CRITICAL ACCEPTANCE REQUIREMENT.
+
+The owner wants the result to match the supplied reference, especially the shape and texture of the hair.
+
+The character's hair is:
+
+- Very dark black/charcoal.
+- Short.
+- Dense.
+- Highly textured.
+- Curly.
+- Voluminous at the crown.
+- Geometrically irregular but carefully organized.
+
+## 6.1 HAIR SILHOUETTE
+
+Create a dense collection of intentional voxel curl clusters.
+
+The hairstyle should form a compact rounded-angular afro-inspired silhouette with visible stepped volume.
+
+Avoid:
+
+- One solid black cube.
+- A rectangular helmet.
+- A smooth sphere.
+- Random disconnected voxel blocks.
+- Extremely spiky anime hair.
+- Long straight hair.
+- A flat top with no depth.
+
+The outline must have small angular variations that communicate tight curls.
+
+## 6.2 HAIR CONSTRUCTION
+
+Recommended semantic groups:
+
+- Hair_Base_Volume
+- Hair_Crown_Core
+- Hair_Crown_Curls
+- Hair_Front_Curls
+- Hair_Left_Curls
+- Hair_Right_Curls
+- Hair_Back_Curls
+- Hair_Temple_Transition
+- Hair_Nape_Details
+
+Adapt these names to actual project conventions.
+
+Use purposeful geometric clustering.
+
+Avoid creating thousands of tiny independent meshes merely to simulate texture.
+
+Use efficient grouped geometry where appropriate while maintaining a real 3D silhouette.
+
+## 6.3 FRONT VIEW
+
+The front silhouette must show:
+
+- Dense dark hair.
+- Individual visible stepped curl clusters.
+- Slightly uneven top surface.
+- A natural stepped hairline.
+- Appropriate forehead visibility.
+- Clean relationship with eyebrows and eyes.
+
+Do not let the hair cover the entire face.
+
+## 6.4 SIDE VIEWS
+
+Both side views must show:
+
+- Real hair volume.
+- Multiple depth layers.
+- A visible hair-to-ear boundary.
+- Compact textured temple areas.
+- A natural transition from crown to nape.
+
+Avoid flat rectangular side faces.
+
+Avoid hair intersecting the ears.
+
+## 6.5 BACK VIEW
+
+The rear hairstyle must be fully modeled.
+
+The supplied reference includes clear rear views.
+
+The back must show:
+
+- Dense layered curls.
+- Controlled depth variation.
+- A recognizable rounded-angular silhouette.
+- A shorter lower/nape transition.
+- Consistent curl structure.
+
+Do not create a plain black cuboid at the back.
+
+## 6.6 HAIR COLOR PALETTE
+
+Use a restrained dark palette:
+
+- Deep charcoal black.
+- Near-black neutral shadows.
+- Slightly lighter charcoal upper curls.
+- Subtle cool black midtones.
+- Very limited soft-gray highlights where natural lighting requires them.
+
+Avoid:
+
+- Pure featureless black.
+- Bright blue hair.
+- Purple hair.
+- Glossy synthetic hair.
+- Strong metallic highlights.
+- Realistic hair-strand textures.
+
+## 6.7 HAIR MATERIAL
+
+Use:
+
+- Matte surfaces.
+- High roughness.
+- Very low metalness.
+- Controlled geometric shadowing.
+- Crisp voxel edges.
+- Clean color-space handling.
+
+The texture should come primarily from geometry.
+
+Do not rely on noisy 2D painted textures to create the curl silhouette.
+
+## 6.8 HAIR RIG SAFETY
+
+Hair must remain attached to the head during:
+
+- Idle.
+- Walking.
+- Looking around.
+- Typing.
+- Monitoring.
+- Troubleshooting.
+- Phone calls.
+- Presentation.
+- Sitting.
+- Meeting gestures.
+
+Do not create detached or independently floating curls.
+
+Avoid intersections with the headset.
+
+## 6.9 REQUIRED TURNAROUND INSPECTION
+
+Inspect:
+
+1. Front.
+2. Front-right.
+3. Right.
+4. Back-right.
+5. Back.
+6. Back-left.
+7. Left.
+8. Front-left.
+
+The hairstyle must remain recognizable from all eight directions.
+
+If the front looks correct but the side or rear looks like a black cube, refine the geometry before continuing.
+
+---
+
+# 7. SKIN TONE AND FACE — CRITICAL FIDELITY
+
+Match the supplied character's dark brown skin appearance.
+
+Use a warm, deep brown palette consistent with the reference and the established office lighting.
+
+Do not lighten the skin to match the other character models.
+
+Do not use a flat black material.
+
+The skin should retain readable geometry and warm voxel shading.
+
+## FACE FEATURES
+
+Required:
+
+- Dark rectangular eyes.
+- Small dark pupils.
+- Subtle eyebrows.
+- Compact nose.
+- Simple mouth.
+- Clean blocky ears.
+- Subtle face highlights.
+- Expressive but restrained facial movement.
+
+## DEFAULT EYEWEAR
+
+The reference character does not wear default glasses.
+
+Do not automatically add Backend-style glasses.
+
+If a future accessory variation includes eyewear, keep it optional.
+
+## EXPRESSIONS
+
+Use the character sheet as the reference for:
+
+- Neutral.
+- Alert.
+- Happy.
+- Thinking.
+- Talking.
+- Focused.
+- Concerned.
+- Tired.
+- Surprised.
+- Confident.
+
+Ensure expressions remain readable on the darker skin tone without introducing unnaturally bright facial details.
+
+Avoid floating mouth or eyebrow planes.
+
+---
+
+# 8. DEFAULT DEVOPS OUTFIT
+
+The DEFAULT outfit must follow the approved character sheet.
+
+## TECHNICAL JACKET
+
+Create a dark navy/charcoal technical jacket.
+
+Required:
+
+- Structured dark torso.
+- White or off-white collar/hood details.
+- Geometric sleeve construction.
+- Dark sleeve cuffs.
+- Small cyan/blue tech accents.
+- Small cloud or technical patch where appropriate.
+- Clear layered front geometry.
+- Restrained blue highlights.
+
+The outfit should look modern and professional.
+
+Do not create a formal suit.
+
+Do not turn the default outfit into a brightly colored blue hoodie.
+
+Do not use excessive neon.
+
+## INNER CLOTHING
+
+Use:
+
+- Light inner shirt.
+- White collar/hood detail.
+- Subtle navy or blue trim where appropriate.
+
+## TROUSERS
+
+Dark charcoal or navy.
+
+Use consistent voxel proportions.
+
+## SNEAKERS
+
+White/light gray sneakers.
+
+Add:
+
+- Blue or cyan accents.
+- Real geometric soles.
+- Dark minor details.
+- Correct floor grounding.
+
+Do not make the sneakers oversized.
+
+---
+
+# 9. HEADPHONES — SIGNATURE ACCESSORY
+
+The reference clearly features white/silver headphones with blue details around the neck.
+
+This is mandatory.
+
+Build:
+
+- White or silver headband.
+- Two rounded-angular earcup assemblies.
+- Blue/cyan earcup accents.
+- Dark inner padding.
+- Appropriate thickness.
+- Stable neck attachment.
+
+The headphones must remain visible from front and three-quarter angles.
+
+Do not place them permanently over the ears by default.
+
+The default reference shows them around the neck.
+
+Optional headset-wearing modes may be introduced only if they are compatible with the hairstyle.
+
+## HEADPHONE COLLISION RULE
+
+During head rotation or sitting:
+
+- Headphones must not intersect the chin.
+- Headphones must not penetrate the jacket.
+- Earcups must not detach.
+- Headband must remain stable.
+
+The headphones should not hide the character's face.
+
+---
+
+# 10. DEVOPS BACKPACK
+
+Create the black technical backpack shown in the reference.
+
+It is an important identity feature.
+
+Required:
+
+- Compact rectangular body.
+- Layered dark technical panels.
+- Shoulder straps.
+- Small side attachments.
+- Cyan/blue highlights.
+- Central cyan cloud emblem.
+- Subtle depth and surface variation.
+
+The icon should resemble a simple stylized cloud.
+
+Use clean geometry or a small compatible texture.
+
+The icon must be visible from rear and three-quarter views.
+
+Do not use uncontrolled bright bloom.
+
+Do not make the backpack into a giant server cabinet.
+
+## SEATED POLICY
+
+If the backpack intersects the office chair:
+
+Use a supported seated visibility or attachment policy.
+
+Do not simply allow it to pass through furniture.
+
+Preserve backpack geometry in the standalone character asset.
+
+---
+
+# 11. OPTIONAL OUTFITS — FUTURE ONLY
+
+The reference includes outfit alternatives such as:
+
+- Default technical jacket.
+- Gray hoodie.
+- White hoodie.
+- Alternative technical jacket.
+- T-shirt.
+- Cargo outfit.
+- Lab coat.
+- Cap.
+- Beanie.
+- Safety vest.
+- Dark/night variation.
+
+For this task:
+
+**IMPLEMENT THE APPROVED DEFAULT OUTFIT FIRST.**
+
+Do not spend most of the implementation time building alternate clothing variants.
+
+Prepare compatible attachment groups if the existing character architecture supports outfit switching.
+
+Do not mark optional outfits as complete unless actually implemented and verified.
+
+---
+
+# 12. SCALE AND PROPORTIONS
+
+Inspect actual working character bounds.
+
+Match the established Room-Native scale.
+
+The previous Boss PM model was approximately 1.72 world units tall, but verify the current source instead of assuming this value.
+
+Requirements:
+
+- Feet grounded at Y=0.
+- Correct local root origin.
+- Comparable head/body proportions.
+- Correct arm reach.
+- Correct workstation sitting height.
+- Proper headphone scale.
+- Proper backpack scale.
+- No nonuniform scaling.
+
+The curly hair can create a slightly larger head silhouette without making the whole character disproportionately tall.
+
+Do not resize the DevOps desk or room furniture to compensate for an incorrectly built character.
+
+---
+
+# 13. CHARACTER RIG
+
+Reuse the existing character rig conventions.
+
+Suggested independent root:
+
+`DEVOPS_ENGINEER_AGENT_RUNTIME_ROOT`
+
+Suggested structure:
+
+DEVOPS_ENGINEER_AGENT_RUNTIME_ROOT
+- NavigationRoot
+- OrientationRoot
+- CharacterModelRoot
+  - TorsoPivot
+  - HeadPivot
+    - Face
+    - Eyes
+    - Eyebrows
+    - Mouth
+    - HairCrown
+    - HairFront
+    - HairSides
+    - HairBack
+  - LeftArmPivot
+  - RightArmPivot
+  - LeftLegPivot
+  - RightLegPivot
+  - TechnicalJacket
+  - InnerShirt
+  - HeadphoneAttachment
+  - BackpackAttachment
+  - LeftHandAttachment
+  - RightHandAttachment
+
+Adapt to the actual working project architecture.
+
+Requirements:
+
+- Stable animation track targets.
+- Stable pivot orientation.
+- Independent arm/leg movement.
+- Head rotation.
+- Compatible seated poses.
+- Correct prop attachment.
+- Reliable pose reset.
+- Valid GLB export.
+
+Do not introduce an unrelated animation engine.
+
+---
+
+# 14. ROOM INTEGRATION — QA & DEVOPS
+
+Use the existing:
+
+`AI_OFFICE_ROOM_QA_DEVOPS_v1`
+
+The room occupies:
+
+Local X=0..8.
+
+Local Z=0..16.
+
+Local origin:
+
+[0,0,0].
+
+Full Office offset:
+
+[24,0,0].
+
+Layout:
+
+A3.2.
+
+## EXISTING ROOM ZONES
+
+- QA workstation.
+- Device testing area.
+- QA checklist/review board.
+- Shared cozy lounge.
+- Shared review board.
+- DevOps workstation.
+- DevOps infrastructure racks.
+- Monitoring displays.
+
+The DevOps Engineer must occupy the DEVOPS zone.
+
+Based on the approved planning, DevOps is primarily in the southern section of the combined room.
+
+Verify the actual geometry before selecting a spawn point.
+
+Do not place DevOps permanently at QA's desk.
+
+Do not replace QA Engineer.
+
+Do not rebuild the room.
+
+Do not add another server room.
+
+---
+
+# 15. ANCHOR MAPPING
+
+Read the ACTUAL current room anchors.
+
+Expected semantic candidates may include:
+
+- DEVOPS_WORKSTATION_APPROACH
+- DEVOPS_DESK_WORK
+- DEVOPS_CHAIR
+- DEVOPS_RACK_INSPECTION
+- DEVOPS_MONITORING_DISPLAY
+- DEVOPS_INFRASTRUCTURE_REVIEW
+- QA_DEVOPS_REVIEW_BOARD
+- QA_DEVOPS_DISCUSSION_POSITION
+- QA_DEVOPS_LOUNGE_SOFA
+- QA_DEVOPS_WEST_EXIT
+- QA_DEVOPS_NORTH_EXIT
+
+These names are examples.
+
+Do not assume they exist.
+
+Derive positions from real scene geometry.
+
+Each action must use:
+
+- Valid room-local target.
+- Safe approach point.
+- Correct facing angle.
+- Valid posture.
+- Compatible interaction target.
+- Clear navigation route.
+
+Do not double-apply the global office offset.
+
+## WORKSTATION FACING
+
+The DevOps character must face the FRONT of the actual monitor.
+
+Do not rotate the monitor to accommodate the character.
+
+Do not interact with a monitor's back casing.
+
+---
+
+# 16. REQUIRED DEVOPS ANIMATIONS — CORE
+
+Create genuine 3D character animations.
+
+Do not implement animations as label-only state changes.
+
+## 01 — Idle_Breathing
+
+Relaxed standing pose.
+
+Subtle breathing.
+
+Small head movement.
+
+Natural arm posture.
+
+Loopable.
+
+## 02 — Walk_Cycle
+
+Voxel walk.
+
+Natural alternating arm and leg movement.
+
+Correct footing.
+
+Stable character orientation.
+
+Loopable.
+
+## 03 — Work_Typing
+
+Navigate to the DevOps desk.
+
+Align with chair.
+
+Enter a valid seated working posture.
+
+Face the actual monitor.
+
+Animate keyboard and mouse interaction.
+
+## 04 — Technical_Talk
+
+Small talking gestures.
+
+Subtle head movement.
+
+Professional expression.
+
+Reusable for future collaboration.
+
+---
+
+# 17. REQUIRED DEVOPS ANIMATIONS — OPERATIONS
+
+## 05 — Monitor_Infrastructure
+
+Inspect system monitoring displays.
+
+Gesture sequence:
+
+- Observe main monitor.
+- Move attention to secondary display.
+- Small mouse interaction.
+- Pause and inspect.
+- Return to neutral work posture.
+
+Do not simply rename Work_Typing.
+
+## 06 — Review_CICD_Pipeline
+
+Review a fictional CI/CD pipeline.
+
+Use a monitor or tablet.
+
+Gesture sequence:
+
+- Read pipeline stages.
+- Inspect checklist.
+- Pause.
+- Point or confirm visually.
+
+Do not execute an actual build.
+
+## 07 — Deployment_Preparation
+
+Represent preparing a deployment.
+
+Possible gestures:
+
+- Review a laptop.
+- Check a release document.
+- Look at monitoring display.
+- Small confirmation motion.
+
+This is a simulated readiness activity.
+
+## 08 — Deploy_Demo
+
+Use the character sheet's DEPLOY action as inspiration.
+
+Suggested visual:
+
+- Character holds a tablet or laptop.
+- Performs a short confirmation gesture.
+- A small blue cloud/upload icon appears in the runtime presentation layer.
+
+IMPORTANT:
+
+This is a DEMO animation only.
+
+Do not call real deployment APIs.
+
+Do not execute shell commands.
+
+Do not modify production infrastructure.
+
+Do not change Git repositories.
+
+Do not create fake deployment evidence.
+
+The runtime must visibly label the action DEMO.
+
+---
+
+# 18. REQUIRED DEVOPS ANIMATIONS — MONITORING & INCIDENTS
+
+## 09 — Inspect_Server_Rack
+
+Walk to the actual infrastructure rack inspection anchor.
+
+Face the rack.
+
+Look at its status panels.
+
+Perform small inspection gestures.
+
+Do not merge the rack geometry into the character.
+
+## 10 — Service_Health_Review
+
+Inspect fictional service health indicators.
+
+Suggested movements:
+
+- Observe display.
+- Point toward status information.
+- Compare indicators.
+- Return to neutral.
+
+This action must feel distinct from infrastructure monitoring.
+
+## 11 — Incident_Alert_Reaction
+
+Create a short alert reaction.
+
+Based on the visual sheet's warning/incident concept.
+
+Possible actions:
+
+- Head turns toward a monitor.
+- Brief surprised or concerned expression.
+- Small urgent hand gesture.
+- Transition to investigation.
+
+A warning icon may appear as runtime FX.
+
+Do not bake a floating alert icon permanently into the character GLB.
+
+## 12 — Troubleshoot_Incident
+
+Show an operational investigation.
+
+Suggested sequence:
+
+- Walk toward workstation or rack.
+- Inspect the relevant display.
+- Think.
+- Interact with keyboard/tablet.
+- Review technical information.
+
+The character should appear focused and methodical.
+
+Do not claim an actual incident was resolved.
+
+## 13 — Review_Logs
+
+Read fictional operational logs.
+
+Use smaller inspection gestures.
+
+This should be distinct from typing and incident response.
+
+## 14 — Analyze_Metrics
+
+Review graphs and infrastructure metrics.
+
+Face the actual monitoring display.
+
+Use subtle pointing, reading, and planning gestures.
+
+---
+
+# 19. REQUIRED DEVOPS ANIMATIONS — AI ENGINE
+
+The future AI Office uses multiple AI providers and an engine orchestration layer.
+
+This character may visually represent observation of AI Engine operations.
+
+Do not implement the actual provider system here.
+
+## 15 — AI_Engine_Status_Review
+
+Inspect fictional AI Engine status.
+
+Demo concepts:
+
+- Engine availability.
+- Provider status.
+- Request queues.
+- Usage visibility.
+- Resource warnings.
+- Routing health.
+
+Use a monitor or tablet.
+
+Do not fabricate real quotas.
+
+Do not claim to have verified provider availability.
+
+## 16 — Resource_Health_Check
+
+Inspect simulated resource usage.
+
+Use a different focused monitoring gesture.
+
+Do not implement a real resource monitor.
+
+## 17 — Engine_Switch_Review
+
+Represent reviewing a proposed engine switch.
+
+The character checks a fictional status board or document.
+
+This is a review animation only.
+
+DO NOT automatically switch an actual AI engine.
+
+Any future switching decision must follow the main AI Office policy, permissions, verified telemetry, and routing system.
+
+---
+
+# 20. REQUIRED DEVOPS ANIMATIONS — COLLABORATION
+
+## 18 — Read_Runbook
+
+Hold a small runbook or tablet.
+
+Look at operational instructions.
+
+Perform a subtle reading gesture.
+
+## 19 — Release_Readiness_Discussion
+
+Use the shared QA/DevOps review board or collaboration area.
+
+Face the board.
+
+Make small professional discussion gestures.
+
+This action will later support collaboration with QA.
+
+Do not fabricate a real QA interaction.
+
+## 20 — Present_Operations_Status
+
+Walk toward a valid operations or shared review board.
+
+Face the board.
+
+Point to example status diagrams.
+
+Perform a natural technical presentation.
+
+## 21 — Phone_Call
+
+Use a smartphone or compatible communication prop.
+
+Raise it to a suitable position.
+
+Animate restrained talking gestures.
+
+Return the accessory safely.
+
+## 22 — Think_Investigate
+
+Short thoughtful pose.
+
+Head tilt.
+
+Subtle hand-to-chin gesture if compatible.
+
+## 23 — Coffee_Break
+
+Hold a coffee cup.
+
+Perform a brief drinking movement.
+
+Return safely to idle.
+
+## 24 — Waiting_Approval
+
+Calm waiting pose.
+
+May check a release document.
+
+Do not automatically claim approval.
+
+## 25 — Task_Completed
+
+Short professional positive acknowledgment.
+
+Subtle nod or satisfied gesture.
+
+Return to idle.
+
+---
+
+# 21. ANIMATION IMPLEMENTATION PRIORITY
+
+Prioritize real motion quality.
+
+## PRIORITY A — CORE IDENTITY
+
+Must be implemented and verified first:
+
+- Idle.
+- Walk.
+- Work Typing.
+- Monitor Infrastructure.
+- Deploy Demo.
+- Inspect Server Rack.
+- Incident Alert Reaction.
+- Troubleshoot Incident.
+- Present Operations Status.
+
+## PRIORITY B — PROFESSIONAL ACTIVITIES
+
+- CI/CD Review.
+- Deployment Preparation.
+- Service Health Review.
+- Log Review.
+- Metrics Analysis.
+- AI Engine Status Review.
+- Runbook Reading.
+- Release Readiness Discussion.
+
+## PRIORITY C — SUPPORTING ANIMATIONS
+
+- Technical Talk.
+- Resource Health Check.
+- Engine Switch Review.
+- Phone.
+- Think.
+- Coffee Break.
+- Waiting Approval.
+- Task Completed.
+
+An activity may consist of multiple animation clips, navigation, expressions, and prop transitions.
+
+Do not create meaningless duplicate AnimationClips only to match the number of demo actions.
+
+Report the actual number of genuine embedded GLB clips.
+
+Distinguish:
+
+- Real exported AnimationClip.
+- Runtime animation sequence.
+- Navigation behavior.
+- Expression state.
+- Contextual prop.
+- Demo state.
+
+---
+
+# 22. ANIMATION QUALITY REQUIREMENTS
+
+All animations must:
+
+- Move genuine 3D pivots.
+- Preserve character proportions.
+- Keep curly hair attached.
+- Keep headphones attached.
+- Keep backpack aligned.
+- Avoid detached arms.
+- Avoid floating feet.
+- Avoid broken seated postures.
+- Avoid clipping through the desk.
+- Avoid clipping through server racks.
+- Avoid floating accessories.
+- Return cleanly to a neutral pose.
+- Support Stop and Reset.
+- Work through existing AnimationMixer conventions.
+
+Separate:
+
+1. World navigation.
+2. Character orientation.
+3. Local body animation.
+4. Facial expressions.
+5. Accessory visibility.
+6. Runtime visual indicators.
+
+Do not create one uncontrolled update loop that mutates all character states simultaneously.
+
+## SITTING
+
+Use:
+
+Approach → Align → Sit → Perform Action → Stand.
+
+When switching from typing to walking, ensure the character transitions to standing first.
+
+---
+
+# 23. FACIAL EXPRESSION SYSTEM
+
+Implement lightweight voxel expressions.
+
+Required:
+
+- Neutral.
+- Focused.
+- Happy.
+- Curious.
+- Thinking.
+- Talking.
+- Alert.
+- Concerned.
+- Tired.
+- Confident.
+
+Follow the expression examples in the supplied character sheet.
+
+Use:
+
+- Eye geometry.
+- Eyebrows.
+- Mouth variants.
+- Subtle head movement.
+
+Maintain the dark-brown skin tone consistently.
+
+Do not use bright facial patches that look disconnected from the face.
+
+Prevent face-plane flickering.
+
+If expressions require runtime visibility switching, document whether those expressions are portable in GLB or require controller source.
+
+---
+
+# 24. DEVOPS ACCESSORIES
+
+Use the reference sheet's accessories as inspiration.
+
+## PERMANENT DEFAULT ACCESSORIES
+
+- White/blue headphones around neck.
+- Dark technical jacket.
+- Cloud-branded backpack.
+
+## CONTEXTUAL HANDHELD PROPS
+
+- Laptop.
+- Tablet.
+- Smartphone.
+- Technical clipboard.
+- Runbook.
+- Coffee cup.
+- Small diagnostic device, if relevant.
+
+## RUNTIME VISUAL INDICATORS
+
+- Blue cloud/upload symbol.
+- Monitoring indicator.
+- Alert marker.
+- Cloud status.
+- Pipeline review indicator.
+- Completion marker.
+
+Runtime indicators must not be baked permanently into the character GLB.
+
+## ENVIRONMENTAL ASSETS
+
+The reference includes:
+
+- Server stacks.
+- Monitoring desks.
+- Computer displays.
+- Infrastructure cabinets.
+- Kubernetes/cloud-themed equipment.
+- Small penguin mascots.
+- Plants.
+- Technical books.
+
+These are reference props for workstation styling.
+
+Do not embed full server racks or a complete workstation into the standalone DevOps character GLB.
+
+Reuse the actual QA/DevOps room assets.
+
+A small penguin figurine is optional environmental decoration, not a required independent character.
+
+Do not modify the approved room merely to add optional props.
+
+---
+
+# 25. QA + DEVOPS MULTI-CHARACTER COEXISTENCE
+
+The combined room contains two separate professional roles:
+
+1. QA Engineer.
+2. DevOps Engineer.
+
+Their identities and animation states must remain independent.
+
+Required:
+
+- Unique DevOps character ID.
+- Unique runtime root.
+- Unique animation controller.
+- Independent AnimationMixer or compatible ownership.
+- Independent facial expressions.
+- Independent contextual props.
+- Independent state.
+- Independent workstation anchors.
+- Independent demo controls.
+
+Do not replace the QA Engineer when DevOps is selected.
+
+Do not duplicate QA.
+
+Do not make QA mirror DevOps animations.
+
+## CHARACTER SELECTOR
+
+Extend the existing room simulation panel.
+
+Suggested:
+
+QA & DevOps — Pilih Agent:
+
+- QA Engineer.
+- DevOps Engineer.
+
+Selecting DevOps shows DevOps-specific actions.
+
+Selecting QA shows the existing QA actions.
+
+The inactive character should remain in the scene where supported.
+
+Do not destroy and recreate all room furniture or actor meshes during selection changes.
+
+---
+
+# 26. NAVIGATION SAFETY
+
+The DevOps character must be able to navigate between:
+
+- DevOps idle position.
+- DevOps workstation.
+- Infrastructure monitoring station.
+- Server rack inspection area.
+- Operations board.
+- Shared QA/DevOps review area.
+- Central lounge, if supported.
+- Verified room exits.
+
+Use existing room waypoints.
+
+Do not invent door positions.
+
+Do not walk through server racks.
+
+Do not walk through the sofa.
+
+Do not place DevOps inside QA's workstation.
+
+Do not occupy QA's spawn location.
+
+If simultaneous actor collision avoidance is not yet supported:
+
+Use distinct safe positions and avoid conflicting demos.
+
+Document the limitation honestly.
+
+Do not introduce a complex new navigation engine without demonstrated need.
+
+---
+
+# 27. DEVOPS DEMO STATE CONTRACT
+
+Prepare the following visual/demo states:
+
+- IDLE
+- MOVING
+- WORKING
+- MONITORING
+- PIPELINE_REVIEW
+- DEPLOYMENT_PREPARATION
+- DEPLOYING_DEMO
+- SERVER_INSPECTION
+- SERVICE_HEALTH_REVIEW
+- INCIDENT_ALERT_DEMO
+- TROUBLESHOOTING_DEMO
+- REVIEWING_LOGS
+- ANALYZING_METRICS
+- AI_ENGINE_REVIEW_DEMO
+- RESOURCE_REVIEW_DEMO
+- ENGINE_SWITCH_REVIEW_DEMO
+- READING_RUNBOOK
+- RELEASE_READINESS_REVIEW
+- DISCUSSING
+- PRESENTING
+- ON_CALL
+- THINKING
+- COFFEE_BREAK
+- WAITING_APPROVAL
+- COMPLETED_DEMO
+- BLOCKED_DEMO
+
+Each demo action should map to:
+
+ACTION
+→ DEMO STATE
+→ TARGET ANCHOR
+→ ANIMATION CLIP OR SEQUENCE
+→ EXPRESSION
+→ OPTIONAL PROP
+→ RESET/COMPLETION POLICY.
+
+Use the current compatible behavior architecture.
+
+Do not create another unrelated state engine.
+
+---
+
+# 28. STRICT DEMO VS REAL OPERATION SEPARATION
+
+This distinction is extremely important.
+
+The current Modular Room Lab is a visual production environment.
+
+The character actions are demonstrations.
+
+## DEPLOYMENT DEMO
+
+Do not execute a real deployment.
+
+Do not invoke shell commands.
+
+Do not update a repository.
+
+Do not restart services.
+
+## MONITORING DEMO
+
+Do not claim real server telemetry exists.
+
+## INCIDENT DEMO
+
+Do not claim a real incident occurred.
+
+## TROUBLESHOOTING DEMO
+
+Do not claim a real service was fixed.
+
+## AI ENGINE REVIEW DEMO
+
+Do not connect AI provider subscriptions or API keys.
+
+Do not report invented quota usage as actual information.
+
+## ENGINE SWITCH DEMO
+
+Do not change a real AI provider or model.
+
+## WAITING APPROVAL
+
+Do not generate a real approval.
+
+## TASK COMPLETED
+
+Do not mark actual operational work complete.
+
+All relevant states must be visibly identified as:
+
+**SIMULASI / DEMO**
+
+Later, the main AI Office backend will provide authoritative verified status events.
+
+The viewer must not become the source of truth for business or operational state.
+
+---
+
+# 29. DEVOPS SIMULATION PANEL
+
+Reuse the existing project UI.
+
+Panel title:
+
+**DevOps Engineer — Simulasi Aktivitas**
+
+Provide controls:
+
+1. Idle / Santai.
+2. Jalan.
+3. Kerja di Meja.
+4. Monitoring Infrastruktur.
+5. Review CI/CD Pipeline.
+6. Persiapan Deployment.
+7. Deploy (Demo).
+8. Inspeksi Server Rack.
+9. Review Service Health.
+10. Incident Alert (Demo).
+11. Troubleshooting (Demo).
+12. Review Logs.
+13. Analisis Metrics.
+14. Review AI Engine (Demo).
+15. Review Resource Usage (Demo).
+16. Review Engine Switching (Demo).
+17. Baca Runbook.
+18. Release Readiness Review.
+19. Diskusi Teknis.
+20. Presentasi Operations.
+21. Telepon.
+22. Berpikir.
+23. Coffee Break.
+24. Menunggu Approval.
+25. Tugas Selesai (Demo).
+
+Each control must trigger a genuine visual action.
+
+Display:
+
+- Character ID.
+- Current Demo State.
+- Active Clip.
+- Target Anchor.
+- Current Position.
+- Active Expression.
+- Active Accessory.
+- Demo Status.
+
+Do not alter the existing QA simulation buttons.
+
+---
+
+# 30. AUTOMATIC DEVOPS DEMO
+
+Create a dedicated control:
+
+**Jalankan Demo DevOps Otomatis**
+
+Suggested sequence:
+
+1. Idle.
+2. Walk to DevOps Desk.
+3. Work Typing.
+4. Monitor Infrastructure.
+5. Review CI/CD Pipeline.
+6. Deployment Preparation.
+7. Deploy Demo.
+8. Service Health Review.
+9. Incident Alert Demo.
+10. Walk to Infrastructure Rack.
+11. Inspect Server Rack.
+12. Troubleshoot Incident Demo.
+13. Review Logs.
+14. Walk to Operations Board.
+15. Present Operations Status.
+16. AI Engine Status Review.
+17. Task Completed Demo.
+18. Return to Idle.
+
+## DEMO CONTROL RULES
+
+Provide:
+
+- Start.
+- Stop.
+- Reset.
+- Focus DevOps.
+- Return to Room View.
+
+Requirements:
+
+- Valid navigation paths.
+- Smooth animation changes.
+- Correct desk alignment.
+- Correct prop attachments.
+- No repeated timer accumulation.
+- No duplicated mixers.
+- No simultaneous conflicting action playback.
+- No floating props after cancellation.
+- No unrelated QA state changes.
+
+---
+
+# 31. OPTIONAL QA + DEVOPS SHARED DEMO
+
+The room contains a shared QA/DevOps review area.
+
+Prepare compatibility for one future collaborative scenario:
+
+**Release Readiness Review**
+
+Possible future flow:
+
+1. QA completes verified testing.
+2. DevOps reviews operational readiness.
+3. QA and DevOps inspect the shared review board.
+4. PM receives a consolidated review result.
+5. Any required approval is handled by the main orchestration system.
+
+DO NOT IMPLEMENT REAL CROSS-AGENT COMMUNICATION NOW.
+
+Do not invent testing evidence.
+
+Do not automatically synchronize QA and DevOps if the existing choreography system does not support it safely.
+
+If there is already a compatible shared demo mechanism, allow a clearly labeled visual-only rehearsal.
+
+Otherwise expose the shared interaction anchors and metadata, then report the collaboration as planned.
+
+---
+
+# 32. CENTRAL HUB MEETING COMPATIBILITY
+
+The main office contains a Central Hub with a large meeting table and 10 planned seats.
+
+DevOps is one of the planned department participants.
+
+After implementation:
+
+Register:
+
+`devops_engineer_agent`
+
+as an eligible meeting actor.
+
+Do not rebuild the Central Hub.
+
+Do not change the meeting table.
+
+Do not change the chairs.
+
+Do not alter the reserved Human Owner seat.
+
+## REQUIRED BEHAVIOR
+
+If the current meeting system is functional:
+
+1. Use the existing actor registry.
+2. Assign DevOps to a valid unoccupied seat.
+3. Read actual route/connectors.
+4. Navigate from QA/DevOps room toward Central Hub.
+5. Approach assigned chair.
+6. Align correctly.
+7. Transition to seated pose.
+8. Perform subtle meeting idle/talking animation.
+9. Support meeting Stop and Reset.
+
+Do not use teleportation as the normal movement method.
+
+Do not claim participation is validated unless the character genuinely moves and sits.
+
+If route validation or seated pose support is incomplete:
+
+Mark meeting compatibility as PARTIAL and document the specific limitation.
+
+Do not replace a broken animation with a fake success label.
+
+---
+
+# 33. MATERIAL AND TEXTURE QUALITY
+
+The owner requires stable, polished texture quality.
+
+Use compatible glTF materials.
+
+## SKIN
+
+- Warm deep-brown color.
+- Matte finish.
+- Readable facial shading.
+- No excessive gloss.
+
+## HAIR
+
+- Dark charcoal.
+- Multiple subtle shades.
+- Geometric curl definition.
+- Matte appearance.
+
+## JACKET
+
+- Dark technical fabric appearance.
+- Controlled gray/navy variation.
+- Restrained cyan panels.
+
+## HEADPHONES
+
+- White/silver casing.
+- Cyan/blue details.
+- Dark inner material.
+
+## BACKPACK
+
+- Matte charcoal.
+- Cyan cloud emblem.
+- Correct panel layering.
+
+## SHOES
+
+- Off-white soles.
+- Blue accents.
+- Stable geometry.
+
+If texture images or CanvasTextures are used:
+
+- Use correct color space.
+- Preserve UV orientation.
+- Embed textures where supported.
+- Check sampling at different distances.
+- Verify export/reimport.
+- Avoid mirrored text.
+
+Do not change renderer settings globally to make the character look better.
+
+---
+
+# 34. ZERO KNOWN FLICKER TARGET
+
+Previous development experienced recurring flickering and disappearing surfaces.
+
+Inspect the DevOps character carefully.
+
+Critical areas:
+
+- Individual hair curl clusters.
+- Hair-to-forehead transition.
+- Hair-to-ear intersection.
+- Eyes and eyebrows.
+- Mouth.
+- Headphone earcups.
+- Headphone neck attachment.
+- Jacket layers.
+- Shoulder details.
+- Backpack straps.
+- Backpack cloud icon.
+- Shoe layers.
+- Handheld props.
+
+Possible causes:
+
+- Coplanar duplicate faces.
+- Incorrect geometry nesting.
+- Duplicate object instances.
+- Invalid material depth settings.
+- Shadow acne.
+- Transparent sorting.
+- Texture shimmer.
+- Incorrect parent transforms.
+
+Fix the actual source of each reproducible defect.
+
+Do not globally disable depthTest.
+
+Do not globally disable shadows.
+
+Do not apply polygonOffset to all character materials.
+
+Do not use DoubleSide materials as a general workaround.
+
+Test the character from all angles and during active animations.
+
+---
+
+# 35. ANIMATION EXPORT STANDARD
+
+Follow the existing AI Office Production Asset Standard.
+
+Use real:
+
+`THREE.AnimationClip`
+
+instances with valid keyframe tracks.
+
+Important:
+
+- Exported clips must target real exported nodes.
+- Animation names must be stable.
+- Track data must survive GLTFExporter.
+- Navigation paths are runtime behavior, not necessarily GLB animation.
+- Contextual icons may remain runtime-only.
+- Character props may require separate attachment metadata.
+- Expressions may require runtime controller source.
+
+Do not invent AnimationClips that contain no meaningful movement.
+
+Do not claim every demo state equals a separate embedded clip.
+
+Export the actual reusable animations available.
+
+Document runtime-only sequences separately.
+
+---
+
+# 36. CHARACTER GLB EXPORT
+
+Export:
+
+`devops_engineer_agent.glb`
+
+Include:
+
+- Complete DevOps character geometry.
+- Dense curly voxel hairstyle.
+- Dark-brown face and skin.
+- Eyes, eyebrows and mouth.
+- Technical jacket.
+- Inner clothing.
+- White/blue headphones.
+- Dark trousers.
+- White/blue sneakers.
+- Black cloud-branded backpack.
+- Stable rig hierarchy.
+- Actual exportable animation clips.
+- Compatible materials.
+
+Exclude:
+
+- QA character.
+- QA/DevOps room geometry.
+- Server cabinets.
+- Desks.
+- Chairs.
+- Permanent monitoring displays.
+- Central Hub furniture.
+- Cameras.
+- Lights used only for preview.
+- Debug geometry.
+- UI controls.
+- Selection markers.
+- Temporary alert icons.
+- Navigation helpers.
+
+The character must remain a standalone reusable 3D actor.
+
+---
+
+# 37. CHARACTER MANIFEST
+
+Export:
+
+`devops_engineer_agent.manifest.json`
+
+Required information:
+
+- schema_version
+- asset_id
+- display_name
+- role
+- department
+- compatible_room_id
+- glb_path
+- actual_character_height
+- actual_bounds
+- default_scale
+- root_origin_policy
+- local_forward_axis
+- material_profile
+- hair_material_profile
+- skin_material_profile
+- supported_animation_clips
+- supported_expressions
+- supported_accessories
+- export_version
+- validation_summary
+- known_runtime_dependencies
+
+Use actual measured values.
+
+Do not invent file sizes or mesh statistics.
+
+---
+
+# 38. CHARACTER BEHAVIOR JSON
+
+Export:
+
+`devops_engineer_agent.behavior.json`
+
+Include:
+
+- schema_version
+- character_id
+- default_state
+- default_idle_anchor_id
+- action_mappings
+- animation_clip_mapping
+- sequence_mapping
+- target_anchor_mapping
+- expression_mapping
+- accessory_mapping
+- movement_configuration
+- animation_transition_policy
+- seated_posture_policy
+- demo_state_definitions
+- meeting_capability
+- future_external_event_contract
+- validation_status
+
+Reuse existing project schema conventions.
+
+Do not create an incompatible DevOps-only behavior format.
+
+The future AI Office backend must be able to invoke DevOps visual behavior through stable action identifiers.
+
+---
+
+# 39. SOURCE AND PREVIEW EXPORT
+
+Export:
+
+`devops_engineer_agent_preview.png`
+
+Use the same orthographic three-quarter view used by other character previews.
+
+If supported, provide an additional eight-angle turnaround preview.
+
+Preserve source files required for:
+
+- DevOps Character Builder.
+- Curly Hair Geometry.
+- Material Definitions.
+- Animation Clips.
+- Expression Controller.
+- Props and Attachments.
+- DevOps Demo Controller.
+- Room Anchor Integration.
+- Meeting Integration.
+- GLB Exporter.
+- Reimport Validator.
+
+Do not assume the GLB automatically contains all source controller logic.
+
+Preserve the source backup using the existing project workflow.
+
+---
+
+# 40. PRODUCTION FOLDER STRUCTURE
+
+Keep the asset package compatible with the main AI Office project.
+
+Logical structure:
+
+production/
+  characters/
+    devops_engineer_agent/
+      devops_engineer_agent.glb
+      devops_engineer_agent.manifest.json
+      devops_engineer_agent.behavior.json
+      devops_engineer_agent_preview.png
+
+  rooms/
+    qa_devops/
+      qa_devops_room.glb
+      qa_devops_room.manifest.json
+      qa_devops_room.anchors.json
+
+  office/
+    office-layout-a3.2.json
+
+source/
+  modular-room-lab-source.zip
+
+Use actual existing folder conventions if they differ.
+
+Preserve backwards compatibility.
+
+Do not reorganize the whole application unnecessarily.
+
+Do not include fabricated or empty production assets.
+
+---
+
+# 41. INDEPENDENT GLB REIMPORT VALIDATION
+
+After exporting the actual character GLB:
+
+Load the exported binary through GLTFLoader.
+
+Create a NEW AnimationMixer using the reimported model.
+
+Verify:
+
+1. GLB header is valid.
+2. File parses successfully.
+3. Character root exists.
+4. Body meshes exist.
+5. Dark-brown skin material survives.
+6. Curly hair geometry is complete.
+7. Hair crown is layered.
+8. Hair side silhouette is correct.
+9. Hair rear silhouette is correct.
+10. Eyes remain visible.
+11. No unintended glasses exist.
+12. Jacket materials survive.
+13. White/blue headphones remain attached.
+14. Cloud backpack remains attached.
+15. Cloud icon remains visible.
+16. Sneakers are correct.
+17. Character scale is correct.
+18. Feet align with floor.
+19. Exported clips exist.
+20. Animation track bindings resolve.
+21. Idle plays.
+22. Walk plays.
+23. Typing plays.
+24. Monitoring gestures play.
+25. Deployment gesture plays.
+26. Troubleshooting gestures play.
+27. Presentation plays.
+28. No limbs detach.
+29. Hair does not detach.
+30. Headphones do not detach.
+31. No floating props remain.
+32. No major new flicker.
+33. No room geometry is included.
+34. No debug helpers are included.
+35. Materials are compatible with GLB reimport.
+
+Do not claim 35/35 PASS unless each check was genuinely performed.
+
+Report runtime-only behavior separately.
+
+---
+
+# 42. QA & DEVOPS ROOM TESTS
+
+Verify:
+
+[ ] QA remains present.
+
+[ ] DevOps appears as a separate actor.
+
+[ ] DevOps has a unique runtime root.
+
+[ ] DevOps uses the correct workstation.
+
+[ ] DevOps does not spawn inside the desk.
+
+[ ] DevOps does not intersect the server rack.
+
+[ ] DevOps faces the monitor correctly.
+
+[ ] Typing pose aligns with the keyboard.
+
+[ ] Server inspection anchor is reachable.
+
+[ ] Monitoring display is reachable.
+
+[ ] Shared review board is reachable.
+
+[ ] QA and DevOps do not share one mutable animation state.
+
+[ ] Starting DevOps demo does not reset QA.
+
+[ ] Resetting DevOps does not reset QA.
+
+[ ] Cinema Mode does not stop DevOps animation.
+
+[ ] Smart Cutaway does not incorrectly hide DevOps.
+
+[ ] No duplicate character instances appear.
+
+[ ] Room geometry remains unchanged.
+
+---
+
+# 43. ALL-AGENT MEETING INTEGRATION TEST
+
+Inspect the existing Central Hub meeting functionality.
+
+Verify:
+
+[ ] DevOps is registered as an eligible participant.
+
+[ ] DevOps has a unique seat assignment.
+
+[ ] Owner reserved seat remains empty.
+
+[ ] DevOps can reach the validated room exit.
+
+[ ] DevOps can navigate toward Central Hub where paths are verified.
+
+[ ] DevOps approaches the assigned chair.
+
+[ ] DevOps has a compatible seated pose.
+
+[ ] DevOps meeting state is independent.
+
+[ ] Other character animations remain functional.
+
+[ ] Meeting Stop works.
+
+[ ] Meeting Reset works.
+
+[ ] No duplicate DevOps appears.
+
+If any required navigation or seated-animation feature is unavailable, report it as PARTIAL.
+
+Do not claim a fully working nine-agent meeting unless all nine real actor instances genuinely participate.
+
+---
+
+# 44. GLOBAL REGRESSION TESTS
+
+Verify:
+
+[ ] PM Room remains intact.
+
+[ ] Boss PM animations remain functional.
+
+[ ] CEO Room remains intact.
+
+[ ] CEO character remains functional.
+
+[ ] UI/UX Room remains intact.
+
+[ ] UI/UX character remains functional.
+
+[ ] Engineering Room remains intact.
+
+[ ] Frontend remains functional.
+
+[ ] Backend remains functional.
+
+[ ] Database remains functional.
+
+[ ] Research Room remains intact.
+
+[ ] Research Professor remains functional.
+
+[ ] QA/DevOps Room remains 8×16.
+
+[ ] QA Engineer remains functional.
+
+[ ] Central Hub remains unchanged.
+
+[ ] Room Selector works.
+
+[ ] Character Selector works.
+
+[ ] Single Room works.
+
+[ ] Full Office works.
+
+[ ] Cinema Mode works.
+
+[ ] Smart Cutaway works.
+
+[ ] Existing camera limits remain intact.
+
+[ ] Existing GLB exports work.
+
+[ ] Source backup remains available.
+
+[ ] No unintended office layout changes.
+
+---
+
+# 45. IMPLEMENTATION ORDER
+
+Follow this sequence.
+
+## PHASE A — PROJECT AUDIT
+
+Inspect source, existing characters, room anchors, demo architecture, and exporter.
+
+Create a checkpoint.
+
+## PHASE B — CHARACTER BASE
+
+Create the body, head, face, arms, legs, and neutral pose.
+
+Match established proportions.
+
+## PHASE C — CURLY HAIR MODELING
+
+Construct the dense layered short black curly hairstyle.
+
+Inspect all eight directions.
+
+Refine until the silhouette matches the supplied reference.
+
+## PHASE D — FACE AND SKIN
+
+Implement correct dark-brown skin materials, eyes, eyebrows, mouth, and ears.
+
+Validate facial readability.
+
+## PHASE E — CLOTHING AND ACCESSORIES
+
+Build jacket, inner shirt, headphones, trousers, sneakers, and cloud-branded backpack.
+
+## PHASE F — RIG AND BASIC ANIMATIONS
+
+Implement rig pivots, Idle and Walk.
+
+Validate all attachments.
+
+## PHASE G — DEVOPS WORKSTATION INTEGRATION
+
+Read actual room anchors.
+
+Place DevOps in the correct zone.
+
+Validate chair, desk, monitor and rack interactions.
+
+## PHASE H — CORE DEVOPS ANIMATIONS
+
+Implement:
+
+- Typing.
+- Monitoring.
+- Deploy Demo.
+- Rack Inspection.
+- Incident Alert.
+- Troubleshooting.
+- Presentation.
+
+## PHASE I — SUPPORTING DEVOPS ANIMATIONS
+
+Implement remaining operational, AI Engine, discussion, and supporting actions.
+
+## PHASE J — EXPRESSIONS AND PROPS
+
+Implement expressions and contextual accessories.
+
+## PHASE K — DEMO STATE SYSTEM
+
+Add DevOps actions to the existing simulation interface.
+
+Implement automatic demo.
+
+## PHASE L — MULTI-ACTOR INTEGRATION
+
+Ensure QA and DevOps coexist independently.
+
+## PHASE M — CENTRAL HUB MEETING COMPATIBILITY
+
+Register DevOps using existing meeting infrastructure where supported.
+
+## PHASE N — PRODUCTION EXPORT
+
+Export GLB, manifest, behavior JSON, preview, and preserve source.
+
+## PHASE O — INDEPENDENT REIMPORT
+
+Validate the actual exported GLB and animation clips.
+
+## PHASE P — REGRESSION
+
+Verify all completed rooms, characters, cameras, simulations and exports remain functional.
+
+STOP AFTER DEVOPS CHARACTER COMPLETION.
+
+---
+
+# 46. VISUAL ACCEPTANCE CRITERIA
+
+[ ] Character closely resembles the approved DevOps sheet.
+
+[ ] Dark-brown skin tone matches the reference.
+
+[ ] Dense curly black hair is recognizable.
+
+[ ] Hair crown has meaningful layered geometry.
+
+[ ] Hair sides and rear are fully modeled.
+
+[ ] No generic black cube hairstyle.
+
+[ ] No default glasses.
+
+[ ] Face is expressive and readable.
+
+[ ] Dark technical jacket is detailed.
+
+[ ] White/cyan headphones are correct.
+
+[ ] Headphones remain around the neck by default.
+
+[ ] Backpack has a recognizable cyan cloud icon.
+
+[ ] Shoes use the correct white/blue accents.
+
+[ ] Character scale matches the existing office cast.
+
+[ ] Materials look matte and consistent.
+
+[ ] No visible hair or accessory flickering.
+
+---
+
+# 47. FUNCTIONAL ACCEPTANCE CRITERIA
+
+[ ] Idle and Walk work.
+
+[ ] Typing works.
+
+[ ] Infrastructure Monitoring works.
+
+[ ] CI/CD Review works.
+
+[ ] Deployment Preparation works.
+
+[ ] Deploy Demo visibly animates.
+
+[ ] Server Rack Inspection works.
+
+[ ] Service Health Review works.
+
+[ ] Incident Alert Reaction works.
+
+[ ] Troubleshooting works.
+
+[ ] Log Review works.
+
+[ ] AI Engine Review Demo works.
+
+[ ] Technical Discussion works.
+
+[ ] Operations Presentation works.
+
+[ ] Automatic DevOps Demo works.
+
+[ ] Stop and Reset work.
+
+[ ] Demo states are clearly labeled.
+
+[ ] No real deployment is triggered.
+
+[ ] No fake operational evidence is created.
+
+[ ] QA remains independent.
+
+[ ] Central Hub meeting compatibility is tested.
+
+[ ] Standalone GLB exports successfully.
+
+[ ] Actual animation clips survive reimport.
+
+[ ] Behavior JSON exists.
+
+[ ] Manifest JSON exists.
+
+[ ] Preview PNG exists.
+
+[ ] Existing rooms and agents remain stable.
+
+---
+
+# 48. REQUIRED FINAL REPORT
+
+After implementation provide:
+
+1. Files inspected.
+2. Files added or modified.
+3. Baseline checkpoint status.
+4. Character geometry summary.
+5. Actual character height and bounds.
+6. Detailed curly-hair construction.
+7. Hair material palette.
+8. Skin material information.
+9. Outfit details.
+10. Headphones and backpack implementation.
+11. Comparison with the supplied character sheet.
+12. Animation actions implemented.
+13. Actual AnimationClip names exported.
+14. Runtime-only action sequences.
+15. Facial expressions.
+16. Contextual props.
+17. DevOps demo state mapping.
+18. Room anchors used.
+19. Workstation and rack interaction results.
+20. QA/DevOps coexistence test results.
+21. Central Hub meeting compatibility.
+22. Exported filenames and actual file sizes.
+23. Independent GLB reimport results.
+24. Regression results.
+25. Known limitations.
+
+Use honest statuses:
+
+- COMPLETED.
+- PARTIAL.
+- BLOCKED.
+- NOT IMPLEMENTED.
+- NOT VERIFIED.
+
+Do not invent successful tests.
+
+Do not claim all animations are embedded if some depend on runtime controller logic.
+
+Do not mark owner approval on the owner's behalf.
+
+---
+
+# 49. STRICT PROHIBITIONS
+
+DO NOT:
+
+- Create another character.
+- Build a new DevOps room.
+- Modify QA character geometry.
+- Modify other existing characters.
+- Change the 8×16 room geometry.
+- Modify Master Layout A3.2.
+- Redesign Central Hub.
+- Change existing camera presets.
+- Remove Cinema Mode.
+- Remove Smart Cutaway.
+- Rebuild the animation framework unnecessarily.
+- Rebuild the asset exporter unnecessarily.
+- Implement real deployments.
+- Invoke cloud infrastructure APIs.
+- Execute shell commands against real infrastructure.
+- Change real AI provider configurations.
+- Access or expose actual provider credentials.
+- Invent real operational telemetry.
+- Generate fake approval events.
+- Trigger real Telegram messages.
+- Fake collaboration with QA.
+- Embed infrastructure racks inside the character GLB.
+- Claim runtime-only animations are portable GLB clips.
+- Report validation PASS without actual verification.
+
+---
+
+# FINAL DIRECTIVE
+
+CREATE THE DEVOPS ENGINEER — AGENT 09.
+
+Use the attached DevOps Engineer Voxel Character Sheet as the authoritative visual identity reference.
+
+MATCH THE REFERENCE AS CLOSELY AS THE EXISTING ROOM-NATIVE VOXEL PIPELINE ALLOWS.
+
+Highest visual priorities:
+
+1. Dark-brown skin.
+2. Dense, short, genuinely curly black voxel hair.
+3. Detailed layered hair silhouette from all eight directions.
+4. Expressive face without default glasses.
+5. Dark charcoal technical outfit.
+6. White/blue headphones around the neck.
+7. Black technical backpack with cyan cloud emblem.
+8. White sneakers with blue accents.
+9. Correct world-scale proportions.
+10. Stable, high-quality matte materials.
+
+Highest functional priorities:
+
+1. Real DevOps animations.
+2. Infrastructure monitoring.
+3. Deployment visual demo.
+4. Server rack inspection.
+5. Troubleshooting and incident response.
+6. AI Engine status review demo.
+7. Independent demo state mapping.
+8. Safe workstation navigation.
+9. Independent coexistence with QA Engineer.
+10. Central Hub meeting compatibility.
+11. Production-ready standalone GLB.
+12. Valid embedded AnimationClips.
+13. Portable JSON behavior and manifest.
+14. Independent reimport testing.
+15. Complete regression protection.
+
+Preserve all previously completed modules, characters, animations, cameras and export systems.
+
+Do not create new rooms.
+
+Do not implement real infrastructure actions.
+
+Do not invent operational evidence.
+
+Do not modify the main AI Office backend.
+
+**COMPLETE DEVOPS CHARACTER MODELING, ANIMATIONS, DEMO STATES, ROOM INTEGRATION, MEETING COMPATIBILITY, AND PRODUCTION ASSET EXPORT — THEN STOP FOR OWNER REVIEW.**

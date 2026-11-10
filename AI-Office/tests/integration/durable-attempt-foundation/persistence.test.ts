@@ -1,12 +1,103 @@
 import { randomUUID } from "node:crypto";
-import { lstatSync, readFileSync } from "node:fs";
+import { lstatSync, readFileSync, readdirSync } from "node:fs";
+import { DatabaseSync } from "node:sqlite";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { hash } from "../../../src/server/attempt-control/contracts.js";
 import { DurableAttemptRepository, type FaultStage } from "../../../src/server/attempt-control/repository.js";
-import { SCHEMA_STATEMENTS } from "../../../src/server/attempt-control/schema.js";
+import { SCHEMA_STATEMENTS, USER_VERSION } from "../../../src/server/attempt-control/schema.js";
 import { createTestDatabase, openTestConnection, testDatabaseFilename } from "../../../src/server/attempt-control/test-storage.js";
 import { advance, evidence, expected, failure, fixture, identity, issueCommand, own, root, terminalCommand, transitionCommand } from "./helpers.js";
+
+describe("PI02 isolated readiness persistence", () => {
+  it("S01 fresh schema uses SQL defaults UNKNOWN/revision1 and has no grant", () => {
+    const { ref } = fixture(), c = own(openTestConnection(ref));
+    expect(c.db.prepare("PRAGMA user_version").get()?.user_version).toBe(USER_VERSION);
+    expect(c.db.prepare("SELECT * FROM runtime_execution_security").get()).toMatchObject({
+      projectId: ref.projectId, authorityIncarnation: ref.authorityIncarnation, recordVersion: 1,
+      securityRevision: 1, securityState: "UNKNOWN", policyVersion: null });
+    c.db.exec("DELETE FROM runtime_execution_security");
+    c.db.prepare("INSERT INTO runtime_execution_security(projectId,authorityIncarnation) VALUES(?,?)").run(ref.projectId, ref.authorityIncarnation);
+    expect(c.db.prepare("SELECT securityState FROM runtime_execution_security").get()?.securityState).toBe("UNKNOWN");
+  });
+  it.each(["UNKNOWN", "BLOCKED", "ACTIVE_STOP"] as const)("S02 reopen preserves %s denial and exact revision", state => {
+    const f = fixture(), command = issueCommand(f.ref), a = f.repository.issue(command).attempt;
+    const c = own(openTestConnection(f.ref));
+    c.db.prepare("UPDATE runtime_execution_security SET securityState=?,securityRevision=2").run(state);
+    c.close(); f.repository.close(); const r = own(DurableAttemptRepository.openForTest(f.ref));
+    const result = r.assessExecutionReadiness({ expected: expected(a, command.ownerNonce), securityRevision: 2 });
+    expect(result).toMatchObject({ eligible: false, executionAuthority: false, observed: { securityState: state, securityRevision: 2 } });
+    expect(r.read(identity(a))).toEqual(a);
+  });
+  it("S03 missing row stays missing after repeated reopen, never backfilled as approved", () => {
+    const f = fixture(), command = issueCommand(f.ref), a = f.repository.issue(command).attempt;
+    const c = own(openTestConnection(f.ref)); c.db.exec("DELETE FROM runtime_execution_security"); c.close(); f.repository.close();
+    for (let i = 0; i < 2; i++) {
+      const r = own(DurableAttemptRepository.openForTest(f.ref));
+      expect(r.assessExecutionReadiness({ expected: expected(a, command.ownerNonce), securityRevision: 1 }))
+        .toMatchObject({ reason: "SECURITY_RECORD_MISSING", executionAuthority: false }); r.close();
+    }
+  });
+  it("S04 legacy v5 without readiness table is rejected repeatedly without migration/data rewriting", () => {
+    const f = fixture(), command = issueCommand(f.ref), a = f.repository.issue(command).attempt; f.repository.close();
+    const c = own(openTestConnection(f.ref));
+    c.db.exec("DROP TRIGGER runtime_security_guard; DROP TABLE runtime_execution_security; PRAGMA user_version=5"); c.close();
+    const filename = testDatabaseFilename(f.ref), before = readFileSync(filename);
+    for (let i = 0; i < 2; i++) failure(() => DurableAttemptRepository.openForTest(f.ref), "SCHEMA");
+    expect(readFileSync(filename)).toEqual(before);
+    const raw = own(new DatabaseSync(filename));
+    expect(raw.prepare("SELECT attemptId FROM runtime_attempts").get()?.attemptId).toBe(a.attemptId);
+    expect(raw.prepare("PRAGMA user_version").get()?.user_version).toBe(5);
+  });
+  it("S05 unsupported version is denied on an already open repository and rejected on reopen", () => {
+    const f = fixture(), command = issueCommand(f.ref), a = f.repository.issue(command).attempt;
+    const c = own(openTestConnection(f.ref)); c.db.exec("PRAGMA user_version=99"); c.close();
+    expect(f.repository.assessExecutionReadiness({ expected: expected(a, command.ownerNonce), securityRevision: 1 }))
+      .toMatchObject({ reason: "SCHEMA_UNSUPPORTED", executionAuthority: false });
+    f.repository.close(); failure(() => DurableAttemptRepository.openForTest(f.ref), "SCHEMA");
+  });
+  it("S06 malformed policy record is rejected by typed row validation even if SQL accepts it", () => {
+    const f = fixture(), command = issueCommand(f.ref), a = f.repository.issue(command).attempt;
+    const c = own(openTestConnection(f.ref)); c.db.exec("UPDATE runtime_execution_security SET policyVersion=' ',securityRevision=2");
+    expect(f.repository.assessExecutionReadiness({ expected: expected(a, command.ownerNonce), securityRevision: 2 }))
+      .toMatchObject({ reason: "SECURITY_RECORD_INVALID", executionAuthority: false });
+  });
+  it("S07 security identity and monotonic revision/stop restrictions are enforced in SQL", () => {
+    const { ref } = fixture(), c = own(openTestConnection(ref));
+    for (const sql of ["UPDATE runtime_execution_security SET securityRevision=0",
+      "UPDATE runtime_execution_security SET securityRevision=1",
+      "UPDATE runtime_execution_security SET projectId='other',securityRevision=2",
+      "UPDATE runtime_execution_security SET authorityIncarnation='other',securityRevision=2",
+      "UPDATE runtime_execution_security SET securityState='READY',securityRevision=2"])
+      sqlFailure(() => c.db.exec(sql));
+    c.db.exec("UPDATE runtime_execution_security SET securityState='BLOCKED',securityRevision=2");
+    sqlFailure(() => c.db.exec("UPDATE runtime_execution_security SET securityState='UNKNOWN',securityRevision=3"));
+    c.db.exec("UPDATE runtime_execution_security SET securityState='ACTIVE_STOP',securityRevision=3");
+    sqlFailure(() => c.db.exec("UPDATE runtime_execution_security SET securityState='BLOCKED',securityRevision=4"));
+    expect(c.db.prepare("SELECT securityState,securityRevision FROM runtime_execution_security").get())
+      .toEqual({ securityState: "ACTIVE_STOP", securityRevision: 3 });
+  });
+  it.each(["afterSchema", "afterSecurity", "securityWrite"] as const)("S08 initializer failure %s leaves no partial schema/security/meta", fault => {
+    const before = new Set(readdirSync(root.root));
+    const error = failure(() => createTestDatabase(root, fault), fault === "securityWrite" ? "DATABASE_FAILURE" : "FAULT");
+    if (fault === "securityWrite") expect(error.sqlite?.primary).toBe(8); // real SQLITE_READONLY
+    const added = readdirSync(root.root).filter(name => !before.has(name)); expect(added).toHaveLength(1);
+    const filename = path.join(root.root, added[0]!, "authority.db"), c = own(new DatabaseSync(filename));
+    expect(c.prepare("SELECT name FROM sqlite_schema WHERE sql IS NOT NULL").all()).toEqual([]);
+    expect(c.prepare("PRAGMA user_version").get()?.user_version).toBe(0);
+    expect(c.isTransaction).toBe(false);
+    const healthy = createTestDatabase(root), reopened = own(openTestConnection(healthy));
+    expect(reopened.db.prepare("SELECT securityState FROM runtime_execution_security").get()?.securityState).toBe("UNKNOWN");
+    evidence(`pi02-initializer-${fault}`, { fault, failedFile: filename, rollbackVerified: true, healthy });
+  });
+  it("S09 duplicate security insertion is rejected and retains the original denial", () => {
+    const { ref } = fixture(), c = own(openTestConnection(ref));
+    sqlFailure(() => c.db.prepare("INSERT INTO runtime_execution_security(projectId,authorityIncarnation) VALUES(?,?)")
+      .run(ref.projectId, ref.authorityIncarnation));
+    expect(c.db.prepare("SELECT securityState,securityRevision FROM runtime_execution_security").get())
+      .toEqual({ securityState: "UNKNOWN", securityRevision: 1 });
+  });
+});
 
 function counts(ref: Parameters<typeof openTestConnection>[0]) {
   const c = own(openTestConnection(ref));

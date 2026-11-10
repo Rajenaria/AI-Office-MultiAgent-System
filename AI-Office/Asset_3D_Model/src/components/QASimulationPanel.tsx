@@ -73,13 +73,15 @@ export const QASimulationPanel: React.FC<QASimulationPanelProps> = ({
   onExportQAPreviewPNG,
 }) => {
   const indicatorBadgeColor =
-    status.activeIndicatorLabel === 'PASS'
+    status.runtimeIndicator === 'check_verified_badge' ||
+    status.runtimeIndicator === 'quality_gate_badge' ||
+    status.runtimeIndicator === 'completed_sparkle'
       ? 'border-emerald-500/50 bg-emerald-500/20 text-emerald-300'
-      : status.activeIndicatorLabel === 'BUG'
+      : status.runtimeIndicator === 'bug_alert_red'
       ? 'border-rose-500/50 bg-rose-500/20 text-rose-300'
-      : status.activeIndicatorLabel === 'CHECK'
+      : status.runtimeIndicator === 'test_running_badge'
       ? 'border-amber-500/50 bg-amber-500/20 text-amber-300'
-      : status.activeIndicatorLabel === 'WAIT'
+      : status.runtimeIndicator === 'thinking_question'
       ? 'border-sky-500/50 bg-sky-500/20 text-sky-300'
       : 'border-slate-700 bg-slate-800/80 text-slate-400';
 
@@ -120,19 +122,22 @@ export const QASimulationPanel: React.FC<QASimulationPanelProps> = ({
           <span className="font-mono text-[10px] text-slate-400">23 Clips · 10 Expr</span>
         </div>
         <div className="mt-1.5 flex flex-wrap items-center gap-1">
-          {QA_HAIR_MATERIAL_PALETTE.map((swatch) => (
-            <div
-              key={swatch.id}
-              className="flex items-center gap-1 rounded border border-slate-800 bg-slate-900 px-1.5 py-0.5 text-[10px]"
-              title={`${swatch.label} (${swatch.hex}) — ${swatch.role}`}
-            >
-              <span
-                className="inline-block h-2.5 w-2.5 rounded-sm border border-white/25"
-                style={{ backgroundColor: swatch.hex }}
-              />
-              <span className="text-slate-300">{swatch.label.split(' ')[0]}</span>
-            </div>
-          ))}
+          {QA_HAIR_MATERIAL_PALETTE.map((swatch) => {
+            const shortName = swatch.id.replace('qa_hair_', '').split('_')[0];
+            return (
+              <div
+                key={swatch.id}
+                className="flex items-center gap-1 rounded border border-slate-800 bg-slate-900 px-1.5 py-0.5 text-[10px]"
+                title={`${swatch.id} (${swatch.hex}) — ${swatch.role}`}
+              >
+                <span
+                  className="inline-block h-2.5 w-2.5 rounded-sm border border-white/25"
+                  style={{ backgroundColor: swatch.hex }}
+                />
+                <span className="capitalize text-slate-300">{shortName}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -160,7 +165,7 @@ export const QASimulationPanel: React.FC<QASimulationPanelProps> = ({
         </div>
         <div>
           <span className="text-slate-400">Expression:</span>{' '}
-          <span className="font-mono text-slate-200">{status.expression}</span>
+          <span className="font-mono text-slate-200">{status.currentExpression}</span>
         </div>
         <div>
           <span className="text-slate-400">Prop:</span>{' '}
@@ -175,7 +180,7 @@ export const QASimulationPanel: React.FC<QASimulationPanelProps> = ({
           <span
             className={`rounded border px-1.5 py-0.5 font-mono text-[10px] font-semibold ${indicatorBadgeColor}`}
           >
-            IND: {status.activeIndicatorLabel}
+            IND: {status.runtimeIndicator}
           </span>
         </div>
       </div>
@@ -247,7 +252,7 @@ export const QASimulationPanel: React.FC<QASimulationPanelProps> = ({
         <div className="rounded border border-amber-500/30 bg-amber-950/25 px-2 py-1 text-[10px] text-amber-200">
           Auto-Demo Step {status.autoDemoStepIndex + 1}/{status.autoDemoTotalSteps}:{' '}
           <span className="font-semibold">
-            {QA_AUTO_DEMO_SEQUENCE[status.autoDemoStepIndex]?.label}
+            {QA_AUTO_DEMO_SEQUENCE[status.autoDemoStepIndex]?.description}
           </span>
         </div>
       )}
@@ -274,11 +279,11 @@ export const QASimulationPanel: React.FC<QASimulationPanelProps> = ({
           </button>
           <button
             type="button"
-            onClick={() => onPlaybackCommand('restart')}
+            onClick={() => onPlaybackCommand('reset_position')}
             className="flex items-center gap-1 rounded border border-slate-700 bg-slate-800 px-2 py-1 text-[11px] text-slate-200 hover:bg-slate-700"
           >
             <RotateCcw className="h-3 w-3" />
-            <span>Restart</span>
+            <span>Reset Pos</span>
           </button>
           <button
             type="button"
@@ -380,11 +385,12 @@ export const QASimulationPanel: React.FC<QASimulationPanelProps> = ({
         </div>
         <div className="grid max-h-60 grid-cols-2 gap-1 overflow-y-auto pr-0.5">
           {QA_ACTION_LIST.map((act) => {
-            const isActive = status.activeActionId === act.id && !status.patrolActive;
+            const isActive = status.currentActionId === act.id && !status.patrolActive;
             return (
               <button
                 key={act.id}
                 type="button"
+                data-testid={`qa-action-btn-${act.id}`}
                 onClick={() => onTriggerAction(act.id)}
                 className={`flex flex-col items-start rounded border px-2 py-1.5 text-left transition ${
                   isActive
@@ -408,11 +414,11 @@ export const QASimulationPanel: React.FC<QASimulationPanelProps> = ({
       <div>
         <div className="mb-1 flex items-center justify-between">
           <span className="font-semibold text-slate-300">10 Ekspresi Wajah QA</span>
-          <span className="font-mono text-[10px] text-amber-300">{status.expression}</span>
+          <span className="font-mono text-[10px] text-amber-300">{status.currentExpression}</span>
         </div>
         <div className="grid grid-cols-5 gap-1">
           {EXPRESSION_LIST.map((expr) => {
-            const isSelected = status.expression === expr.id;
+            const isSelected = status.currentExpression === expr.id;
             return (
               <button
                 key={expr.id}

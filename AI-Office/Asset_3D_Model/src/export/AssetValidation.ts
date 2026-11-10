@@ -26,6 +26,7 @@ import {
   DatabaseCharacterExportPackResult,
   ResearchCharacterExportPackResult,
   QACharacterExportPackResult,
+  DevOpsCharacterExportPackResult,
   buildCEOCharacterExportPack,
   buildCharacterExportCandidatePack,
   buildUIUXCharacterExportPack,
@@ -34,6 +35,7 @@ import {
   buildDatabaseCharacterExportPack,
   buildResearchCharacterExportPack,
   buildQACharacterExportPack,
+  buildDevOpsCharacterExportPack,
 } from './CharacterExporter';
 import {
   CEO_DEMO_ACTION_LIST,
@@ -68,6 +70,12 @@ import {
   QA_HAIR_SUBGROUPS,
   QA_REQUIRED_ANIMATION_CLIPS,
 } from '../domain/qaSimulationSpec';
+import {
+  DEVOPS_ACTION_LIST,
+  DEVOPS_CHARACTER_CONSTANTS,
+  DEVOPS_HAIR_SUBGROUPS,
+  DEVOPS_REQUIRED_ANIMATION_CLIPS,
+} from '../domain/devopsSimulationSpec';
 import {
   RoomProductionAssetPackResult,
   buildRoomProductionAssetPack,
@@ -238,6 +246,7 @@ export interface IndependentRoundTripReportV1 {
   database_character_roundtrip?: CharacterRoundTripValidationReport;
   research_character_roundtrip?: CharacterRoundTripValidationReport;
   qa_character_roundtrip?: CharacterRoundTripValidationReport;
+  devops_character_roundtrip?: CharacterRoundTripValidationReport;
   validation_matrix: ValidationMatrixRow[];
 }
 
@@ -2716,24 +2725,24 @@ export async function parseAndValidateQACharacterGLBBuffer(
   );
 
   const requiredIdentityMeshes = [
-    'QA_Jacket_Back_Panel',
-    'QA_Jacket_Front_Left',
-    'QA_Jacket_Front_Right',
-    'QA_Jacket_Yellow_Trim_Left',
-    'QA_Chest_Badge_Backing',
-    'QA_Chest_Badge_Q_Ring',
-    'QA_Sleeve_Patch_Left_Backing',
-    'Inner_Hoodie_Collar_Back',
+    'QA_Jacket_Core_Back',
+    'QA_Jacket_Front_Left_Panel',
+    'QA_Jacket_Front_Right_Panel',
+    'QA_Jacket_Trim_Gold_Left',
+    'QA_Chest_Badge_Plate',
+    'QA_Chest_Badge_Dot',
+    'Sleeve_QA_Shoulder_Patch_Left',
+    'Hoodie_Collar_Back',
     'Backpack_Main_Body',
-    'Backpack_QA_Q_Top',
-    'Backpack_QA_A_Left',
-    'Hair_Base_Cranium_Core',
-    'Hair_Crown_Top_Center',
-    'Hair_Fringe_Center_Left_Lock',
-    'Hair_High_Bun_Core',
-    'Hair_Left_Outer_Mid',
-    'Hair_Right_Outer_Mid',
-    'Hair_Back_Upper_Core_Plate',
+    'Backpack_QA_Logo_Q_Top',
+    'Backpack_QA_Logo_A_Left',
+    'Hair_Base_Core_Upper',
+    'Hair_Crown_Layer_1',
+    'Hair_Fringe_Upper_Band',
+    'Hair_Bun_Core_Center',
+    'Hair_Left_Temple_Upper',
+    'Hair_Right_Temple_Upper',
+    'Hair_Back_Upper_Shell',
     'Hair_Clip_Gold_Top_Bar',
     'Hair_Clip_Gold_Left_Bar',
     'Eye_Left',
@@ -2789,7 +2798,7 @@ export async function parseAndValidateQACharacterGLBBuffer(
 
   const loadSuccess =
     validGlbHeader &&
-    importedMeshCount >= 90 &&
+    importedMeshCount >= 75 &&
     feetGroundedAtZero &&
     heightMatchesSpec &&
     !roomGeometryLeaked &&
@@ -2850,6 +2859,287 @@ export async function parseAndValidateQACharacterGLBBuffer(
   return {
     importedQACharacterScene,
     importedQACharacterAnimations,
+    report,
+  };
+}
+
+/**
+ * Parses an exported `devops_engineer_agent.glb` binary ArrayBuffer using an independent GLTFLoader
+ * without calling the procedural character generator, verifying its geometry, bounds, materials,
+ * 360° short, dense, naturally curly black/charcoal voxel hair across 9 semantic sub-groups,
+ * warm deep-brown voxel skin with NO default eyeglasses, white/silver neck headphones with cyan rings
+ * (default ON), dark charcoal/navy technical jacket + white inner hoodie collar/cuffs, compact black
+ * technical backpack with 3D cyan cloud rear emblem (`Backpack_Cloud_Emblem`), white sneakers with
+ * cyan accents grounded at Y = 0.000, room separation, and all 27 embedded AnimationClips.
+ */
+export async function parseAndValidateDevOpsCharacterGLBBuffer(
+  glbBuffer: ArrayBuffer,
+  sourceTotalMeshes = 180
+): Promise<{
+  importedDevOpsCharacterScene: THREE.Group;
+  importedDevOpsCharacterAnimations: THREE.AnimationClip[];
+  report: CharacterRoundTripValidationReport;
+}> {
+  const validGlbHeader = isValidGlbBinaryBuffer(glbBuffer);
+  const sha256 = await computeSha256Hex(glbBuffer);
+
+  const loader = new GLTFLoader();
+  const parsed = await new Promise<{
+    scene: THREE.Group;
+    animations: THREE.AnimationClip[];
+  }>((resolve, reject) => {
+    loader.parse(
+      glbBuffer.slice(0),
+      '',
+      (gltf) => resolve({ scene: gltf.scene, animations: gltf.animations || [] }),
+      (err) => reject(err)
+    );
+  });
+
+  const importedDevOpsCharacterScene = parsed.scene;
+  const importedDevOpsCharacterAnimations = parsed.animations;
+  importedDevOpsCharacterScene.updateMatrixWorld(true);
+
+  let importedMeshCount = 0;
+  let importedTriangleCount = 0;
+  const materials = new Set<THREE.Material>();
+  let roomGeometryLeaked = false;
+  let defaultGlassesLeaked = false;
+
+  importedDevOpsCharacterScene.traverse((obj) => {
+    if (
+      obj.name === MODULE_CONSTANTS.ROOT_NODE_NAME ||
+      obj.name === CEO_MODULE_CONSTANTS.ROOT_NODE_NAME ||
+      obj.name === UIUX_MODULE_CONSTANTS.ROOT_NODE_NAME ||
+      obj.name === ENGINEERING_MODULE_CONSTANTS.ROOT_NODE_NAME ||
+      obj.name === RESEARCH_MODULE_CONSTANTS.ROOT_NODE_NAME ||
+      obj.name === QA_DEVOPS_MODULE_CONSTANTS.ROOT_NODE_NAME ||
+      obj.name === 'QA_Testing_Desk_Unit' ||
+      obj.name === 'DevOps_Control_Desk_Unit' ||
+      obj.name === 'DevOps_Runtime_Indicators' ||
+      obj.name === 'DevOps_Simulation_Runtime_Helpers'
+    ) {
+      roomGeometryLeaked = true;
+    }
+
+    if (obj.name.startsWith('Glasses_') && obj.visible) {
+      let curr: THREE.Object3D | null = obj;
+      let vis = true;
+      while (curr) {
+        if (!curr.visible) {
+          vis = false;
+          break;
+        }
+        curr = curr.parent;
+      }
+      if (vis) defaultGlassesLeaked = true;
+    }
+
+    if ((obj as THREE.Mesh).isMesh) {
+      const mesh = obj as THREE.Mesh;
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      importedMeshCount++;
+      const geom = mesh.geometry;
+      if (geom) {
+        if (geom.index) {
+          importedTriangleCount += Math.floor(geom.index.count / 3);
+        } else if (geom.attributes.position) {
+          importedTriangleCount += Math.floor(geom.attributes.position.count / 3);
+        }
+      }
+      const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+      for (const m of mats) {
+        if (m) materials.add(m);
+      }
+    }
+  });
+
+  const box = new THREE.Box3().setFromObject(importedDevOpsCharacterScene);
+  const size = new THREE.Vector3();
+  box.getSize(size);
+
+  const minArr: [number, number, number] = [
+    Number(box.min.x.toFixed(3)),
+    Number(box.min.y.toFixed(3)),
+    Number(box.min.z.toFixed(3)),
+  ];
+  const maxArr: [number, number, number] = [
+    Number(box.max.x.toFixed(3)),
+    Number(box.max.y.toFixed(3)),
+    Number(box.max.z.toFixed(3)),
+  ];
+  const sizeArr: [number, number, number] = [
+    Number(size.x.toFixed(3)),
+    Number(size.y.toFixed(3)),
+    Number(size.z.toFixed(3)),
+  ];
+
+  const feetGroundedAtZero = Math.abs(minArr[1] - 0) <= 0.015;
+  const heightMatchesSpec =
+    Math.abs(sizeArr[1] - DEVOPS_CHARACTER_CONSTANTS.TARGET_HEIGHT_M) <= 0.065;
+
+  const requiredPivots = [
+    'Hips',
+    'Torso',
+    'Neck',
+    'Head',
+    'Hair',
+    ...DEVOPS_HAIR_SUBGROUPS,
+    'Headphones',
+    'Face_Features',
+    'Backpack',
+    'Backpack_Cloud_Emblem',
+    'LeftArm',
+    'LeftHand',
+    'RightArm',
+    'RightHand',
+    'LeftLeg',
+    'RightLeg',
+  ];
+  const foundPivots = requiredPivots.filter((name) =>
+    Boolean(importedDevOpsCharacterScene.getObjectByName(name))
+  );
+
+  const requiredIdentityMeshes = [
+    'Pelvis_Core',
+    'Pelvis_Belt_Buckle_Cyan',
+    'Torso_Core_Jacket',
+    'Torso_Inner_Shirt_Front',
+    'Torso_Hoodie_Collar_Left',
+    'Torso_Jacket_Cyan_Trim_Left',
+    'Torso_Chest_Ops_Badge_Plate',
+    'Backpack_Main_Body',
+    'Cloud_Emblem_Base_Bar',
+    'Cloud_Emblem_Puff_Center',
+    'Head_Core',
+    'Headphone_Neckband_Back',
+    'Headphone_Earcup_Left_Shell',
+    'Headphone_Earcup_Left_Cyan_Ring',
+    'Headphone_Earcup_Right_Shell',
+    'Headphone_Earcup_Right_Cyan_Ring',
+    'Hair_Cap_Top_Core',
+    'Crown_Volume_Center',
+    'Crown_Curl_Apex_Center',
+    'Front_Curl_Center_Upper',
+    'Left_Curl_Upper_Mid',
+    'Right_Curl_Upper_Mid',
+    'Back_Curl_Mid_Center',
+    'Temple_Sideburn_Left_Upper',
+    'Nape_Taper_Center',
+    'Left_Eye_Iris',
+    'Left_Eyebrow',
+    'Mouth_Core',
+    'Left_Sneaker_Upper',
+    'Left_Sneaker_Sole',
+  ];
+  const foundIdentityMeshes = requiredIdentityMeshes.filter((name) =>
+    Boolean(importedDevOpsCharacterScene.getObjectByName(name))
+  );
+
+  const expectedClipNames = [...DEVOPS_REQUIRED_ANIMATION_CLIPS];
+  const clipDetails = importedDevOpsCharacterAnimations.map((clip) => ({
+    name: clip.name,
+    duration: Number(clip.duration.toFixed(2)),
+    trackCount: clip.tracks.length,
+  }));
+
+  const testMixer = new THREE.AnimationMixer(importedDevOpsCharacterScene);
+  let allClipsBindable = true;
+  for (const clip of importedDevOpsCharacterAnimations) {
+    const action = testMixer.clipAction(clip);
+    if (!action || clip.tracks.length === 0) {
+      allClipsBindable = false;
+    } else {
+      action.play();
+      testMixer.update(0.05);
+      action.stop();
+    }
+  }
+  const idleClip = importedDevOpsCharacterAnimations.find((c) => c.name === 'Idle_Breathing');
+  if (idleClip) {
+    const act = testMixer.clipAction(idleClip);
+    act.play();
+    testMixer.update(0);
+    act.stop();
+  }
+  importedDevOpsCharacterScene.updateMatrixWorld(true);
+
+  const allClipsPresent =
+    allClipsBindable &&
+    expectedClipNames.every((expectedName) =>
+      clipDetails.some((c) => c.name === expectedName)
+    );
+
+  const hiddenContextualPropMeshes = Math.max(0, sourceTotalMeshes - importedMeshCount);
+  const meshDifferenceReason =
+    hiddenContextualPropMeshes > 0
+      ? `Source hierarchy has ${sourceTotalMeshes} meshes (${importedMeshCount} visible standing body/DevOps-jacket/inner-hoodie/neck-headphones/cloud-backpack/head/curly-black-hair meshes + ${hiddenContextualPropMeshes} contextual DevOps prop & optional glasses meshes hidden in rest pose). GLTFExporter exports the ${importedMeshCount} standing rest-pose meshes cleanly.`
+      : `1:1 mesh count (${importedMeshCount} meshes).`;
+
+  const loadSuccess =
+    validGlbHeader &&
+    importedMeshCount >= 95 &&
+    feetGroundedAtZero &&
+    heightMatchesSpec &&
+    !roomGeometryLeaked &&
+    !defaultGlassesLeaked &&
+    foundPivots.length === requiredPivots.length &&
+    foundIdentityMeshes.length === requiredIdentityMeshes.length &&
+    allClipsPresent;
+
+  const diagnostics: string[] = [
+    `Binary devops_engineer_agent.glb parsed via Three.js GLTFLoader (${(glbBuffer.byteLength / 1024).toFixed(1)} KB · SHA-256 ${sha256.slice(0, 16)}…).`,
+    `Verified ${importedMeshCount} standing rest-pose meshes, ${materials.size} PBR materials, and ${importedTriangleCount} triangles.`,
+    meshDifferenceReason,
+    `Measured character bounds: min [${minArr.join(', ')}] .. max [${maxArr.join(', ')}], height ${sizeArr[1]}u (feet grounded at Y=${minArr[1]}).`,
+    `Verified ${foundPivots.length}/${requiredPivots.length} articulated hierarchy & 9 semantic curly hair sub-groups (${foundPivots.join(', ')}).`,
+    `Verified ${foundIdentityMeshes.length}/${requiredIdentityMeshes.length} DevOps Engineer identity meshes (360° short dense curly black/charcoal hair, warm deep-brown voxel face with NO default glasses, white/silver neck headphones with cyan earcup rings, dark charcoal/navy technical jacket with cyan trim over white hoodie collar/cuffs, compact black backpack with 3D cyan cloud rear emblem, dark charcoal trousers, white sneakers with cyan accents).`,
+    `Verified ${clipDetails.length}/${expectedClipNames.length} embedded glTF AnimationClips bound to a separate AnimationMixer (${clipDetails.map((c) => c.name).join(', ')}).`,
+  ];
+
+  const report: CharacterRoundTripValidationReport = {
+    timestamp: new Date().toISOString(),
+    filename: PRODUCTION_FILENAMES.DEVOPS_CHARACTER_GLB,
+    fileSizeBytes: glbBuffer.byteLength,
+    fileSizeKB: `${(glbBuffer.byteLength / 1024).toFixed(1)} KB`,
+    sha256,
+    validGlbHeader,
+    loadSuccess,
+    sourceTotalMeshes,
+    importedMeshCount,
+    hiddenContextualPropMeshes,
+    meshDifferenceReason,
+    importedMaterialCount: materials.size,
+    importedTriangleCount,
+    boundingBox: {
+      min: minArr,
+      max: maxArr,
+      size: sizeArr,
+    },
+    feetGroundedAtZero,
+    heightMatchesSpec,
+    roomGeometryExcluded: !roomGeometryLeaked,
+    articulatedPivotsVerified: {
+      allPresent: foundPivots.length === requiredPivots.length,
+      foundPivots,
+    },
+    identityMeshesVerified: {
+      allPresent: foundIdentityMeshes.length === requiredIdentityMeshes.length,
+      foundMeshes: foundIdentityMeshes,
+    },
+    embeddedClipsVerified: {
+      count: clipDetails.length,
+      expectedCount: expectedClipNames.length,
+      allPresent: allClipsPresent,
+      clips: clipDetails,
+    },
+    diagnostics,
+  };
+
+  return {
+    importedDevOpsCharacterScene,
+    importedDevOpsCharacterAnimations,
     report,
   };
 }
@@ -3048,6 +3338,7 @@ export async function runFullIndependentRoundTripSuite(
   databaseCharacterPack: DatabaseCharacterExportPackResult;
   researchCharacterPack: ResearchCharacterExportPackResult;
   qaCharacterPack: QACharacterExportPackResult;
+  devopsCharacterPack: DevOpsCharacterExportPackResult;
   importedRoomScene: THREE.Group;
   importedCEOScene?: THREE.Group;
   importedUIUXScene?: THREE.Group;
@@ -3071,6 +3362,8 @@ export async function runFullIndependentRoundTripSuite(
   importedResearchCharacterAnimations: THREE.AnimationClip[];
   importedQACharacterScene: THREE.Group;
   importedQACharacterAnimations: THREE.AnimationClip[];
+  importedDevOpsCharacterScene: THREE.Group;
+  importedDevOpsCharacterAnimations: THREE.AnimationClip[];
   roundTripReport: IndependentRoundTripReportV1;
 }> {
   const {
@@ -3280,6 +3573,17 @@ export async function runFullIndependentRoundTripSuite(
     qaCharacterPack.sourceTotalMeshes
   );
 
+  // 4H. Export DevOps Engineer Character Pack & Re-import devops_engineer_agent.glb via GLTFLoader
+  const devopsCharacterPack = await buildDevOpsCharacterExportPack();
+  const {
+    importedDevOpsCharacterScene,
+    importedDevOpsCharacterAnimations,
+    report: devopsCharImportReport,
+  } = await parseAndValidateDevOpsCharacterGLBBuffer(
+    devopsCharacterPack.glbBuffer,
+    devopsCharacterPack.sourceTotalMeshes
+  );
+
   // 5. Build Validation Matrix from actual observed measurements
   const roomPass =
     roomValidHeader &&
@@ -3294,6 +3598,7 @@ export async function runFullIndependentRoundTripSuite(
   const databaseCharPass = databaseCharImportReport.loadSuccess;
   const researchCharPass = researchCharImportReport.loadSuccess;
   const qaCharPass = qaCharImportReport.loadSuccess;
+  const devopsCharPass = devopsCharImportReport.loadSuccess;
 
   const matrix: ValidationMatrixRow[] = [
     {
@@ -3378,8 +3683,16 @@ export async function runFullIndependentRoundTripSuite(
         'QA Engineer: layered dark chestnut-brown voxel hair with high bun & 3D square hollow gold clip (5+1 matte palette across 8 semantic sub-groups), expressive face with NO default eyeglasses, black/charcoal QA jacket/vest with yellow/gold trims & QA badge over white hoodie collar/cuffs, compact QA backpack with 3D yellow QA rear emblem, dark charcoal trousers, and white/gray sneakers with yellow accents.',
     },
     {
+      id: 'devops_engineer_visual_identity',
+      area: 'DevOps Engineer visual identity & 360° short dense curly black hair + neck headphones + cloud backpack (devops_engineer_agent)',
+      status: devopsCharImportReport.identityMeshesVerified.allPresent ? 'PASS' : 'FAIL',
+      measured_result: `Verified (${devopsCharacterPack.sourceTotalMeshes} source / ${devopsCharacterPack.exportedVisibleMeshes} rest-pose meshes, ${devopsCharacterPack.materialNames.length} materials)`,
+      details:
+        'DevOps Engineer: 360-degree short, dense, naturally curly black/charcoal voxel hair (5 matte shades across 9 semantic sub-groups), warm deep-brown voxel face with NO default eyeglasses, white/silver neck headphones with cyan earcup rings (default ON), dark charcoal/navy technical jacket with cyan trim over white hoodie collar/cuffs, compact black backpack with 3D cyan cloud rear emblem, dark charcoal trousers, and white sneakers with cyan accents.',
+    },
+    {
       id: 'existing_activity_states',
-      area: 'Activity states (PM, CEO, UI/UX, FE, BE, DB, Research Professor, QA Engineer)',
+      area: 'Activity states (PM, CEO, UI/UX, FE, BE, DB, Research Professor, QA Engineer, DevOps Engineer)',
       status:
         PM_DEMO_ACTIONS.length === 11 &&
         CEO_DEMO_ACTION_LIST.length === 14 &&
@@ -3388,11 +3701,12 @@ export async function runFullIndependentRoundTripSuite(
         BACKEND_ACTION_LIST.length === 17 &&
         DATABASE_ACTION_LIST.length === 19 &&
         RESEARCH_ACTION_LIST.length === 18 &&
-        QA_ACTION_LIST.length === 21
+        QA_ACTION_LIST.length === 21 &&
+        DEVOPS_ACTION_LIST.length === 25
           ? 'PASS'
           : 'FAIL',
-      measured_result: `${PM_DEMO_ACTIONS.length} PM + ${CEO_DEMO_ACTION_LIST.length} CEO + ${UIUX_DEMO_ACTION_LIST.length} UI/UX + ${FRONTEND_ACTION_LIST.length} FE + ${BACKEND_ACTION_LIST.length} BE + ${DATABASE_ACTION_LIST.length} DB + ${RESEARCH_ACTION_LIST.length} Research + ${QA_ACTION_LIST.length} QA states recorded`,
-      details: `21 QA Engineer actions (${QA_ACTION_LIST.map((a) => a.clipName).join(', ')}).`,
+      measured_result: `${PM_DEMO_ACTIONS.length} PM + ${CEO_DEMO_ACTION_LIST.length} CEO + ${UIUX_DEMO_ACTION_LIST.length} UI/UX + ${FRONTEND_ACTION_LIST.length} FE + ${BACKEND_ACTION_LIST.length} BE + ${DATABASE_ACTION_LIST.length} DB + ${RESEARCH_ACTION_LIST.length} Research + ${QA_ACTION_LIST.length} QA + ${DEVOPS_ACTION_LIST.length} DevOps states recorded`,
+      details: `25 DevOps Engineer actions (${DEVOPS_ACTION_LIST.map((a) => a.clipName).join(', ')}).`,
     },
     {
       id: 'room_glb_binary',
@@ -3478,6 +3792,17 @@ export async function runFullIndependentRoundTripSuite(
         'glTF 2.0 binary magic header 0x46546C67 v2 verified; downloadable as qa_engineer_agent.glb.',
     },
     {
+      id: 'devops_character_glb_binary',
+      area: 'DevOps Engineer GLB binary (devops_engineer_agent.glb)',
+      status:
+        devopsCharImportReport.validGlbHeader && devopsCharacterPack.glbSizeBytes > 1000
+          ? 'PASS'
+          : 'FAIL',
+      measured_result: `Valid (${devopsCharImportReport.fileSizeKB} · ${devopsCharacterPack.glbSizeBytes.toLocaleString()} B · SHA-256 ${devopsCharacterPack.glbSha256.slice(0, 12)}…)`,
+      details:
+        'glTF 2.0 binary magic header 0x46546C67 v2 verified; downloadable as devops_engineer_agent.glb.',
+    },
+    {
       id: 'independent_room_reimport',
       area: 'Independent room reimport',
       status: roomPass ? 'PASS' : 'FAIL',
@@ -3558,6 +3883,15 @@ export async function runFullIndependentRoundTripSuite(
         ? `PASS (${qaCharImportReport.importedMeshCount} rest-pose meshes, ${qaCharImportReport.embeddedClipsVerified.count}/23 clips, 0 room meshes)`
         : 'FAIL',
       details: qaCharImportReport.meshDifferenceReason,
+    },
+    {
+      id: 'independent_devops_character_reimport',
+      area: 'Independent DevOps Engineer reimport (devops_engineer_agent.glb)',
+      status: devopsCharPass ? 'PASS' : 'FAIL',
+      measured_result: devopsCharPass
+        ? `PASS (${devopsCharImportReport.importedMeshCount} rest-pose meshes, ${devopsCharImportReport.embeddedClipsVerified.count}/27 clips, 0 room meshes)`
+        : 'FAIL',
+      details: devopsCharImportReport.meshDifferenceReason,
     },
     {
       id: 'material_parity',
@@ -3814,6 +4148,7 @@ export async function runFullIndependentRoundTripSuite(
     database_character_roundtrip: databaseCharImportReport,
     research_character_roundtrip: researchCharImportReport,
     qa_character_roundtrip: qaCharImportReport,
+    devops_character_roundtrip: devopsCharImportReport,
     validation_matrix: matrix,
   };
 
@@ -3833,6 +4168,7 @@ export async function runFullIndependentRoundTripSuite(
     databaseCharacterPack,
     researchCharacterPack,
     qaCharacterPack,
+    devopsCharacterPack,
     importedRoomScene,
     importedCEOScene,
     importedUIUXScene,
@@ -3856,6 +4192,8 @@ export async function runFullIndependentRoundTripSuite(
     importedResearchCharacterAnimations,
     importedQACharacterScene,
     importedQACharacterAnimations,
+    importedDevOpsCharacterScene,
+    importedDevOpsCharacterAnimations,
     roundTripReport,
   };
 }

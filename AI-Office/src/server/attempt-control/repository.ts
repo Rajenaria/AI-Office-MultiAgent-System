@@ -1,37 +1,235 @@
 import type { DatabaseSync } from "node:sqlite";
+import { HeldOutputRevalidationSchema, inspectHeldOutputSnapshot, revalidationDenied,
+  type HeldOutputRevalidationResult } from "./output-revalidation.js";
+import { randomUUID } from "node:crypto";
+import { HeldOutputCommandSchema, OutputLookupSchema, BindingSchema, AcceptedSchema, OperationSchema, StreamSchema,
+  OUTPUT_LIMITS, OutputFailure, outputRequire, outputDenied, heldReceipt, inertOutputInput, logicalFields,
+  bindingDigest, metadataDigest, outputRequestDigest, projectionDigest, outputEventDigest,
+  type HeldOutputCommand, type HeldOutputResult, type HeldAccepted, type HeldOutbox, type OutputStream,
+  type OutputFaultStage, type TransactionObservation } from "./output-metadata.js";
+import { insertOutputRow, appendOutputEvent, verifyOutputHistory, outputRow, readOutputBinding } from "./output-journal.js";
 import { AttemptSchema, ExpectedSchema, FenceSchema, IdentitySchema, IssueSchema, TerminalSchema, TransitionSchema,
   assertOne, databaseError, hash, issuanceDigest, nextInteger, parse, requireAuthority,
-  type Attempt, type Expected, type Terminal } from "./contracts.js";
+  AuthorityFailure, type Attempt, type Expected, type Terminal } from "./contracts.js";
 import { appendEvent, verifyHistory, type EventType } from "./journal.js";
 import { ATTEMPT_KEYS } from "./schema.js";
 import { assertIdentity, isTerminal, validateTransition } from "./state-machine.js";
-import { openTestConnection, type TestDatabaseRef } from "./test-storage.js";
+import type { TestDatabaseRef } from "./test-storage.js";
+import { verifySchema } from "./sqlite-format.js";
+import { claimHostSQLiteConnection } from "./host-sqlite.js";
+import { claimOwnedFixtureConnection, openOwnedFixtureConnection, type RepositoryConnection } from "./connection.js";
+import { ReadinessRequestSchema, denyReadiness, evaluatePersistedReadiness,
+  type ExecutionReadiness, type ReadinessRequest, type ReadinessReason } from "./execution-readiness.js";
+import { ProvenanceRequestSchema, evaluateProvenanceRows, provenanceDecision,
+  GrantProvenanceSchema, PolicyProvenanceSchema, type ProvenanceDecision, type ProvenanceRequest } from "./provenance.js";
+import { ApplicationSessionBindingSchema, ExecutionSessionSchema, SessionReadinessRequestSchema,
+  compareHostSnapshot, createHostIssuerForTest, evaluateSessionBinding, sessionDecision, FIXTURE_HOST_CONTEXT_LIFETIME_MS,
+  type FixtureHostContext, type HostBindingSnapshot, type SessionDecision, type SessionReadinessRequest,
+  type SessionReason } from "./host-session.js";
 import { assertExpected } from "./state-machine.js";
 import { ConcernSchema, HeartbeatSchema, assertLeaseActive, classifyLease, heartbeatDigest, initialLease, readLease, renewedLease } from "./lease.js";
 import { AckCommandSchema, CancellationRequestSchema, CancellationSchema, ExitCommandSchema, assertCancellationTerminal,
   assertHostAuthority, cancellationDigest, mintHostAuthorityForTest, readCancellation, type HostAuthority } from "./cancellation.js";
 import { ReconcileSchema, assertRecoveryAuthority, classifyRecovery, createRecoveryAuthorityForTest, readRecovery,
   recoveryDigest, type RecoveryAuthority } from "./recovery.js";
+import { ActivateSecurityStopSchema, SecurityStopEventSchema, activationDigest, securityStopEventDigest,
+  securityStopReceipt, verifySecurityStopJournal, type ActivateSecurityStop, type SecurityStopFault } from "./security-stop.js";
+import { ExecutionSecuritySchema } from "./execution-readiness.js";
 
 export type FaultStage = "beforeProjection" | "afterProjection" | "afterEvent" | "conflict";
 // Enum fault injection only: no callback or arbitrary code can execute inside the transaction.
-export type TestFault = { stage: FaultStage; eventType: EventType };
+export type TestFault = { stage: FaultStage; eventType: EventType } |
+  { stage: SecurityStopFault; eventType: "SECURITY_STOP_ACTIVATED" } |
+  { stage: OutputFaultStage; eventType: "OUTPUT_HELD_RECORDED" };
+const outputFixtureOwners = new WeakSet<object>();
 export class DurableAttemptRepository {
+  readonly #hostIssuer = createHostIssuerForTest();
   private closed = false;
-  private constructor(private readonly connection: ReturnType<typeof openTestConnection>, private readonly fault?: TestFault) {}
+  private closing = false;
+  private constructor(private readonly connection: RepositoryConnection, private readonly fault?: TestFault) {}
   static openForTest(ref: TestDatabaseRef, fault?: TestFault): DurableAttemptRepository {
-    const connection = openTestConnection(ref), repository = new DurableAttemptRepository(connection, fault);
+    return DurableAttemptRepository.openHostOwnedForFixtures(openOwnedFixtureConnection(ref), fault);
+  }
+  static openHostOwnedForFixtures(token: unknown, fault?: TestFault): DurableAttemptRepository {
+    const repository = this.fromConnection(claimOwnedFixtureConnection(token), fault);
+    outputFixtureOwners.add(repository); return repository;
+  }
+  // Internal storage ownership transfer; no authenticated execution authority is created.
+  static openHostOwnedSQLite(token: unknown): DurableAttemptRepository {
+    return this.fromConnection(claimHostSQLiteConnection(token));
+  }
+  private static fromConnection(connection: RepositoryConnection, fault?: TestFault): DurableAttemptRepository {
+    const repository = new DurableAttemptRepository(connection, fault);
     try {
       repository.readTransaction(() => {
+        repository.verifyControl(connection.db);
         for (const row of connection.db.prepare("SELECT * FROM runtime_attempts").all()) verifyHistory(connection.db, parse(AttemptSchema, row));
       });
       return repository;
     } catch (error) { repository.close(); throw error; }
   }
+
+  private outputFault(stage: OutputFaultStage): void {
+    if (this.fault?.eventType === "OUTPUT_HELD_RECORDED" && this.fault.stage === stage) throw new AuthorityFailure("FAULT");
+  }
+  private outputOwner(expected: Expected): Attempt {
+    const current=this.current(this.connection.db,this.identity(expected)); assertIdentity(current,expected);
+    requireAuthority(current.attemptGeneration===expected.attemptGeneration && current.hostInstanceId===expected.hostInstanceId &&
+      current.ownerId===expected.ownerId && current.ownerNonceHash===hash(expected.ownerNonce),"STALE_OWNER");
+    return current;
+  }
+  private outputError(error: unknown, observation?: TransactionObservation): HeldOutputResult {
+    if (observation && observation.commitAttempted && !observation.rolledBack ||
+        error instanceof AggregateError && observation && !observation.rolledBack) {
+      try { this.close(); } catch { this.closing=true; }
+      return outputDenied("COMMIT_OUTCOME_UNKNOWN",true);
+    }
+    return outputDenied(error instanceof OutputFailure ? error.code : error instanceof AuthorityFailure ? error.code : "DATABASE_FAILURE");
+  }
+  // Fixture metadata only. No host facade exposes this method and no delivery API exists.
+  recordHeldOutputForTest(input: unknown): HeldOutputResult {
+    if (!outputFixtureOwners.has(this)) return outputDenied("OUTPUT_FIXTURE_REQUIRED");
+    let q: HeldOutputCommand;
+    try { q=HeldOutputCommandSchema.parse(inertOutputInput(input)); } catch { return outputDenied("OUTPUT_INVALID_REQUEST"); }
+    const observation: TransactionObservation={commitAttempted:false,committed:false,rolledBack:false};
+    try {
+      return this.transaction(true,db=>{
+        this.verifyControl(db);
+        const current=this.outputOwner(q.expected);
+        const prior=db.prepare("SELECT * FROM runtime_output_operations WHERE operationId=?").get(q.operationId);
+        if(prior){
+          const op=outputRow(OperationSchema,prior);
+          const a=outputRow(AcceptedSchema,db.prepare("SELECT * FROM runtime_accepted_outputs WHERE outputId=?").get(op.outputId));
+          const s=outputRow(StreamSchema,db.prepare("SELECT * FROM runtime_output_streams WHERE streamId=?").get(op.streamId));
+          const b=readOutputBinding(a.bindingSnapshot);
+          outputRequire(s.projectId===q.expected.projectId && s.authorityIncarnation===q.expected.authorityIncarnation &&
+            s.attemptId===q.expected.attemptId && s.attemptGeneration===q.expected.attemptGeneration &&
+            s.executionSessionId===q.executionSessionId && s.destinationId===q.destinationId && s.channel===q.channel,"OUTPUT_SCOPE_DENIED");
+          outputRequire(op.idempotencyKey===q.idempotencyKey && op.outputId===q.outputId &&
+            op.requestDigest===outputRequestDigest(s,logicalFields(q),b,q.claim?.claimKey??null) &&
+            (!q.claim || q.claim.grantId===a.grantId && q.claim.authorizationRevision===a.authorizationRevision),"OUTPUT_CONFLICT");
+          return heldReceipt(a,s,true);
+        }
+        assertExpected(current,q.expected);
+        const security=parse(ExecutionSecuritySchema,db.prepare("SELECT * FROM runtime_execution_security WHERE projectId=?").get(q.expected.projectId));
+        outputRequire(security.securityRevision===q.expectedSecurityRevision && security.securityState==="UNKNOWN" &&
+          security.stopJournalHead===null,"OUTPUT_SECURITY_DENIED");
+        outputRequire(current.cancellationPayload===null && current.recoveryPayload===null && current.leasePayload===null &&
+          current.ownerMode==="EXECUTION" && ["APPROVAL_GRANTED","RUNNING"].includes(current.phase),"OUTPUT_CANCELLED");
+        outputRequire(q.atMs>=current.updatedAtMs && q.producerId===current.ownerId,"OUTPUT_SCOPE_DENIED");
+        const policy=parse(PolicyProvenanceSchema,db.prepare("SELECT * FROM runtime_policy_provenance WHERE policyId=?").get(q.policyId));
+        const snap=this.sessionSnapshot(db,{expected:q.expected,securityRevision:q.expectedSecurityRevision,
+          executionSessionId:q.executionSessionId,sessionRevision:q.expectedBindingRevision,
+          workspaceBindingId:current.bindingId,workspaceGeneration:current.bindingGeneration,
+          action:policy.action,destinationId:q.destinationId,atMs:q.atMs},undefined,false);
+        // Only local association consistency is used, never eligible/authentication/readiness authority.
+        // Durable fixture metadata does not acquire a per-instance runtime issuer handle.
+        // Reopening/another owned fixture connection may have a new ephemeral issuer ID.
+        // Keep every persisted binding/source/scope check; runtime PI04 decisions stay unchanged.
+        const ephemeralIssuer = new Set<string>(["HOST_ISSUER_MISMATCH","HOST_ISSUER_GENERATION_MISMATCH","HOST_CONTEXT_REVISION_MISMATCH"]);
+        outputRequire(snap.binding && snap.decision.sessionReasons.every(r=>ephemeralIssuer.has(r)) &&
+          snap.decision.provenanceReasons.length===0,"OUTPUT_SCOPE_DENIED");
+        const b=BindingSchema.parse({...snap.binding,producerId:q.producerId,channel:q.channel});
+        outputRequire(b.principalRevision===q.expectedPrincipalRevision && b.applicationGeneration===q.expectedApplicationGeneration &&
+          b.applicationRevision===q.expectedApplicationRevision && b.bindingRevision===q.expectedBindingRevision &&
+          b.policyId===q.policyId && b.policyVersion===q.policyVersion && b.policyRevision===q.policyRevision &&
+          b.grantId===q.grantId && b.authorizationRevision===q.authorizationRevision &&
+          b.provenanceSourceRevision===q.provenanceSourceRevision && b.expiresAtMs>q.atMs,"OUTPUT_SCOPE_DENIED");
+        outputRequire(!q.claim || q.claim.grantId===b.grantId && q.claim.authorizationRevision===b.authorizationRevision,"OUTPUT_SCOPE_DENIED");
+        let raw=db.prepare("SELECT * FROM runtime_output_streams WHERE projectId=? AND authorityIncarnation=? AND attemptId=? AND attemptGeneration=? AND executionSessionId=? AND destinationId=? AND channel=?")
+          .get(q.expected.projectId,q.expected.authorityIncarnation,q.expected.attemptId,q.expected.attemptGeneration,q.executionSessionId,q.destinationId,q.channel);
+        if(!raw){
+          outputRequire(q.expectedStream.streamId===null && q.expectedStream.revision===0 && q.expectedStream.lastAccepted===0,"OUTPUT_CONFLICT");
+          outputRequire(Number(db.prepare("SELECT count(*) AS n FROM runtime_output_streams").get()?.n)<OUTPUT_LIMITS.streams,"OUTPUT_LIMIT");
+          const stream: OutputStream={streamId:randomUUID(),projectId:q.expected.projectId,authorityIncarnation:q.expected.authorityIncarnation,
+            attemptId:q.expected.attemptId,attemptGeneration:q.expected.attemptGeneration,executionSessionId:q.executionSessionId,
+            destinationId:q.destinationId,channel:q.channel,lastAccepted:0,revision:0,createdAtMs:q.atMs};
+          insertOutputRow(db,"runtime_output_streams",stream); raw=stream;
+        } else outputRequire(raw.streamId===q.expectedStream.streamId,"OUTPUT_CONFLICT");
+        const s=outputRow(StreamSchema,raw);
+        outputRequire(q.expectedStream.revision===s.revision && q.expectedStream.lastAccepted===s.lastAccepted &&
+          q.sequence===s.lastAccepted+1,"OUTPUT_CONFLICT");
+        outputRequire(q.sequence<=OUTPUT_LIMITS.outputsPerStream,"OUTPUT_LIMIT");
+        outputRequire(!db.prepare("SELECT operationId FROM runtime_output_operations WHERE streamId=? AND idempotencyKey=?").get(s.streamId,q.idempotencyKey) &&
+          !db.prepare("SELECT outputId FROM runtime_accepted_outputs WHERE outputId=? OR (streamId=? AND producerId=? AND producerEventId=?)")
+            .get(q.outputId,s.streamId,q.producerId,q.producerEventId),"OUTPUT_CONFLICT");
+        const digest=outputRequestDigest(s,logicalFields(q),b,q.claim?.claimKey??null);
+        assertOne(db.prepare("UPDATE runtime_output_streams SET lastAccepted=?,revision=? WHERE streamId=? AND lastAccepted=? AND revision=?")
+          .run(q.sequence,s.revision+1,s.streamId,s.lastAccepted,s.revision).changes);
+        this.outputFault("afterSequence");
+        insertOutputRow(db,"runtime_output_operations",{operationId:q.operationId,streamId:s.streamId,idempotencyKey:q.idempotencyKey,
+          requestDigest:digest,outputId:q.outputId,claimKey:q.claim?.claimKey??null,createdAtMs:q.atMs});
+        this.outputFault("afterOperation");
+        if(q.claim) insertOutputRow(db,"runtime_output_grant_claims",{...q.claim,operationId:q.operationId,claimedAtMs:q.atMs});
+        this.outputFault("afterClaim");
+        const a: HeldAccepted={...logicalFields(q),operationId:q.operationId,outboxId:randomUUID(),streamId:s.streamId,recordVersion:1,
+          recordClass:"OFFLINE_CONTRACT_ONLY",classificationSource:q.confidentiality==="UNVERIFIED"?"UNVERIFIED":"OFFLINE_SUPPLIED",
+          classificationDigest:null,bindingSnapshot:JSON.stringify(b),bindingDigest:bindingDigest(b),payloadReference:null,
+          payloadDigest:metadataDigest(digest),payloadByteLength:0,attemptStateVersion:current.stateVersion,
+          securityRevision:security.securityRevision,createdAtMs:q.atMs};
+        insertOutputRow(db,"runtime_accepted_outputs",a); this.outputFault("afterMetadata");
+        const o: HeldOutbox={outboxId:a.outboxId,outputId:a.outputId,state:"HELD",rowRevision:1,lastEventId:randomUUID(),
+          holdReason:"AUTHORITY_UNAVAILABLE",createdAtMs:q.atMs,updatedAtMs:q.atMs};
+        insertOutputRow(db,"runtime_output_outbox",o); this.outputFault("afterOutbox");
+        const seed={eventId:o.lastEventId,outboxId:o.outboxId,rowRevision:1 as const,eventType:"OFFLINE_HELD_RECORDED" as const,
+          priorState:null,newState:"HELD" as const,reasonCode:"AUTHORITY_UNAVAILABLE" as const,atMs:q.atMs,
+          snapshotDigest:projectionDigest(o,a,digest),previousEventId:null,previousDigest:null};
+        const readonly=this.fault?.eventType==="OUTPUT_HELD_RECORDED" && this.fault.stage==="auditWrite";
+        if(readonly) db.exec("PRAGMA query_only=ON");
+        try { appendOutputEvent(db,{...seed,eventDigest:outputEventDigest(seed)}); }
+        finally { if(readonly) db.exec("PRAGMA query_only=OFF"); }
+        this.outputFault("afterAudit");
+        if(this.fault?.eventType==="OUTPUT_HELD_RECORDED" && this.fault.stage==="constraint")
+          insertOutputRow(db,"runtime_output_operations",{operationId:q.operationId,streamId:s.streamId,idempotencyKey:q.idempotencyKey,
+            requestDigest:digest,outputId:q.outputId,claimKey:null,createdAtMs:q.atMs});
+        this.outputFault("rollbackFailure");
+        this.verifyControl(db); this.outputFault("beforeCommit");
+        return heldReceipt(a,{...s,lastAccepted:q.sequence,revision:s.revision+1},false);
+      },observation);
+    } catch(error) { return this.outputError(error,observation); }
+  }
+  lookupOutputOperation(input: unknown): HeldOutputResult {
+    if(!outputFixtureOwners.has(this)) return outputDenied("OUTPUT_FIXTURE_REQUIRED");
+    let q: ReturnType<typeof OutputLookupSchema.parse>;
+    try { q=OutputLookupSchema.parse(inertOutputInput(input)); } catch { return outputDenied("OUTPUT_INVALID_REQUEST"); }
+    try { return this.readTransaction(()=>{
+      this.verifyControl(this.connection.db); this.outputOwner(q.expected);
+      const op=outputRow(OperationSchema,this.connection.db.prepare("SELECT * FROM runtime_output_operations WHERE operationId=?").get(q.operationId));
+      const s=outputRow(StreamSchema,this.connection.db.prepare("SELECT * FROM runtime_output_streams WHERE streamId=?").get(op.streamId));
+      outputRequire(s.projectId===q.expected.projectId && s.authorityIncarnation===q.expected.authorityIncarnation &&
+        s.attemptId===q.expected.attemptId && s.attemptGeneration===q.expected.attemptGeneration,"OUTPUT_SCOPE_DENIED");
+      return heldReceipt(outputRow(AcceptedSchema,this.connection.db.prepare("SELECT * FROM runtime_accepted_outputs WHERE outputId=?").get(op.outputId)),s,true);
+    }); } catch(error) { return this.outputError(error); }
+  }
+  // Internal inspection only. Authentication is unavailable on the ordinary host path.
+  // A verified fixture snapshot is never a publication/delivery permit.
+  evaluateHeldOutputRevalidation(input: unknown): HeldOutputRevalidationResult {
+    if (!outputFixtureOwners.has(this)) return revalidationDenied("PRODUCTION_HOST_AUTHORITY_UNAVAILABLE");
+    if (this.closed || this.closing) return revalidationDenied("REPOSITORY_CLOSED");
+    let q: ReturnType<typeof HeldOutputRevalidationSchema.parse>;
+    try { q = HeldOutputRevalidationSchema.parse(inertOutputInput(input)); }
+    catch { return revalidationDenied("INVALID_REQUEST"); }
+    try {
+      const result = this.readTransaction(() => inspectHeldOutputSnapshot(
+        this.connection.db, this.connection.ref, this.#hostIssuer.descriptor, q));
+      return this.closed || this.closing ? revalidationDenied("REPOSITORY_CLOSED") : result;
+    } catch (error) {
+      if (this.closed || this.closing) return revalidationDenied("REPOSITORY_CLOSED");
+      if (error instanceof OutputFailure || error instanceof AuthorityFailure &&
+          ["INTEGRITY", "VALIDATION", "IDENTITY_CONFLICT"].includes(error.code))
+        return revalidationDenied("PERSISTED_STATE_INVALID", { consistency: "FIXTURE_METADATA_INVALID" }, { metadata: "INVALID" });
+      if (error instanceof AuthorityFailure && error.code === "SCHEMA") return revalidationDenied("SCHEMA_UNSUPPORTED");
+      return revalidationDenied(error instanceof AuthorityFailure && error.code === "DATABASE_BUSY" ? "STORAGE_BUSY" : "STORAGE_UNAVAILABLE");
+    }
+  }
   get settings() { return this.connection.settings; }
-  close(): void { if (!this.closed) { this.closed = true; this.connection.close(); } }
-  private transaction<T>(write: boolean, operation: (db: DatabaseSync) => T): T {
-    requireAuthority(!this.closed, "DATABASE_FAILURE");
+  close(): void {
+    if (this.closed) return;
+    this.closing = true; this.#hostIssuer.close();
+    this.connection.close(); this.closed = true;
+  }
+  private transaction<T>(write: boolean, operation: (db: DatabaseSync) => T, observation?: TransactionObservation): T {
+    requireAuthority(!this.closed && !this.closing, "DATABASE_FAILURE");
     const db = this.connection.db;
     try {
       // One bounded acquisition, no automatic command-body/worker retries.
@@ -40,15 +238,98 @@ export class DurableAttemptRepository {
       requireAuthority(meta?.projectId === this.connection.ref.projectId &&
         meta?.authorityIncarnation === this.connection.ref.authorityIncarnation, "IDENTITY_CONFLICT");
       const result = operation(db);
+      if (observation) observation.commitAttempted = true;
       db.exec("COMMIT");
+      if (observation) { observation.committed = true; this.outputFault("afterCommit"); }
       return result;
     } catch (error) {
-      try { if (db.isTransaction) db.exec("ROLLBACK"); }
+      try { if (db.isTransaction) {
+        if (observation) this.outputFault("rollbackFailure");
+        db.exec("ROLLBACK"); if (observation) observation.rolledBack = true;
+      } }
       catch (rollbackError) { this.close(); throw new AggregateError([databaseError(error), rollbackError], "ROLLBACK_FAILED"); }
+      if (error instanceof OutputFailure) throw error;
       throw databaseError(error);
     }
   }
   private readTransaction<T>(operation: () => T): T { return this.transaction(false, operation); }
+  private verifyControl(db: DatabaseSync): void {
+    verifySchema(db, this.connection.ref);
+    verifySecurityStopJournal(db, this.connection.ref);
+    verifyOutputHistory(db, this.connection.ref);
+  }
+  private securityStopFault(stage: SecurityStopFault): boolean {
+    return this.fault?.eventType === "SECURITY_STOP_ACTIVATED" && this.fault.stage === stage;
+  }
+  private stopFault(stage: SecurityStopFault): void { requireAuthority(!this.securityStopFault(stage), "FAULT"); }
+  private stopWrite(db: DatabaseSync, stage: "journalWrite" | "operationWrite", sql: string, values: (string | number | null)[]): void {
+    const readonly = this.securityStopFault(stage);
+    if (readonly) db.exec("PRAGMA query_only=ON");
+    try { db.prepare(sql).run(...values); } finally { if (readonly) db.exec("PRAGMA query_only=OFF"); }
+  }
+  // Unexposed fixture repository operation. This records a stop, never caller authentication or owner approval.
+  activateSecurityStop(input: unknown) {
+    let q: ActivateSecurityStop;
+    try { q = parse(ActivateSecurityStopSchema, input); } catch { throw new AuthorityFailure("VALIDATION"); }
+    const digest = activationDigest(q);
+    const result = this.transaction(true, db => {
+      this.verifyControl(db); this.binding(q.expected);
+      const journal = verifySecurityStopJournal(db, this.connection.ref);
+      const prior = journal.events.find(event => event.operationId === q.operationId);
+      if (prior) {
+        requireAuthority(prior.requestDigest === digest, "SECURITY_IDEMPOTENCY_CONFLICT");
+        // Historical receipt, not current admission: lifecycle/epoch may since have advanced.
+        return securityStopReceipt(prior, true);
+      }
+      const current = this.current(db, this.identity(q.expected));
+      assertExpected(current, q.expected);
+      const raw = db.prepare("SELECT * FROM runtime_execution_security WHERE projectId=?").get(this.connection.ref.projectId);
+      requireAuthority(raw, "INTEGRITY");
+      const security = parse(ExecutionSecuritySchema, raw);
+      requireAuthority(security.recordVersion === 1 && security.projectId === current.projectId &&
+        security.authorityIncarnation === current.authorityIncarnation, "INTEGRITY");
+      requireAuthority(q.expectedSecurityRevision === security.securityRevision, "SECURITY_REVISION_CONFLICT");
+      requireAuthority(security.securityState !== "ACTIVE_STOP", "SECURITY_STOP_ALREADY_ACTIVE");
+      requireAuthority(security.stopJournalHead === null, "INTEGRITY");
+      requireAuthority(q.atMs >= current.updatedAtMs, "VALIDATION");
+      const revision = nextInteger(security.securityRevision);
+      const seed = parse(SecurityStopEventSchema, { eventId: q.eventId, operationId: q.operationId, recordVersion: 1,
+        projectId: current.projectId, authorityIncarnation: current.authorityIncarnation, taskId: current.taskId,
+        attemptId: current.attemptId, attemptGeneration: current.attemptGeneration, attemptStateVersion: current.stateVersion,
+        attemptPhase: current.phase, hostInstanceId: current.hostInstanceId, ownerId: current.ownerId, ownerNonceHash: current.ownerNonceHash,
+        action: q.action, reason: q.reason, sourceClass: "LOCAL_TEST_FIXTURE", revisionBefore: security.securityRevision,
+        revisionAfter: revision, stateBefore: security.securityState, stateAfter: "ACTIVE_STOP", policyVersion: security.policyVersion,
+        journalSequence: 1, atMs: q.atMs, requestDigest: digest, eventDigest: "0".repeat(64) });
+      const event = parse(SecurityStopEventSchema, { ...seed, eventDigest: securityStopEventDigest(seed) });
+      this.stopFault("beforeUpdate");
+      assertOne(db.prepare(`UPDATE runtime_execution_security SET securityState='ACTIVE_STOP',securityRevision=?,stopJournalHead=?
+        WHERE projectId=? AND authorityIncarnation=? AND recordVersion=1 AND securityRevision=? AND securityState=? AND stopJournalHead IS NULL`)
+        .run(revision, q.eventId, current.projectId, current.authorityIncarnation, q.expectedSecurityRevision, security.securityState).changes);
+      this.stopFault("afterUpdate");
+      const keys = Object.keys(event) as (keyof typeof event)[];
+      this.stopWrite(db, "journalWrite", `INSERT INTO runtime_security_stop_events(${keys.join(",")}) VALUES(${keys.map(() => "?").join(",")})`,
+        keys.map(key => key === "journalSequence" && this.securityStopFault("journalConstraint") ? 0 : event[key]));
+      this.stopFault("afterJournal");
+      this.stopWrite(db, "operationWrite", `INSERT INTO runtime_security_stop_operations(operationId,recordVersion,projectId,authorityIncarnation,eventId,requestDigest)
+        VALUES(?,?,?,?,?,?)`, [q.operationId, this.securityStopFault("operationConstraint") ? 0 : 1,
+        current.projectId, current.authorityIncarnation, q.eventId, digest]);
+      this.stopFault("afterOperation");
+      this.verifyControl(db);
+      const committed = verifySecurityStopJournal(db, this.connection.ref).events[0]!;
+      this.stopFault("beforeCommit");
+      return securityStopReceipt(committed, false);
+    });
+    if (!result.replay) this.stopFault("afterCommit"); // Controlled lost-ack fixture; transaction already committed.
+    return result;
+  }
+  securityStopHistory() {
+    return this.readTransaction(() => {
+      this.verifyControl(this.connection.db);
+      return Object.freeze({ ...verifySecurityStopJournal(this.connection.db, this.connection.ref),
+        executionAuthority: false as const, eligible: false as const, productionHostAuthority: "PRODUCTION_HOST_AUTHORITY_UNAVAILABLE" as const,
+        externalWitness: "EXTERNAL_MONOTONIC_WITNESS_NOT_IMPLEMENTED" as const, priorActivationHistory: "NOT_BACKFILLED" as const });
+    });
+  }
   private inject(stage: FaultStage, eventType: EventType): void {
     if (this.fault?.stage === stage && this.fault.eventType === eventType) requireAuthority(false, "FAULT");
   }
@@ -69,6 +350,158 @@ export class DurableAttemptRepository {
   history(identity: unknown) {
     const parsed = parse(IdentitySchema, identity);
     return this.readTransaction(() => verifyHistory(this.connection.db, this.current(this.connection.db, parsed)));
+  }
+  // A snapshot diagnostic only. It creates no intent, event, permission or reusable admission receipt.
+  assessExecutionReadiness(input: unknown): ExecutionReadiness {
+    let request: ReadinessRequest;
+    // Parsing is outside the transaction; malformed inputs cannot enter its body.
+    try {
+      const parsed = ReadinessRequestSchema.safeParse(input);
+      if (!parsed.success) return denyReadiness(["INVALID_REQUEST"]);
+      request = parsed.data;
+    } catch { return denyReadiness(["INVALID_REQUEST"]); }
+    const e = request.expected, ref = this.connection.ref;
+    try {
+      return this.readTransaction(() => {
+        const db = this.connection.db;
+        this.verifyControl(db); // Schema and tracked security history share this snapshot.
+        if (e.projectId !== ref.projectId) return denyReadiness(["IDENTITY_MISMATCH"]);
+        if (e.authorityIncarnation !== ref.authorityIncarnation) return denyReadiness(["INCARNATION_MISMATCH"]);
+        const row = db.prepare("SELECT * FROM runtime_attempts WHERE projectId=? AND attemptId=?").get(e.projectId, e.attemptId);
+        if (!row) return denyReadiness(["ATTEMPT_NOT_FOUND"]);
+        const attempt = parse(AttemptSchema, row);
+        verifyHistory(db, attempt);
+        const security = db.prepare("SELECT * FROM runtime_execution_security WHERE projectId=?").get(ref.projectId);
+        return evaluatePersistedReadiness(attempt, security, request);
+      });
+    } catch (error) {
+      if (error instanceof AuthorityFailure) {
+        if (error.code === "SCHEMA") return denyReadiness(["SCHEMA_UNSUPPORTED"]);
+        if (["INTEGRITY", "VALIDATION", "IDENTITY_CONFLICT"].includes(error.code))
+          return denyReadiness(["PERSISTED_STATE_INVALID"]);
+      }
+      return denyReadiness(["STORAGE_UNAVAILABLE"]);
+    }
+  }
+  // Complements PI-02 without replacing its deny-only contract. No provenance write/issuance API.
+  assessProvenanceReadiness(input: unknown): ProvenanceDecision {
+    let request: ProvenanceRequest;
+    try {
+      const parsed = ProvenanceRequestSchema.safeParse(input);
+      if (!parsed.success) return provenanceDecision(denyReadiness(["INVALID_REQUEST"]), ["PROVENANCE_NOT_EVALUATED"]);
+      request = parsed.data;
+    } catch { return provenanceDecision(denyReadiness(["INVALID_REQUEST"]), ["PROVENANCE_NOT_EVALUATED"]); }
+    try {
+      return this.readTransaction(() => {
+        const db = this.connection.db, ref = this.connection.ref;
+        this.verifyControl(db);
+        if (request.expected.projectId !== ref.projectId)
+          return provenanceDecision(denyReadiness(["IDENTITY_MISMATCH"]), ["PROVENANCE_NOT_EVALUATED"]);
+        if (request.expected.authorityIncarnation !== ref.authorityIncarnation)
+          return provenanceDecision(denyReadiness(["INCARNATION_MISMATCH"]), ["PROVENANCE_NOT_EVALUATED"]);
+        const row = db.prepare("SELECT * FROM runtime_attempts WHERE projectId=? AND attemptId=?")
+          .get(ref.projectId, request.expected.attemptId);
+        if (!row) return provenanceDecision(denyReadiness(["ATTEMPT_NOT_FOUND"]), ["PROVENANCE_NOT_EVALUATED"]);
+        const attempt = parse(AttemptSchema, row); verifyHistory(db, attempt);
+        const security = db.prepare("SELECT * FROM runtime_execution_security WHERE projectId=?").get(ref.projectId);
+        const base = evaluatePersistedReadiness(attempt, security, request);
+        const rows = this.provenanceRows(db, request);
+        return provenanceDecision(base, evaluateProvenanceRows(attempt, request, rows));
+      });
+    } catch (error) {
+      if (error instanceof AuthorityFailure) {
+        if (error.code === "SCHEMA") return provenanceDecision(denyReadiness(["SCHEMA_UNSUPPORTED"]), ["PROVENANCE_NOT_EVALUATED"]);
+        if (error.code === "CONFLICT") return provenanceDecision(denyReadiness(["ATTEMPT_NOT_FOUND"]), ["PROVENANCE_NOT_EVALUATED"]);
+        if (["INTEGRITY", "VALIDATION", "IDENTITY_CONFLICT"].includes(error.code))
+          return provenanceDecision(denyReadiness(["PERSISTED_STATE_INVALID"]), ["PERSISTED_PROVENANCE_INVALID"]);
+      }
+      return provenanceDecision(denyReadiness(["STORAGE_UNAVAILABLE"]), ["PROVENANCE_NOT_EVALUATED"]);
+    }
+  }
+  private provenanceRows(db: DatabaseSync, request: Pick<ProvenanceRequest, "principalId" | "policyId" | "grantId">) {
+    return {
+      principal: db.prepare("SELECT * FROM runtime_principal_provenance WHERE principalId=?").get(request.principalId),
+      policy: db.prepare("SELECT * FROM runtime_policy_provenance WHERE policyId=?").get(request.policyId),
+      grant: db.prepare("SELECT * FROM runtime_grant_provenance WHERE grantId=?").get(request.grantId),
+    };
+  }
+  private denySession(reason: ReadinessReason, issues: readonly SessionReason[]): SessionDecision {
+    return sessionDecision(provenanceDecision(denyReadiness([reason]), ["PROVENANCE_NOT_EVALUATED"]), issues);
+  }
+  // Descriptor is diagnostic fixture metadata. The private issuer token/handle map is never exposed.
+  get hostIssuerForTest() { return this.#hostIssuer.descriptor; }
+  issueHostContextForTest(input: unknown): FixtureHostContext {
+    const request = parse(SessionReadinessRequestSchema, input);
+    return this.readTransaction(() => {
+      const result = this.sessionSnapshot(this.connection.db, request, undefined, false);
+      const allowed = new Set<string>(["SECURITY_STATE_UNKNOWN", "SECURITY_STATE_BLOCKED", "SECURITY_STOP_ACTIVE",
+        "POLICY_UNAVAILABLE", "POLICY_UNSUPPORTED", "PRINCIPAL_UNAVAILABLE", "GRANT_UNAVAILABLE",
+        "PRODUCTION_PRINCIPAL_UNVERIFIED", "PRODUCTION_AUTHORITY_UNAVAILABLE", "PRODUCTION_HOST_AUTHORITY_UNAVAILABLE"]);
+      requireAuthority(result.binding && result.decision.sessionReasons.length === 0 &&
+        result.decision.provenanceReasons.length === 0 && result.decision.reasons.every(r => allowed.has(r)), "AUTHORITY_INVALID");
+      return this.#hostIssuer.issue(result.binding);
+    });
+  }
+  assessSessionReadiness(input: unknown, hostContext?: unknown): SessionDecision {
+    let request: SessionReadinessRequest;
+    try {
+      const parsed = SessionReadinessRequestSchema.safeParse(input);
+      if (!parsed.success) return this.denySession("INVALID_REQUEST", ["SESSION_NOT_EVALUATED"]);
+      request = parsed.data;
+    } catch { return this.denySession("INVALID_REQUEST", ["SESSION_NOT_EVALUATED"]); }
+    try { return this.readTransaction(() => this.sessionSnapshot(this.connection.db, request, hostContext, true).decision); }
+    catch (error) {
+      if (error instanceof AuthorityFailure) {
+        if (error.code === "SCHEMA") return this.denySession("SCHEMA_UNSUPPORTED", ["SESSION_NOT_EVALUATED"]);
+        if (["INTEGRITY", "VALIDATION", "IDENTITY_CONFLICT"].includes(error.code))
+          return this.denySession("PERSISTED_STATE_INVALID", ["SESSION_RECORD_INVALID"]);
+      }
+      return this.denySession("STORAGE_UNAVAILABLE", ["SESSION_NOT_EVALUATED"]);
+    }
+  }
+  private sessionSnapshot(db: DatabaseSync, request: SessionReadinessRequest, handle: unknown, requireContext: boolean):
+    { decision: SessionDecision; binding: HostBindingSnapshot | null } {
+    const fail = (reason: ReadinessReason) => ({ decision: this.denySession(reason, ["SESSION_NOT_EVALUATED"]), binding: null });
+    const ref = this.connection.ref; this.verifyControl(db);
+    if (request.expected.projectId !== ref.projectId) return fail("IDENTITY_MISMATCH");
+    if (request.expected.authorityIncarnation !== ref.authorityIncarnation) return fail("INCARNATION_MISMATCH");
+    const attemptRow = db.prepare("SELECT * FROM runtime_attempts WHERE projectId=? AND attemptId=?").get(ref.projectId, request.expected.attemptId);
+    if (!attemptRow) return fail("ATTEMPT_NOT_FOUND");
+    const attempt = parse(AttemptSchema, attemptRow); verifyHistory(db, attempt);
+    const security = db.prepare("SELECT * FROM runtime_execution_security WHERE projectId=?").get(ref.projectId);
+    const base = evaluatePersistedReadiness(attempt, security, request);
+    const host = requireContext ? this.#hostIssuer.read(handle, request.atMs) : { snapshot: null, issues: [] };
+    const executionRow = db.prepare("SELECT * FROM runtime_execution_sessions WHERE executionSessionId=?").get(request.executionSessionId);
+    const execution = ExecutionSessionSchema.safeParse(executionRow);
+    if (!execution.success) return { binding: null, decision: sessionDecision(provenanceDecision(base, ["PROVENANCE_NOT_EVALUATED"]),
+      [executionRow === undefined ? "SESSION_MISSING" : "SESSION_RECORD_INVALID", ...host.issues]) };
+    const e = execution.data;
+    const appRow = db.prepare("SELECT * FROM runtime_application_session_bindings WHERE applicationSessionId=?").get(e.applicationSessionId);
+    const app = ApplicationSessionBindingSchema.safeParse(appRow), application = app.success ? app.data : null;
+    const provenanceRequest: ProvenanceRequest = { expected: request.expected, securityRevision: request.securityRevision,
+      principalId: e.principalId, principalRevision: e.principalRevision, policyId: e.policyId,
+      policyVersion: e.policyVersion, policyRevision: e.policyRevision, grantId: e.grantId,
+      authorizationRevision: e.authorizationRevision, sourceRevision: e.provenanceSourceRevision,
+      sessionId: e.executionSessionId, action: request.action, destinationId: request.destinationId, atMs: request.atMs };
+    const rows = this.provenanceRows(db, provenanceRequest);
+    const provenance = provenanceDecision(base, evaluateProvenanceRows(attempt, provenanceRequest, rows));
+    const issues: SessionReason[] = [...evaluateSessionBinding(attempt, request, e, application, this.#hostIssuer.descriptor), ...host.issues];
+    if (!app.success && appRow !== undefined) issues.push("APPLICATION_SESSION_INVALID");
+    const grant = GrantProvenanceSchema.safeParse(rows.grant);
+    const binding: HostBindingSnapshot | null = application && grant.success ? {
+      projectId: attempt.projectId, authorityIncarnation: attempt.authorityIncarnation,
+      principalId: e.principalId, principalRevision: e.principalRevision, applicationSessionId: application.applicationSessionId,
+      applicationGeneration: application.generation, applicationRevision: application.revision,
+      executionSessionId: e.executionSessionId, bindingRevision: e.bindingRevision,
+      attemptId: attempt.attemptId, attemptGeneration: attempt.attemptGeneration, attemptStateVersion: attempt.stateVersion, attemptPhase: attempt.phase,
+      workspaceBindingId: attempt.bindingId, workspaceGeneration: attempt.bindingGeneration,
+      policyId: e.policyId, policyRevision: e.policyRevision, policyVersion: e.policyVersion,
+      grantId: e.grantId, authorizationRevision: e.authorizationRevision, provenanceSourceRevision: e.provenanceSourceRevision,
+      action: request.action, destinationId: request.destinationId, issuedAtMs: request.atMs,
+      expiresAtMs: Math.min(e.expiresAtMs, application.expiresAtMs, grant.data.expiresAtMs, request.atMs + FIXTURE_HOST_CONTEXT_LIFETIME_MS),
+    } : null;
+    if (requireContext && binding && host.snapshot) issues.push(...compareHostSnapshot(binding, host.snapshot));
+    return { binding, decision: sessionDecision(provenance, issues) };
   }
   private epoch(db: DatabaseSync, attempt: Attempt): void {
     db.prepare("INSERT INTO runtime_owner_epochs VALUES(?,?,?,?,?,?,?,?)").run(attempt.projectId, attempt.attemptId,

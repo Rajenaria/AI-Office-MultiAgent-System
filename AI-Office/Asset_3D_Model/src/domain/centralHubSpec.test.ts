@@ -51,7 +51,7 @@ describe('Open Central Hub V2 & Full Office Visual Overhaul V2 Specification', (
     assert.ok(CENTRAL_HUB_REQUIRED_GROUPS.includes('CONNECTORS'));
   });
 
-  it('defines 10 meeting seats (5 North + 5 South) with 8 real characters and 2 empty seats', () => {
+  it('defines 10 meeting seats (5 North + 5 South) with 9 real characters and 1 empty seat', () => {
     assert.equal(HUB_MEETING_SEATS_LIST.length, 10);
     const northSeats = HUB_MEETING_SEATS_LIST.filter((s) => s.side === 'NORTH');
     const southSeats = HUB_MEETING_SEATS_LIST.filter((s) => s.side === 'SOUTH');
@@ -60,21 +60,21 @@ describe('Open Central Hub V2 & Full Office Visual Overhaul V2 Specification', (
 
     const realAvailable = HUB_MEETING_SEATS_LIST.filter((s) => s.is_real_available_character);
     const emptySeats = HUB_MEETING_SEATS_LIST.filter((s) => !s.is_real_available_character);
-    assert.equal(realAvailable.length, 8);
-    assert.equal(emptySeats.length, 2);
+    assert.equal(realAvailable.length, 9);
+    assert.equal(emptySeats.length, 1);
 
     // Seat 01 is Owner Reserved
     const seat01 = HUB_MEETING_SEATS_LIST.find((s) => s.seat_id === 'HUB_MEETING_SEAT_01')!;
     assert.equal(seat01.assigned_agent_id, 'HUB_MEETING_OWNER_RESERVED');
     assert.equal(seat01.is_real_available_character, false);
 
-    // Seat 09 is active QA Engineer & Seat 10 is planned DevOps
+    // Seat 09 is active QA Engineer & Seat 10 is active DevOps Engineer
     const seat09 = HUB_MEETING_SEATS_LIST.find((s) => s.seat_id === 'HUB_MEETING_SEAT_09')!;
     const seat10 = HUB_MEETING_SEATS_LIST.find((s) => s.seat_id === 'HUB_MEETING_SEAT_10')!;
     assert.equal(seat09.assigned_agent_id, 'qa_engineer_agent');
     assert.equal(seat09.is_real_available_character, true);
-    assert.equal(seat10.assigned_agent_id, 'devops_agent');
-    assert.equal(seat10.is_real_available_character, false);
+    assert.equal(seat10.assigned_agent_id, 'devops_engineer_agent');
+    assert.equal(seat10.is_real_available_character, true);
 
     // Verify local->global offset [8,0,0] for every seat
     for (const seat of HUB_MEETING_SEATS_LIST) {
@@ -89,8 +89,8 @@ describe('Open Central Hub V2 & Full Office Visual Overhaul V2 Specification', (
 
     const seatsContract = buildCentralHubMeetingSeatsJson();
     assert.equal(seatsContract.total_seats, 10);
-    assert.equal(seatsContract.real_available_agent_seats, 8);
-    assert.equal(seatsContract.empty_reserved_seats, 2);
+    assert.equal(seatsContract.real_available_agent_seats, 9);
+    assert.equal(seatsContract.empty_reserved_seats, 1);
 
     const anchorsContract = buildCentralHubAnchorsJson();
     assert.equal(anchorsContract.anchor_count, 18);

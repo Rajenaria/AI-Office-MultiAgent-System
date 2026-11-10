@@ -104,6 +104,7 @@ import {
   buildQADevOpsRoomComplete,
 } from '../three/QADevOpsRoomBuilder';
 import {
+  DEFAULT_QA_DEVOPS_ANCHORS,
   QA_DEVOPS_CAMERA_PRESETS,
   QA_DEVOPS_CONNECTORS_SPEC,
   QA_DEVOPS_FURNITURE_CATALOG,
@@ -208,6 +209,32 @@ import {
   ResearchSimulationRuntimeStatus,
   ResearchSpeedMultiplier,
 } from '../domain/researchSimulationSpec';
+import {
+  QACharacterRuntimeInstance,
+  buildQASimulationHelpersGroup,
+  createQAEngineerRuntime,
+  exportQAEngineerToGLBBuffer,
+} from '../three/QACharacterSystem';
+import {
+  QAActionId,
+  QAAnimationPlaybackCommand,
+  QAExpressionId,
+  QASimulationRuntimeStatus,
+  QASpeedMultiplier,
+} from '../domain/qaSimulationSpec';
+import {
+  DevOpsCharacterRuntimeInstance,
+  buildDevOpsSimulationHelpersGroup,
+  createDevOpsEngineerRuntime,
+  exportDevOpsEngineerToGLBBuffer,
+} from '../three/DevOpsCharacterSystem';
+import {
+  DevOpsActionId,
+  DevOpsAnimationPlaybackCommand,
+  DevOpsExpressionId,
+  DevOpsSimulationRuntimeStatus,
+  DevOpsSpeedMultiplier,
+} from '../domain/devopsSimulationSpec';
 import { PRODUCTION_FILENAMES } from '../export/AssetManifestBuilder';
 import {
   IndependentRoundTripReportV1,
@@ -218,14 +245,18 @@ import {
   CEOCharacterExportPackResult,
   CharacterExportCandidatePackResult,
   DatabaseCharacterExportPackResult,
+  DevOpsCharacterExportPackResult,
   FrontendCharacterExportPackResult,
+  QACharacterExportPackResult,
   ResearchCharacterExportPackResult,
   UIUXCharacterExportPackResult,
   buildBackendCharacterExportPack,
   buildCEOCharacterExportPack,
   buildCharacterExportCandidatePack,
   buildDatabaseCharacterExportPack,
+  buildDevOpsCharacterExportPack,
   buildFrontendCharacterExportPack,
+  buildQACharacterExportPack,
   buildResearchCharacterExportPack,
   buildUIUXCharacterExportPack,
 } from '../export/CharacterExporter';
@@ -276,7 +307,10 @@ export interface ViewerDisplayConfig {
     | 'research_room_only'
     | 'research_room_and_char'
     | 'research_character_only'
-    | 'qa_devops_room_only';
+    | 'qa_devops_room_only'
+    | 'qa_devops_room_and_char'
+    | 'qa_character_only'
+    | 'devops_character_only';
   reimportDisplayMode?:
     | 'room_only'
     | 'character_only'
@@ -295,7 +329,10 @@ export interface ViewerDisplayConfig {
     | 'research_room_only'
     | 'research_room_and_char'
     | 'research_character_only'
-    | 'qa_devops_room_only';
+    | 'qa_devops_room_only'
+    | 'qa_devops_room_and_char'
+    | 'qa_character_only'
+    | 'devops_character_only';
   visualStyle: VisualStyleMode;
   showGrid: boolean;
   autoCutawayWalls: boolean;
@@ -339,6 +376,8 @@ export interface VisualStabilityDiagnosticReport {
   totalBackendCharacterMeshes?: number;
   totalDatabaseCharacterMeshes?: number;
   totalResearchCharacterMeshes?: number;
+  totalQACharacterMeshes?: number;
+  totalDevOpsCharacterMeshes?: number;
   duplicateRoomMeshNames: string[];
   duplicateCEORoomMeshNames?: string[];
   duplicateUIUXRoomMeshNames?: string[];
@@ -470,6 +509,12 @@ export interface ModularRoomCanvasHandle {
   exportResearchCharacterPack: () => Promise<ResearchCharacterExportPackResult>;
   exportResearchCharacterGLB: () => Promise<{ filename: string; byteLength: number }>;
   exportResearchCharacterPreviewPNG: () => Promise<{ filename: string; dataUrl: string }>;
+  exportQACharacterPack: () => Promise<QACharacterExportPackResult>;
+  exportQACharacterGLB: () => Promise<{ filename: string; byteLength: number }>;
+  exportQACharacterPreviewPNG: () => Promise<{ filename: string; dataUrl: string }>;
+  exportDevOpsCharacterPack: () => Promise<DevOpsCharacterExportPackResult>;
+  exportDevOpsCharacterGLB: () => Promise<{ filename: string; byteLength: number }>;
+  exportDevOpsCharacterPreviewPNG: () => Promise<{ filename: string; dataUrl: string }>;
   // Boss PM Simulation & Dual Character Source Controls
   setCharacterSource: (source: CharacterSourceType) => void;
   triggerPMAction: (actionId: PMActionId) => void;
@@ -552,6 +597,30 @@ export interface ModularRoomCanvasHandle {
   setResearchGlassesVisible: (visible: boolean) => void;
   setResearchBackpackVisible: (visible: boolean) => void;
   focusCameraOnResearchCharacter: () => void;
+  // QA Engineer Simulation Controls
+  triggerQAAction: (actionId: QAActionId) => void;
+  executeQAPlayback: (cmd: QAAnimationPlaybackCommand) => void;
+  setQASpeed: (speed: QASpeedMultiplier) => void;
+  setQAPatrol: (enabled: boolean) => void;
+  startQAAutoDemo: () => void;
+  stopQAAutoDemo: () => void;
+  setQAExpression: (expr: QAExpressionId) => void;
+  setQAGlassesVisible: (visible: boolean) => void;
+  setQAHeadsetVisible: (visible: boolean) => void;
+  setQABackpackVisible: (visible: boolean) => void;
+  focusCameraOnQACharacter: () => void;
+  // DevOps Engineer Simulation Controls
+  triggerDevOpsAction: (actionId: DevOpsActionId) => void;
+  executeDevOpsPlayback: (cmd: DevOpsAnimationPlaybackCommand) => void;
+  setDevOpsSpeed: (speed: DevOpsSpeedMultiplier) => void;
+  setDevOpsPatrol: (enabled: boolean) => void;
+  startDevOpsAutoDemo: () => void;
+  stopDevOpsAutoDemo: () => void;
+  setDevOpsExpression: (expr: DevOpsExpressionId) => void;
+  setDevOpsHeadphonesVisible: (visible: boolean) => void;
+  setDevOpsGlassesVisible: (visible: boolean) => void;
+  setDevOpsBackpackVisible: (visible: boolean) => void;
+  focusCameraOnDevOpsCharacter: () => void;
   // V2 Modular Room & Full Office A3 Controls
   focusRoomInFullOffice: (roomKey: RoomModuleKey) => void;
   focusSelectedAgentCamera: () => void;
@@ -601,6 +670,8 @@ interface ModularRoomCanvasProps {
   onBackendRuntimeStateChange?: (status: BackendSimulationRuntimeStatus) => void;
   onDatabaseRuntimeStateChange?: (status: DatabaseSimulationRuntimeStatus) => void;
   onResearchRuntimeStateChange?: (status: ResearchSimulationRuntimeStatus) => void;
+  onQARuntimeStateChange?: (status: QASimulationRuntimeStatus) => void;
+  onDevOpsRuntimeStateChange?: (status: DevOpsSimulationRuntimeStatus) => void;
   onGLBInspectionReady: (report: GLBInspectionReport | null) => void;
   onPMCharacterSelectChange: (selected: boolean) => void;
   onMeshDiagnosticSelect?: (diag: ClickedMeshDiagnostic | null) => void;
@@ -639,6 +710,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       onBackendRuntimeStateChange,
       onDatabaseRuntimeStateChange,
       onResearchRuntimeStateChange,
+      onQARuntimeStateChange,
+      onDevOpsRuntimeStateChange,
       onGLBInspectionReady,
       onPMCharacterSelectChange,
       onMeshDiagnosticSelect,
@@ -698,6 +771,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       onBackendRuntimeStateChange,
       onDatabaseRuntimeStateChange,
       onResearchRuntimeStateChange,
+      onQARuntimeStateChange,
+      onDevOpsRuntimeStateChange,
       onGLBInspectionReady,
       onPMCharacterSelectChange,
       onMeshDiagnosticSelect,
@@ -724,6 +799,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       onBackendRuntimeStateChange,
       onDatabaseRuntimeStateChange,
       onResearchRuntimeStateChange,
+      onQARuntimeStateChange,
+      onDevOpsRuntimeStateChange,
       onGLBInspectionReady,
       onPMCharacterSelectChange,
       onMeshDiagnosticSelect,
@@ -758,6 +835,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       importedBackendCharacterHolder: THREE.Group;
       importedDatabaseCharacterHolder: THREE.Group;
       importedResearchCharacterHolder: THREE.Group;
+      importedQACharacterHolder: THREE.Group;
+      importedDevOpsCharacterHolder: THREE.Group;
       setImportedCharacterMixer: (mixer: THREE.AnimationMixer | null) => void;
       setImportedCEOCharacterMixer: (mixer: THREE.AnimationMixer | null) => void;
       setImportedUIUXCharacterMixer: (mixer: THREE.AnimationMixer | null) => void;
@@ -765,6 +844,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       setImportedBackendCharacterMixer: (mixer: THREE.AnimationMixer | null) => void;
       setImportedDatabaseCharacterMixer: (mixer: THREE.AnimationMixer | null) => void;
       setImportedResearchCharacterMixer: (mixer: THREE.AnimationMixer | null) => void;
+      setImportedQACharacterMixer: (mixer: THREE.AnimationMixer | null) => void;
+      setImportedDevOpsCharacterMixer: (mixer: THREE.AnimationMixer | null) => void;
       neighborAssemblyGroup: THREE.Group;
       previewHelpersGroup: THREE.Group;
       gridHelperGroup: THREE.Group;
@@ -794,6 +875,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       getBackendAgentInstance: () => BackendCharacterRuntimeInstance;
       getDatabaseAgentInstance: () => DatabaseCharacterRuntimeInstance;
       getResearchAgentInstance: () => ResearchCharacterRuntimeInstance;
+      getQAAgentInstance: () => QACharacterRuntimeInstance;
+      getDevOpsAgentInstance: () => DevOpsCharacterRuntimeInstance;
       getSelectedCharacterSource: () => CharacterSourceType;
       setCharacterSource: (source: CharacterSourceType) => void;
       mountImportedBossPMInstance: (instance: BossPMRuntimeInstance, autoSelect?: boolean) => void;
@@ -813,6 +896,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       focusCameraOnBackendCharacter: () => void;
       focusCameraOnDatabaseCharacter: () => void;
       focusCameraOnResearchCharacter: () => void;
+      focusCameraOnQACharacter: () => void;
+      focusCameraOnDevOpsCharacter: () => void;
       returnToRoomView: () => void;
       teleportPMToAnchor: (anchorId: AnchorId) => void;
       syncAnchorsOverlay: () => void;
@@ -1224,6 +1309,16 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       importedResearchCharacterHolder.visible = false;
       importedRootHolder.add(importedResearchCharacterHolder);
 
+      const importedQACharacterHolder = new THREE.Group();
+      importedQACharacterHolder.name = 'REIMPORTED_QA_CHARACTER_GLB_HOLDER';
+      importedQACharacterHolder.visible = false;
+      importedRootHolder.add(importedQACharacterHolder);
+
+      const importedDevOpsCharacterHolder = new THREE.Group();
+      importedDevOpsCharacterHolder.name = 'REIMPORTED_DEVOPS_CHARACTER_GLB_HOLDER';
+      importedDevOpsCharacterHolder.visible = false;
+      importedRootHolder.add(importedDevOpsCharacterHolder);
+
       let importedCharacterMixer: THREE.AnimationMixer | null = null;
       let importedCEOCharacterMixer: THREE.AnimationMixer | null = null;
       let importedUIUXCharacterMixer: THREE.AnimationMixer | null = null;
@@ -1231,6 +1326,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       let importedBackendCharacterMixer: THREE.AnimationMixer | null = null;
       let importedDatabaseCharacterMixer: THREE.AnimationMixer | null = null;
       let importedResearchCharacterMixer: THREE.AnimationMixer | null = null;
+      let importedQACharacterMixer: THREE.AnimationMixer | null = null;
+      let importedDevOpsCharacterMixer: THREE.AnimationMixer | null = null;
 
       const neighborAssemblyGroup = buildNeighborAssemblyPlaceholders();
       neighborAssemblyGroup.visible = false;
@@ -1332,6 +1429,28 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       researchAgent.runtimeRoot.visible = false;
       scene.add(researchAgent.runtimeRoot);
 
+      // Instantiate QA Engineer Runtime (strictly outside QA_DevOps_Room_Root)
+      const qaPathHelpers = buildQASimulationHelpersGroup();
+      qaPathHelpers.helpersRoot.visible = false;
+      scene.add(qaPathHelpers.helpersRoot);
+
+      const qaAgent = createQAEngineerRuntime((status) => {
+        callbacksRef.current.onQARuntimeStateChange?.(status);
+      });
+      qaAgent.runtimeRoot.visible = false;
+      scene.add(qaAgent.runtimeRoot);
+
+      // Instantiate DevOps Engineer Runtime (strictly outside QA_DevOps_Room_Root)
+      const devopsPathHelpers = buildDevOpsSimulationHelpersGroup();
+      devopsPathHelpers.helpersRoot.visible = false;
+      scene.add(devopsPathHelpers.helpersRoot);
+
+      const devopsAgent = createDevOpsEngineerRuntime((status) => {
+        callbacksRef.current.onDevOpsRuntimeStateChange?.(status);
+      });
+      devopsAgent.runtimeRoot.visible = false;
+      scene.add(devopsAgent.runtimeRoot);
+
       let loadError: string | null = null;
       let currentActionId: PMActionId = 'idle';
       let currentState: PMAgentStateId = 'IDLE';
@@ -1358,7 +1477,7 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       let elapsedSimTime = 0;
       let lastFrameTimestamp = performance.now();
 
-      // Instantiate All-Agent Central Hub Meeting Demo Orchestrator (7 real agents + 3 empty reserved/planned chairs)
+      // Instantiate All-Agent Central Hub Meeting Demo Orchestrator (9 real agents + 1 Owner-Reserved empty chair)
       const allAgentMeetingDemo = createAllAgentMeetingDemoSystem({
         getBossPM: () => bossPM,
         ceoAgent,
@@ -1367,6 +1486,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
         backendAgent,
         databaseAgent,
         researchAgent,
+        qaAgent,
+        devopsAgent,
         onStopRoomAutoDemos: () => {
           autoDemoActive = false;
           patrolActive = false;
@@ -1385,6 +1506,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           databaseAgent.setPatrolActive(false);
           researchAgent.stopAutoDemo();
           researchAgent.setPatrolActive(false);
+          qaAgent.stopAutoDemo();
+          qaAgent.setPatrolActive(false);
+          devopsAgent.stopAutoDemo();
+          devopsAgent.setPatrolActive(false);
         },
         onRestoreRoomCharacters: () => {
           if (bossPM) {
@@ -1397,6 +1522,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           backendAgent.executePlayback('reset_idle');
           databaseAgent.executePlayback('reset_idle');
           researchAgent.executePlayback('reset_idle');
+          qaAgent.executePlayback('reset_idle');
+          devopsAgent.executePlayback('reset_idle');
         },
         onStatusChange: (status) => {
           callbacksRef.current.onMeetingDemoStatusChange?.(status);
@@ -1561,6 +1688,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
         callbacksRef.current.onBackendRuntimeStateChange?.(backendAgent.getStatus());
         callbacksRef.current.onDatabaseRuntimeStateChange?.(databaseAgent.getStatus());
         callbacksRef.current.onResearchRuntimeStateChange?.(researchAgent.getStatus());
+        callbacksRef.current.onQARuntimeStateChange?.(qaAgent.getStatus());
+        callbacksRef.current.onDevOpsRuntimeStateChange?.(devopsAgent.getStatus());
       };
 
       const updateRoomActivityHighlights = () => {
@@ -2231,6 +2360,30 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           anyActive = true;
         }
 
+        // A5. Step QA Engineer & DevOps Engineer when visible in Single Room (qa_devops_studio) or Full Office
+        const qaActiveInCurrentView =
+          cfg.officeViewMode === 'full_office' || cfg.selectedRoomKey === 'qa_devops_studio';
+        if (qaActiveInCurrentView) {
+          qaAgent.update(dt);
+          const qaSt = qaAgent.getStatus();
+          const qaTargetAnchor = DEFAULT_QA_DEVOPS_ANCHORS[qaSt.targetAnchorId];
+          qaPathHelpers.updatePathVisual(
+            qaAgent.getActivePathPoints(),
+            qaTargetAnchor ? qaTargetAnchor.position : qaSt.worldPosition,
+            cfg.showNavigationPath && cfg.showBossPM && qaSt.isWalking
+          );
+
+          devopsAgent.update(dt);
+          const devopsSt = devopsAgent.getStatus();
+          const devopsTargetAnchor = DEFAULT_QA_DEVOPS_ANCHORS[devopsSt.targetAnchorId];
+          devopsPathHelpers.updatePathVisual(
+            devopsAgent.getActivePathPoints(),
+            devopsTargetAnchor ? devopsTargetAnchor.position : devopsSt.worldPosition,
+            cfg.showNavigationPath && cfg.showBossPM && devopsSt.isWalking
+          );
+          anyActive = true;
+        }
+
         // B. Step Boss PM when visible in Single Room (pm_strategy) or Full Office
         const pmActiveInCurrentView =
           cfg.officeViewMode === 'full_office' || cfg.selectedRoomKey === 'pm_strategy';
@@ -2405,6 +2558,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             const beSt = backendAgent.getStatus();
             const dbSt = databaseAgent.getStatus();
             const resSt = researchAgent.getStatus();
+            const qaSt = qaAgent.getStatus();
+            const devopsSt = devopsAgent.getStatus();
             if (
               allAgentMeetingDemo.isActive() ||
               isWalking ||
@@ -2435,6 +2590,14 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
               resSt.patrolActive ||
               resSt.autoDemoActive ||
               resSt.currentState !== 'IDLE' ||
+              qaSt.isWalking ||
+              qaSt.patrolActive ||
+              qaSt.autoDemoActive ||
+              qaSt.currentState !== 'IDLE' ||
+              devopsSt.isWalking ||
+              devopsSt.patrolActive ||
+              devopsSt.autoDemoActive ||
+              devopsSt.currentState !== 'IDLE' ||
               !isSoftwareGl
             ) {
               renderDirty = true;
@@ -2480,6 +2643,18 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             }
             if (importedResearchCharacterMixer && importedResearchCharacterHolder.visible) {
               importedResearchCharacterMixer.update(dt);
+              if (!isSoftwareGl) {
+                renderDirty = true;
+              }
+            }
+            if (importedQACharacterMixer && importedQACharacterHolder.visible) {
+              importedQACharacterMixer.update(dt);
+              if (!isSoftwareGl) {
+                renderDirty = true;
+              }
+            }
+            if (importedDevOpsCharacterMixer && importedDevOpsCharacterHolder.visible) {
+              importedDevOpsCharacterMixer.update(dt);
               if (!isSoftwareGl) {
                 renderDirty = true;
               }
@@ -2751,7 +2926,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             targetMode === 'engineering_room_and_char';
           importedResearchRoomHolder.visible =
             targetMode === 'research_room_only' || targetMode === 'research_room_and_char';
-          importedQADevOpsRoomHolder.visible = targetMode === 'qa_devops_room_only';
+          importedQADevOpsRoomHolder.visible =
+            targetMode === 'qa_devops_room_only' || targetMode === 'qa_devops_room_and_char';
           importedCharacterHolder.visible =
             targetMode === 'character_only' || targetMode === 'both_reimported';
           importedCEOCharacterHolder.visible =
@@ -2770,6 +2946,12 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           importedResearchCharacterHolder.visible =
             targetMode === 'research_character_only' ||
             targetMode === 'research_room_and_char';
+          importedQACharacterHolder.visible =
+            targetMode === 'qa_character_only' ||
+            targetMode === 'qa_devops_room_and_char';
+          importedDevOpsCharacterHolder.visible =
+            targetMode === 'devops_character_only' ||
+            targetMode === 'qa_devops_room_and_char';
           neighborAssemblyGroup.visible = cfg.showNeighborAssembly;
 
           if (bossPM) bossPM.runtimeRoot.visible = false;
@@ -2785,6 +2967,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           databasePathHelpers.helpersRoot.visible = false;
           researchAgent.runtimeRoot.visible = false;
           researchPathHelpers.helpersRoot.visible = false;
+          qaAgent.runtimeRoot.visible = false;
+          qaPathHelpers.helpersRoot.visible = false;
+          devopsAgent.runtimeRoot.visible = false;
+          devopsPathHelpers.helpersRoot.visible = false;
           simHelpers.anchorsGroup.visible = false;
           simHelpers.pathDebugGroup.visible = false;
           ceoAnchorHelpers.helpersRoot.visible = false;
@@ -2797,7 +2983,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             targetMode === 'frontend_character_only' ||
             targetMode === 'backend_character_only' ||
             targetMode === 'database_character_only' ||
-            targetMode === 'qa_devops_room_only'
+            targetMode === 'qa_devops_room_only' ||
+            targetMode === 'qa_devops_room_and_char' ||
+            targetMode === 'qa_character_only' ||
+            targetMode === 'devops_character_only'
           ) {
             keyLight.position.set(13.5, 16.5, 5.0);
             keyLight.target.position.set(4.0, 0.5, 8.0);
@@ -2907,6 +3096,17 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           researchPathHelpers.helpersRoot.position.set(0, 0, 18);
           researchPathHelpers.helpersRoot.visible = cfg.showNavigationPath && cfg.showBossPM;
 
+          // QA Engineer & DevOps Engineer stay inside the QA & DevOps Studio at global [24, 0, 0]
+          officeA3.qaDevopsSlotWrapper.add(qaAgent.runtimeRoot);
+          qaAgent.runtimeRoot.visible = cfg.showBossPM;
+          qaPathHelpers.helpersRoot.position.set(24, 0, 0);
+          qaPathHelpers.helpersRoot.visible = cfg.showNavigationPath && cfg.showBossPM;
+
+          officeA3.qaDevopsSlotWrapper.add(devopsAgent.runtimeRoot);
+          devopsAgent.runtimeRoot.visible = cfg.showBossPM;
+          devopsPathHelpers.helpersRoot.position.set(24, 0, 0);
+          devopsPathHelpers.helpersRoot.visible = cfg.showNavigationPath && cfg.showBossPM;
+
           // Adjust keyLight shadow frustum for 32x26 Full Office
           keyLight.position.set(25.5, 24.0, 6.0);
           keyLight.target.position.set(16.0, 0.5, 13.0);
@@ -2938,6 +3138,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           scene.add(researchRoom.roomRoot);
           scene.add(qaDevopsRoom.roomRoot);
           scene.add(researchAgent.runtimeRoot);
+          scene.add(qaAgent.runtimeRoot);
+          scene.add(devopsAgent.runtimeRoot);
           roomRoot.position.set(0, 0, 0);
           ceoRoom.ceoRoot.position.set(0, 0, 0);
           uiuxRoom.uiuxRoot.position.set(0, 0, 0);
@@ -2947,6 +3149,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           qaDevopsRoom.roomRoot.position.set(0, 0, 0);
           qaDevopsRoom.helpersGroup.position.set(0, 0, 0);
           researchPathHelpers.helpersRoot.position.set(0, 0, 0);
+          qaPathHelpers.helpersRoot.position.set(0, 0, 0);
+          devopsPathHelpers.helpersRoot.position.set(0, 0, 0);
           setDoorwayThresholdsVisible(true);
 
           if (cfg.selectedRoomKey === 'engineering' || cfg.selectedRoomKey === 'qa_devops_studio') {
@@ -3007,6 +3211,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             databasePathHelpers.helpersRoot.visible = false;
             researchAgent.runtimeRoot.visible = false;
             researchPathHelpers.helpersRoot.visible = false;
+            qaAgent.runtimeRoot.visible = false;
+            qaPathHelpers.helpersRoot.visible = false;
+            devopsAgent.runtimeRoot.visible = false;
+            devopsPathHelpers.helpersRoot.visible = false;
             simHelpers.anchorsGroup.visible = cfg.showSimulationAnchors;
             simHelpers.pathDebugGroup.visible = cfg.showNavigationPath && cfg.showBossPM;
             ceoAnchorHelpers.helpersRoot.visible = false;
@@ -3042,6 +3250,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             databasePathHelpers.helpersRoot.visible = false;
             researchAgent.runtimeRoot.visible = false;
             researchPathHelpers.helpersRoot.visible = false;
+            qaAgent.runtimeRoot.visible = false;
+            qaPathHelpers.helpersRoot.visible = false;
+            devopsAgent.runtimeRoot.visible = false;
+            devopsPathHelpers.helpersRoot.visible = false;
             simHelpers.anchorsGroup.visible = false;
             simHelpers.pathDebugGroup.visible = false;
             ceoAnchorHelpers.helpersRoot.visible = cfg.showSimulationAnchors;
@@ -3079,6 +3291,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             databasePathHelpers.helpersRoot.visible = false;
             researchAgent.runtimeRoot.visible = false;
             researchPathHelpers.helpersRoot.visible = false;
+            qaAgent.runtimeRoot.visible = false;
+            qaPathHelpers.helpersRoot.visible = false;
+            devopsAgent.runtimeRoot.visible = false;
+            devopsPathHelpers.helpersRoot.visible = false;
             simHelpers.anchorsGroup.visible = false;
             simHelpers.pathDebugGroup.visible = false;
             ceoAnchorHelpers.helpersRoot.visible = false;
@@ -3099,7 +3315,7 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             researchRoom.helpersGroup.visible = false;
             qaDevopsRoom.roomRoot.visible = false;
             qaDevopsRoom.helpersGroup.visible = false;
-            // Strictly no PM, CEO, UI/UX, or Research characters inside Engineering Studio
+            // Strictly no PM, CEO, UI/UX, Research, or QA/DevOps characters inside Engineering Studio
             if (bossPM) {
               bossPM.runtimeRoot.visible = false;
             }
@@ -3109,6 +3325,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             uiuxPathHelpers.visible = false;
             researchAgent.runtimeRoot.visible = false;
             researchPathHelpers.helpersRoot.visible = false;
+            qaAgent.runtimeRoot.visible = false;
+            qaPathHelpers.helpersRoot.visible = false;
+            devopsAgent.runtimeRoot.visible = false;
+            devopsPathHelpers.helpersRoot.visible = false;
             // Mount Frontend Developer (Zone A), Backend Developer (Zone B) AND Database Developer (Zone C) simultaneously inside Engineering Studio
             frontendAgent.rootGroup.visible = cfg.showBossPM;
             frontendPathHelpers.helpersRoot.visible = cfg.showNavigationPath && cfg.showBossPM;
@@ -3136,7 +3356,7 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             researchRoom.helpersGroup.visible = cfg.showSimulationAnchors;
             qaDevopsRoom.roomRoot.visible = false;
             qaDevopsRoom.helpersGroup.visible = false;
-            // Strictly no PM, CEO, UI/UX, or Engineering characters inside Research & Shared Brain Room
+            // Strictly no PM, CEO, UI/UX, Engineering, or QA/DevOps characters inside Research & Shared Brain Room
             if (bossPM) {
               bossPM.runtimeRoot.visible = false;
             }
@@ -3150,6 +3370,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             backendPathHelpers.helpersRoot.visible = false;
             databaseAgent.runtimeRoot.visible = false;
             databasePathHelpers.helpersRoot.visible = false;
+            qaAgent.runtimeRoot.visible = false;
+            qaPathHelpers.helpersRoot.visible = false;
+            devopsAgent.runtimeRoot.visible = false;
+            devopsPathHelpers.helpersRoot.visible = false;
             // Mount Research Professor (research_professor_agent) inside Research & Shared Brain Room
             researchAgent.runtimeRoot.visible = cfg.showBossPM;
             researchPathHelpers.helpersRoot.visible = cfg.showNavigationPath && cfg.showBossPM;
@@ -3173,7 +3397,7 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             researchRoom.helpersGroup.visible = false;
             qaDevopsRoom.roomRoot.visible = true;
             qaDevopsRoom.helpersGroup.visible = cfg.showSimulationAnchors;
-            // Room-only milestone V1: strictly no characters inside QA & DevOps Integrated Studio yet
+            // Strictly no PM, CEO, UI/UX, Engineering, or Research characters inside QA & DevOps Studio
             if (bossPM) {
               bossPM.runtimeRoot.visible = false;
             }
@@ -3189,6 +3413,11 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             databasePathHelpers.helpersRoot.visible = false;
             researchAgent.runtimeRoot.visible = false;
             researchPathHelpers.helpersRoot.visible = false;
+            // Mount BOTH QA Engineer (North QA Zone) AND DevOps Engineer (South DevOps Zone) inside QA & DevOps Studio
+            qaAgent.runtimeRoot.visible = cfg.showBossPM;
+            qaPathHelpers.helpersRoot.visible = cfg.showNavigationPath && cfg.showBossPM;
+            devopsAgent.runtimeRoot.visible = cfg.showBossPM;
+            devopsPathHelpers.helpersRoot.visible = cfg.showNavigationPath && cfg.showBossPM;
             simHelpers.anchorsGroup.visible = false;
             simHelpers.pathDebugGroup.visible = false;
             ceoAnchorHelpers.helpersRoot.visible = false;
@@ -3225,6 +3454,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             databasePathHelpers.helpersRoot.visible = false;
             researchAgent.runtimeRoot.visible = false;
             researchPathHelpers.helpersRoot.visible = false;
+            qaAgent.runtimeRoot.visible = false;
+            qaPathHelpers.helpersRoot.visible = false;
+            devopsAgent.runtimeRoot.visible = false;
+            devopsPathHelpers.helpersRoot.visible = false;
             simHelpers.anchorsGroup.visible = false;
             simHelpers.pathDebugGroup.visible = false;
             ceoAnchorHelpers.helpersRoot.visible = false;
@@ -3267,6 +3500,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
         applyWireframeToRoot(backendAgent.characterRoot, Boolean(cfg.showWireframe));
         applyWireframeToRoot(databaseAgent.characterRoot, Boolean(cfg.showWireframe));
         applyWireframeToRoot(researchAgent.characterRoot, Boolean(cfg.showWireframe));
+        applyWireframeToRoot(qaAgent.characterRoot, Boolean(cfg.showWireframe));
+        applyWireframeToRoot(devopsAgent.characterRoot, Boolean(cfg.showWireframe));
 
         gridHelperGroup.visible = !isFullOffice && cfg.showGrid;
         mannequinGroup.visible = !isImportMode && !isFullOffice && cfg.showMannequin;
@@ -3490,6 +3725,16 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           if ((obj as THREE.Mesh).isMesh) totalResearchCharacterMeshes++;
         });
 
+        let totalQACharacterMeshes = 0;
+        qaAgent.characterRoot.traverse((obj) => {
+          if ((obj as THREE.Mesh).isMesh) totalQACharacterMeshes++;
+        });
+
+        let totalDevOpsCharacterMeshes = 0;
+        devopsAgent.characterRoot.traverse((obj) => {
+          if ((obj as THREE.Mesh).isMesh) totalDevOpsCharacterMeshes++;
+        });
+
         return {
           timestamp: new Date().toLocaleTimeString(),
           totalRoomMeshes,
@@ -3503,6 +3748,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           totalBackendCharacterMeshes,
           totalDatabaseCharacterMeshes,
           totalResearchCharacterMeshes,
+          totalQACharacterMeshes,
+          totalDevOpsCharacterMeshes,
           duplicateRoomMeshNames,
           duplicateCEORoomMeshNames,
           duplicateUIUXRoomMeshNames,
@@ -3513,6 +3760,18 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           shadowBias: keyLight.shadow.bias,
           shadowNormalBias: keyLight.shadow.normalBias,
           verifiedAreas: [
+            {
+              area: 'DevOps Engineer Voxel Character (devops_engineer_agent — 1.735u)',
+              status: 'STABLE',
+              detail:
+                '360-degree short dense naturally curly black/charcoal voxel hairstyle across 9 semantic sub-groups and 5 matte charcoal/black material swatches, warm dark-brown voxel skin, white/silver neck headphones with cyan earcup rings, dark charcoal/navy technical jacket with cyan piping, black backpack with 3D cyan cloud emblem and seated auto-hide, and 27 embedded animation clips.',
+            },
+            {
+              area: 'QA Engineer Voxel Character (qa_engineer_agent — 1.78u)',
+              status: 'STABLE',
+              detail:
+                '360-degree layered dark chestnut/chocolate/warm reddish-brown voxel hair with high bun & hollow gold hair clip, black/charcoal QA technical vest with yellow/gold trims over white hoodie collar/cuffs, compact QA backpack with 3D yellow QA rear emblem and seated auto-hide, and 23 embedded animation clips.',
+            },
             {
               area: 'Research Professor Voxel Character (research_professor_agent — 1.755u)',
               status: 'STABLE',
@@ -3711,6 +3970,36 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             callbacksRef.current.onPMCharacterSelectChange(true);
             if (callbacksRef.current.onMeshDiagnosticSelect) {
               callbacksRef.current.onMeshDiagnosticSelect(extractMeshDiagnostic(resHits[0].object));
+            }
+            emitTelemetry();
+            requestRender();
+            return;
+          }
+        }
+
+        // 1h. Check if QA Engineer character was clicked
+        if (qaAgent.runtimeRoot.visible) {
+          const qaHits = raycaster.intersectObject(qaAgent.characterRoot, true);
+          if (qaHits.length > 0) {
+            callbacksRef.current.onPMCharacterSelectChange(true);
+            if (callbacksRef.current.onMeshDiagnosticSelect) {
+              callbacksRef.current.onMeshDiagnosticSelect(extractMeshDiagnostic(qaHits[0].object));
+            }
+            emitTelemetry();
+            requestRender();
+            return;
+          }
+        }
+
+        // 1i. Check if DevOps Engineer character was clicked
+        if (devopsAgent.runtimeRoot.visible) {
+          const devopsHits = raycaster.intersectObject(devopsAgent.characterRoot, true);
+          if (devopsHits.length > 0) {
+            callbacksRef.current.onPMCharacterSelectChange(true);
+            if (callbacksRef.current.onMeshDiagnosticSelect) {
+              callbacksRef.current.onMeshDiagnosticSelect(
+                extractMeshDiagnostic(devopsHits[0].object)
+              );
             }
             emitTelemetry();
             requestRender();
@@ -3983,6 +4272,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
         importedBackendCharacterHolder,
         importedDatabaseCharacterHolder,
         importedResearchCharacterHolder,
+        importedQACharacterHolder,
+        importedDevOpsCharacterHolder,
         setImportedCharacterMixer: (mixer: THREE.AnimationMixer | null) => {
           importedCharacterMixer = mixer;
         },
@@ -4003,6 +4294,12 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
         },
         setImportedResearchCharacterMixer: (mixer: THREE.AnimationMixer | null) => {
           importedResearchCharacterMixer = mixer;
+        },
+        setImportedQACharacterMixer: (mixer: THREE.AnimationMixer | null) => {
+          importedQACharacterMixer = mixer;
+        },
+        setImportedDevOpsCharacterMixer: (mixer: THREE.AnimationMixer | null) => {
+          importedDevOpsCharacterMixer = mixer;
         },
         neighborAssemblyGroup,
         previewHelpersGroup,
@@ -4028,6 +4325,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
         getBackendAgentInstance: () => backendAgent,
         getDatabaseAgentInstance: () => databaseAgent,
         getResearchAgentInstance: () => researchAgent,
+        getQAAgentInstance: () => qaAgent,
+        getDevOpsAgentInstance: () => devopsAgent,
         getSelectedCharacterSource: () => selectedCharacterSource,
         setCharacterSource,
         mountImportedBossPMInstance,
@@ -4190,6 +4489,34 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           startCameraTransition(
             [worldCharPos.x + 5.6, 5.0, worldCharPos.z - 4.6],
             [worldCharPos.x, 1.12, worldCharPos.z],
+            154
+          );
+        },
+        focusCameraOnQACharacter: () => {
+          savedRoomCameraState = {
+            pos: camera.position.clone(),
+            target: controls.target.clone(),
+            zoom: camera.zoom * 68,
+          };
+          const worldCharPos = new THREE.Vector3();
+          qaAgent.runtimeRoot.getWorldPosition(worldCharPos);
+          startCameraTransition(
+            [worldCharPos.x + 5.6, 5.0, worldCharPos.z - 4.6],
+            [worldCharPos.x, 1.12, worldCharPos.z],
+            154
+          );
+        },
+        focusCameraOnDevOpsCharacter: () => {
+          savedRoomCameraState = {
+            pos: camera.position.clone(),
+            target: controls.target.clone(),
+            zoom: camera.zoom * 68,
+          };
+          const worldCharPos = new THREE.Vector3();
+          devopsAgent.runtimeRoot.getWorldPosition(worldCharPos);
+          startCameraTransition(
+            [worldCharPos.x + 5.4, 4.9, worldCharPos.z - 4.4],
+            [worldCharPos.x, 1.1, worldCharPos.z],
             154
           );
         },
@@ -4636,6 +4963,22 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           byteLength: buffer.byteLength,
         };
       },
+      exportQACharacterGLB: async () => {
+        const buffer = await exportQAEngineerToGLBBuffer();
+        triggerBinaryDownload(buffer, PRODUCTION_FILENAMES.QA_CHARACTER_GLB);
+        return {
+          filename: PRODUCTION_FILENAMES.QA_CHARACTER_GLB,
+          byteLength: buffer.byteLength,
+        };
+      },
+      exportDevOpsCharacterGLB: async () => {
+        const buffer = await exportDevOpsEngineerToGLBBuffer();
+        triggerBinaryDownload(buffer, PRODUCTION_FILENAMES.DEVOPS_CHARACTER_GLB);
+        return {
+          filename: PRODUCTION_FILENAMES.DEVOPS_CHARACTER_GLB,
+          byteLength: buffer.byteLength,
+        };
+      },
       exportManifest: () => {
         const eng = engineRef.current;
         if (!eng) throw new Error('3D engine not initialized.');
@@ -4961,6 +5304,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
         const prevDbCharVis = dbChar ? dbChar.runtimeRoot.visible : false;
         const resChar = eng.getResearchAgentInstance();
         const prevResCharVis = resChar ? resChar.runtimeRoot.visible : false;
+        const qaChar = eng.getQAAgentInstance();
+        const prevQaCharVis = qaChar ? qaChar.runtimeRoot.visible : false;
+        const devopsChar = eng.getDevOpsAgentInstance();
+        const prevDevopsCharVis = devopsChar ? devopsChar.runtimeRoot.visible : false;
         const prevPos = eng.camera.position.clone();
         const prevTarget = eng.controls.target.clone();
         const prevZoom = eng.camera.zoom;
@@ -4982,6 +5329,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           if (beChar) beChar.runtimeRoot.visible = false;
           if (dbChar) dbChar.runtimeRoot.visible = false;
           if (resChar) resChar.runtimeRoot.visible = false;
+          if (qaChar) qaChar.runtimeRoot.visible = false;
+          if (devopsChar) devopsChar.runtimeRoot.visible = false;
 
           const defQD = QA_DEVOPS_CAMERA_PRESETS[0];
           eng.camera.position.set(...defQD.position);
@@ -5017,6 +5366,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           if (beChar) beChar.runtimeRoot.visible = prevBeCharVis;
           if (dbChar) dbChar.runtimeRoot.visible = prevDbCharVis;
           if (resChar) resChar.runtimeRoot.visible = prevResCharVis;
+          if (qaChar) qaChar.runtimeRoot.visible = prevQaCharVis;
+          if (devopsChar) devopsChar.runtimeRoot.visible = prevDevopsCharVis;
           restore();
           eng.requestRender();
         }
@@ -5291,6 +5642,84 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           dataUrl,
         };
       },
+      exportQACharacterPreviewPNG: async () => {
+        const eng = engineRef.current;
+        if (!eng) throw new Error('3D engine not initialized.');
+        const prevHelpersVis = eng.previewHelpersGroup.visible;
+        const prevPos = eng.camera.position.clone();
+        const prevTarget = eng.controls.target.clone();
+        const prevZoom = eng.camera.zoom;
+
+        const qaChar = eng.getQAAgentInstance();
+        const prevQaVis = qaChar.runtimeRoot.visible;
+        qaChar.runtimeRoot.visible = true;
+        eng.previewHelpersGroup.visible = false;
+
+        const charPos = new THREE.Vector3();
+        qaChar.runtimeRoot.getWorldPosition(charPos);
+        eng.camera.position.set(charPos.x + 5.4, 4.9, charPos.z - 4.5);
+        eng.controls.target.set(charPos.x, 1.12, charPos.z);
+        eng.camera.zoom = 154 / 68;
+        eng.camera.updateProjectionMatrix();
+        eng.controls.update();
+
+        eng.renderer.render(eng.scene, eng.camera);
+        const dataUrl = eng.renderer.domElement.toDataURL('image/png');
+
+        eng.camera.position.copy(prevPos);
+        eng.controls.target.copy(prevTarget);
+        eng.camera.zoom = prevZoom;
+        eng.camera.updateProjectionMatrix();
+        eng.controls.update();
+        qaChar.runtimeRoot.visible = prevQaVis;
+        eng.previewHelpersGroup.visible = prevHelpersVis;
+        eng.requestRender();
+
+        triggerDataUrlDownload(dataUrl, PRODUCTION_FILENAMES.QA_CHARACTER_PREVIEW);
+        return {
+          filename: PRODUCTION_FILENAMES.QA_CHARACTER_PREVIEW,
+          dataUrl,
+        };
+      },
+      exportDevOpsCharacterPreviewPNG: async () => {
+        const eng = engineRef.current;
+        if (!eng) throw new Error('3D engine not initialized.');
+        const prevHelpersVis = eng.previewHelpersGroup.visible;
+        const prevPos = eng.camera.position.clone();
+        const prevTarget = eng.controls.target.clone();
+        const prevZoom = eng.camera.zoom;
+
+        const devopsChar = eng.getDevOpsAgentInstance();
+        const prevDevopsVis = devopsChar.runtimeRoot.visible;
+        devopsChar.runtimeRoot.visible = true;
+        eng.previewHelpersGroup.visible = false;
+
+        const charPos = new THREE.Vector3();
+        devopsChar.runtimeRoot.getWorldPosition(charPos);
+        eng.camera.position.set(charPos.x + 5.4, 4.9, charPos.z - 4.5);
+        eng.controls.target.set(charPos.x, 1.1, charPos.z);
+        eng.camera.zoom = 154 / 68;
+        eng.camera.updateProjectionMatrix();
+        eng.controls.update();
+
+        eng.renderer.render(eng.scene, eng.camera);
+        const dataUrl = eng.renderer.domElement.toDataURL('image/png');
+
+        eng.camera.position.copy(prevPos);
+        eng.controls.target.copy(prevTarget);
+        eng.camera.zoom = prevZoom;
+        eng.camera.updateProjectionMatrix();
+        eng.controls.update();
+        devopsChar.runtimeRoot.visible = prevDevopsVis;
+        eng.previewHelpersGroup.visible = prevHelpersVis;
+        eng.requestRender();
+
+        triggerDataUrlDownload(dataUrl, PRODUCTION_FILENAMES.DEVOPS_CHARACTER_PREVIEW);
+        return {
+          filename: PRODUCTION_FILENAMES.DEVOPS_CHARACTER_PREVIEW,
+          dataUrl,
+        };
+      },
       runImportValidation: async () => {
         const eng = engineRef.current;
         if (!eng) throw new Error('3D engine not initialized.');
@@ -5525,6 +5954,54 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             eng.setImportedResearchCharacterMixer(resMixer);
           } else {
             eng.setImportedResearchCharacterMixer(null);
+          }
+        }
+
+        while (eng.importedQACharacterHolder.children.length > 0) {
+          eng.importedQACharacterHolder.remove(eng.importedQACharacterHolder.children[0]);
+        }
+        if (suite.importedQACharacterScene) {
+          const qaCharScene = suite.importedQACharacterScene;
+          const qaIdleAnchor = DEFAULT_QA_DEVOPS_ANCHORS.QA_ROOM_IDLE;
+          qaCharScene.position.set(qaIdleAnchor.position[0], 0, qaIdleAnchor.position[2]);
+          qaCharScene.rotation.y = qaIdleAnchor.rotationY;
+          eng.importedQACharacterHolder.add(qaCharScene);
+
+          if (suite.importedQACharacterAnimations.length > 0) {
+            const qaMixer = new THREE.AnimationMixer(qaCharScene);
+            const qaIdleClip =
+              suite.importedQACharacterAnimations.find((c) => c.name === 'Idle_Breathing') ||
+              suite.importedQACharacterAnimations[0];
+            if (qaIdleClip) {
+              qaMixer.clipAction(qaIdleClip).play();
+            }
+            eng.setImportedQACharacterMixer(qaMixer);
+          } else {
+            eng.setImportedQACharacterMixer(null);
+          }
+        }
+
+        while (eng.importedDevOpsCharacterHolder.children.length > 0) {
+          eng.importedDevOpsCharacterHolder.remove(eng.importedDevOpsCharacterHolder.children[0]);
+        }
+        if (suite.importedDevOpsCharacterScene) {
+          const devopsCharScene = suite.importedDevOpsCharacterScene;
+          const devopsIdleAnchor = DEFAULT_QA_DEVOPS_ANCHORS.DEVOPS_WORKSTATION_APPROACH;
+          devopsCharScene.position.set(devopsIdleAnchor.position[0], 0, devopsIdleAnchor.position[2]);
+          devopsCharScene.rotation.y = devopsIdleAnchor.rotationY;
+          eng.importedDevOpsCharacterHolder.add(devopsCharScene);
+
+          if (suite.importedDevOpsCharacterAnimations.length > 0) {
+            const devopsMixer = new THREE.AnimationMixer(devopsCharScene);
+            const devopsIdleClip =
+              suite.importedDevOpsCharacterAnimations.find((c) => c.name === 'Idle_Breathing') ||
+              suite.importedDevOpsCharacterAnimations[0];
+            if (devopsIdleClip) {
+              devopsMixer.clipAction(devopsIdleClip).play();
+            }
+            eng.setImportedDevOpsCharacterMixer(devopsMixer);
+          } else {
+            eng.setImportedDevOpsCharacterMixer(null);
           }
         }
 
@@ -5777,6 +6254,54 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
             eng.setImportedResearchCharacterMixer(resMixer);
           } else {
             eng.setImportedResearchCharacterMixer(null);
+          }
+        }
+
+        while (eng.importedQACharacterHolder.children.length > 0) {
+          eng.importedQACharacterHolder.remove(eng.importedQACharacterHolder.children[0]);
+        }
+        if (suite.importedQACharacterScene) {
+          const qaCharScene = suite.importedQACharacterScene;
+          const qaIdleAnchor = DEFAULT_QA_DEVOPS_ANCHORS.QA_ROOM_IDLE;
+          qaCharScene.position.set(qaIdleAnchor.position[0], 0, qaIdleAnchor.position[2]);
+          qaCharScene.rotation.y = qaIdleAnchor.rotationY;
+          eng.importedQACharacterHolder.add(qaCharScene);
+
+          if (suite.importedQACharacterAnimations.length > 0) {
+            const qaMixer = new THREE.AnimationMixer(qaCharScene);
+            const qaIdleClip =
+              suite.importedQACharacterAnimations.find((c) => c.name === 'Idle_Breathing') ||
+              suite.importedQACharacterAnimations[0];
+            if (qaIdleClip) {
+              qaMixer.clipAction(qaIdleClip).play();
+            }
+            eng.setImportedQACharacterMixer(qaMixer);
+          } else {
+            eng.setImportedQACharacterMixer(null);
+          }
+        }
+
+        while (eng.importedDevOpsCharacterHolder.children.length > 0) {
+          eng.importedDevOpsCharacterHolder.remove(eng.importedDevOpsCharacterHolder.children[0]);
+        }
+        if (suite.importedDevOpsCharacterScene) {
+          const devopsCharScene = suite.importedDevOpsCharacterScene;
+          const devopsIdleAnchor = DEFAULT_QA_DEVOPS_ANCHORS.DEVOPS_WORKSTATION_APPROACH;
+          devopsCharScene.position.set(devopsIdleAnchor.position[0], 0, devopsIdleAnchor.position[2]);
+          devopsCharScene.rotation.y = devopsIdleAnchor.rotationY;
+          eng.importedDevOpsCharacterHolder.add(devopsCharScene);
+
+          if (suite.importedDevOpsCharacterAnimations.length > 0) {
+            const devopsMixer = new THREE.AnimationMixer(devopsCharScene);
+            const devopsIdleClip =
+              suite.importedDevOpsCharacterAnimations.find((c) => c.name === 'Idle_Breathing') ||
+              suite.importedDevOpsCharacterAnimations[0];
+            if (devopsIdleClip) {
+              devopsMixer.clipAction(devopsIdleClip).play();
+            }
+            eng.setImportedDevOpsCharacterMixer(devopsMixer);
+          } else {
+            eng.setImportedDevOpsCharacterMixer(null);
           }
         }
 
@@ -6050,6 +6575,10 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
         const prevDbVis = dbChar ? dbChar.runtimeRoot.visible : false;
         const resChar = eng.getResearchAgentInstance();
         const prevResCharVis = resChar ? resChar.runtimeRoot.visible : false;
+        const qaChar = eng.getQAAgentInstance();
+        const prevQaCharVis = qaChar ? qaChar.runtimeRoot.visible : false;
+        const devopsChar = eng.getDevOpsAgentInstance();
+        const prevDevopsCharVis = devopsChar ? devopsChar.runtimeRoot.visible : false;
 
         try {
           eng.previewHelpersGroup.visible = false;
@@ -6061,6 +6590,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           if (beChar) beChar.runtimeRoot.visible = false;
           if (dbChar) dbChar.runtimeRoot.visible = false;
           if (resChar) resChar.runtimeRoot.visible = false;
+          if (qaChar) qaChar.runtimeRoot.visible = false;
+          if (devopsChar) devopsChar.runtimeRoot.visible = false;
           eng.roomRoot.visible = false;
           eng.ceoRoom.ceoRoot.visible = false;
           eng.uiuxRoom.uiuxRoot.visible = false;
@@ -6086,6 +6617,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           if (beChar) beChar.runtimeRoot.visible = prevBeVis;
           if (dbChar) dbChar.runtimeRoot.visible = prevDbVis;
           if (resChar) resChar.runtimeRoot.visible = prevResCharVis;
+          if (qaChar) qaChar.runtimeRoot.visible = prevQaCharVis;
+          if (devopsChar) devopsChar.runtimeRoot.visible = prevDevopsCharVis;
           restore();
           eng.requestRender();
         }
@@ -6173,6 +6706,30 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
         eng.requestRender();
 
         return buildResearchCharacterExportPack(resCharPreviewDataUrl, 'PASS');
+      },
+      exportQACharacterPack: async () => {
+        const eng = engineRef.current;
+        if (!eng) throw new Error('3D engine not initialized.');
+        const prevHelpersVis = eng.previewHelpersGroup.visible;
+        eng.previewHelpersGroup.visible = false;
+        eng.renderer.render(eng.scene, eng.camera);
+        const qaCharPreviewDataUrl = eng.renderer.domElement.toDataURL('image/png');
+        eng.previewHelpersGroup.visible = prevHelpersVis;
+        eng.requestRender();
+
+        return buildQACharacterExportPack(qaCharPreviewDataUrl, 'PASS');
+      },
+      exportDevOpsCharacterPack: async () => {
+        const eng = engineRef.current;
+        if (!eng) throw new Error('3D engine not initialized.');
+        const prevHelpersVis = eng.previewHelpersGroup.visible;
+        eng.previewHelpersGroup.visible = false;
+        eng.renderer.render(eng.scene, eng.camera);
+        const devopsCharPreviewDataUrl = eng.renderer.domElement.toDataURL('image/png');
+        eng.previewHelpersGroup.visible = prevHelpersVis;
+        eng.requestRender();
+
+        return buildDevOpsCharacterExportPack(devopsCharPreviewDataUrl, 'PASS');
       },
       setCharacterSource: (source: CharacterSourceType) => {
         engineRef.current?.setCharacterSource(source);
@@ -6525,6 +7082,132 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
       focusCameraOnResearchCharacter: () => {
         engineRef.current?.focusCameraOnResearchCharacter();
       },
+      triggerQAAction: (actionId: QAActionId) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().triggerAction(actionId);
+        eng.requestRender();
+      },
+      executeQAPlayback: (cmd: QAAnimationPlaybackCommand) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().executePlayback(cmd);
+        eng.requestRender();
+      },
+      setQASpeed: (speed: QASpeedMultiplier) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().setSpeedMultiplier(speed);
+        eng.requestRender();
+      },
+      setQAPatrol: (active: boolean) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().setPatrolActive(active);
+        eng.requestRender();
+      },
+      startQAAutoDemo: () => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().startAutoDemo();
+        eng.requestRender();
+      },
+      stopQAAutoDemo: () => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().stopAutoDemo();
+        eng.requestRender();
+      },
+      setQAExpression: (expr: QAExpressionId) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().setExpression(expr);
+        eng.requestRender();
+      },
+      setQAGlassesVisible: (visible: boolean) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().setGlassesVisible(visible);
+        eng.requestRender();
+      },
+      setQAHeadsetVisible: (visible: boolean) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().setHeadsetVisible(visible);
+        eng.requestRender();
+      },
+      setQABackpackVisible: (visible: boolean) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getQAAgentInstance().setBackpackVisible(visible);
+        eng.requestRender();
+      },
+      focusCameraOnQACharacter: () => {
+        engineRef.current?.focusCameraOnQACharacter();
+      },
+      triggerDevOpsAction: (actionId: DevOpsActionId) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().triggerAction(actionId);
+        eng.requestRender();
+      },
+      executeDevOpsPlayback: (cmd: DevOpsAnimationPlaybackCommand) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().executePlayback(cmd);
+        eng.requestRender();
+      },
+      setDevOpsSpeed: (speed: DevOpsSpeedMultiplier) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().setSpeedMultiplier(speed);
+        eng.requestRender();
+      },
+      setDevOpsPatrol: (active: boolean) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().setPatrolActive(active);
+        eng.requestRender();
+      },
+      startDevOpsAutoDemo: () => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().startAutoDemo();
+        eng.requestRender();
+      },
+      stopDevOpsAutoDemo: () => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().stopAutoDemo();
+        eng.requestRender();
+      },
+      setDevOpsExpression: (expr: DevOpsExpressionId) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().setExpression(expr);
+        eng.requestRender();
+      },
+      setDevOpsHeadphonesVisible: (visible: boolean) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().setHeadphonesVisible(visible);
+        eng.requestRender();
+      },
+      setDevOpsGlassesVisible: (visible: boolean) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().setGlassesVisible(visible);
+        eng.requestRender();
+      },
+      setDevOpsBackpackVisible: (visible: boolean) => {
+        const eng = engineRef.current;
+        if (!eng) return;
+        eng.getDevOpsAgentInstance().setBackpackVisible(visible);
+        eng.requestRender();
+      },
+      focusCameraOnDevOpsCharacter: () => {
+        engineRef.current?.focusCameraOnDevOpsCharacter();
+      },
       loadCustomBossPMFile: async (file: File) => {
         const eng = engineRef.current;
         if (!eng) throw new Error('3D engine not initialized.');
@@ -6605,6 +7288,8 @@ export const ModularRoomCanvas = React.forwardRef<ModularRoomCanvasHandle, Modul
           eng.focusCameraOnFrontendCharacter();
         } else if (selKey === 'research_brain') {
           eng.focusCameraOnResearchCharacter();
+        } else if (selKey === 'qa_devops_studio') {
+          eng.focusCameraOnDevOpsCharacter();
         } else {
           eng.focusCameraOnPM();
         }

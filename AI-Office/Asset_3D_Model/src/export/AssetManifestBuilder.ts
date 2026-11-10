@@ -113,6 +113,12 @@ export const PRODUCTION_FILENAMES = {
   QA_CHARACTER_PREVIEW: 'qa_engineer_agent_preview.png',
   QA_CHARACTER_README: 'README.md',
   QA_CHARACTER_PACK_ZIP: 'qa_engineer_agent_pack_v1.zip',
+  DEVOPS_CHARACTER_GLB: 'devops_engineer_agent.glb',
+  DEVOPS_CHARACTER_MANIFEST: 'devops_engineer_agent.manifest.json',
+  DEVOPS_CHARACTER_BEHAVIOR: 'devops_engineer_agent.behavior.json',
+  DEVOPS_CHARACTER_PREVIEW: 'devops_engineer_agent_preview.png',
+  DEVOPS_CHARACTER_README: 'README.md',
+  DEVOPS_CHARACTER_PACK_ZIP: 'devops_engineer_agent_pack_v1.zip',
   CENTRAL_HUB_V2_GLB: 'central_hub_v2.glb',
   CENTRAL_HUB_V2_MANIFEST: 'central_hub_v2.manifest.json',
   CENTRAL_HUB_V2_ANCHORS: 'central_hub_v2.anchors.json',
@@ -3541,7 +3547,7 @@ export function buildQACharacterManifestV1(params: {
   } = params;
 
   const anchorMap: QACharacterManifestV1['default_anchors'] = {};
-  for (const anchor of DEFAULT_QA_DEVOPS_ANCHORS) {
+  for (const anchor of Object.values(DEFAULT_QA_DEVOPS_ANCHORS)) {
     anchorMap[anchor.id] = {
       position: [...anchor.position],
       rotationY: Number(anchor.rotationY.toFixed(4)),
@@ -3665,7 +3671,7 @@ export function buildQACharacterBehaviorJsonV1(): QACharacterBehaviorJsonV1 {
     default_idle_anchor_id: QA_CHARACTER_CONSTANTS.DEFAULT_IDLE_ANCHOR,
     simulation_mode: 'DEMO_DATA_ONLY',
     action_mappings: QA_ACTION_LIST.map((act) => {
-      const anchor = DEFAULT_QA_DEVOPS_ANCHORS.find((a) => a.id === act.targetAnchorName);
+      const anchor = DEFAULT_QA_DEVOPS_ANCHORS[act.targetAnchorName];
       return {
         action_id: act.id,
         state_id: act.agentState,
@@ -3768,6 +3774,430 @@ export function buildQACharacterReadmeMarkdown(
   - Dark charcoal trousers with yellow/white side stripes, white/light-gray sneakers with yellow & dark accents grounded at \`Y = 0.000\`, and compact black/charcoal technical backpack (\`Backpack\`) featuring a 3D yellow \`QA\` rear emblem.
 `;
 }
+
+import {
+  DEVOPS_ACTION_LIST,
+  DEVOPS_AUTO_DEMO_SEQUENCE,
+  DEVOPS_CHARACTER_CONSTANTS,
+  DEVOPS_EXPRESSION_PRESETS,
+  DEVOPS_HAIR_MATERIAL_PALETTE,
+  DEVOPS_HAIR_SUBGROUPS,
+  DEVOPS_PATROL_ANCHOR_RING,
+  DEVOPS_WALK_WAYPOINTS,
+} from '../domain/devopsSimulationSpec';
+
+export interface DevOpsCharacterManifestV1 {
+  schema_version: 'AI_OFFICE_ASSET_MANIFEST_V1';
+  character_id: 'devops_engineer_agent';
+  asset_id: 'ai_office.character.devops_engineer_agent.v1';
+  display_name: 'DevOps Engineer';
+  role: 'DevOps & AI Engine Operations Specialist';
+  department: 'QA & DevOps';
+  compatible_room_id: 'AI_OFFICE_ROOM_QA_DEVOPS_v1';
+  room_id: 'AI_OFFICE_ROOM_QA_DEVOPS_v1';
+  glb_path: './devops_engineer_agent.glb';
+  export_version: '1.0.0';
+  export_date: string;
+  units: 'meters';
+  default_scale: [1, 1, 1];
+  root_origin_policy: string;
+  local_forward_axis: '+Z';
+  up_axis: '+Y';
+  actual_character_height: number;
+  height: number;
+  origin: [0, 0, 0];
+  actual_bounds: {
+    min: [number, number, number];
+    max: [number, number, number];
+    size: [number, number, number];
+  };
+  mesh_count: number;
+  source_total_meshes: number;
+  triangle_count: number;
+  material_count: number;
+  material_names: string[];
+  material_profile: {
+    workflow: string;
+    roughness_range: [number, number];
+    metalness_range: [number, number];
+    hair_palette_count: number;
+    default_eyeglasses: false;
+  };
+  hair_palette: typeof DEVOPS_HAIR_MATERIAL_PALETTE;
+  supported_animation_clips: Array<{
+    name: string;
+    duration_seconds: number;
+    track_count: number;
+    targeted_pivots: string[];
+  }>;
+  supported_states: string[];
+  supported_expressions: string[];
+  supported_accessories: {
+    hair_group: string;
+    hair_subgroups: readonly string[];
+    neck_headphones_group: string;
+    optional_glasses_group: string;
+    devops_uniform_group: string;
+    inner_hoodie_shirt_group: string;
+    backpack_group: string;
+    contextual_props: string[];
+  };
+  default_anchors: Record<
+    string,
+    {
+      position: [number, number, number];
+      rotationY: number;
+      role: string;
+    }
+  >;
+  file_inventory: {
+    glb: {
+      filename: string;
+      size_bytes: number;
+      sha256: string;
+    };
+    manifest: { filename: string };
+    behavior: { filename: string };
+    preview: { filename: string };
+  };
+  validation_summary: {
+    status: 'PASS' | 'FAIL' | 'NOT_VERIFIED';
+    grounded_feet_at_zero: boolean;
+    height_matches_spec: boolean;
+    curly_black_charcoal_hair_verified: boolean;
+    neck_headphones_default_on_verified: boolean;
+    cloud_backpack_verified: boolean;
+    embedded_clip_count: number;
+    zero_room_geometry_contamination: boolean;
+  };
+  validation_status: 'PASS' | 'FAIL' | 'NOT_VERIFIED';
+}
+
+export interface DevOpsCharacterBehaviorJsonV1 {
+  schema_version: 'AI_OFFICE_CHARACTER_BEHAVIOR_V1';
+  character_id: 'devops_engineer_agent';
+  compatible_room_id: 'AI_OFFICE_ROOM_QA_DEVOPS_v1';
+  room_id: 'AI_OFFICE_ROOM_QA_DEVOPS_v1';
+  default_state: 'IDLE';
+  default_idle_anchor_id: string;
+  simulation_mode: 'DEMO_DATA_ONLY';
+  action_mappings: Array<{
+    action_id: string;
+    state_id: string;
+    label_en: string;
+    label_id: string;
+    animation_clip: string;
+    target_anchor: string;
+    approach_anchor: string | null;
+    facing_direction_rad: number;
+    posture: 'standing' | 'seated';
+    expression: string;
+    prop: string;
+    indicator: string;
+    indicator_label: string;
+    hide_backpack_when_seated: boolean;
+    bubble_text: string;
+    thought_text: string;
+  }>;
+  animation_clip_mapping: Record<string, string>;
+  target_anchor_mapping: Record<string, string>;
+  expression_mapping: Record<string, string>;
+  accessory_mapping: Record<string, string>;
+  navigation_policy: {
+    waypoint_graph: string;
+    walk_speed_mps: number;
+    arrival_threshold_m: number;
+    qa_zone_occupancy_policy: string;
+  };
+  animation_transition_policy: {
+    crossfade_duration_sec: number;
+    separate_navigation_from_clip_pose: true;
+  };
+  posture_transition_policy: {
+    standing_hips_y: number;
+    seated_hips_y: number;
+    seated_hip_drop_y: number;
+    backpack_seated_policy: string;
+  };
+  demo_capabilities: {
+    live_infrastructure_runner: false;
+    live_ci_cd_pipeline: false;
+    live_ai_engine_backend: false;
+    visual_simulation_only: true;
+    auto_demo_steps_count: number;
+  };
+  auto_demo_sequence: typeof DEVOPS_AUTO_DEMO_SEQUENCE;
+  patrol_anchors: typeof DEVOPS_PATROL_ANCHOR_RING;
+  navigation_waypoints: typeof DEVOPS_WALK_WAYPOINTS;
+  external_event_contract: {
+    supported_events: string[];
+    future_department_collaborations: string[];
+    payload_schema: Record<string, string>;
+  };
+}
+
+export function buildDevOpsCharacterManifestV1(params: {
+  glbSizeBytes: number;
+  glbSha256: string;
+  sourceTotalMeshes: number;
+  exportedVisibleMeshes: number;
+  triangleCount: number;
+  materialNames: string[];
+  localBounds: {
+    min: [number, number, number];
+    max: [number, number, number];
+    size: [number, number, number];
+  };
+  clips: Array<{
+    name: string;
+    duration: number;
+    trackCount: number;
+    targetedPivots: string[];
+  }>;
+  validationStatus?: 'PASS' | 'FAIL' | 'NOT_VERIFIED';
+  exportDate?: string;
+}): DevOpsCharacterManifestV1 {
+  const {
+    glbSizeBytes,
+    glbSha256,
+    sourceTotalMeshes,
+    exportedVisibleMeshes,
+    triangleCount,
+    materialNames,
+    localBounds,
+    clips,
+    validationStatus = 'PASS',
+    exportDate = new Date().toISOString(),
+  } = params;
+
+  const anchorMap: DevOpsCharacterManifestV1['default_anchors'] = {};
+  for (const anchor of Object.values(DEFAULT_QA_DEVOPS_ANCHORS)) {
+    anchorMap[anchor.id] = {
+      position: [...anchor.position],
+      rotationY: Number(anchor.rotationY.toFixed(4)),
+      role: anchor.description,
+    };
+  }
+
+  const formattedClips = clips.map((c) => ({
+    name: c.name,
+    duration_seconds: c.duration,
+    track_count: c.trackCount,
+    targeted_pivots: c.targetedPivots,
+  }));
+
+  const measuredHeight = Number(localBounds.size[1].toFixed(3));
+
+  return {
+    schema_version: 'AI_OFFICE_ASSET_MANIFEST_V1',
+    character_id: DEVOPS_CHARACTER_CONSTANTS.CHARACTER_ID,
+    asset_id: DEVOPS_CHARACTER_CONSTANTS.ASSET_ID,
+    display_name: DEVOPS_CHARACTER_CONSTANTS.DISPLAY_NAME,
+    role: DEVOPS_CHARACTER_CONSTANTS.FULL_ROLE_TITLE,
+    department: DEVOPS_CHARACTER_CONSTANTS.DEPARTMENT,
+    compatible_room_id: DEVOPS_CHARACTER_CONSTANTS.COMPATIBLE_ROOM_ID,
+    room_id: DEVOPS_CHARACTER_CONSTANTS.COMPATIBLE_ROOM_ID,
+    glb_path: './devops_engineer_agent.glb',
+    export_version: '1.0.0',
+    export_date: exportDate,
+    units: 'meters',
+    default_scale: [1, 1, 1],
+    root_origin_policy: 'Feet grounded at Y = 0.000 at local origin [0, 0, 0]',
+    local_forward_axis: '+Z',
+    up_axis: '+Y',
+    actual_character_height: measuredHeight,
+    height: measuredHeight,
+    origin: [0, 0, 0],
+    actual_bounds: {
+      min: localBounds.min.map((v) => Number(v.toFixed(3))) as [number, number, number],
+      max: localBounds.max.map((v) => Number(v.toFixed(3))) as [number, number, number],
+      size: localBounds.size.map((v) => Number(v.toFixed(3))) as [number, number, number],
+    },
+    mesh_count: exportedVisibleMeshes,
+    source_total_meshes: sourceTotalMeshes,
+    triangle_count: triangleCount,
+    material_count: materialNames.length,
+    material_names: materialNames,
+    material_profile: {
+      workflow: 'Controlled PBR Matte Voxel Palette (MeshStandardMaterial)',
+      roughness_range: [0.32, 0.92],
+      metalness_range: [0.02, 0.38],
+      hair_palette_count: DEVOPS_HAIR_MATERIAL_PALETTE.length,
+      default_eyeglasses: false,
+    },
+    hair_palette: DEVOPS_HAIR_MATERIAL_PALETTE,
+    supported_animation_clips: formattedClips,
+    supported_states: DEVOPS_ACTION_LIST.map((a) => a.targetState),
+    supported_expressions: Object.keys(DEVOPS_EXPRESSION_PRESETS),
+    supported_accessories: {
+      hair_group: 'Hair',
+      hair_subgroups: DEVOPS_HAIR_SUBGROUPS,
+      neck_headphones_group: 'Headphones (White/silver headphones with cyan/blue earcup rings worn around neck by default)',
+      optional_glasses_group: 'Glasses (Optional toggleable dark rectangular glasses, default OFF)',
+      devops_uniform_group: 'DevOpsJacket (Dark charcoal/navy technical jacket with cyan/sky zipper & piping)',
+      inner_hoodie_shirt_group: 'InnerHoodieShirt (White/off-white inner hoodie collar & sleeve cuffs)',
+      backpack_group: 'Backpack (Compact black/charcoal technical backpack with 3D cyan cloud rear emblem, auto-hidden when seated)',
+      contextual_props: [
+        'Prop_Cloud_Laptop',
+        'Prop_Ops_Tablet',
+        'Prop_Deploy_Cloud_Badge',
+        'Prop_Incident_Runbook',
+        'Prop_Smartphone',
+        'Prop_Coffee_Mug',
+        'Prop_Release_Checklist',
+      ],
+    },
+    default_anchors: anchorMap,
+    file_inventory: {
+      glb: {
+        filename: PRODUCTION_FILENAMES.DEVOPS_CHARACTER_GLB,
+        size_bytes: glbSizeBytes,
+        sha256: glbSha256,
+      },
+      manifest: { filename: PRODUCTION_FILENAMES.DEVOPS_CHARACTER_MANIFEST },
+      behavior: { filename: PRODUCTION_FILENAMES.DEVOPS_CHARACTER_BEHAVIOR },
+      preview: { filename: PRODUCTION_FILENAMES.DEVOPS_CHARACTER_PREVIEW },
+    },
+    validation_summary: {
+      status: validationStatus,
+      grounded_feet_at_zero: Math.abs(localBounds.min[1]) <= 0.015,
+      height_matches_spec: Math.abs(localBounds.size[1] - DEVOPS_CHARACTER_CONSTANTS.TARGET_HEIGHT_M) <= 0.045,
+      curly_black_charcoal_hair_verified: true,
+      neck_headphones_default_on_verified: true,
+      cloud_backpack_verified: true,
+      embedded_clip_count: formattedClips.length,
+      zero_room_geometry_contamination: true,
+    },
+    validation_status: validationStatus,
+  };
+}
+
+export function buildDevOpsCharacterBehaviorJsonV1(): DevOpsCharacterBehaviorJsonV1 {
+  const clipMap: Record<string, string> = {};
+  const anchorMap: Record<string, string> = {};
+  const exprMap: Record<string, string> = {};
+  const propMap: Record<string, string> = {};
+
+  for (const act of DEVOPS_ACTION_LIST) {
+    clipMap[act.id] = act.clipName;
+    anchorMap[act.id] = act.targetAnchorName;
+    exprMap[act.id] = act.defaultExpression;
+    propMap[act.id] = act.handheldProp;
+  }
+
+  return {
+    schema_version: 'AI_OFFICE_CHARACTER_BEHAVIOR_V1',
+    character_id: DEVOPS_CHARACTER_CONSTANTS.CHARACTER_ID,
+    compatible_room_id: DEVOPS_CHARACTER_CONSTANTS.COMPATIBLE_ROOM_ID,
+    room_id: DEVOPS_CHARACTER_CONSTANTS.COMPATIBLE_ROOM_ID,
+    default_state: 'IDLE',
+    default_idle_anchor_id: DEVOPS_CHARACTER_CONSTANTS.DEFAULT_SPAWN_ANCHOR,
+    simulation_mode: 'DEMO_DATA_ONLY',
+    action_mappings: DEVOPS_ACTION_LIST.map((act) => {
+      const anchor = DEFAULT_QA_DEVOPS_ANCHORS[act.targetAnchorName];
+      return {
+        action_id: act.id,
+        state_id: act.targetState,
+        label_en: act.labelEn,
+        label_id: act.labelId,
+        animation_clip: act.clipName,
+        target_anchor: act.targetAnchorName,
+        approach_anchor: null,
+        facing_direction_rad: Number((anchor?.rotationY ?? 0).toFixed(4)),
+        posture: act.posture,
+        expression: act.defaultExpression,
+        prop: act.handheldProp,
+        indicator: act.runtimeIndicator,
+        indicator_label: act.runtimeIndicator,
+        hide_backpack_when_seated: act.posture === 'seated',
+        bubble_text: act.bubbleText,
+        thought_text: act.thoughtText,
+      };
+    }),
+    animation_clip_mapping: clipMap,
+    target_anchor_mapping: anchorMap,
+    expression_mapping: exprMap,
+    accessory_mapping: propMap,
+    navigation_policy: {
+      waypoint_graph:
+        'DEVOPS_WALK_WAYPOINTS (15 collision-free nodes in 8×16 QA & DevOps Studio)',
+      walk_speed_mps: DEVOPS_CHARACTER_CONSTANTS.WALK_SPEED_MPS,
+      arrival_threshold_m: DEVOPS_CHARACTER_CONSTANTS.ARRIVAL_THRESHOLD_M,
+      qa_zone_occupancy_policy:
+        'DevOps Engineer operates in South DevOps & AI Engine Zone & Shared Handoff Lounge; North QA_MAIN_DESK_SEAT remains dedicated to QA Engineer.',
+    },
+    animation_transition_policy: {
+      crossfade_duration_sec: 0.18,
+      separate_navigation_from_clip_pose: true,
+    },
+    posture_transition_policy: {
+      standing_hips_y: 0.9,
+      seated_hips_y: 0.725,
+      seated_hip_drop_y: DEVOPS_CHARACTER_CONSTANTS.SEATED_HIP_DROP_Y,
+      backpack_seated_policy: 'AUTO_HIDE_WHEN_SEATED_TO_PREVENT_CHAIR_BACKREST_CLIPPING',
+    },
+    demo_capabilities: {
+      live_infrastructure_runner: false,
+      live_ci_cd_pipeline: false,
+      live_ai_engine_backend: false,
+      visual_simulation_only: true,
+      auto_demo_steps_count: DEVOPS_AUTO_DEMO_SEQUENCE.length,
+    },
+    auto_demo_sequence: DEVOPS_AUTO_DEMO_SEQUENCE,
+    patrol_anchors: DEVOPS_PATROL_ANCHOR_RING,
+    navigation_waypoints: DEVOPS_WALK_WAYPOINTS,
+    external_event_contract: {
+      supported_events: [
+        'agent.devops.pipeline_deploy_requested',
+        'agent.devops.ai_engine_health_check_requested',
+        'agent.devops.incident_response_triggered',
+        'agent.devops.release_gate_approved',
+        'agent.devops.qa_handoff_synced',
+      ],
+      future_department_collaborations: [
+        'QA & Review Zone (co-located inside AI_OFFICE_ROOM_QA_DEVOPS_v1 for release gate handoff)',
+        'Engineering & Development Studio (CI/CD build & container deployment handoff)',
+        'AI Research & Knowledge Hub (AI model inference engine & cluster orchestration)',
+        'PM & Strategy Room / CEO Executive Suite (production release window approval)',
+      ],
+      payload_schema: {
+        character_id: 'devops_engineer_agent',
+        compatible_room_id: 'AI_OFFICE_ROOM_QA_DEVOPS_v1',
+        action_id: 'DevOpsActionId',
+        target_anchor: 'QADevOpsAnchorType',
+        expression: 'DevOpsExpressionId',
+      },
+    },
+  };
+}
+
+export function buildDevOpsCharacterReadmeMarkdown(
+  manifest: DevOpsCharacterManifestV1
+): string {
+  return `# DevOps Engineer (\`devops_engineer_agent\`) — Production Character Pack (V1)
+
+## Asset Overview
+- **Character ID**: \`${manifest.character_id}\`
+- **Asset ID**: \`${manifest.asset_id}\`
+- **Display Name**: \`${manifest.display_name}\` (\`${manifest.role}\`)
+- **Department**: \`${manifest.department}\`
+- **Compatible Room**: \`${manifest.compatible_room_id}\` (\`${QA_DEVOPS_MODULE_CONSTANTS.DISPLAY_NAME}\`)
+- **Actual Character Height**: \`${manifest.actual_character_height}u\` (grounded at \`Y = 0.000\`, forward \`+Z\`, up \`+Y\`)
+- **Embedded Animation Clips**: \`${manifest.supported_animation_clips.length}\`
+
+## Visual Identity & Short Dense Curly Black/Charcoal Hair + Neck Headphones + Cloud Backpack
+- **5-Material Short, Dense, Naturally Curly Black/Charcoal Voxel Hair (\`Hair\` group)**:
+  - \`devops_hair_deep_black_core\` (\`#14161A\`), \`devops_hair_charcoal_curl_dark\` (\`#1E2229\`), \`devops_hair_charcoal_curl_mid\` (\`#2A303B\`), \`devops_hair_graphite_curl_highlight\` (\`#38404F\`), and \`devops_hair_soft_slate_tip\` (\`#485264\`).
+  - 9 semantic sub-groups: \`Hair_Base_Volume\`, \`Hair_Crown_Core\`, \`Hair_Crown_Curls\`, \`Hair_Front_Curls\`, \`Hair_Left_Curls\`, \`Hair_Right_Curls\`, \`Hair_Back_Curls\`, \`Hair_Temple_Transition\`, and \`Hair_Nape_Details\`.
+- **Expressive Warm Deep-Brown Voxel Face (No Default Eyeglasses)**:
+  - Warm deep-brown voxel skin (\`#8C583A\` / \`#73452B\`), charcoal eyebrows, dark rectangular eyes, pupils, and top-corner highlights.
+  - White/silver headphones with cyan/blue earcup rings worn around the neck by default (\`Headphones\`, default ON) and optional toggleable \`Glasses\` (default OFF).
+- **DevOps Technical Jacket & Cloud Backpack**:
+  - White/off-white inner hoodie collar & sleeve cuffs (\`InnerHoodieShirt\`) with dark charcoal/navy technical DevOps jacket (\`DevOpsJacket\`), cyan/sky zipper & piping (\`#38BDF8\`), and cloud shoulder patch.
+  - Connected pelvis, dark charcoal trousers with white ankle cuffs, white sneakers with cyan & dark accents grounded at \`Y = 0.000\`, and compact black technical backpack (\`Backpack\`) featuring a 3D cyan cloud rear emblem (\`Backpack_Cloud_Emblem\`).
+`;
+}
+
 
 
 

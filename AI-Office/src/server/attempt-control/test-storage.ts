@@ -1,3 +1,5 @@
+import { configure, verifySchema, BUSY_TIMEOUT_MS, type Settings } from "./sqlite-format.js";
+export { verifySchema, BUSY_TIMEOUT_MS, type Settings } from "./sqlite-format.js";
 import { randomUUID } from "node:crypto";
 import { closeSync, lstatSync, mkdirSync, mkdtempSync, openSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -6,17 +8,13 @@ import { DatabaseSync } from "node:sqlite";
 import { z } from "zod";
 import { ProjectIdSchema } from "../../contracts/primitives.js";
 import { databaseError, parse, requireAuthority } from "./contracts.js";
-import { APPLICATION_ID, PROFILE, SCHEMA_DIGEST, SCHEMA_SQL, SCHEMA_STATEMENTS, USER_VERSION } from "./schema.js";
+import { APPLICATION_ID, PROFILE, SCHEMA_DIGEST, SCHEMA_SQL, USER_VERSION } from "./schema.js";
 
 const RootSchema = z.strictObject({ root: z.string().min(1), rootToken: ProjectIdSchema });
 export const TestDatabaseRefSchema = RootSchema.extend({ databaseToken: ProjectIdSchema, projectId: ProjectIdSchema,
   authorityIncarnation: ProjectIdSchema });
 export type TestRoot = z.infer<typeof RootSchema>;
 export type TestDatabaseRef = z.infer<typeof TestDatabaseRefSchema>;
-export const BUSY_TIMEOUT_MS = 100;
-export type Settings = Readonly<{ sqliteVersion: string; journalMode: string; synchronous: number;
-  foreignKeys: number; busyTimeout: number; trustedSchema: number; readUncommitted: number }>;
-
 function regular(filename: string): void {
   const info = lstatSync(filename);
   requireAuthority(info.isFile() && !info.isSymbolicLink() && info.nlink === 1 && realpathSync.native(filename) === filename, "UNSAFE_STORAGE");
@@ -25,7 +23,7 @@ function directory(filename: string): void {
   const info = lstatSync(filename);
   requireAuthority(info.isDirectory() && !info.isSymbolicLink() && realpathSync.native(filename) === filename, "UNSAFE_STORAGE");
 }
-function verifyRoot(input: unknown): TestRoot {
+export function verifyTestRoot(input: unknown): TestRoot {
   const ref = parse(RootSchema, input), parent = realpathSync.native(tmpdir());
   requireAuthority(path.dirname(ref.root) === parent && /^ai-office-m0202s1[2-5]-[A-Za-z0-9]+$/.test(path.basename(ref.root)), "UNSAFE_STORAGE");
   directory(parent); directory(ref.root);
@@ -39,11 +37,11 @@ export function createTestRoot(stage: "s12" | "s13" | "s14" | "s15" = "s12"): Te
   const root = realpathSync.native(mkdtempSync(path.join(realpathSync.native(tmpdir()), `ai-office-m0202${stage}-`)));
   const ref = { root, rootToken: randomUUID() };
   writeFileSync(path.join(root, "root-owner.json"), JSON.stringify({ profile: PROFILE, ...ref }), { flag: "wx" });
-  return Object.freeze(verifyRoot(ref));
+  return Object.freeze(verifyTestRoot(ref));
 }
 export function testDatabaseFilename(input: unknown): string {
   const ref = parse(TestDatabaseRefSchema, input);
-  verifyRoot({ root: ref.root, rootToken: ref.rootToken });
+  verifyTestRoot({ root: ref.root, rootToken: ref.rootToken });
   const folder = path.join(ref.root, ref.databaseToken); directory(folder);
   const marker = path.join(folder, "database-owner.json"); regular(marker);
   const filename = path.join(folder, "authority.db"); regular(filename);
@@ -57,33 +55,9 @@ export function testDatabaseFilename(input: unknown): string {
   }
   return filename;
 }
-function configure(db: DatabaseSync): Settings {
-  db.exec("PRAGMA trusted_schema=OFF; PRAGMA foreign_keys=ON; PRAGMA read_uncommitted=OFF; PRAGMA synchronous=EXTRA; PRAGMA busy_timeout=100");
-  // Existing journal mode is verified, never silently changed on reopen.
-  const settings: Settings = Object.freeze({ sqliteVersion: String(db.prepare("SELECT sqlite_version() AS v").get()?.v),
-    journalMode: String(db.prepare("PRAGMA journal_mode").get()?.journal_mode),
-    synchronous: Number(db.prepare("PRAGMA synchronous").get()?.synchronous),
-    foreignKeys: Number(db.prepare("PRAGMA foreign_keys").get()?.foreign_keys),
-    busyTimeout: Number(db.prepare("PRAGMA busy_timeout").get()?.timeout),
-    trustedSchema: Number(db.prepare("PRAGMA trusted_schema").get()?.trusted_schema),
-    readUncommitted: Number(db.prepare("PRAGMA read_uncommitted").get()?.read_uncommitted) });
-  requireAuthority(settings.journalMode === "delete" && settings.synchronous === 3 && settings.foreignKeys === 1 &&
-    settings.busyTimeout === BUSY_TIMEOUT_MS && settings.trustedSchema === 0 && settings.readUncommitted === 0, "SCHEMA");
-  return settings;
-}
-export function verifySchema(db: DatabaseSync, ref: TestDatabaseRef): void {
-  requireAuthority(db.prepare("PRAGMA application_id").get()?.application_id === APPLICATION_ID &&
-    db.prepare("PRAGMA user_version").get()?.user_version === USER_VERSION, "SCHEMA");
-  const actual = db.prepare("SELECT sql FROM sqlite_schema WHERE sql IS NOT NULL ORDER BY sql").all().map((row) => row.sql);
-  requireAuthority(JSON.stringify(actual) === JSON.stringify([...SCHEMA_STATEMENTS].sort()), "SCHEMA");
-  const rows = db.prepare("SELECT * FROM runtime_control_meta").all();
-  requireAuthority(rows.length === 1 && rows[0]?.projectId === ref.projectId && rows[0]?.authorityIncarnation === ref.authorityIncarnation &&
-    rows[0]?.profile === PROFILE && rows[0]?.schemaRevision === 1 && rows[0]?.schemaDigest === SCHEMA_DIGEST, "SCHEMA");
-  requireAuthority(db.prepare("PRAGMA quick_check(1)").get()?.quick_check === "ok" &&
-    db.prepare("PRAGMA foreign_key_check").all().length === 0, "INTEGRITY");
-}
-export function createTestDatabase(rootInput: TestRoot): TestDatabaseRef {
-  const root = verifyRoot(rootInput);
+// Fixed initializer faults exercise fresh-fixture rollback, never an existing DB migration.
+export function createTestDatabase(rootInput: TestRoot, fault?: "afterSchema" | "afterSecurity" | "securityWrite"): TestDatabaseRef {
+  const root = verifyTestRoot(rootInput);
   const ref = { ...root, databaseToken: randomUUID(), projectId: randomUUID(), authorityIncarnation: randomUUID() };
   const folder = path.join(ref.root, ref.databaseToken); mkdirSync(folder);
   const filename = path.join(folder, "authority.db"); closeSync(openSync(filename, "wx"));
@@ -97,8 +71,13 @@ export function createTestDatabase(rootInput: TestRoot): TestDatabaseRef {
     db.exec("PRAGMA journal_mode=DELETE"); configure(db);
     db.exec("BEGIN IMMEDIATE");
     db.exec(SCHEMA_SQL);
+    requireAuthority(fault !== "afterSchema", "FAULT");
     db.exec(`PRAGMA application_id=${APPLICATION_ID}; PRAGMA user_version=${USER_VERSION}`);
     db.prepare("INSERT INTO runtime_control_meta VALUES(?,?,1,?,?)").run(ref.projectId, ref.authorityIncarnation, PROFILE, SCHEMA_DIGEST);
+    if (fault === "securityWrite") db.exec("PRAGMA query_only=ON");
+    db.prepare("INSERT INTO runtime_execution_security(projectId,authorityIncarnation) VALUES(?,?)")
+      .run(ref.projectId, ref.authorityIncarnation);
+    requireAuthority(fault !== "afterSecurity", "FAULT");
     db.exec("COMMIT"); verifySchema(db, ref);
     return Object.freeze(ref);
   } catch (error) { if (db?.isTransaction) db.exec("ROLLBACK"); throw databaseError(error); }

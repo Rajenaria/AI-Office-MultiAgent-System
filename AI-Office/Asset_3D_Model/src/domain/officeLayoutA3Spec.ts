@@ -167,9 +167,9 @@ const QA_DEVOPS_STUDIO_ENTRY: OfficeRoomRegistryEntry = {
   anchor_path: 'production/rooms/qa_devops_studio/qa_devops_room.anchors.json',
   behavior_path: 'production/rooms/qa_devops_studio/qa_devops_room.behavior.json',
   preview_path: 'production/rooms/qa_devops_studio/qa_devops_room.preview.png',
-  has_character_simulation: false,
+  has_character_simulation: true,
   character_notice:
-    'IN DEVELOPMENT (Environment V1 Ready for Owner Review) — Combined 8×16 QA & DevOps Integrated Studio at [24, 0, 0] with 23 room-local anchors, 8 DEMO display slots, and 29 future action contracts prepared for the upcoming QA & Review Agent and DevOps & AI Engine Agent.',
+    'ACTIVE DUAL-AGENT SIMULATION — Combined 8×16 QA & DevOps Integrated Studio at [24, 0, 0] with active QA Engineer (qa_engineer_agent, North QA Zone) and DevOps Engineer (devops_engineer_agent, South DevOps & AI Engine Zone) coexisting with 23 room-local anchors and 8 DEMO display slots.',
   description:
     'Continuous 8×16 Double-Module QA & DevOps Integrated Studio (Elegant Cozy Edition) occupying the East Wing [24, 0, 0] (X=24..32, Z=0..16) in Master Layout A3.2 with zero internal dividing wall at Z=8. Combines the North QA Testing & 3D Device Verification Zone, the Central Cozy Collaboration Lounge (patterned rug, cream 3-seat sofa, matching armchair, coffee table, 3 soft poufs, and Shared Review Board), and the South DevOps & AI Engine Operations Zone (workstation, dual infrastructure racks, and Operations Status Wall Board).',
   connector_definitions: [
@@ -230,9 +230,9 @@ export const LEGACY_A3_1_QA_DEVOPS_ENTRIES: Record<
     anchor_path: null,
     behavior_path: null,
     preview_path: null,
-    has_character_simulation: false,
+    has_character_simulation: true,
     character_notice:
-      'Legacy A3.1 slot [24, 0, 8] — superseded in Master Layout A3.2 by AI_OFFICE_ROOM_QA_DEVOPS_v1 [24, 0, 0] (8×16).',
+      'Legacy A3.1 slot [24, 0, 8] — superseded in Master Layout A3.2 by AI_OFFICE_ROOM_QA_DEVOPS_v1 [24, 0, 0] (8×16) with active qa_engineer_agent.',
     description:
       'Historical A3.1 East Wing North slot [24, 0, 8] now unified into the 8×16 QA & DevOps Integrated Studio in A3.2.',
     connector_definitions: [
@@ -276,9 +276,9 @@ export const LEGACY_A3_1_QA_DEVOPS_ENTRIES: Record<
     anchor_path: null,
     behavior_path: null,
     preview_path: null,
-    has_character_simulation: false,
+    has_character_simulation: true,
     character_notice:
-      'Legacy A3.1 slot [24, 0, 0] — superseded in Master Layout A3.2 by AI_OFFICE_ROOM_QA_DEVOPS_v1 [24, 0, 0] (8×16).',
+      'Legacy A3.1 slot [24, 0, 0] — superseded in Master Layout A3.2 by AI_OFFICE_ROOM_QA_DEVOPS_v1 [24, 0, 0] (8×16) with active devops_engineer_agent.',
     description:
       'Historical A3.1 East Wing South slot [24, 0, 0] now unified into the 8×16 QA & DevOps Integrated Studio in A3.2.',
     connector_definitions: [

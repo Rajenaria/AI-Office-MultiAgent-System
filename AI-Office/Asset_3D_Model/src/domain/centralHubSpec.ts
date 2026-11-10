@@ -126,6 +126,7 @@ export type PlannedAgentRoleId =
   | 'research_professor_agent'
   | 'qa_engineer_agent'
   | 'qa_agent'
+  | 'devops_engineer_agent'
   | 'devops_agent';
 
 export type SeatOccupancyPolicy =
@@ -549,7 +550,7 @@ const RAW_SEAT_SEEDS: RawSeatSeed[] = [
   {
     seatId: 'HUB_MEETING_SEAT_10',
     seatNumber: 10,
-    seatDesignation: 'HUB_MEETING_DEVOPS_AGENT_RESERVED',
+    seatDesignation: 'HUB_MEETING_DEVOPS_AGENT_ACTIVE',
     side: 'SOUTH',
     columnIndex: 5,
     chairNodeName: 'Hub_Meeting_Chair_10',
@@ -560,15 +561,20 @@ const RAW_SEAT_SEEDS: RawSeatSeed[] = [
     approachAnchorId: 'HUB_APPROACH_SEAT_10',
     localApproachPosition: [10.6, 0.0, 5.45],
     globalApproachPosition: [18.6, 0.0, 5.45],
-    occupancyPolicy: 'ASSIGNED_AGENT_PLANNED',
-    assignedRoleId: 'devops_agent',
-    assignedDisplayName: 'DevOps Agent (Planned V2 — Seat Empty)',
+    occupancyPolicy: 'ASSIGNED_AGENT_ACTIVE',
+    assignedRoleId: 'devops_engineer_agent',
+    assignedDisplayName: 'DevOps Engineer Agent',
     sourceRoomKey: 'qa_devops_studio',
-    isRealAvailableCharacter: false,
-    reservedStatus: 'AWAITING_CHARACTER_BUILD',
-    statusBadge: 'PLANNED AGENT (DevOps — EMPTY)',
-    departureDelaySeconds: 0,
-    globalRouteWaypoints: [[18.6, 0.0, 5.45]],
+    isRealAvailableCharacter: true,
+    reservedStatus: 'AVAILABLE_FOR_AGENT',
+    statusBadge: 'ACTIVE AGENT (DevOps Engineer)',
+    departureDelaySeconds: 1.25,
+    globalRouteWaypoints: [
+      [25.45, 0.0, 8.0],
+      [22.6, 0.0, 8.0],
+      [20.8, 0.0, 5.45],
+      [18.6, 0.0, 5.45],
+    ],
   },
 ];
 
@@ -939,9 +945,9 @@ export interface CentralHubMeetingSeatsJsonV2 {
   table_dimensions: [number, number, number];
   total_seats: 10;
   planned_agent_roles_count: 9;
-  real_available_agent_seats: 8;
-  currently_instantiated_agents_count: 8;
-  empty_reserved_seats: 2;
+  real_available_agent_seats: 9;
+  currently_instantiated_agents_count: 9;
+  empty_reserved_seats: 1;
   owner_reserved_seat_id: 'HUB_MEETING_SEAT_01';
   owner_reserved_designation: 'HUB_MEETING_OWNER_RESERVED';
   seats: HubMeetingSeatSpec[];
@@ -964,9 +970,9 @@ export function buildCentralHubMeetingSeatsJson(): CentralHubMeetingSeatsJsonV2 
     ],
     total_seats: 10,
     planned_agent_roles_count: 9,
-    real_available_agent_seats: 8,
-    currently_instantiated_agents_count: 8,
-    empty_reserved_seats: 2,
+    real_available_agent_seats: 9,
+    currently_instantiated_agents_count: 9,
+    empty_reserved_seats: 1,
     owner_reserved_seat_id: 'HUB_MEETING_SEAT_01',
     owner_reserved_designation: 'HUB_MEETING_OWNER_RESERVED',
     seats: HUB_MEETING_SEATS_LIST.map((s) => ({ ...s })),
@@ -1035,8 +1041,8 @@ export interface CentralHubManifestV2 {
   meeting_capacity: {
     total_seats: 10;
     planned_agent_roles: 9;
-    real_available_characters: 8;
-    empty_reserved_seats: 2;
+    real_available_characters: 9;
+    empty_reserved_seats: 1;
     owner_reserved_seat_id: 'HUB_MEETING_SEAT_01';
   };
   connectors: CentralHubConnectorSpec[];
@@ -1101,8 +1107,8 @@ export function buildCentralHubManifestV2(options: {
     meeting_capacity: {
       total_seats: 10,
       planned_agent_roles: 9,
-      real_available_characters: 8,
-      empty_reserved_seats: 2,
+      real_available_characters: 9,
+      empty_reserved_seats: 1,
       owner_reserved_seat_id: 'HUB_MEETING_SEAT_01',
     },
     connectors: CENTRAL_HUB_CONNECTORS_SPEC,

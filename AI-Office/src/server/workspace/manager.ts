@@ -19,6 +19,7 @@ type Consent = Readonly<{
   consentToken: string; canonicalPath: string; expiresAt: string;
 }>;
 type Attachment = Readonly<{ binding: WorkspaceBinding; identity: ProjectIdentity; root: Root }>;
+export type WorkspaceRepositoryLifecycle = Readonly<{ invalidate(): void; close(): Promise<void> }>;
 
 export class WorkspaceManager {
   private view: WorkspaceViewState = WorkspaceViewStateSchema.parse({ state: "DETACHED", generation: 0 });
@@ -27,11 +28,12 @@ export class WorkspaceManager {
   private pending: { consent: Consent; root: Root; identity: ProjectIdentity | null } | null = null;
   private queue: Promise<unknown> = Promise.resolve();
   private closed = false;
+  private closePromise: Promise<void> | undefined;
   private readonly stateContexts = new Map<string, ProjectContext>();
   private stateInitializationRequired = false;
 
   constructor(private readonly registry: ProjectRegistry, private readonly fault?: FaultHook,
-    private readonly stateService?: ProjectStateService) {}
+    private readonly stateService?: ProjectStateService, private readonly repositories?: WorkspaceRepositoryLifecycle) {}
 
   get stateServiceStatus() { return this.stateService ? "AVAILABLE_FIXTURE_ONLY" as const : "NOT_IMPLEMENTED" as const; }
 
@@ -53,6 +55,7 @@ export class WorkspaceManager {
     if (generation !== this.view.generation) throw new WorkspaceFailure("STALE_BINDING", "STALE_FOREGROUND_GENERATION");
   }
   private invalidate(): void {
+    this.repositories?.invalidate();
     for (const context of this.stateContexts.values()) this.stateService?.revoke(context);
     this.stateContexts.clear(); this.stateInitializationRequired = false;
     this.issued.clear(); this.foreground = null; this.pending = null;
@@ -278,10 +281,16 @@ export class WorkspaceManager {
     });
   }
 
-  async close(): Promise<void> {
+  close(): Promise<void> {
+    if (this.closePromise) return this.closePromise;
     this.closed = true;
-    await this.queue;
-    this.invalidate();
-    await this.registry.close();
+    this.closePromise = (async () => {
+      await this.queue;
+      this.invalidate();
+      // Retain registry ownership if resource disposal fails; a later explicit close can retry.
+      await this.repositories?.close();
+      await this.registry.close();
+    })().catch(error => { this.closePromise = undefined; throw error; });
+    return this.closePromise;
   }
 }

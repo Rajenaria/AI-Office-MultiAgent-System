@@ -15,6 +15,7 @@ import {
   CEOCharacterExportPackResult,
   CharacterExportCandidatePackResult,
   DatabaseCharacterExportPackResult,
+  DevOpsCharacterExportPackResult,
   FrontendCharacterExportPackResult,
   QACharacterExportPackResult,
   ResearchCharacterExportPackResult,
@@ -153,6 +154,7 @@ export async function downloadCompleteHandoffBundleZip(params: {
   databaseCharacterPack?: DatabaseCharacterExportPackResult;
   researchCharacterPack?: ResearchCharacterExportPackResult;
   qaCharacterPack?: QACharacterExportPackResult;
+  devopsCharacterPack?: DevOpsCharacterExportPackResult;
   roundTripReport: IndependentRoundTripReportV1;
   stabilityReport: VisualStabilityDiagnosticReport;
 }): Promise<{
@@ -176,6 +178,7 @@ export async function downloadCompleteHandoffBundleZip(params: {
     databaseCharacterPack,
     researchCharacterPack,
     qaCharacterPack,
+    devopsCharacterPack,
     roundTripReport,
     stabilityReport,
   } = params;
@@ -196,6 +199,7 @@ export async function downloadCompleteHandoffBundleZip(params: {
   const databaseCharDir = `${root}/production/characters/database_developer_agent`;
   const researchCharDir = `${root}/production/characters/research_professor_agent`;
   const qaCharDir = `${root}/production/characters/qa_engineer_agent`;
+  const devopsCharDir = `${root}/production/characters/devops_engineer_agent`;
   const valDir = `${root}/validation`;
   const srcDir = `${root}/source`;
 
@@ -619,6 +623,33 @@ export async function downloadCompleteHandoffBundleZip(params: {
       entries.push({
         path: `${qaCharDir}/${PRODUCTION_FILENAMES.QA_CHARACTER_PREVIEW}`,
         data: dataUrlToUint8Array(qaCharacterPack.previewDataUrl),
+      });
+    }
+  }
+
+  if (devopsCharacterPack) {
+    entries.push(
+      {
+        path: `${devopsCharDir}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_GLB}`,
+        data: devopsCharacterPack.glbBuffer,
+      },
+      {
+        path: `${devopsCharDir}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_MANIFEST}`,
+        data: JSON.stringify(devopsCharacterPack.manifest, null, 2),
+      },
+      {
+        path: `${devopsCharDir}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_BEHAVIOR}`,
+        data: JSON.stringify(devopsCharacterPack.behaviorJson, null, 2),
+      },
+      {
+        path: `${devopsCharDir}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_README}`,
+        data: devopsCharacterPack.readmeMarkdown,
+      }
+    );
+    if (devopsCharacterPack.previewDataUrl) {
+      entries.push({
+        path: `${devopsCharDir}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_PREVIEW}`,
+        data: dataUrlToUint8Array(devopsCharacterPack.previewDataUrl),
       });
     }
   }

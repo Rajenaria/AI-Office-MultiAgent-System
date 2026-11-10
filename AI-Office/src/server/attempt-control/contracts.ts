@@ -56,7 +56,8 @@ export type Terminal = z.infer<typeof TerminalSchema>;
 export type Fence = z.infer<typeof FenceSchema>;
 export type FailureCode = "VALIDATION" | "IDENTITY_CONFLICT" | "CONFLICT" | "STALE_OWNER" |
   "INVALID_TRANSITION" | "TERMINAL_CONFLICT" | "INTEGRITY" | "SCHEMA" | "UNSAFE_STORAGE" |
-  "DATABASE_BUSY" | "DATABASE_FAILURE" | "FAULT" | "LEASE_INVALID" | "AUTHORITY_INVALID" | "CANCELLATION_INVALID" | "RECOVERY_REQUIRED";
+  "DATABASE_BUSY" | "DATABASE_FAILURE" | "FAULT" | "LEASE_INVALID" | "AUTHORITY_INVALID" | "CANCELLATION_INVALID" | "RECOVERY_REQUIRED" |
+  "SECURITY_REVISION_CONFLICT" | "SECURITY_IDEMPOTENCY_CONFLICT" | "SECURITY_STOP_ALREADY_ACTIVE";
 export class AuthorityFailure extends Error {
   readonly sqlite: { primary: number; extended: number; description: string } | null;
   constructor(readonly code: FailureCode, options?: ErrorOptions) {

@@ -158,7 +158,15 @@ import {
   QASimulationRuntimeStatus,
   QASpeedMultiplier,
 } from '../domain/qaSimulationSpec';
-import { BookOpen, Code2, Palette } from 'lucide-react';
+import { DevOpsSimulationPanel } from './DevOpsSimulationPanel';
+import {
+  DevOpsActionId,
+  DevOpsAnimationPlaybackCommand,
+  DevOpsExpressionId,
+  DevOpsSimulationRuntimeStatus,
+  DevOpsSpeedMultiplier,
+} from '../domain/devopsSimulationSpec';
+import { BookOpen, Code2, Palette, Server } from 'lucide-react';
 
 export type InspectorTabId = 'simulation' | 'controls' | 'assets' | 'validation' | 'manifest';
 
@@ -382,6 +390,23 @@ interface RoomInspectorPanelProps {
   onDownloadQACharacterManifestAndBehavior?: () => void;
   onDownloadQACharacterPreviewPng?: () => void;
   onDownloadQACharacterPackZip?: () => void;
+  // DevOps Engineer Character Simulation & Export callbacks
+  devopsStatus?: DevOpsSimulationRuntimeStatus | null;
+  onTriggerDevOpsAction?: (actionId: DevOpsActionId) => void;
+  onDevOpsPlaybackCommand?: (cmd: DevOpsAnimationPlaybackCommand) => void;
+  onSetDevOpsSpeed?: (speed: DevOpsSpeedMultiplier) => void;
+  onToggleDevOpsPatrol?: (enabled: boolean) => void;
+  onStartDevOpsAutoDemo?: () => void;
+  onStopDevOpsAutoDemo?: () => void;
+  onSetDevOpsExpression?: (expr: DevOpsExpressionId) => void;
+  onSetDevOpsHeadphonesVisible?: (visible: boolean) => void;
+  onSetDevOpsGlassesVisible?: (visible: boolean) => void;
+  onSetDevOpsBackpackVisible?: (visible: boolean) => void;
+  onFocusDevOpsCharacter?: () => void;
+  onDownloadDevOpsCharacterGlb?: () => void;
+  onDownloadDevOpsCharacterManifestAndBehavior?: () => void;
+  onDownloadDevOpsCharacterPreviewPng?: () => void;
+  onDownloadDevOpsCharacterPackZip?: () => void;
   onFocusAnchorPosition: (pos: [number, number, number]) => void;
   // Visual Stability & Mesh Diagnostic props
   clickedMeshDiagnostic: ClickedMeshDiagnostic | null;
@@ -595,6 +620,22 @@ export const RoomInspectorPanel: React.FC<RoomInspectorPanelProps> = ({
   onDownloadQACharacterManifestAndBehavior,
   onDownloadQACharacterPreviewPng,
   onDownloadQACharacterPackZip,
+  devopsStatus,
+  onTriggerDevOpsAction,
+  onDevOpsPlaybackCommand,
+  onSetDevOpsSpeed,
+  onToggleDevOpsPatrol,
+  onStartDevOpsAutoDemo,
+  onStopDevOpsAutoDemo,
+  onSetDevOpsExpression,
+  onSetDevOpsHeadphonesVisible,
+  onSetDevOpsGlassesVisible,
+  onSetDevOpsBackpackVisible,
+  onFocusDevOpsCharacter,
+  onDownloadDevOpsCharacterGlb,
+  onDownloadDevOpsCharacterManifestAndBehavior,
+  onDownloadDevOpsCharacterPreviewPng,
+  onDownloadDevOpsCharacterPackZip,
   onFocusAnchorPosition,
   clickedMeshDiagnostic,
   stabilityReport,
@@ -605,6 +646,7 @@ export const RoomInspectorPanel: React.FC<RoomInspectorPanelProps> = ({
   const [showCameraDebug, setShowCameraDebug] = useState<boolean>(false);
   const [showHandoffSection, setShowHandoffSection] = useState<boolean>(true);
   const [showValidationMatrix, setShowValidationMatrix] = useState<boolean>(true);
+  const [qaDevOpsAgentView, setQaDevOpsAgentView] = useState<'devops' | 'qa' | 'both'>('devops');
   const [manifestDocTab, setManifestDocTab] = useState<
     | 'room_manifest'
     | 'room_anchors'
@@ -1035,7 +1077,87 @@ export const RoomInspectorPanel: React.FC<RoomInspectorPanelProps> = ({
               </div>
             ) : isQADevOpsRoom ? (
               <div className="space-y-4">
-                {qaStatus && (
+                {/* QA & DevOps Agent Selector */}
+                <div
+                  data-testid="qa-devops-agent-selector"
+                  className="rounded-lg border border-slate-700/80 bg-slate-900/95 p-2 text-xs"
+                >
+                  <div className="mb-1.5 flex items-center justify-between">
+                    <span className="font-semibold text-slate-200">
+                      QA &amp; DevOps Studio — Pilih Agent
+                    </span>
+                    <span className="font-mono text-[10px] text-emerald-400">
+                      2 Active Agents (8×16)
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-1">
+                    <button
+                      type="button"
+                      data-testid="qa-devops-select-devops"
+                      onClick={() => setQaDevOpsAgentView('devops')}
+                      className={`flex items-center justify-center gap-1 rounded border px-2 py-1.5 text-[11px] font-semibold transition ${
+                        qaDevOpsAgentView === 'devops'
+                          ? 'border-sky-400 bg-sky-500/25 text-sky-200'
+                          : 'border-slate-800 bg-slate-950/70 text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      <Server className="h-3.5 w-3.5 text-sky-400" />
+                      <span>DevOps (South)</span>
+                    </button>
+                    <button
+                      type="button"
+                      data-testid="qa-devops-select-qa"
+                      onClick={() => setQaDevOpsAgentView('qa')}
+                      className={`flex items-center justify-center gap-1 rounded border px-2 py-1.5 text-[11px] font-semibold transition ${
+                        qaDevOpsAgentView === 'qa'
+                          ? 'border-amber-400 bg-amber-500/25 text-amber-200'
+                          : 'border-slate-800 bg-slate-950/70 text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      <ShieldCheck className="h-3.5 w-3.5 text-amber-400" />
+                      <span>QA (North)</span>
+                    </button>
+                    <button
+                      type="button"
+                      data-testid="qa-devops-select-both"
+                      onClick={() => setQaDevOpsAgentView('both')}
+                      className={`flex items-center justify-center gap-1 rounded border px-2 py-1.5 text-[11px] font-semibold transition ${
+                        qaDevOpsAgentView === 'both'
+                          ? 'border-emerald-400 bg-emerald-500/20 text-emerald-200'
+                          : 'border-slate-800 bg-slate-950/70 text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      <span>Kedua Panel</span>
+                    </button>
+                  </div>
+                </div>
+
+                {(qaDevOpsAgentView === 'devops' || qaDevOpsAgentView === 'both') &&
+                  devopsStatus && (
+                    <DevOpsSimulationPanel
+                      status={devopsStatus}
+                      onTriggerAction={(actId) => onTriggerDevOpsAction?.(actId)}
+                      onPlaybackCommand={(cmd) => onDevOpsPlaybackCommand?.(cmd)}
+                      onSpeedChange={(spd) => onSetDevOpsSpeed?.(spd)}
+                      onTogglePatrol={(en) => onToggleDevOpsPatrol?.(en)}
+                      onStartAutoDemo={() => onStartDevOpsAutoDemo?.()}
+                      onStopAutoDemo={() => onStopDevOpsAutoDemo?.()}
+                      onSelectExpression={(expr) => onSetDevOpsExpression?.(expr)}
+                      onToggleHeadphones={(vis) => onSetDevOpsHeadphonesVisible?.(vis)}
+                      onToggleGlasses={(vis) => onSetDevOpsGlassesVisible?.(vis)}
+                      onToggleBackpack={(vis) => onSetDevOpsBackpackVisible?.(vis)}
+                      onFocusCharacterCamera={() => onFocusDevOpsCharacter?.()}
+                      onReturnToRoomView={() => onReturnRoomView()}
+                      onExportDevOpsCharacterGLB={() => onDownloadDevOpsCharacterGlb?.()}
+                      onExportDevOpsCharacterPackZip={() => onDownloadDevOpsCharacterPackZip?.()}
+                      onExportDevOpsManifestAndBehavior={() =>
+                        onDownloadDevOpsCharacterManifestAndBehavior?.()
+                      }
+                      onExportDevOpsPreviewPNG={() => onDownloadDevOpsCharacterPreviewPng?.()}
+                    />
+                  )}
+
+                {(qaDevOpsAgentView === 'qa' || qaDevOpsAgentView === 'both') && qaStatus && (
                   <QASimulationPanel
                     status={qaStatus}
                     onTriggerAction={(actId) => onTriggerQAAction?.(actId)}
@@ -2666,31 +2788,31 @@ export const RoomInspectorPanel: React.FC<RoomInspectorPanelProps> = ({
                   </div>
                 )}
 
-                {/* QA Engineer GLB Round-Trip Summary */}
-                {roundTripReport.qa_character_roundtrip && (
-                  <div className="p-2 rounded bg-[#2A1E0C] border border-[#F59E0B]/70 space-y-1 font-mono text-[11px]">
-                    <div className="text-[#FBBF24] font-semibold">
-                      QA Engineer GLB Round-Trip (
-                      {roundTripReport.qa_character_roundtrip.filename})
+                {/* DevOps Engineer GLB Round-Trip Summary */}
+                {roundTripReport.devops_character_roundtrip && (
+                  <div className="p-2 rounded bg-[#0C2234] border border-[#38BDF8]/70 space-y-1 font-mono text-[11px]">
+                    <div className="text-[#38BDF8] font-semibold">
+                      DevOps Engineer GLB Round-Trip (
+                      {roundTripReport.devops_character_roundtrip.filename})
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#8E95A5]">Binary / SHA-256</span>
                       <span className="text-[#F3EFEA]">
-                        {roundTripReport.qa_character_roundtrip.fileSizeKB} ·{' '}
-                        {roundTripReport.qa_character_roundtrip.sha256.slice(0, 10)}…
+                        {roundTripReport.devops_character_roundtrip.fileSizeKB} ·{' '}
+                        {roundTripReport.devops_character_roundtrip.sha256.slice(0, 10)}…
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#8E95A5]">Source / Exported Meshes</span>
                       <span className="text-[#F3EFEA]">
-                        {roundTripReport.qa_character_roundtrip.sourceTotalMeshes} /{' '}
-                        {roundTripReport.qa_character_roundtrip.importedMeshCount} rest-pose
+                        {roundTripReport.devops_character_roundtrip.sourceTotalMeshes} /{' '}
+                        {roundTripReport.devops_character_roundtrip.importedMeshCount} rest-pose
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#8E95A5]">Embedded Clips in GLB</span>
-                      <span className="text-[#FBBF24]">
-                        {roundTripReport.qa_character_roundtrip.embeddedClipsVerified.count} / 23 VERIFIED
+                      <span className="text-[#38BDF8]">
+                        {roundTripReport.devops_character_roundtrip.embeddedClipsVerified.count} / 27 VERIFIED
                       </span>
                     </div>
                   </div>

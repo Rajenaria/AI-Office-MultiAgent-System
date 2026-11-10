@@ -38,6 +38,10 @@ import {
   exportQAEngineerToGLBBuffer,
 } from '../three/QACharacterSystem';
 import {
+  buildDevOpsEngineerSceneAndClips,
+  exportDevOpsEngineerToGLBBuffer,
+} from '../three/DevOpsCharacterSystem';
+import {
   triggerBinaryDownload,
   triggerDataUrlDownload,
   triggerJsonDownload,
@@ -59,6 +63,8 @@ import {
   ResearchCharacterManifestV1,
   QACharacterBehaviorJsonV1,
   QACharacterManifestV1,
+  DevOpsCharacterBehaviorJsonV1,
+  DevOpsCharacterManifestV1,
   PRODUCTION_FILENAMES,
   buildBossPMBehaviorJsonV1,
   buildBossPMManifestV1,
@@ -83,6 +89,9 @@ import {
   buildQACharacterBehaviorJsonV1,
   buildQACharacterManifestV1,
   buildQACharacterReadmeMarkdown,
+  buildDevOpsCharacterBehaviorJsonV1,
+  buildDevOpsCharacterManifestV1,
+  buildDevOpsCharacterReadmeMarkdown,
   buildCharacterReadmeMarkdown,
   computeSha256Hex,
   createZipArchive,
@@ -284,6 +293,31 @@ export interface QACharacterExportPackResult {
   }>;
   manifest: QACharacterManifestV1;
   behaviorJson: QACharacterBehaviorJsonV1;
+  readmeMarkdown: string;
+  previewDataUrl: string | null;
+}
+
+export interface DevOpsCharacterExportPackResult {
+  glbBuffer: ArrayBuffer;
+  glbSizeBytes: number;
+  glbSha256: string;
+  sourceTotalMeshes: number;
+  exportedVisibleMeshes: number;
+  triangleCount: number;
+  materialNames: string[];
+  localBounds: {
+    min: [number, number, number];
+    max: [number, number, number];
+    size: [number, number, number];
+  };
+  clips: Array<{
+    name: string;
+    duration: number;
+    trackCount: number;
+    targetedPivots: string[];
+  }>;
+  manifest: DevOpsCharacterManifestV1;
+  behaviorJson: DevOpsCharacterBehaviorJsonV1;
   readmeMarkdown: string;
   previewDataUrl: string | null;
 }
@@ -1935,6 +1969,216 @@ export function downloadQACharacterGlbOnly(glbBuffer: ArrayBuffer): void {
     'model/gltf-binary'
   );
 }
+
+/**
+ * Inspects the DevOps Engineer (`devops_engineer_agent`) character hierarchy and 27 animation clips.
+ */
+export function inspectDevOpsEngineerForExport(): {
+  sourceTotalMeshes: number;
+  exportedVisibleMeshes: number;
+  triangleCount: number;
+  materialNames: string[];
+  localBounds: {
+    min: [number, number, number];
+    max: [number, number, number];
+    size: [number, number, number];
+  };
+  clips: Array<{
+    name: string;
+    duration: number;
+    trackCount: number;
+    targetedPivots: string[];
+  }>;
+} {
+  const { root: characterRoot, clips: rawClips } = buildDevOpsEngineerSceneAndClips();
+  characterRoot.updateMatrixWorld(true);
+
+  let sourceTotalMeshes = 0;
+  let exportedVisibleMeshes = 0;
+  let triangleCount = 0;
+  const materialNameSet = new Set<string>();
+
+  const isVisibleInHierarchy = (obj: THREE.Object3D): boolean => {
+    let curr: THREE.Object3D | null = obj;
+    while (curr) {
+      if (!curr.visible) return false;
+      curr = curr.parent;
+    }
+    return true;
+  };
+
+  characterRoot.traverse((obj) => {
+    if ((obj as THREE.Mesh).isMesh) {
+      sourceTotalMeshes++;
+      if (isVisibleInHierarchy(obj)) {
+        exportedVisibleMeshes++;
+      }
+      const m = obj as THREE.Mesh;
+      const geom = m.geometry;
+      if (geom) {
+        if (geom.index) {
+          triangleCount += Math.floor(geom.index.count / 3);
+        } else if (geom.attributes.position) {
+          triangleCount += Math.floor(geom.attributes.position.count / 3);
+        }
+      }
+      const mats = Array.isArray(m.material) ? m.material : [m.material];
+      for (const mat of mats) {
+        if (mat) materialNameSet.add(mat.name || mat.type);
+      }
+    }
+  });
+
+  // Compute standing rest-pose bounds (excluding hidden props & optional accessories)
+  const box = new THREE.Box3();
+  characterRoot.traverse((obj) => {
+    if ((obj as THREE.Mesh).isMesh && isVisibleInHierarchy(obj)) {
+      box.expandByObject(obj);
+    }
+  });
+  const size = new THREE.Vector3();
+  box.getSize(size);
+
+  const clips = rawClips.map((clip) => {
+    const pivots = new Set<string>();
+    for (const track of clip.tracks) {
+      const dotIdx = track.name.indexOf('.');
+      const nodeName = dotIdx > 0 ? track.name.slice(0, dotIdx) : track.name;
+      pivots.add(nodeName);
+    }
+    return {
+      name: clip.name,
+      duration: Number(clip.duration.toFixed(2)),
+      trackCount: clip.tracks.length,
+      targetedPivots: Array.from(pivots),
+    };
+  });
+
+  return {
+    sourceTotalMeshes,
+    exportedVisibleMeshes,
+    triangleCount,
+    materialNames: Array.from(materialNameSet),
+    localBounds: {
+      min: [
+        Number(box.min.x.toFixed(3)),
+        Number(box.min.y.toFixed(3)),
+        Number(box.min.z.toFixed(3)),
+      ],
+      max: [
+        Number(box.max.x.toFixed(3)),
+        Number(box.max.y.toFixed(3)),
+        Number(box.max.z.toFixed(3)),
+      ],
+      size: [
+        Number(size.x.toFixed(3)),
+        Number(size.y.toFixed(3)),
+        Number(size.z.toFixed(3)),
+      ],
+    },
+    clips,
+  };
+}
+
+/**
+ * Generates the DevOps Engineer Production Character Pack (`devops_engineer_agent.glb` + manifest + behavior + readme).
+ */
+export async function buildDevOpsCharacterExportPack(
+  previewDataUrl: string | null = null,
+  validationStatus: 'PASS' | 'FAIL' | 'NOT_VERIFIED' = 'PASS'
+): Promise<DevOpsCharacterExportPackResult> {
+  const inspected = inspectDevOpsEngineerForExport();
+  const glbBuffer = await exportDevOpsEngineerToGLBBuffer();
+  const glbSha256 = await computeSha256Hex(glbBuffer);
+
+  const manifest = buildDevOpsCharacterManifestV1({
+    glbSizeBytes: glbBuffer.byteLength,
+    glbSha256,
+    sourceTotalMeshes: inspected.sourceTotalMeshes,
+    exportedVisibleMeshes: inspected.exportedVisibleMeshes,
+    triangleCount: inspected.triangleCount,
+    materialNames: inspected.materialNames,
+    localBounds: inspected.localBounds,
+    clips: inspected.clips,
+    validationStatus,
+  });
+
+  const behaviorJson = buildDevOpsCharacterBehaviorJsonV1();
+  const readmeMarkdown = buildDevOpsCharacterReadmeMarkdown(manifest);
+
+  return {
+    glbBuffer,
+    glbSizeBytes: glbBuffer.byteLength,
+    glbSha256,
+    ...inspected,
+    manifest,
+    behaviorJson,
+    readmeMarkdown,
+    previewDataUrl,
+  };
+}
+
+export function downloadDevOpsCharacterAssetPackZip(
+  pack: DevOpsCharacterExportPackResult
+): {
+  filename: string;
+  byteLength: number;
+} {
+  const prefix = 'production/characters/devops_engineer_agent';
+  const entries = [
+    {
+      path: `${prefix}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_GLB}`,
+      data: pack.glbBuffer,
+    },
+    {
+      path: `${prefix}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_MANIFEST}`,
+      data: JSON.stringify(pack.manifest, null, 2),
+    },
+    {
+      path: `${prefix}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_BEHAVIOR}`,
+      data: JSON.stringify(pack.behaviorJson, null, 2),
+    },
+    {
+      path: `${prefix}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_README}`,
+      data: pack.readmeMarkdown,
+    },
+  ];
+
+  if (pack.previewDataUrl) {
+    entries.push({
+      path: `${prefix}/${PRODUCTION_FILENAMES.DEVOPS_CHARACTER_PREVIEW}`,
+      data: dataUrlToUint8Array(pack.previewDataUrl),
+    });
+  }
+
+  const zipBytes = createZipArchive(entries);
+  const filename = PRODUCTION_FILENAMES.DEVOPS_CHARACTER_PACK_ZIP;
+  triggerBinaryDownload(zipBytes.buffer as ArrayBuffer, filename, 'application/zip');
+  return { filename, byteLength: zipBytes.byteLength };
+}
+
+export function downloadDevOpsCharacterManifestAndBehavior(
+  manifest: DevOpsCharacterManifestV1,
+  behaviorJson: DevOpsCharacterBehaviorJsonV1
+): void {
+  triggerJsonDownload(manifest, PRODUCTION_FILENAMES.DEVOPS_CHARACTER_MANIFEST);
+  setTimeout(() => {
+    triggerJsonDownload(behaviorJson, PRODUCTION_FILENAMES.DEVOPS_CHARACTER_BEHAVIOR);
+  }, 180);
+}
+
+export function downloadDevOpsCharacterPreviewPng(dataUrl: string): void {
+  triggerDataUrlDownload(dataUrl, PRODUCTION_FILENAMES.DEVOPS_CHARACTER_PREVIEW);
+}
+
+export function downloadDevOpsCharacterGlbOnly(glbBuffer: ArrayBuffer): void {
+  triggerBinaryDownload(
+    glbBuffer,
+    PRODUCTION_FILENAMES.DEVOPS_CHARACTER_GLB,
+    'model/gltf-binary'
+  );
+}
+
 
 
 

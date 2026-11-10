@@ -108,6 +108,20 @@ import {
   ResearchSpeedMultiplier,
 } from './domain/researchSimulationSpec';
 import {
+   QA_ACTION_LIST,
+  QAActionId,
+  QAExpressionId,
+  QASimulationRuntimeStatus,
+  QASpeedMultiplier,
+} from './domain/qaSimulationSpec';
+import {
+  DEVOPS_ACTION_LIST,
+  DevOpsActionId,
+  DevOpsExpressionId,
+  DevOpsSimulationRuntimeStatus,
+  DevOpsSpeedMultiplier,
+} from './domain/devopsSimulationSpec';
+import {
   FULL_OFFICE_CAMERA_PRESETS,
   FullOfficeCutawayMode,
   FullOfficeOrbitMode,
@@ -159,8 +173,12 @@ import {
   downloadCharacterManifestAndBehavior,
   downloadDatabaseCharacterAssetPackZip,
   downloadDatabaseCharacterManifestAndBehavior,
+  downloadDevOpsCharacterAssetPackZip,
+  downloadDevOpsCharacterManifestAndBehavior,
   downloadFrontendCharacterAssetPackZip,
   downloadFrontendCharacterManifestAndBehavior,
+  downloadQACharacterAssetPackZip,
+  downloadQACharacterManifestAndBehavior,
   downloadResearchCharacterAssetPackZip,
   downloadResearchCharacterManifestAndBehavior,
   downloadUIUXCharacterAssetPackZip,
@@ -267,6 +285,10 @@ export function App() {
     useState<DatabaseActionId | null>(null);
   const [researchBubbleDismissedForAction, setResearchBubbleDismissedForAction] =
     useState<ResearchActionId | null>(null);
+  const [qaBubbleDismissedForAction, setQaBubbleDismissedForAction] =
+    useState<QAActionId | null>(null);
+  const [devopsBubbleDismissedForAction, setDevopsBubbleDismissedForAction] =
+    useState<DevOpsActionId | null>(null);
 
   const [telemetry, setTelemetry] = useState<PMSimulationRuntimeTelemetry>({
     loaded: true,
@@ -487,6 +509,66 @@ export function App() {
     thoughtText: RESEARCH_ACTION_LIST[0].thoughtText,
     worldPosition: [3.85, 0, 3.65],
     facingRad: Math.PI,
+  });
+
+  const [qaStatus, setQaStatus] = useState<QASimulationRuntimeStatus>({
+    characterId: 'qa_engineer_agent',
+    displayName: 'QA Engineer',
+    currentState: 'IDLE',
+    currentActionId: 'IDLE',
+    currentActionLabel: QA_ACTION_LIST[0].idLabel,
+    activeClipName: 'Idle_Breathing',
+    currentAnchorId: 'QA_ROOM_IDLE',
+    targetAnchorId: 'QA_ROOM_IDLE',
+    currentExpression: 'neutral',
+    posture: 'standing',
+    handheldProp: 'none',
+    runtimeIndicator: 'none',
+    isWalking: false,
+    isPaused: false,
+    patrolActive: false,
+    autoDemoActive: false,
+    autoDemoStepIndex: 0,
+    autoDemoTotalSteps: 14,
+    speedMultiplier: 1,
+    headsetVisible: false,
+    glassesVisible: false,
+    backpackVisible: true,
+    backpackAutoHiddenForSeat: false,
+    bubbleText: QA_ACTION_LIST[0].bubbleText,
+    thoughtText: QA_ACTION_LIST[0].thoughtText,
+    worldPosition: [3.85, 0, 12.15],
+    facingRad: Math.PI,
+  });
+
+  const [devopsStatus, setDevopsStatus] = useState<DevOpsSimulationRuntimeStatus>({
+    characterId: 'devops_engineer_agent',
+    displayName: 'DevOps Engineer',
+    currentState: 'IDLE',
+    currentActionId: 'IDLE',
+    currentActionLabel: DEVOPS_ACTION_LIST[0].idLabel,
+    activeClipName: 'Idle_Breathing',
+    currentAnchorId: 'DEVOPS_WORKSTATION_APPROACH',
+    targetAnchorId: 'DEVOPS_WORKSTATION_APPROACH',
+    currentExpression: 'neutral',
+    posture: 'standing',
+    handheldProp: 'none',
+    runtimeIndicator: 'none',
+    isWalking: false,
+    isPaused: false,
+    patrolActive: false,
+    autoDemoActive: false,
+    autoDemoStepIndex: 0,
+    autoDemoTotalSteps: 18,
+    speedMultiplier: 1,
+    headphonesVisible: true,
+    glassesVisible: false,
+    backpackVisible: true,
+    backpackAutoHiddenForSeat: false,
+    bubbleText: DEVOPS_ACTION_LIST[0].bubbleText,
+    thoughtText: DEVOPS_ACTION_LIST[0].thoughtText,
+    worldPosition: [4.45, 0, 3.05],
+    facingRad: -Math.PI / 2,
   });
 
   const [leftSidebarOpen, setLeftSidebarOpen] = useState<boolean>(true);
@@ -794,6 +876,36 @@ export function App() {
     }
   }, [notifyStatus]);
 
+  const handleExportQACharacterGLB = useCallback(async () => {
+    if (!canvasRef.current) return;
+    try {
+      const res = await canvasRef.current.exportQACharacterGLB();
+      const kb = (res.byteLength / 1024).toFixed(1);
+      notifyStatus(
+        `Exported QA Engineer ${res.filename} (${kb} KB binary GLB with 23 animation clips)`
+      );
+    } catch (err) {
+      notifyStatus(
+        `QA Character GLB Export error: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+  }, [notifyStatus]);
+
+  const handleExportDevOpsCharacterGLB = useCallback(async () => {
+    if (!canvasRef.current) return;
+    try {
+      const res = await canvasRef.current.exportDevOpsCharacterGLB();
+      const kb = (res.byteLength / 1024).toFixed(1);
+      notifyStatus(
+        `Exported DevOps Engineer ${res.filename} (${kb} KB binary GLB with 27 animation clips)`
+      );
+    } catch (err) {
+      notifyStatus(
+        `DevOps Character GLB Export error: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+  }, [notifyStatus]);
+
   const handleExportManifest = useCallback(() => {
     if (!canvasRef.current) return;
     const res = canvasRef.current.exportManifest();
@@ -994,6 +1106,36 @@ export function App() {
     }
   }, [notifyStatus]);
 
+  const handleExportQACharacterManifestAndBehavior = useCallback(async () => {
+    if (!canvasRef.current) return;
+    try {
+      const pack = await canvasRef.current.exportQACharacterPack();
+      downloadQACharacterManifestAndBehavior(pack.manifest, pack.behaviorJson);
+      notifyStatus(
+        'Exported qa_engineer_agent.manifest.json + qa_engineer_agent.behavior.json'
+      );
+    } catch (err) {
+      notifyStatus(
+        `Export QA Character Manifest failed: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+  }, [notifyStatus]);
+
+  const handleExportDevOpsCharacterManifestAndBehavior = useCallback(async () => {
+    if (!canvasRef.current) return;
+    try {
+      const pack = await canvasRef.current.exportDevOpsCharacterPack();
+      downloadDevOpsCharacterManifestAndBehavior(pack.manifest, pack.behaviorJson);
+      notifyStatus(
+        'Exported devops_engineer_agent.manifest.json + devops_engineer_agent.behavior.json'
+      );
+    } catch (err) {
+      notifyStatus(
+        `Export DevOps Character Manifest failed: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+  }, [notifyStatus]);
+
   const handleExportPNG = useCallback(async () => {
     if (!canvasRef.current) return;
     const res = await canvasRef.current.exportPreviewPNG();
@@ -1130,6 +1272,30 @@ export function App() {
     } catch (err) {
       notifyStatus(
         `Export Research Character PNG failed: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+  }, [notifyStatus]);
+
+  const handleExportQACharacterPNG = useCallback(async () => {
+    if (!canvasRef.current) return;
+    try {
+      const res = await canvasRef.current.exportQACharacterPreviewPNG();
+      notifyStatus(`Saved QA Engineer preview ${res.filename}`);
+    } catch (err) {
+      notifyStatus(
+        `Export QA Character PNG failed: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+  }, [notifyStatus]);
+
+  const handleExportDevOpsCharacterPNG = useCallback(async () => {
+    if (!canvasRef.current) return;
+    try {
+      const res = await canvasRef.current.exportDevOpsCharacterPreviewPNG();
+      notifyStatus(`Saved DevOps Engineer preview ${res.filename}`);
+    } catch (err) {
+      notifyStatus(
+        `Export DevOps Character PNG failed: ${err instanceof Error ? err.message : String(err)}`
       );
     }
   }, [notifyStatus]);
@@ -1348,6 +1514,42 @@ export function App() {
     }
   }, [notifyStatus]);
 
+  const handleDownloadQACharacterPackZip = useCallback(async () => {
+    if (!canvasRef.current) return;
+    try {
+      notifyStatus(
+        'Packaging QA Engineer Character Pack (qa_engineer_agent_pack_v1.zip)...'
+      );
+      const pack = await canvasRef.current.exportQACharacterPack();
+      const res = downloadQACharacterAssetPackZip(pack);
+      notifyStatus(
+        `Downloaded ${res.filename} (qa_engineer_agent.glb ${(pack.glbSizeBytes / 1024).toFixed(1)} KB + manifest + behavior + preview + README)`
+      );
+    } catch (err) {
+      notifyStatus(
+        `QA Character Pack ZIP failed: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+  }, [notifyStatus]);
+
+  const handleDownloadDevOpsCharacterPackZip = useCallback(async () => {
+    if (!canvasRef.current) return;
+    try {
+      notifyStatus(
+        'Packaging DevOps Engineer Character Pack (devops_engineer_agent_pack_v1.zip)...'
+      );
+      const pack = await canvasRef.current.exportDevOpsCharacterPack();
+      const res = downloadDevOpsCharacterAssetPackZip(pack);
+      notifyStatus(
+        `Downloaded ${res.filename} (devops_engineer_agent.glb ${(pack.glbSizeBytes / 1024).toFixed(1)} KB + manifest + behavior + preview + README)`
+      );
+    } catch (err) {
+      notifyStatus(
+        `DevOps Character Pack ZIP failed: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+  }, [notifyStatus]);
+
   const handleDownloadSourceZip = useCallback(async () => {
     try {
       const res = await downloadModularRoomLabSourceZip();
@@ -1380,6 +1582,8 @@ export function App() {
         backendCharacterPack,
         databaseCharacterPack,
         researchCharacterPack,
+        qaCharacterPack,
+        devopsCharacterPack,
         rtReport,
       ] = await Promise.all([
         canvasRef.current.exportRoomProductionPack(),
@@ -1395,6 +1599,8 @@ export function App() {
         canvasRef.current.exportBackendCharacterPack(),
         canvasRef.current.exportDatabaseCharacterPack(),
         canvasRef.current.exportResearchCharacterPack(),
+        canvasRef.current.exportQACharacterPack(),
+        canvasRef.current.exportDevOpsCharacterPack(),
         canvasRef.current.runFullHandoffValidation(srcFiles.length),
       ]);
       const stab = canvasRef.current.runVisualStabilityScan();
@@ -1413,6 +1619,8 @@ export function App() {
         backendCharacterPack,
         databaseCharacterPack,
         researchCharacterPack,
+        qaCharacterPack,
+        devopsCharacterPack,
         roundTripReport: rtReport,
         stabilityReport: stab,
       });
@@ -1451,18 +1659,18 @@ export function App() {
       canvasRef.current?.startAllAgentMeetingDemo();
     }, 20);
     notifyStatus(
-      'Demo Meeting Semua Agent Dimulai: 7 Karakter Aktif berjalan menuju Meja Konferensi Central Hub (3 Kursi Kosong: Owner Reserved + QA + DevOps)'
+      'Demo Meeting Semua Agent Dimulai: 9 Karakter Aktif berjalan menuju Meja Konferensi Central Hub (1 Kursi Kosong: Owner Reserved #01)'
     );
   }, [notifyStatus]);
 
   const handleStopAllAgentMeetingDemo = useCallback(() => {
     canvasRef.current?.stopAllAgentMeetingDemo();
-    notifyStatus('Demo Meeting Dihentikan: Semua 7 Karakter dikembalikan ke ruangan masing-masing');
+    notifyStatus('Demo Meeting Dihentikan: Semua 9 Karakter dikembalikan ke ruangan masing-masing');
   }, [notifyStatus]);
 
   const handleResetAllAgentMeetingDemo = useCallback(() => {
     canvasRef.current?.resetAllAgentMeetingDemo();
-    notifyStatus('Demo Meeting Direset: Semua 7 Karakter kembali ke anchor ruangan default');
+    notifyStatus('Demo Meeting Direset: Semua 9 Karakter kembali ke anchor ruangan default');
   }, [notifyStatus]);
 
   const handleTeleportAllAgentsToMeetingSeats = useCallback(() => {
@@ -1476,7 +1684,7 @@ export function App() {
       canvasRef.current?.teleportAllAgentsToMeetingSeats();
     }, 20);
     notifyStatus(
-      '7 Karakter Aktif langsung duduk di Meja Konferensi Central Hub (3 Kursi Kosong: Owner + QA + DevOps)'
+      '9 Karakter Aktif langsung duduk di Meja Konferensi Central Hub (1 Kursi Kosong: Owner #01)'
     );
   }, [notifyStatus]);
 
@@ -1566,7 +1774,7 @@ export function App() {
         officeViewMode: 'single_room',
         importTestTarget:
           prev.selectedRoomKey === 'qa_devops_studio'
-            ? 'qa_devops_room_only'
+            ? 'qa_devops_room_and_char'
             : prev.selectedRoomKey === 'research_brain'
             ? 'research_room_and_char'
             : prev.selectedRoomKey === 'engineering'
@@ -1613,8 +1821,14 @@ export function App() {
       const resCharInfo = rtReport.research_character_roundtrip
         ? ` + research_professor_agent.glb (${rtReport.research_character_roundtrip.fileSizeKB})`
         : '';
+      const qaCharInfo = rtReport.qa_character_roundtrip
+        ? ` + qa_engineer_agent.glb (${rtReport.qa_character_roundtrip.fileSizeKB})`
+        : '';
+      const devopsCharInfo = rtReport.devops_character_roundtrip
+        ? ` + devops_engineer_agent.glb (${rtReport.devops_character_roundtrip.fileSizeKB})`
+        : '';
       notifyStatus(
-        `Independent Round-Trip Verified: pm_room.glb (${rtReport.room_roundtrip.fileSizeKB})${ceoInfo}${uiuxInfo}${uiuxCharInfo}${engInfo}${resInfo}${qaDevopsInfo}${feCharInfo}${beCharInfo}${dbCharInfo}${resCharInfo} — ${passedCount}/${rtReport.validation_matrix.length} PASS`
+        `Independent Round-Trip Verified: pm_room.glb (${rtReport.room_roundtrip.fileSizeKB})${ceoInfo}${uiuxInfo}${uiuxCharInfo}${engInfo}${resInfo}${qaDevopsInfo}${feCharInfo}${beCharInfo}${dbCharInfo}${resCharInfo}${qaCharInfo}${devopsCharInfo} — ${passedCount}/${rtReport.validation_matrix.length} PASS`
       );
     } catch (err) {
       notifyStatus(`GLB Import test failed: ${err instanceof Error ? err.message : String(err)}`);
@@ -1661,6 +1875,18 @@ export function App() {
     setResearchBubbleDismissedForAction(null);
     setConfig((prev) => ({ ...prev, workspaceMode: 'builder', showBossPM: true }));
     canvasRef.current?.triggerResearchAction(actionId);
+  }, []);
+
+  const handleTriggerQAAction = useCallback((actionId: QAActionId) => {
+    setQaBubbleDismissedForAction(null);
+    setConfig((prev) => ({ ...prev, workspaceMode: 'builder', showBossPM: true }));
+    canvasRef.current?.triggerQAAction(actionId);
+  }, []);
+
+  const handleTriggerDevOpsAction = useCallback((actionId: DevOpsActionId) => {
+    setDevopsBubbleDismissedForAction(null);
+    setConfig((prev) => ({ ...prev, workspaceMode: 'builder', showBossPM: true }));
+    canvasRef.current?.triggerDevOpsAction(actionId);
   }, []);
 
   const handleUploadCustomGLB = useCallback(
@@ -1761,6 +1987,11 @@ export function App() {
     config.showBossPM &&
     (config.officeViewMode === 'full_office' || config.selectedRoomKey === 'research_brain');
 
+  const isQAVisibleInViewport =
+    config.workspaceMode === 'builder' &&
+    config.showBossPM &&
+    (config.officeViewMode === 'full_office' || config.selectedRoomKey === 'qa_devops_studio');
+
   const activeSpeechOrThought =
     isPMVisibleInViewport &&
     telemetry.loaded &&
@@ -1811,6 +2042,20 @@ export function App() {
     !researchStatus.isWalking &&
     researchBubbleDismissedForAction !== researchStatus.currentActionId &&
     (researchStatus.bubbleText || researchStatus.thoughtText);
+
+  const activeQASpeechOrThought =
+    isQAVisibleInViewport &&
+    config.selectedRoomKey === 'qa_devops_studio' &&
+    !qaStatus.isWalking &&
+    qaBubbleDismissedForAction !== qaStatus.currentActionId &&
+    (qaStatus.bubbleText || qaStatus.thoughtText);
+
+  const activeDevOpsSpeechOrThought =
+    isQAVisibleInViewport &&
+    config.selectedRoomKey === 'qa_devops_studio' &&
+    !devopsStatus.isWalking &&
+    devopsBubbleDismissedForAction !== devopsStatus.currentActionId &&
+    (devopsStatus.bubbleText || devopsStatus.thoughtText);
 
   return (
     <div
@@ -2222,8 +2467,9 @@ export function App() {
                   </>
                 ) : (
                   <>
-                    8×16 Studio · Origin [0,0,0] SW · A3.2 Slot [24, 0, 0] · QA (North) + Lounge +
-                    DevOps (South) · Room-Only Production V1
+                    8×16 Studio · QA: [{qaStatus.worldPosition[0]}, {qaStatus.worldPosition[2]}] (
+                    {qaStatus.currentState}) · DevOps: [{devopsStatus.worldPosition[0]},{' '}
+                    {devopsStatus.worldPosition[2]}] ({devopsStatus.currentState})
                   </>
                 )}
               </div>
@@ -2360,7 +2606,7 @@ export function App() {
                     className="py-1 px-2 rounded-md bg-[#1E293B] hover:bg-[#334155] border border-[#38BDF8]/40 text-[#7DD3FC] font-semibold text-[11px] flex items-center justify-center gap-1 transition-colors"
                   >
                     <Users className="w-3 h-3" />
-                    <span>Instant Seat (7 Agents)</span>
+                    <span>Instant Seat (9 Agents)</span>
                   </button>
                   <button
                     type="button"
@@ -2399,18 +2645,18 @@ export function App() {
                       <strong className="text-[#6EE7B7]" data-testid="meeting-seated-count">
                         {meetingDemoStatus?.seatedCount ?? 0}
                       </strong>
-                      /7 Real Agents
+                      /9 Real Agents
                     </span>
                     <span>
                       Walking:{' '}
                       <strong className="text-[#38BDF8]">{meetingDemoStatus?.walkingCount ?? 0}</strong>
                     </span>
                     <span>
-                      Empty: <strong className="text-[#FBBF24]">3</strong>/10 Seats
+                      Empty: <strong className="text-[#FBBF24]">1</strong>/10 Seats
                     </span>
                   </div>
                   <div className="text-[#9CA3AF] flex items-center justify-between">
-                    <span>Empty: Owner (#01), QA (#09), DevOps (#10)</span>
+                    <span>Empty: Owner (#01 Reserved)</span>
                     {centralHubStats && (
                       <span className="text-[#A3AAB8]">{centralHubStats.meshCount} Hub meshes</span>
                     )}
@@ -2577,6 +2823,8 @@ export function App() {
             onBackendRuntimeStateChange={setBackendStatus}
             onDatabaseRuntimeStateChange={setDatabaseStatus}
             onResearchRuntimeStateChange={setResearchStatus}
+            onQARuntimeStateChange={setQaStatus}
+            onDevOpsRuntimeStateChange={setDevopsStatus}
             onGLBInspectionReady={setGlbInspectionReport}
             onPMCharacterSelectChange={(sel) => {
               if (sel) {
@@ -2965,6 +3213,102 @@ export function App() {
                   </div>
                 )}
 
+              {/* Interactive Speech / Thought / QA Release Sign-Off Bubble Overlay (QA Engineer) */}
+              {isQAVisibleInViewport &&
+                config.selectedRoomKey === 'qa_devops_studio' &&
+                (activeQASpeechOrThought ||
+                  qaStatus.currentState === 'WAITING_DEVOPS_REVIEW' ||
+                  qaStatus.currentState === 'PRESENTING_REPORT') && (
+                  <div
+                    role="dialog"
+                    aria-label="QA Engineer Activity Status Bubble"
+                    className="bg-[#14151B]/95 border border-[#FACC15] rounded-xl p-3 pointer-events-auto shadow-lg space-y-2"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-semibold text-[#FDE047] flex items-center gap-1.5">
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        <span>
+                          QA Engineer — {qaStatus.currentActionLabel} (SIMULASI / DEMO)
+                        </span>
+                      </span>
+                      <button
+                        type="button"
+                        aria-label="Dismiss QA Speech Bubble"
+                        onClick={() => setQaBubbleDismissedForAction(qaStatus.currentActionId)}
+                        className="text-[#9CA3AF] hover:text-white p-0.5"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {activeQASpeechOrThought && (
+                      <p className="text-xs text-[#F5F2EB] italic leading-relaxed bg-[#1E2029] px-2.5 py-2 rounded-lg border border-[#2B2D38]">
+                        “{activeQASpeechOrThought}”
+                      </p>
+                    )}
+
+                    {qaStatus.currentState === 'WAITING_DEVOPS_REVIEW' && (
+                      <button
+                        type="button"
+                        onClick={() => handleTriggerQAAction('QA_PASSED')}
+                        className="w-full py-1.5 px-3 rounded-lg bg-[#EAB308] hover:bg-[#CA8A04] text-[#14151B] font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
+                      >
+                        <UserCheck className="w-3.5 h-3.5" />
+                        <span>Approve QA Release Sign-Off (Simulasi)</span>
+                      </button>
+                    )}
+                  </div>
+                )}
+
+              {/* Interactive Speech / Thought / Incident Sign-Off Bubble Overlay (DevOps Engineer) */}
+              {isQAVisibleInViewport &&
+                config.selectedRoomKey === 'qa_devops_studio' &&
+                (activeDevOpsSpeechOrThought ||
+                  devopsStatus.currentState === 'WAITING_APPROVAL' ||
+                  devopsStatus.currentState === 'PRESENTING_STATUS') && (
+                  <div
+                    role="dialog"
+                    aria-label="DevOps Engineer Activity Status Bubble"
+                    className="bg-[#14151B]/95 border border-[#38BDF8] rounded-xl p-3 pointer-events-auto shadow-lg space-y-2"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-semibold text-[#38BDF8] flex items-center gap-1.5">
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        <span>
+                          DevOps Engineer — {devopsStatus.currentActionLabel} (SIMULASI / DEMO)
+                        </span>
+                      </span>
+                      <button
+                        type="button"
+                        aria-label="Dismiss DevOps Speech Bubble"
+                        onClick={() =>
+                          setDevopsBubbleDismissedForAction(devopsStatus.currentActionId)
+                        }
+                        className="text-[#9CA3AF] hover:text-white p-0.5"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {activeDevOpsSpeechOrThought && (
+                      <p className="text-xs text-[#F5F2EB] italic leading-relaxed bg-[#1E2029] px-2.5 py-2 rounded-lg border border-[#2B2D38]">
+                        “{activeDevOpsSpeechOrThought}”
+                      </p>
+                    )}
+
+                    {devopsStatus.currentState === 'WAITING_APPROVAL' && (
+                      <button
+                        type="button"
+                        onClick={() => handleTriggerDevOpsAction('SYSTEM_HEALTHY')}
+                        className="w-full py-1.5 px-3 rounded-lg bg-[#0284C7] hover:bg-[#0369A1] text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
+                      >
+                        <UserCheck className="w-3.5 h-3.5" />
+                        <span>Approve Deployment & Confirm System Healthy (Simulasi)</span>
+                      </button>
+                    )}
+                  </div>
+                )}
+
               {/* Selected Boss PM Character Quick Action Bar */}
               {isPMVisibleInViewport && telemetry.loaded && telemetry.isPMSelected && (
                 <div className="bg-[#14151B]/95 border border-[#38BDF8] rounded-lg px-3 py-2 pointer-events-auto flex items-center justify-between gap-3">
@@ -3279,6 +3623,30 @@ export function App() {
                             <Focus className="w-3.5 h-3.5" />
                             <span>Focus Prof</span>
                           </button>
+                        )}
+                      {config.officeViewMode === 'single_room' &&
+                        isQAVisibleInViewport &&
+                        config.selectedRoomKey === 'qa_devops_studio' && (
+                          <>
+                            <button
+                              type="button"
+                              data-testid="btn-focus-devops"
+                              onClick={() => canvasRef.current?.focusCameraOnDevOpsCharacter()}
+                              className="px-2.5 py-1.5 rounded-md bg-[#0C2234] hover:bg-[#12314A] border border-[#38BDF8]/50 text-xs font-medium text-[#38BDF8] flex items-center gap-1 whitespace-nowrap shrink-0"
+                            >
+                              <Focus className="w-3.5 h-3.5" />
+                              <span>Focus DevOps</span>
+                            </button>
+                            <button
+                              type="button"
+                              data-testid="btn-focus-qa"
+                              onClick={() => canvasRef.current?.focusCameraOnQACharacter()}
+                              className="px-2.5 py-1.5 rounded-md bg-[#262010] hover:bg-[#382F16] border border-[#FACC15]/50 text-xs font-medium text-[#FDE047] flex items-center gap-1 whitespace-nowrap shrink-0"
+                            >
+                              <Focus className="w-3.5 h-3.5" />
+                              <span>Focus QA</span>
+                            </button>
+                          </>
                         )}
                     </div>
 
@@ -3642,6 +4010,54 @@ export function App() {
               }
               onDownloadResearchCharacterPreviewPng={handleExportResearchCharacterPNG}
               onDownloadResearchCharacterPackZip={handleDownloadResearchCharacterPackZip}
+              qaStatus={qaStatus}
+              onTriggerQAAction={handleTriggerQAAction}
+              onQAPlaybackCommand={(cmd) => canvasRef.current?.executeQAPlayback(cmd)}
+              onSetQASpeed={(spd: QASpeedMultiplier) => canvasRef.current?.setQASpeed(spd)}
+              onToggleQAPatrol={(act) => canvasRef.current?.setQAPatrol(act)}
+              onStartQAAutoDemo={() => canvasRef.current?.startQAAutoDemo()}
+              onStopQAAutoDemo={() => canvasRef.current?.stopQAAutoDemo()}
+              onSetQAExpression={(expr: QAExpressionId) => canvasRef.current?.setQAExpression(expr)}
+              onSetQAGlassesVisible={(vis: boolean) => canvasRef.current?.setQAGlassesVisible(vis)}
+              onSetQAHeadsetVisible={(vis: boolean) => canvasRef.current?.setQAHeadsetVisible(vis)}
+              onSetQABackpackVisible={(vis: boolean) =>
+                canvasRef.current?.setQABackpackVisible(vis)
+              }
+              onFocusQACharacter={() => canvasRef.current?.focusCameraOnQACharacter()}
+              onDownloadQACharacterGlb={handleExportQACharacterGLB}
+              onDownloadQACharacterManifestAndBehavior={
+                handleExportQACharacterManifestAndBehavior
+              }
+              onDownloadQACharacterPreviewPng={handleExportQACharacterPNG}
+              onDownloadQACharacterPackZip={handleDownloadQACharacterPackZip}
+              devopsStatus={devopsStatus}
+              onTriggerDevOpsAction={handleTriggerDevOpsAction}
+              onDevOpsPlaybackCommand={(cmd) => canvasRef.current?.executeDevOpsPlayback(cmd)}
+              onSetDevOpsSpeed={(spd: DevOpsSpeedMultiplier) =>
+                canvasRef.current?.setDevOpsSpeed(spd)
+              }
+              onToggleDevOpsPatrol={(act) => canvasRef.current?.setDevOpsPatrol(act)}
+              onStartDevOpsAutoDemo={() => canvasRef.current?.startDevOpsAutoDemo()}
+              onStopDevOpsAutoDemo={() => canvasRef.current?.stopDevOpsAutoDemo()}
+              onSetDevOpsExpression={(expr: DevOpsExpressionId) =>
+                canvasRef.current?.setDevOpsExpression(expr)
+              }
+              onSetDevOpsHeadphonesVisible={(vis: boolean) =>
+                canvasRef.current?.setDevOpsHeadphonesVisible(vis)
+              }
+              onSetDevOpsGlassesVisible={(vis: boolean) =>
+                canvasRef.current?.setDevOpsGlassesVisible(vis)
+              }
+              onSetDevOpsBackpackVisible={(vis: boolean) =>
+                canvasRef.current?.setDevOpsBackpackVisible(vis)
+              }
+              onFocusDevOpsCharacter={() => canvasRef.current?.focusCameraOnDevOpsCharacter()}
+              onDownloadDevOpsCharacterGlb={handleExportDevOpsCharacterGLB}
+              onDownloadDevOpsCharacterManifestAndBehavior={
+                handleExportDevOpsCharacterManifestAndBehavior
+              }
+              onDownloadDevOpsCharacterPreviewPng={handleExportDevOpsCharacterPNG}
+              onDownloadDevOpsCharacterPackZip={handleDownloadDevOpsCharacterPackZip}
               clickedMeshDiagnostic={clickedMeshDiagnostic}
               stabilityReport={stabilityReport}
               onRunStabilityScan={handleRunStabilityScan}

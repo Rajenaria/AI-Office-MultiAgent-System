@@ -166,12 +166,12 @@ export const QADevOpsRoomInspectorSection: React.FC<QADevOpsRoomInspectorSection
         )}
 
         <div className="mt-2 px-2 py-1.5 rounded bg-[#14161D]/90 border border-[#D89B3C]/35 text-[10px] text-[#D6D1C7]">
-          <span className="font-semibold text-[#F4C97E]">QA Engineer + Room Pack V1:</span>{' '}
-          Active <code className="font-mono text-[#FBBF24]">qa_engineer_agent</code> in North QA Zone
-          &amp; Shared Handoff Lounge alongside clean standalone{' '}
+          <span className="font-semibold text-[#F4C97E]">Dual-Agent Studio + Room Pack V1:</span>{' '}
+          Active <code className="font-mono text-[#FBBF24]">qa_engineer_agent</code> (North QA Zone)
+          &amp; <code className="font-mono text-[#38BDF8]">devops_engineer_agent</code> (South DevOps
+          &amp; AI Engine Zone) operating together inside{' '}
           <code className="font-mono text-[#6EE7B7]">qa_devops_room.glb</code> (23 anchors, 8 static
-          DEMO display slots across 9 front-only screens). South DevOps workstation remains reserved
-          for the future DevOps Agent milestone.
+          DEMO display slots across 9 front-only screens).
         </div>
       </div>
 

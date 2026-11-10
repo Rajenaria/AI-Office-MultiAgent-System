@@ -270,9 +270,9 @@ function buildQALayeredHairGroup(palette: QAMaterialPalette): {
   hairGroup.add(hairBase);
 
   hairBase.add(
-    makeBox('Hair_Base_Core_Upper', [0.356, 0.11, 0.34], [0, 0.325, -0.008], palette.hairDarkChestnut),
-    makeBox('Hair_Base_Rear_Upper', [0.348, 0.16, 0.12], [0, 0.255, -0.145], palette.hairDeepChocolate),
-    makeBox('Hair_Base_Top_Foundation', [0.33, 0.045, 0.31], [0, 0.382, -0.012], palette.hairWarmReddishMid)
+    makeBox('Hair_Base_Core_Upper', [0.372, 0.124, 0.352], [0, 0.326, -0.008], palette.hairDarkChestnut),
+    makeBox('Hair_Base_Rear_Upper', [0.364, 0.176, 0.136], [0, 0.252, -0.142], palette.hairDeepChocolate),
+    makeBox('Hair_Base_Top_Foundation', [0.348, 0.052, 0.326], [0, 0.382, -0.012], palette.hairWarmReddishMid)
   );
 
   // 2. Hair_Crown — Sculpted multi-layered upper crown volume (non-flat 360° silhouette)
@@ -281,26 +281,26 @@ function buildQALayeredHairGroup(palette: QAMaterialPalette): {
   hairGroup.add(hairCrown);
 
   hairCrown.add(
-    makeBox('Hair_Crown_Layer_1', [0.295, 0.036, 0.275], [0, 0.402, -0.015], palette.hairDarkChestnut),
-    makeBox('Hair_Crown_Layer_2_Left', [0.135, 0.028, 0.22], [-0.065, 0.418, -0.01], palette.hairWarmReddishMid),
-    makeBox('Hair_Crown_Layer_2_Right', [0.135, 0.028, 0.22], [0.062, 0.416, -0.012], palette.hairCaramelHighlight),
-    makeBox('Hair_Crown_Part_Ridge', [0.085, 0.024, 0.19], [0.025, 0.425, 0.01], palette.hairCaramelHighlight),
-    makeBox('Hair_Crown_Rear_Bridge', [0.24, 0.032, 0.12], [0, 0.408, -0.115], palette.hairAuburnAccent)
+    makeBox('Hair_Crown_Layer_1', [0.316, 0.04, 0.292], [0, 0.402, -0.012], palette.hairDarkChestnut),
+    makeBox('Hair_Crown_Layer_2_Left', [0.148, 0.032, 0.236], [-0.068, 0.418, -0.008], palette.hairWarmReddishMid),
+    makeBox('Hair_Crown_Layer_2_Right', [0.148, 0.032, 0.236], [0.066, 0.416, -0.01], palette.hairCaramelHighlight),
+    makeBox('Hair_Crown_Part_Ridge', [0.096, 0.026, 0.204], [0.024, 0.426, 0.012], palette.hairCaramelHighlight),
+    makeBox('Hair_Crown_Rear_Bridge', [0.264, 0.036, 0.136], [0, 0.408, -0.112], palette.hairAuburnAccent)
   );
 
   // 3. Hair_Fringe — Asymmetric side-swept front bangs framing forehead without covering eyes
-  // Forehead bangs sit at Y >= 0.276 (well above eyebrows at Y = 0.246 and eyes at Y = 0.192)
+  // Forehead bangs sit cleanly above eyebrows (Y = 0.236) and eyes (Y = 0.184)
   const hairFringe = new THREE.Group();
   hairFringe.name = 'Hair_Fringe';
   hairGroup.add(hairFringe);
 
   hairFringe.add(
-    makeBox('Hair_Fringe_Upper_Band', [0.344, 0.054, 0.064], [0, 0.338, 0.156], palette.hairDarkChestnut),
-    makeBox('Hair_Fringe_Sweep_Center_Right', [0.13, 0.048, 0.056], [0.048, 0.304, 0.168], palette.hairWarmReddishMid),
-    makeBox('Hair_Fringe_Sweep_Right_Tip', [0.092, 0.044, 0.052], [0.115, 0.288, 0.166], palette.hairCaramelHighlight),
-    makeBox('Hair_Fringe_Left_Part_Block', [0.115, 0.046, 0.058], [-0.088, 0.308, 0.166], palette.hairDarkChestnut),
-    makeBox('Hair_Fringe_Left_Brow_Frame', [0.078, 0.042, 0.052], [-0.132, 0.282, 0.162], palette.hairAuburnAccent),
-    makeBox('Hair_Fringe_Center_Accent', [0.064, 0.036, 0.05], [-0.012, 0.296, 0.172], palette.hairCaramelHighlight)
+    makeBox('Hair_Fringe_Upper_Band', [0.364, 0.062, 0.068], [0, 0.342, 0.156], palette.hairDarkChestnut),
+    makeBox('Hair_Fringe_Sweep_Center_Right', [0.146, 0.058, 0.062], [0.046, 0.304, 0.168], palette.hairWarmReddishMid),
+    makeBox('Hair_Fringe_Sweep_Right_Tip', [0.104, 0.056, 0.058], [0.118, 0.284, 0.166], palette.hairCaramelHighlight),
+    makeBox('Hair_Fringe_Left_Part_Block', [0.128, 0.056, 0.062], [-0.092, 0.308, 0.166], palette.hairDarkChestnut),
+    makeBox('Hair_Fringe_Left_Brow_Frame', [0.088, 0.054, 0.056], [-0.136, 0.278, 0.164], palette.hairAuburnAccent),
+    makeBox('Hair_Fringe_Center_Accent', [0.072, 0.044, 0.054], [-0.014, 0.292, 0.172], palette.hairCaramelHighlight)
   );
 
   // 4. Hair_High_Bun (PonytailPivot) — Signature tied-up high bun / ponytail cluster at rear-top crown
@@ -311,43 +311,45 @@ function buildQALayeredHairGroup(palette: QAMaterialPalette): {
 
   highBunGroup.add(
     // Dark hair-tie band at the base of the high bun
-    makeBox('Hair_Bun_Tie_Band', [0.136, 0.034, 0.136], [0, 0.392, -0.125], palette.hairTieBandDark),
-    makeBox('Hair_Bun_Tie_Gold_Clasp', [0.048, 0.022, 0.024], [0, 0.392, -0.194], palette.hairClipGold),
+    makeBox('Hair_Bun_Tie_Band', [0.148, 0.036, 0.148], [0, 0.392, -0.122], palette.hairTieBandDark),
+    makeBox('Hair_Bun_Tie_Gold_Clasp', [0.052, 0.024, 0.026], [0, 0.392, -0.196], palette.hairClipGold),
     // Multi-layered voluminous voxel bun / ponytail cluster
-    makeBox('Hair_Bun_Core_Center', [0.176, 0.072, 0.168], [0, 0.432, -0.138], palette.hairDarkChestnut),
-    makeBox('Hair_Bun_Upper_Crest', [0.138, 0.034, 0.132], [0, 0.458, -0.135], palette.hairCaramelHighlight),
-    makeBox('Hair_Bun_Left_Lobe', [0.042, 0.058, 0.128], [-0.098, 0.43, -0.138], palette.hairWarmReddishMid),
-    makeBox('Hair_Bun_Right_Lobe', [0.042, 0.058, 0.128], [0.098, 0.43, -0.138], palette.hairAuburnAccent),
-    makeBox('Hair_Bun_Rear_Tail_Upper', [0.142, 0.064, 0.052], [0, 0.422, -0.228], palette.hairWarmReddishMid),
-    makeBox('Hair_Bun_Rear_Tail_Lower', [0.116, 0.068, 0.048], [0, 0.372, -0.236], palette.hairDeepChocolate),
-    makeBox('Hair_Bun_Rear_Tip_Left', [0.048, 0.046, 0.042], [-0.042, 0.342, -0.242], palette.hairAuburnAccent),
-    makeBox('Hair_Bun_Rear_Tip_Right', [0.048, 0.046, 0.042], [0.042, 0.346, -0.242], palette.hairCaramelHighlight)
+    makeBox('Hair_Bun_Core_Center', [0.192, 0.076, 0.182], [0, 0.432, -0.134], palette.hairDarkChestnut),
+    makeBox('Hair_Bun_Upper_Crest', [0.152, 0.034, 0.144], [0, 0.458, -0.132], palette.hairCaramelHighlight),
+    makeBox('Hair_Bun_Left_Lobe', [0.048, 0.064, 0.142], [-0.106, 0.43, -0.134], palette.hairWarmReddishMid),
+    makeBox('Hair_Bun_Right_Lobe', [0.048, 0.064, 0.142], [0.106, 0.43, -0.134], palette.hairAuburnAccent),
+    makeBox('Hair_Bun_Rear_Tail_Upper', [0.156, 0.068, 0.058], [0, 0.422, -0.228], palette.hairWarmReddishMid),
+    makeBox('Hair_Bun_Rear_Tail_Lower', [0.128, 0.074, 0.054], [0, 0.368, -0.236], palette.hairDeepChocolate),
+    makeBox('Hair_Bun_Rear_Tip_Left', [0.054, 0.052, 0.046], [-0.044, 0.338, -0.242], palette.hairAuburnAccent),
+    makeBox('Hair_Bun_Rear_Tip_Right', [0.054, 0.052, 0.046], [0.044, 0.342, -0.242], palette.hairCaramelHighlight)
   );
 
-  // 5. Hair_Left_Side — Stepped left temple and side framing locks (leaving Ear_Left at Z=-0.015 visible)
+  // 5. Hair_Left_Side — Fuller stepped left temple and cheek-framing side locks (leaving Ear_Left visible)
   const hairLeftSide = new THREE.Group();
   hairLeftSide.name = 'Hair_Left_Side';
   hairGroup.add(hairLeftSide);
 
   hairLeftSide.add(
-    makeBox('Hair_Left_Temple_Upper', [0.052, 0.095, 0.16], [-0.172, 0.285, 0.075], palette.hairDarkChestnut),
-    makeBox('Hair_Left_Cheek_Lock_Mid', [0.046, 0.088, 0.068], [-0.168, 0.205, 0.118], palette.hairWarmReddishMid),
-    makeBox('Hair_Left_Cheek_Lock_Tip', [0.038, 0.065, 0.054], [-0.162, 0.138, 0.124], palette.hairCaramelHighlight),
-    makeBox('Hair_Left_Behind_Ear', [0.054, 0.175, 0.115], [-0.172, 0.195, -0.105], palette.hairDeepChocolate),
-    makeBox('Hair_Left_Lower_Taper', [0.046, 0.075, 0.095], [-0.164, 0.085, -0.108], palette.hairAuburnAccent)
+    makeBox('Hair_Left_Temple_Upper', [0.064, 0.112, 0.176], [-0.178, 0.286, 0.072], palette.hairDarkChestnut),
+    makeBox('Hair_Left_Cheek_Lock_Mid', [0.058, 0.108, 0.082], [-0.174, 0.196, 0.118], palette.hairWarmReddishMid),
+    makeBox('Hair_Left_Cheek_Lock_Tip', [0.05, 0.088, 0.068], [-0.166, 0.114, 0.124], palette.hairCaramelHighlight),
+    makeBox('Hair_Left_Jaw_Soft_Tuft', [0.044, 0.058, 0.056], [-0.156, 0.064, 0.118], palette.hairAuburnAccent),
+    makeBox('Hair_Left_Behind_Ear', [0.064, 0.192, 0.128], [-0.178, 0.192, -0.104], palette.hairDeepChocolate),
+    makeBox('Hair_Left_Lower_Taper', [0.056, 0.092, 0.106], [-0.168, 0.078, -0.108], palette.hairAuburnAccent)
   );
 
-  // 6. Hair_Right_Side — Stepped right temple and side framing locks (leaving Ear_Right at Z=-0.015 visible)
+  // 6. Hair_Right_Side — Fuller stepped right temple and cheek-framing side locks (leaving Ear_Right visible)
   const hairRightSide = new THREE.Group();
   hairRightSide.name = 'Hair_Right_Side';
   hairGroup.add(hairRightSide);
 
   hairRightSide.add(
-    makeBox('Hair_Right_Temple_Upper', [0.052, 0.095, 0.16], [0.172, 0.285, 0.075], palette.hairDarkChestnut),
-    makeBox('Hair_Right_Cheek_Lock_Mid', [0.046, 0.088, 0.068], [0.168, 0.205, 0.118], palette.hairWarmReddishMid),
-    makeBox('Hair_Right_Cheek_Lock_Tip', [0.038, 0.065, 0.054], [0.162, 0.138, 0.124], palette.hairAuburnAccent),
-    makeBox('Hair_Right_Behind_Ear', [0.054, 0.175, 0.115], [0.172, 0.195, -0.105], palette.hairDeepChocolate),
-    makeBox('Hair_Right_Lower_Taper', [0.046, 0.075, 0.095], [0.164, 0.085, -0.108], palette.hairWarmReddishMid)
+    makeBox('Hair_Right_Temple_Upper', [0.064, 0.112, 0.176], [0.178, 0.286, 0.072], palette.hairDarkChestnut),
+    makeBox('Hair_Right_Cheek_Lock_Mid', [0.058, 0.108, 0.082], [0.174, 0.196, 0.118], palette.hairWarmReddishMid),
+    makeBox('Hair_Right_Cheek_Lock_Tip', [0.05, 0.088, 0.068], [0.166, 0.114, 0.124], palette.hairAuburnAccent),
+    makeBox('Hair_Right_Jaw_Soft_Tuft', [0.044, 0.058, 0.056], [0.156, 0.064, 0.118], palette.hairCaramelHighlight),
+    makeBox('Hair_Right_Behind_Ear', [0.064, 0.192, 0.128], [0.178, 0.192, -0.104], palette.hairDeepChocolate),
+    makeBox('Hair_Right_Lower_Taper', [0.056, 0.092, 0.106], [0.168, 0.078, -0.108], palette.hairWarmReddishMid)
   );
 
   // 7. Hair_Back_Layers — Sculpted rear hair layers tapering cleanly above collar
@@ -356,12 +358,12 @@ function buildQALayeredHairGroup(palette: QAMaterialPalette): {
   hairGroup.add(hairBackLayers);
 
   hairBackLayers.add(
-    makeBox('Hair_Back_Upper_Shell', [0.332, 0.12, 0.056], [0, 0.275, -0.186], palette.hairDarkChestnut),
-    makeBox('Hair_Back_Mid_Layer', [0.316, 0.115, 0.058], [0, 0.172, -0.188], palette.hairWarmReddishMid),
-    makeBox('Hair_Back_Left_Cluster', [0.105, 0.105, 0.048], [-0.095, 0.155, -0.196], palette.hairAuburnAccent),
-    makeBox('Hair_Back_Right_Cluster', [0.105, 0.105, 0.048], [0.095, 0.155, -0.196], palette.hairCaramelHighlight),
-    makeBox('Hair_Back_Nape_Taper', [0.268, 0.072, 0.05], [0, 0.088, -0.178], palette.hairDeepChocolate),
-    makeBox('Hair_Back_Nape_Center_Tip', [0.14, 0.042, 0.044], [0, 0.044, -0.172], palette.hairDarkChestnut)
+    makeBox('Hair_Back_Upper_Shell', [0.352, 0.132, 0.064], [0, 0.276, -0.184], palette.hairDarkChestnut),
+    makeBox('Hair_Back_Mid_Layer', [0.336, 0.124, 0.066], [0, 0.172, -0.188], palette.hairWarmReddishMid),
+    makeBox('Hair_Back_Left_Cluster', [0.116, 0.112, 0.054], [-0.102, 0.155, -0.198], palette.hairAuburnAccent),
+    makeBox('Hair_Back_Right_Cluster', [0.116, 0.112, 0.054], [0.102, 0.155, -0.198], palette.hairCaramelHighlight),
+    makeBox('Hair_Back_Nape_Taper', [0.284, 0.078, 0.056], [0, 0.086, -0.178], palette.hairDeepChocolate),
+    makeBox('Hair_Back_Nape_Center_Tip', [0.156, 0.048, 0.048], [0, 0.042, -0.172], palette.hairDarkChestnut)
   );
 
   // 8. Hair_Clip_Gold — Signature 3D square hollow gold/yellow hair clip on left-front hair lock
@@ -371,11 +373,11 @@ function buildQALayeredHairGroup(palette: QAMaterialPalette): {
   hairGroup.add(hairClipGroup);
 
   hairClipGroup.add(
-    makeBox('Hair_Clip_Gold_Top_Bar', [0.054, 0.013, 0.022], [-0.146, 0.326, 0.182], palette.hairClipGold),
-    makeBox('Hair_Clip_Gold_Bottom_Bar', [0.054, 0.013, 0.022], [-0.146, 0.286, 0.182], palette.hairClipGold),
-    makeBox('Hair_Clip_Gold_Left_Bar', [0.013, 0.053, 0.022], [-0.166, 0.306, 0.182], palette.hairClipGold),
-    makeBox('Hair_Clip_Gold_Right_Bar', [0.013, 0.053, 0.022], [-0.126, 0.306, 0.182], palette.hairClipGold),
-    makeBox('Hair_Clip_Recess_Center', [0.028, 0.028, 0.016], [-0.146, 0.306, 0.18], palette.hairDeepChocolate)
+    makeBox('Hair_Clip_Gold_Top_Bar', [0.056, 0.014, 0.024], [-0.152, 0.326, 0.186], palette.hairClipGold),
+    makeBox('Hair_Clip_Gold_Bottom_Bar', [0.056, 0.014, 0.024], [-0.152, 0.284, 0.186], palette.hairClipGold),
+    makeBox('Hair_Clip_Gold_Left_Bar', [0.014, 0.056, 0.024], [-0.173, 0.305, 0.186], palette.hairClipGold),
+    makeBox('Hair_Clip_Gold_Right_Bar', [0.014, 0.056, 0.024], [-0.131, 0.305, 0.186], palette.hairClipGold),
+    makeBox('Hair_Clip_Recess_Center', [0.028, 0.028, 0.018], [-0.152, 0.305, 0.183], palette.hairDeepChocolate)
   );
 
   return {
@@ -398,52 +400,52 @@ function buildQAFaceAndHeadAccessories(palette: QAMaterialPalette): {
   const faceGroup = new THREE.Group();
   faceGroup.name = 'Face';
 
-  // Eyes (front of head is at Z = +0.155; step facial planes to Z = +0.159..+0.167 to prevent Z-fighting)
-  const leftEye = makeBox('Eye_Left', [0.044, 0.058, 0.014], [-0.068, 0.188, 0.158], palette.eyeDark);
-  const rightEye = makeBox('Eye_Right', [0.044, 0.058, 0.014], [0.068, 0.188, 0.158], palette.eyeDark);
+  // Eyes (front of head is at Z = +0.156; step facial planes to Z = +0.160..+0.168 to prevent Z-fighting)
+  const leftEye = makeBox('Eye_Left', [0.05, 0.062, 0.014], [-0.072, 0.184, 0.16], palette.eyeDark);
+  const rightEye = makeBox('Eye_Right', [0.05, 0.062, 0.014], [0.072, 0.184, 0.16], palette.eyeDark);
 
-  const leftPupil = makeBox('Pupil_Left', [0.026, 0.036, 0.014], [-0.066, 0.186, 0.162], palette.eyeDark);
-  const rightPupil = makeBox('Pupil_Right', [0.026, 0.036, 0.014], [0.066, 0.186, 0.162], palette.eyeDark);
+  const leftPupil = makeBox('Pupil_Left', [0.028, 0.038, 0.014], [-0.07, 0.182, 0.164], palette.eyeDark);
+  const rightPupil = makeBox('Pupil_Right', [0.028, 0.038, 0.014], [0.07, 0.182, 0.164], palette.eyeDark);
 
   const leftHighlight = makeBox(
     'Eye_Highlight_Left',
-    [0.014, 0.015, 0.014],
-    [-0.076, 0.203, 0.166],
+    [0.015, 0.016, 0.014],
+    [-0.08, 0.2, 0.168],
     palette.eyeHighlight
   );
   const rightHighlight = makeBox(
     'Eye_Highlight_Right',
-    [0.014, 0.015, 0.014],
-    [0.058, 0.203, 0.166],
+    [0.015, 0.016, 0.014],
+    [0.062, 0.2, 0.168],
     palette.eyeHighlight
   );
 
   const leftEyebrow = makeBox(
     'Eyebrow_Left',
-    [0.058, 0.016, 0.016],
-    [-0.068, 0.238, 0.161],
+    [0.062, 0.016, 0.016],
+    [-0.072, 0.236, 0.163],
     palette.eyebrowBrown
   );
   const rightEyebrow = makeBox(
     'Eyebrow_Right',
-    [0.058, 0.016, 0.016],
-    [0.068, 0.238, 0.161],
+    [0.062, 0.016, 0.016],
+    [0.072, 0.236, 0.163],
     palette.eyebrowBrown
   );
 
-  const nose = makeBox('Nose_Center', [0.026, 0.026, 0.024], [0, 0.156, 0.166], palette.skinShadow);
-  const mouth = makeBox('Mouth_Center', [0.048, 0.015, 0.014], [0, 0.114, 0.16], palette.mouthWarm);
+  const nose = makeBox('Nose_Center', [0.026, 0.024, 0.022], [0, 0.152, 0.166], palette.skinShadow);
+  const mouth = makeBox('Mouth_Center', [0.048, 0.015, 0.014], [0, 0.112, 0.161], palette.mouthWarm);
 
   const leftCheek = makeBox(
     'Cheek_Blush_Left',
-    [0.038, 0.022, 0.012],
-    [-0.104, 0.146, 0.159],
+    [0.042, 0.022, 0.012],
+    [-0.108, 0.144, 0.16],
     palette.cheekBlush
   );
   const rightCheek = makeBox(
     'Cheek_Blush_Right',
-    [0.038, 0.022, 0.012],
-    [0.104, 0.146, 0.159],
+    [0.042, 0.022, 0.012],
+    [0.108, 0.144, 0.16],
     palette.cheekBlush
   );
 
@@ -466,10 +468,10 @@ function buildQAFaceAndHeadAccessories(palette: QAMaterialPalette): {
   const earsGroup = new THREE.Group();
   earsGroup.name = 'Ears';
   earsGroup.add(
-    makeBox('Ear_Left', [0.036, 0.064, 0.048], [-0.172, 0.182, -0.012], palette.skinBase),
-    makeBox('Ear_Inner_Left', [0.016, 0.034, 0.026], [-0.184, 0.182, -0.012], palette.skinShadow),
-    makeBox('Ear_Right', [0.036, 0.064, 0.048], [0.172, 0.182, -0.012], palette.skinBase),
-    makeBox('Ear_Inner_Right', [0.016, 0.034, 0.026], [0.184, 0.182, -0.012], palette.skinShadow)
+    makeBox('Ear_Left', [0.036, 0.068, 0.052], [-0.18, 0.18, -0.012], palette.skinBase),
+    makeBox('Ear_Inner_Left', [0.016, 0.036, 0.028], [-0.192, 0.18, -0.012], palette.skinShadow),
+    makeBox('Ear_Right', [0.036, 0.068, 0.052], [0.18, 0.18, -0.012], palette.skinBase),
+    makeBox('Ear_Inner_Right', [0.016, 0.036, 0.028], [0.192, 0.18, -0.012], palette.skinShadow)
   );
 
   // Optional Glasses Group (hidden by default per Section 6: "No default eyeglasses")
@@ -478,21 +480,21 @@ function buildQAFaceAndHeadAccessories(palette: QAMaterialPalette): {
   glassesGroup.visible = false;
 
   glassesGroup.add(
-    makeBox('Glasses_Rim_Top_Left', [0.088, 0.012, 0.018], [-0.072, 0.222, 0.176], palette.glassesFrameBlack),
-    makeBox('Glasses_Rim_Bottom_Left', [0.088, 0.011, 0.018], [-0.072, 0.152, 0.176], palette.glassesFrameBlack),
-    makeBox('Glasses_Rim_Outer_Left', [0.012, 0.08, 0.018], [-0.112, 0.187, 0.176], palette.glassesFrameBlack),
-    makeBox('Glasses_Rim_Inner_Left', [0.011, 0.08, 0.018], [-0.032, 0.187, 0.176], palette.glassesFrameBlack),
-    makeBox('Glasses_Lens_Left', [0.068, 0.058, 0.006], [-0.072, 0.187, 0.175], palette.glassesLensClear),
+    makeBox('Glasses_Rim_Top_Left', [0.092, 0.012, 0.018], [-0.074, 0.22, 0.178], palette.glassesFrameBlack),
+    makeBox('Glasses_Rim_Bottom_Left', [0.092, 0.011, 0.018], [-0.074, 0.15, 0.178], palette.glassesFrameBlack),
+    makeBox('Glasses_Rim_Outer_Left', [0.012, 0.08, 0.018], [-0.114, 0.185, 0.178], palette.glassesFrameBlack),
+    makeBox('Glasses_Rim_Inner_Left', [0.011, 0.08, 0.018], [-0.034, 0.185, 0.178], palette.glassesFrameBlack),
+    makeBox('Glasses_Lens_Left', [0.07, 0.058, 0.006], [-0.074, 0.185, 0.177], palette.glassesLensClear),
 
-    makeBox('Glasses_Rim_Top_Right', [0.088, 0.012, 0.018], [0.072, 0.222, 0.176], palette.glassesFrameBlack),
-    makeBox('Glasses_Rim_Bottom_Right', [0.088, 0.011, 0.018], [0.072, 0.152, 0.176], palette.glassesFrameBlack),
-    makeBox('Glasses_Rim_Outer_Right', [0.012, 0.08, 0.018], [0.112, 0.187, 0.176], palette.glassesFrameBlack),
-    makeBox('Glasses_Rim_Inner_Right', [0.011, 0.08, 0.018], [0.032, 0.187, 0.176], palette.glassesFrameBlack),
-    makeBox('Glasses_Lens_Right', [0.068, 0.058, 0.006], [0.072, 0.187, 0.175], palette.glassesLensClear),
+    makeBox('Glasses_Rim_Top_Right', [0.092, 0.012, 0.018], [0.074, 0.22, 0.178], palette.glassesFrameBlack),
+    makeBox('Glasses_Rim_Bottom_Right', [0.092, 0.011, 0.018], [0.074, 0.15, 0.178], palette.glassesFrameBlack),
+    makeBox('Glasses_Rim_Outer_Right', [0.012, 0.08, 0.018], [0.114, 0.185, 0.178], palette.glassesFrameBlack),
+    makeBox('Glasses_Rim_Inner_Right', [0.011, 0.08, 0.018], [0.034, 0.185, 0.178], palette.glassesFrameBlack),
+    makeBox('Glasses_Lens_Right', [0.07, 0.058, 0.006], [0.074, 0.185, 0.177], palette.glassesLensClear),
 
-    makeBox('Glasses_Bridge_Center', [0.054, 0.012, 0.018], [0, 0.204, 0.176], palette.glassesFrameBlack),
-    makeBox('Glasses_Temple_Left', [0.012, 0.012, 0.185], [-0.162, 0.204, 0.082], palette.glassesFrameBlack),
-    makeBox('Glasses_Temple_Right', [0.012, 0.012, 0.185], [0.162, 0.204, 0.082], palette.glassesFrameBlack)
+    makeBox('Glasses_Bridge_Center', [0.056, 0.012, 0.018], [0, 0.202, 0.178], palette.glassesFrameBlack),
+    makeBox('Glasses_Temple_Left', [0.012, 0.012, 0.185], [-0.168, 0.202, 0.082], palette.glassesFrameBlack),
+    makeBox('Glasses_Temple_Right', [0.012, 0.012, 0.185], [0.168, 0.202, 0.082], palette.glassesFrameBlack)
   );
 
   // Optional Black-and-Yellow QA Headset (`Headset` group — matches reference sheet front-right/front-left headphone views)
@@ -502,16 +504,16 @@ function buildQAFaceAndHeadAccessories(palette: QAMaterialPalette): {
   headsetGroup.visible = false;
 
   headsetGroup.add(
-    makeBox('Headset_Top_Arch_Center', [0.32, 0.022, 0.036], [0, 0.436, -0.012], palette.headsetBandBlack),
-    makeBox('Headset_Top_Pad_Yellow', [0.18, 0.012, 0.032], [0, 0.424, -0.012], palette.headsetPadYellow),
-    makeBox('Headset_Side_Band_Left', [0.022, 0.21, 0.034], [-0.188, 0.322, -0.012], palette.headsetBandBlack),
-    makeBox('Headset_Side_Band_Right', [0.022, 0.21, 0.034], [0.188, 0.322, -0.012], palette.headsetBandBlack),
-    makeBox('Headset_EarCup_Left_Base', [0.038, 0.096, 0.088], [-0.194, 0.186, -0.012], palette.headsetSilverAccent),
-    makeBox('Headset_EarCup_Left_Yellow_Ring', [0.016, 0.068, 0.062], [-0.216, 0.186, -0.012], palette.headsetPadYellow),
-    makeBox('Headset_EarCup_Right_Base', [0.038, 0.096, 0.088], [0.194, 0.186, -0.012], palette.headsetSilverAccent),
-    makeBox('Headset_EarCup_Right_Yellow_Ring', [0.016, 0.068, 0.062], [0.216, 0.186, -0.012], palette.headsetPadYellow),
-    makeBox('Headset_Mic_Boom_Arm', [0.014, 0.014, 0.115], [-0.186, 0.132, 0.052], palette.headsetBandBlack),
-    makeBox('Headset_Mic_Tip_Yellow', [0.022, 0.022, 0.026], [-0.172, 0.126, 0.116], palette.headsetPadYellow)
+    makeBox('Headset_Top_Arch_Center', [0.336, 0.022, 0.036], [0, 0.438, -0.012], palette.headsetBandBlack),
+    makeBox('Headset_Top_Pad_Yellow', [0.19, 0.012, 0.032], [0, 0.426, -0.012], palette.headsetPadYellow),
+    makeBox('Headset_Side_Band_Left', [0.022, 0.21, 0.034], [-0.196, 0.322, -0.012], palette.headsetBandBlack),
+    makeBox('Headset_Side_Band_Right', [0.022, 0.21, 0.034], [0.196, 0.322, -0.012], palette.headsetBandBlack),
+    makeBox('Headset_EarCup_Left_Base', [0.038, 0.096, 0.088], [-0.202, 0.184, -0.012], palette.headsetSilverAccent),
+    makeBox('Headset_EarCup_Left_Yellow_Ring', [0.016, 0.068, 0.062], [-0.224, 0.184, -0.012], palette.headsetPadYellow),
+    makeBox('Headset_EarCup_Right_Base', [0.038, 0.096, 0.088], [0.202, 0.184, -0.012], palette.headsetSilverAccent),
+    makeBox('Headset_EarCup_Right_Yellow_Ring', [0.016, 0.068, 0.062], [0.224, 0.184, -0.012], palette.headsetPadYellow),
+    makeBox('Headset_Mic_Boom_Arm', [0.014, 0.014, 0.115], [-0.194, 0.13, 0.052], palette.headsetBandBlack),
+    makeBox('Headset_Mic_Tip_Yellow', [0.022, 0.022, 0.026], [-0.178, 0.124, 0.116], palette.headsetPadYellow)
   );
 
   return {
@@ -551,23 +553,27 @@ function buildQATorsoAndBackpack(palette: QAMaterialPalette): {
 } {
   const torsoGroup = new THREE.Group();
   torsoGroup.name = 'Torso';
-  torsoGroup.position.set(0, 0.02, 0);
+  // Attached at [0, 0, 0] on Hips (consistent with Database & Research characters) so there is zero waist gap
+  torsoGroup.position.set(0, 0, 0);
 
   const innerShirtGroup = new THREE.Group();
   innerShirtGroup.name = 'InnerHoodieShirt';
   torsoGroup.add(innerShirtGroup);
 
   innerShirtGroup.add(
-    // Neck & white hoodie collar framing the neckline
-    makeBox('Neck_Column', [0.115, 0.075, 0.105], [0, 0.325, 0.0], palette.skinBase),
-    makeBox('Hoodie_Collar_Left', [0.072, 0.056, 0.165], [-0.088, 0.305, 0.008], palette.innerHoodieWhite),
-    makeBox('Hoodie_Collar_Right', [0.072, 0.056, 0.165], [0.088, 0.305, 0.008], palette.innerHoodieWhite),
-    makeBox('Hoodie_Collar_Back', [0.22, 0.062, 0.068], [0, 0.312, -0.068], palette.innerHoodieWhite),
+    // Solid Neck Column bridging Torso (Y = 0.356) into Head (Y = 0.360..0.420)
+    makeBox('Neck_Column', [0.136, 0.088, 0.128], [0, 0.365, -0.002], palette.skinBase),
+    // Crisp white hoodie collar & hood rim framing the neckline (matches Character Sheet!)
+    makeBox('Hoodie_Collar_Left', [0.086, 0.062, 0.188], [-0.104, 0.348, 0.008], palette.innerHoodieWhite),
+    makeBox('Hoodie_Collar_Right', [0.086, 0.062, 0.188], [0.104, 0.348, 0.008], palette.innerHoodieWhite),
+    makeBox('Hoodie_Collar_Back', [0.264, 0.068, 0.082], [0, 0.354, -0.078], palette.innerHoodieWhite),
+    makeBox('Hoodie_Collar_Front_Left_Lapel', [0.054, 0.048, 0.028], [-0.056, 0.336, 0.098], palette.innerHoodieWhite),
+    makeBox('Hoodie_Collar_Front_Right_Lapel', [0.054, 0.048, 0.028], [0.056, 0.336, 0.098], palette.innerHoodieWhite),
     // White inner front shirt panel & subtle yellow chest graphic
-    makeBox('Inner_Shirt_Chest_Center', [0.115, 0.26, 0.168], [0, 0.165, 0.016], palette.innerHoodieWhite),
-    makeBox('Inner_Shirt_Neck_V_Shadow', [0.064, 0.044, 0.014], [0, 0.275, 0.098], palette.innerCollarShadow),
-    makeBox('Inner_Shirt_Graphic_Gold_Top', [0.058, 0.022, 0.012], [0, 0.205, 0.101], palette.qaGoldYellow),
-    makeBox('Inner_Shirt_Graphic_Gold_Bottom', [0.042, 0.016, 0.012], [0, 0.172, 0.101], palette.qaAmberAccent)
+    makeBox('Inner_Shirt_Chest_Center', [0.128, 0.315, 0.186], [0, 0.182, 0.012], palette.innerHoodieWhite),
+    makeBox('Inner_Shirt_Neck_V_Shadow', [0.068, 0.046, 0.016], [0, 0.312, 0.102], palette.innerCollarShadow),
+    makeBox('Inner_Shirt_Graphic_Gold_Top', [0.064, 0.024, 0.014], [0, 0.228, 0.104], palette.qaGoldYellow),
+    makeBox('Inner_Shirt_Graphic_Gold_Bottom', [0.046, 0.018, 0.014], [0, 0.194, 0.104], palette.qaAmberAccent)
   );
 
   const qaUniformGroup = new THREE.Group();
@@ -575,24 +581,24 @@ function buildQATorsoAndBackpack(palette: QAMaterialPalette): {
   torsoGroup.add(qaUniformGroup);
 
   qaUniformGroup.add(
-    // Dark charcoal/black technical QA jacket/vest body
-    makeBox('QA_Jacket_Core_Back', [0.288, 0.31, 0.165], [0, 0.155, -0.008], palette.jacketCharcoal),
-    makeBox('QA_Jacket_Front_Left_Panel', [0.092, 0.305, 0.182], [-0.098, 0.155, 0.012], palette.jacketDeepBlack),
-    makeBox('QA_Jacket_Front_Right_Panel', [0.092, 0.305, 0.182], [0.098, 0.155, 0.012], palette.jacketDeepBlack),
-    // Bright gold/yellow vertical front trim rails & drawstrings
-    makeBox('QA_Jacket_Trim_Gold_Left', [0.018, 0.285, 0.016], [-0.052, 0.155, 0.102], palette.qaGoldYellow),
-    makeBox('QA_Jacket_Trim_Gold_Right', [0.018, 0.285, 0.016], [0.052, 0.155, 0.102], palette.qaGoldYellow),
-    makeBox('QA_Hoodie_Drawstring_Left', [0.014, 0.095, 0.016], [-0.036, 0.235, 0.108], palette.innerHoodieWhite),
-    makeBox('QA_Hoodie_Drawstring_Tip_Left', [0.016, 0.02, 0.018], [-0.036, 0.182, 0.109], palette.qaGoldYellow),
-    makeBox('QA_Hoodie_Drawstring_Right', [0.014, 0.095, 0.016], [0.036, 0.235, 0.108], palette.innerHoodieWhite),
-    makeBox('QA_Hoodie_Drawstring_Tip_Right', [0.016, 0.02, 0.018], [0.036, 0.182, 0.109], palette.qaGoldYellow),
-    // Bottom hem band with gold side tabs
-    makeBox('QA_Jacket_Bottom_Hem', [0.296, 0.036, 0.188], [0, 0.018, 0.004], palette.jacketDeepBlack),
-    makeBox('QA_Jacket_Side_Gold_Tab_Left', [0.016, 0.044, 0.072], [-0.148, 0.045, 0.025], palette.qaGoldYellow),
-    makeBox('QA_Jacket_Side_Gold_Tab_Right', [0.016, 0.044, 0.072], [0.148, 0.045, 0.025], palette.qaGoldYellow),
+    // Dark charcoal/black technical QA jacket/vest body bridging all the way from belt (Y = -0.01) to shoulders (Y = 0.356)
+    makeBox('QA_Jacket_Core_Back', [0.332, 0.362, 0.188], [0, 0.176, -0.006], palette.jacketCharcoal),
+    makeBox('QA_Jacket_Front_Left_Panel', [0.108, 0.356, 0.202], [-0.112, 0.176, 0.008], palette.jacketDeepBlack),
+    makeBox('QA_Jacket_Front_Right_Panel', [0.108, 0.356, 0.202], [0.112, 0.176, 0.008], palette.jacketDeepBlack),
+    // Bright gold/yellow vertical front trim rails & hoodie drawstrings
+    makeBox('QA_Jacket_Trim_Gold_Left', [0.02, 0.332, 0.018], [-0.058, 0.178, 0.106], palette.qaGoldYellow),
+    makeBox('QA_Jacket_Trim_Gold_Right', [0.02, 0.332, 0.018], [0.058, 0.178, 0.106], palette.qaGoldYellow),
+    makeBox('QA_Hoodie_Drawstring_Left', [0.016, 0.11, 0.018], [-0.038, 0.265, 0.112], palette.innerHoodieWhite),
+    makeBox('QA_Hoodie_Drawstring_Tip_Left', [0.018, 0.022, 0.02], [-0.038, 0.204, 0.113], palette.qaGoldYellow),
+    makeBox('QA_Hoodie_Drawstring_Right', [0.016, 0.11, 0.018], [0.038, 0.265, 0.112], palette.innerHoodieWhite),
+    makeBox('QA_Hoodie_Drawstring_Tip_Right', [0.018, 0.022, 0.02], [0.038, 0.204, 0.113], palette.qaGoldYellow),
+    // Bottom hem band overlapping belt/pelvis with gold side tabs
+    makeBox('QA_Jacket_Bottom_Hem', [0.34, 0.044, 0.208], [0, 0.012, 0.004], palette.jacketDeepBlack),
+    makeBox('QA_Jacket_Side_Gold_Tab_Left', [0.018, 0.05, 0.082], [-0.168, 0.048, 0.024], palette.qaGoldYellow),
+    makeBox('QA_Jacket_Side_Gold_Tab_Right', [0.018, 0.05, 0.082], [0.168, 0.048, 0.024], palette.qaGoldYellow),
     // Front chest QA badge on left lapel
-    makeBox('QA_Chest_Badge_Plate', [0.046, 0.028, 0.014], [0.098, 0.235, 0.104], palette.qaGoldYellow),
-    makeBox('QA_Chest_Badge_Dot', [0.018, 0.012, 0.016], [0.098, 0.235, 0.106], palette.jacketDeepBlack)
+    makeBox('QA_Chest_Badge_Plate', [0.052, 0.032, 0.016], [0.112, 0.268, 0.108], palette.qaGoldYellow),
+    makeBox('QA_Chest_Badge_Dot', [0.02, 0.014, 0.018], [0.112, 0.268, 0.11], palette.jacketDeepBlack)
   );
 
   // Compact Black Technical QA Backpack (`Backpack` group — auto-hidden when seated)
@@ -601,37 +607,37 @@ function buildQATorsoAndBackpack(palette: QAMaterialPalette): {
   torsoGroup.add(backpackGroup);
 
   backpackGroup.add(
-    // Shoulder straps
-    makeBox('Backpack_Strap_Front_Left', [0.032, 0.26, 0.018], [-0.112, 0.175, 0.098], palette.backpackBlack),
-    makeBox('Backpack_Strap_Front_Right', [0.032, 0.26, 0.018], [0.112, 0.175, 0.098], palette.backpackBlack),
-    makeBox('Backpack_Strap_Top_Left', [0.034, 0.022, 0.195], [-0.112, 0.305, 0.0], palette.backpackBlack),
-    makeBox('Backpack_Strap_Top_Right', [0.034, 0.022, 0.195], [0.112, 0.305, 0.0], palette.backpackBlack),
-    makeBox('Backpack_Strap_Gold_Clip_Left', [0.036, 0.022, 0.02], [-0.112, 0.195, 0.102], palette.qaGoldYellow),
-    makeBox('Backpack_Strap_Gold_Clip_Right', [0.036, 0.022, 0.02], [0.112, 0.195, 0.102], palette.qaGoldYellow),
+    // Shoulder straps wrapping cleanly over shoulders
+    makeBox('Backpack_Strap_Front_Left', [0.036, 0.285, 0.02], [-0.128, 0.195, 0.106], palette.backpackBlack),
+    makeBox('Backpack_Strap_Front_Right', [0.036, 0.285, 0.02], [0.128, 0.195, 0.106], palette.backpackBlack),
+    makeBox('Backpack_Strap_Top_Left', [0.038, 0.024, 0.215], [-0.128, 0.352, -0.004], palette.backpackBlack),
+    makeBox('Backpack_Strap_Top_Right', [0.038, 0.024, 0.215], [0.128, 0.352, -0.004], palette.backpackBlack),
+    makeBox('Backpack_Strap_Gold_Clip_Left', [0.04, 0.024, 0.022], [-0.128, 0.222, 0.11], palette.qaGoldYellow),
+    makeBox('Backpack_Strap_Gold_Clip_Right', [0.04, 0.024, 0.022], [0.128, 0.222, 0.11], palette.qaGoldYellow),
 
     // Main backpack body & yellow accent trim
-    makeBox('Backpack_Main_Body', [0.248, 0.275, 0.115], [0, 0.165, -0.142], palette.backpackBlack),
-    makeBox('Backpack_Upper_Bevel', [0.224, 0.032, 0.095], [0, 0.308, -0.138], palette.backpackPocketSlate),
-    makeBox('Backpack_Rear_Pocket', [0.208, 0.165, 0.032], [0, 0.138, -0.208], palette.backpackPocketSlate),
-    makeBox('Backpack_Gold_Top_Stripe', [0.212, 0.018, 0.034], [0, 0.232, -0.208], palette.qaGoldYellow),
-    makeBox('Backpack_Side_Pocket_Left', [0.024, 0.11, 0.078], [-0.132, 0.125, -0.142], palette.backpackPocketSlate),
-    makeBox('Backpack_Side_Pocket_Right', [0.024, 0.11, 0.078], [0.132, 0.125, -0.142], palette.backpackPocketSlate),
-    makeBox('Backpack_Side_Gold_Tab_Left', [0.026, 0.022, 0.048], [-0.133, 0.185, -0.142], palette.qaGoldYellow),
-    makeBox('Backpack_Side_Gold_Tab_Right', [0.026, 0.022, 0.048], [0.133, 0.185, -0.142], palette.qaGoldYellow),
+    makeBox('Backpack_Main_Body', [0.276, 0.295, 0.122], [0, 0.188, -0.156], palette.backpackBlack),
+    makeBox('Backpack_Upper_Bevel', [0.248, 0.034, 0.102], [0, 0.342, -0.15], palette.backpackPocketSlate),
+    makeBox('Backpack_Rear_Pocket', [0.228, 0.178, 0.034], [0, 0.156, -0.224], palette.backpackPocketSlate),
+    makeBox('Backpack_Gold_Top_Stripe', [0.232, 0.02, 0.036], [0, 0.256, -0.224], palette.qaGoldYellow),
+    makeBox('Backpack_Side_Pocket_Left', [0.026, 0.12, 0.084], [-0.148, 0.142, -0.156], palette.backpackPocketSlate),
+    makeBox('Backpack_Side_Pocket_Right', [0.026, 0.12, 0.084], [0.148, 0.142, -0.156], palette.backpackPocketSlate),
+    makeBox('Backpack_Side_Gold_Tab_Left', [0.028, 0.024, 0.052], [-0.149, 0.208, -0.156], palette.qaGoldYellow),
+    makeBox('Backpack_Side_Gold_Tab_Right', [0.028, 0.024, 0.052], [0.149, 0.208, -0.156], palette.qaGoldYellow),
 
     // 3D Voxel "QA" Emblem on Rear Panel of Backpack (clearly readable from Back view!)
-    // Letter 'Q' (left side of rear pocket: X = -0.045)
-    makeBox('Backpack_QA_Logo_Q_Top', [0.046, 0.012, 0.012], [-0.042, 0.172, -0.226], palette.qaGoldYellow),
-    makeBox('Backpack_QA_Logo_Q_Bottom', [0.046, 0.012, 0.012], [-0.042, 0.118, -0.226], palette.qaGoldYellow),
-    makeBox('Backpack_QA_Logo_Q_Left', [0.012, 0.066, 0.012], [-0.059, 0.145, -0.226], palette.qaGoldYellow),
-    makeBox('Backpack_QA_Logo_Q_Right', [0.012, 0.066, 0.012], [-0.025, 0.145, -0.226], palette.qaGoldYellow),
-    makeBox('Backpack_QA_Logo_Q_Tail', [0.016, 0.016, 0.014], [-0.02, 0.112, -0.227], palette.qaAmberAccent),
+    // Letter 'Q' (left side of rear pocket: X = -0.046)
+    makeBox('Backpack_QA_Logo_Q_Top', [0.048, 0.013, 0.012], [-0.046, 0.192, -0.244], palette.qaGoldYellow),
+    makeBox('Backpack_QA_Logo_Q_Bottom', [0.048, 0.013, 0.012], [-0.046, 0.136, -0.244], palette.qaGoldYellow),
+    makeBox('Backpack_QA_Logo_Q_Left', [0.013, 0.068, 0.012], [-0.064, 0.164, -0.244], palette.qaGoldYellow),
+    makeBox('Backpack_QA_Logo_Q_Right', [0.013, 0.068, 0.012], [-0.028, 0.164, -0.244], palette.qaGoldYellow),
+    makeBox('Backpack_QA_Logo_Q_Tail', [0.016, 0.016, 0.014], [-0.022, 0.13, -0.245], palette.qaAmberAccent),
 
-    // Letter 'A' (right side of rear pocket: X = +0.042)
-    makeBox('Backpack_QA_Logo_A_Top', [0.046, 0.012, 0.012], [0.042, 0.172, -0.226], palette.qaGoldYellow),
-    makeBox('Backpack_QA_Logo_A_Mid', [0.046, 0.012, 0.012], [0.042, 0.144, -0.226], palette.qaGoldYellow),
-    makeBox('Backpack_QA_Logo_A_Left', [0.012, 0.066, 0.012], [0.025, 0.145, -0.226], palette.qaGoldYellow),
-    makeBox('Backpack_QA_Logo_A_Right', [0.012, 0.066, 0.012], [0.059, 0.145, -0.226], palette.qaGoldYellow)
+    // Letter 'A' (right side of rear pocket: X = +0.046)
+    makeBox('Backpack_QA_Logo_A_Top', [0.048, 0.013, 0.012], [0.046, 0.192, -0.244], palette.qaGoldYellow),
+    makeBox('Backpack_QA_Logo_A_Mid', [0.048, 0.013, 0.012], [0.046, 0.163, -0.244], palette.qaGoldYellow),
+    makeBox('Backpack_QA_Logo_A_Left', [0.013, 0.068, 0.012], [0.028, 0.164, -0.244], palette.qaGoldYellow),
+    makeBox('Backpack_QA_Logo_A_Right', [0.013, 0.068, 0.012], [0.064, 0.164, -0.244], palette.qaGoldYellow)
   );
 
   return {
@@ -652,7 +658,8 @@ function buildQAHandheldProps(palette: QAMaterialPalette): {
 } {
   const propsAttachment = new THREE.Group();
   propsAttachment.name = 'Props_Attachment';
-  propsAttachment.position.set(0, -0.25, 0.075);
+  // Positioned directly in Hand_Right palm/fingers (not -0.25 below Hand_Right!)
+  propsAttachment.position.set(0, -0.035, 0.072);
 
   // 1. Prop_QA_Laptop — Silver testing laptop with yellow cat/QA sticker on lid (matches reference sheet!)
   const laptop = new THREE.Group();
@@ -921,25 +928,29 @@ export function buildQAEngineerCharacterRig(): BuiltQAEngineerRig {
   root.add(hips);
 
   hips.add(
-    makeBox('Pelvis_Base_Block', [0.276, 0.095, 0.172], [0, -0.025, 0], palette.trousersCharcoal),
-    makeBox('Belt_Strap_Dark', [0.284, 0.032, 0.18], [0, 0.012, 0.002], palette.jacketDeepBlack),
-    makeBox('Belt_Buckle_Gold', [0.052, 0.034, 0.018], [0, 0.012, 0.094], palette.qaGoldYellow)
+    // Solid Pelvis & Hip Bridge overlapping both Torso bottom and Upper Thighs so there is zero air gap
+    makeBox('Pelvis_Base_Block', [0.324, 0.118, 0.194], [0, -0.042, 0], palette.trousersCharcoal),
+    makeBox('Pelvis_Hip_Bridge_Center', [0.116, 0.088, 0.186], [0, -0.076, 0], palette.trousersCharcoal),
+    makeBox('Belt_Strap_Dark', [0.332, 0.036, 0.202], [0, 0.012, 0.002], palette.jacketDeepBlack),
+    makeBox('Belt_Buckle_Gold', [0.058, 0.038, 0.018], [0, 0.012, 0.102], palette.qaGoldYellow),
+    makeBox('Belt_Loop_Gold_Left', [0.018, 0.038, 0.018], [-0.096, 0.012, 0.101], palette.qaAmberAccent),
+    makeBox('Belt_Loop_Gold_Right', [0.018, 0.038, 0.018], [0.096, 0.012, 0.101], palette.qaAmberAccent)
   );
 
-  // Torso, Uniform & Backpack
+  // Torso, Uniform & Backpack (attached at [0, 0, 0] on Hips)
   const { torsoGroup, qaUniformGroup, innerShirtGroup, backpackGroup } =
     buildQATorsoAndBackpack(palette);
   hips.add(torsoGroup);
 
-  // Head Pivot attached to Torso at [0, 0.34, 0] (World Y = 1.260)
+  // Head Pivot attached to Torso at [0, 0.36, 0] (World Y = 1.260; +0.475 Hair_High_Bun = 1.735u exact height!)
   const head = new THREE.Group();
   head.name = 'Head';
-  head.position.set(0, 0.34, 0);
+  head.position.set(0, 0.36, 0);
   torsoGroup.add(head);
 
   head.add(
-    makeBox('Head_Skull_Core', [0.312, 0.295, 0.304], [0, 0.195, 0], palette.skinBase),
-    makeBox('Head_Jaw_Soft_Bevel', [0.288, 0.045, 0.278], [0, 0.068, 0.006], palette.skinBase)
+    makeBox('Head_Skull_Core', [0.336, 0.31, 0.312], [0, 0.196, 0], palette.skinBase),
+    makeBox('Head_Jaw_Soft_Bevel', [0.312, 0.052, 0.292], [0, 0.062, 0.006], palette.skinBase)
   );
 
   // Layered Chestnut-Brown Hair with High Bun & Gold Hair Clip
@@ -952,80 +963,99 @@ export function buildQAEngineerCharacterRig(): BuiltQAEngineerRig {
   head.add(faceNodes.faceGroup, earsGroup, glassesGroup, headsetGroup);
 
   // Left Arm & Hand (`Arm_Left` -> `Hand_Left`)
-  // Black upper sleeve with yellow/gold "QA" shoulder patch + white lower hoodie sleeve cuff!
+  // Positioned cleanly outside torso shoulder (X = -0.222, Y = 0.315) with full-length sleeve, white cuff, wrist, palm, fingers & thumb!
   const leftArm = new THREE.Group();
   leftArm.name = 'Arm_Left';
-  leftArm.position.set(-0.192, 0.275, 0);
+  leftArm.position.set(-0.222, 0.315, 0);
   torsoGroup.add(leftArm);
 
   leftArm.add(
-    makeBox('Sleeve_Upper_Left', [0.092, 0.145, 0.098], [0, -0.058, 0], palette.jacketDeepBlack),
-    makeBox('Sleeve_QA_Shoulder_Patch_Left', [0.014, 0.052, 0.058], [-0.048, -0.048, 0], palette.qaGoldYellow),
-    makeBox('Sleeve_QA_Patch_Inner_Left', [0.016, 0.024, 0.028], [-0.049, -0.048, 0], palette.jacketDeepBlack),
-    makeBox('Sleeve_Lower_White_Cuff_Left', [0.086, 0.095, 0.092], [0, -0.168, 0], palette.innerHoodieWhite),
-    makeBox('Sleeve_Gold_Band_Left', [0.088, 0.018, 0.094], [0, -0.125, 0], palette.qaGoldYellow)
+    makeBox('Sleeve_Shoulder_Cap_Left', [0.11, 0.064, 0.114], [0, 0.006, 0], palette.jacketDeepBlack),
+    makeBox('Sleeve_Upper_Left', [0.108, 0.165, 0.112], [0, -0.088, 0], palette.jacketDeepBlack),
+    makeBox('Sleeve_QA_Shoulder_Patch_Left', [0.016, 0.058, 0.064], [-0.054, -0.068, 0], palette.qaGoldYellow),
+    makeBox('Sleeve_QA_Patch_Inner_Left', [0.018, 0.026, 0.03], [-0.055, -0.068, 0], palette.jacketDeepBlack),
+    makeBox('Sleeve_Gold_Band_Left', [0.11, 0.022, 0.114], [0, -0.168, 0], palette.qaGoldYellow),
+    makeBox('Sleeve_Lower_White_Cuff_Left', [0.102, 0.096, 0.106], [0, -0.218, 0], palette.innerHoodieWhite),
+    makeBox('Sleeve_Wrist_Rib_Left', [0.094, 0.024, 0.098], [0, -0.268, 0], palette.innerCollarShadow)
   );
 
   const leftHand = new THREE.Group();
   leftHand.name = 'Hand_Left';
-  leftHand.position.set(0, -0.245, 0);
+  leftHand.position.set(0, -0.312, 0);
   leftArm.add(leftHand);
-  leftHand.add(makeBox('Hand_Left_Palm', [0.072, 0.072, 0.076], [0, 0, 0], palette.skinBase));
+  leftHand.add(
+    makeBox('Hand_Left_Wrist', [0.072, 0.034, 0.074], [0, 0.032, 0], palette.skinShadow),
+    makeBox('Hand_Left_Palm', [0.088, 0.078, 0.09], [0, -0.006, 0], palette.skinBase),
+    makeBox('Hand_Left_Fingers', [0.084, 0.036, 0.086], [0, -0.052, 0.004], palette.skinBase),
+    makeBox('Hand_Left_Thumb', [0.032, 0.044, 0.038], [0.048, -0.01, 0.032], palette.skinBase)
+  );
 
   // Right Arm & Hand (`Arm_Right` -> `Hand_Right` -> `Props_Attachment`)
   const rightArm = new THREE.Group();
   rightArm.name = 'Arm_Right';
-  rightArm.position.set(0.192, 0.275, 0);
+  rightArm.position.set(0.222, 0.315, 0);
   torsoGroup.add(rightArm);
 
   rightArm.add(
-    makeBox('Sleeve_Upper_Right', [0.092, 0.145, 0.098], [0, -0.058, 0], palette.jacketDeepBlack),
-    makeBox('Sleeve_Shoulder_Stripe_Right', [0.014, 0.048, 0.054], [0.048, -0.048, 0], palette.qaGoldYellow),
-    makeBox('Sleeve_Lower_White_Cuff_Right', [0.086, 0.095, 0.092], [0, -0.168, 0], palette.innerHoodieWhite),
-    makeBox('Sleeve_Gold_Band_Right', [0.088, 0.018, 0.094], [0, -0.125, 0], palette.qaGoldYellow)
+    makeBox('Sleeve_Shoulder_Cap_Right', [0.11, 0.064, 0.114], [0, 0.006, 0], palette.jacketDeepBlack),
+    makeBox('Sleeve_Upper_Right', [0.108, 0.165, 0.112], [0, -0.088, 0], palette.jacketDeepBlack),
+    makeBox('Sleeve_Shoulder_Stripe_Right', [0.016, 0.054, 0.06], [0.054, -0.068, 0], palette.qaGoldYellow),
+    makeBox('Sleeve_Gold_Band_Right', [0.11, 0.022, 0.114], [0, -0.168, 0], palette.qaGoldYellow),
+    makeBox('Sleeve_Lower_White_Cuff_Right', [0.102, 0.096, 0.106], [0, -0.218, 0], palette.innerHoodieWhite),
+    makeBox('Sleeve_Wrist_Rib_Right', [0.094, 0.024, 0.098], [0, -0.268, 0], palette.innerCollarShadow)
   );
 
   const rightHand = new THREE.Group();
   rightHand.name = 'Hand_Right';
-  rightHand.position.set(0, -0.245, 0);
+  rightHand.position.set(0, -0.312, 0);
   rightArm.add(rightHand);
-  rightHand.add(makeBox('Hand_Right_Palm', [0.072, 0.072, 0.076], [0, 0, 0], palette.skinBase));
+  rightHand.add(
+    makeBox('Hand_Right_Wrist', [0.072, 0.034, 0.074], [0, 0.032, 0], palette.skinShadow),
+    makeBox('Hand_Right_Palm', [0.088, 0.078, 0.09], [0, -0.006, 0], palette.skinBase),
+    makeBox('Hand_Right_Fingers', [0.084, 0.036, 0.086], [0, -0.052, 0.004], palette.skinBase),
+    makeBox('Hand_Right_Thumb', [0.032, 0.044, 0.038], [-0.048, -0.01, 0.032], palette.skinBase)
+  );
 
   const { propsAttachment, propMap } = buildQAHandheldProps(palette);
   rightHand.add(propsAttachment);
 
-  // Left & Right Legs + Sneakers (`Leg_Left`, `Leg_Right`, `Foot_Left`, `Foot_Right`)
-  // Attached to Hips at Y = -0.180 (World Y = 0.720). Soles reach -0.720 (World Y = 0.000).
+  // Left & Right Legs + Ankles + Sneakers (`Leg_Left`, `Leg_Right`)
+  // Attached to Hips at Y = 0.000 (World Y = 0.900) so thighs tuck seamlessly into Pelvis_Base_Block.
+  // Soles reach Y = -0.900 (World Y = 0.000) with Ankle_Sock bridging trouser cuffs and sneakers!
   const leftLeg = new THREE.Group();
   leftLeg.name = 'Leg_Left';
-  leftLeg.position.set(-0.078, -0.18, 0);
+  leftLeg.position.set(-0.088, 0, 0);
   hips.add(leftLeg);
 
   leftLeg.add(
-    makeBox('Trouser_Thigh_Left', [0.112, 0.28, 0.124], [0, -0.14, 0], palette.trousersCharcoal),
-    makeBox('Trouser_Knee_Lower_Left', [0.106, 0.24, 0.118], [0, -0.39, 0], palette.trousersCharcoal),
-    makeBox('Trouser_Side_Trim_Gold_Left', [0.012, 0.44, 0.024], [-0.056, -0.27, 0], palette.qaGoldYellow),
-    makeBox('Trouser_Cuff_White_Left', [0.11, 0.032, 0.122], [0, -0.52, 0], palette.innerHoodieWhite),
-    makeBox('Shoe_Upper_Left', [0.114, 0.095, 0.176], [0, -0.625, 0.022], palette.sneakerWhite),
-    makeBox('Shoe_Tongue_Gold_Left', [0.068, 0.042, 0.024], [0, -0.59, 0.098], palette.qaGoldYellow),
-    makeBox('Shoe_Heel_Collar_Dark_Left', [0.116, 0.044, 0.058], [0, -0.6, -0.038], palette.jacketDeepBlack),
-    makeBox('Shoe_Sole_Left', [0.12, 0.05, 0.186], [0, -0.695, 0.022], palette.sneakerSoleDark)
+    makeBox('Trouser_Thigh_Left', [0.138, 0.42, 0.15], [0, -0.23, 0], palette.trousersCharcoal),
+    makeBox('Trouser_Knee_Lower_Left', [0.132, 0.36, 0.144], [0, -0.59, 0], palette.trousersCharcoal),
+    makeBox('Trouser_Side_Trim_Gold_Left', [0.014, 0.7, 0.026], [-0.068, -0.41, 0], palette.qaGoldYellow),
+    makeBox('Trouser_Cuff_White_Left', [0.138, 0.044, 0.15], [0, -0.784, 0], palette.innerHoodieWhite),
+    makeBox('Ankle_Sock_Left', [0.112, 0.048, 0.12], [0, -0.816, 0.004], palette.innerHoodieWhite),
+    makeBox('Shoe_Upper_Left', [0.144, 0.084, 0.206], [0, -0.838, 0.024], palette.sneakerWhite),
+    makeBox('Shoe_Tongue_Gold_Left', [0.078, 0.044, 0.026], [0, -0.802, 0.108], palette.qaGoldYellow),
+    makeBox('Shoe_Side_Accent_Gold_Left', [0.016, 0.028, 0.064], [-0.072, -0.842, 0.015], palette.qaGoldYellow),
+    makeBox('Shoe_Heel_Collar_Dark_Left', [0.146, 0.046, 0.064], [0, -0.812, -0.048], palette.jacketDeepBlack),
+    makeBox('Shoe_Sole_Left', [0.15, 0.036, 0.216], [0, -0.882, 0.024], palette.sneakerSoleDark)
   );
 
   const rightLeg = new THREE.Group();
   rightLeg.name = 'Leg_Right';
-  rightLeg.position.set(0.078, -0.18, 0);
+  rightLeg.position.set(0.088, 0, 0);
   hips.add(rightLeg);
 
   rightLeg.add(
-    makeBox('Trouser_Thigh_Right', [0.112, 0.28, 0.124], [0, -0.14, 0], palette.trousersCharcoal),
-    makeBox('Trouser_Knee_Lower_Right', [0.106, 0.24, 0.118], [0, -0.39, 0], palette.trousersCharcoal),
-    makeBox('Trouser_Side_Trim_Gold_Right', [0.012, 0.44, 0.024], [0.056, -0.27, 0], palette.qaGoldYellow),
-    makeBox('Trouser_Cuff_White_Right', [0.11, 0.032, 0.122], [0, -0.52, 0], palette.innerHoodieWhite),
-    makeBox('Shoe_Upper_Right', [0.114, 0.095, 0.176], [0, -0.625, 0.022], palette.sneakerWhite),
-    makeBox('Shoe_Tongue_Gold_Right', [0.068, 0.042, 0.024], [0, -0.59, 0.098], palette.qaGoldYellow),
-    makeBox('Shoe_Heel_Collar_Dark_Right', [0.116, 0.044, 0.058], [0, -0.6, -0.038], palette.jacketDeepBlack),
-    makeBox('Shoe_Sole_Right', [0.12, 0.05, 0.186], [0, -0.695, 0.022], palette.sneakerSoleDark)
+    makeBox('Trouser_Thigh_Right', [0.138, 0.42, 0.15], [0, -0.23, 0], palette.trousersCharcoal),
+    makeBox('Trouser_Knee_Lower_Right', [0.132, 0.36, 0.144], [0, -0.59, 0], palette.trousersCharcoal),
+    makeBox('Trouser_Side_Trim_Gold_Right', [0.014, 0.7, 0.026], [0.068, -0.41, 0], palette.qaGoldYellow),
+    makeBox('Trouser_Cuff_White_Right', [0.138, 0.044, 0.15], [0, -0.784, 0], palette.innerHoodieWhite),
+    makeBox('Ankle_Sock_Right', [0.112, 0.048, 0.12], [0, -0.816, 0.004], palette.innerHoodieWhite),
+    makeBox('Shoe_Upper_Right', [0.144, 0.084, 0.206], [0, -0.838, 0.024], palette.sneakerWhite),
+    makeBox('Shoe_Tongue_Gold_Right', [0.078, 0.044, 0.026], [0, -0.802, 0.108], palette.qaGoldYellow),
+    makeBox('Shoe_Side_Accent_Gold_Right', [0.016, 0.028, 0.064], [0.072, -0.842, 0.015], palette.qaGoldYellow),
+    makeBox('Shoe_Heel_Collar_Dark_Right', [0.146, 0.046, 0.064], [0, -0.812, -0.048], palette.jacketDeepBlack),
+    makeBox('Shoe_Sole_Right', [0.15, 0.036, 0.216], [0, -0.882, 0.024], palette.sneakerSoleDark)
   );
 
   return {
@@ -1064,23 +1094,23 @@ export function applyQAExpressionToFace(
   faceNodes.rightEye.scale.set(1, preset.eyeScaleY, 1);
 
   faceNodes.leftPupil.position.set(
-    -0.066 + preset.pupilOffsetX,
-    0.186 + preset.pupilOffsetY,
-    0.162
+    -0.07 + preset.pupilOffsetX,
+    0.182 + preset.pupilOffsetY,
+    0.164
   );
   faceNodes.rightPupil.position.set(
-    0.066 + preset.pupilOffsetX,
-    0.186 + preset.pupilOffsetY,
-    0.162
+    0.07 + preset.pupilOffsetX,
+    0.182 + preset.pupilOffsetY,
+    0.164
   );
 
-  faceNodes.leftEyebrow.position.set(-0.068, 0.238 + preset.browLiftY, 0.161);
-  faceNodes.rightEyebrow.position.set(0.068, 0.238 + preset.browLiftY, 0.161);
+  faceNodes.leftEyebrow.position.set(-0.072, 0.236 + preset.browLiftY, 0.163);
+  faceNodes.rightEyebrow.position.set(0.072, 0.236 + preset.browLiftY, 0.163);
   faceNodes.leftEyebrow.rotation.set(0, 0, preset.leftBrowTiltRad);
   faceNodes.rightEyebrow.rotation.set(0, 0, preset.rightBrowTiltRad);
 
   faceNodes.mouth.scale.set(preset.mouthWidthScale, preset.mouthHeightScale, 1);
-  faceNodes.mouth.position.set(0, 0.114 + preset.mouthOffsetY, 0.16);
+  faceNodes.mouth.position.set(0, 0.112 + preset.mouthOffsetY, 0.161);
 
   const cheekMat = faceNodes.leftCheek.material as THREE.MeshStandardMaterial;
   if (cheekMat) {
@@ -1330,16 +1360,16 @@ export function buildQAEngineerAnimationClips(): THREE.AnimationClip[] {
         'Leg_Left',
         [0, 1.6],
         [
-          [-1.38, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
       quatTrack(
         'Leg_Right',
         [0, 1.6],
         [
-          [-1.38, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
     ]),
@@ -1398,16 +1428,16 @@ export function buildQAEngineerAnimationClips(): THREE.AnimationClip[] {
         'Leg_Left',
         [0, 2.2],
         [
-          [-1.38, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
       quatTrack(
         'Leg_Right',
         [0, 2.2],
         [
-          [-1.38, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
     ]),
@@ -1464,16 +1494,16 @@ export function buildQAEngineerAnimationClips(): THREE.AnimationClip[] {
         'Leg_Left',
         [0, 2.4],
         [
-          [-1.38, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
       quatTrack(
         'Leg_Right',
         [0, 2.4],
         [
-          [-1.38, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
     ]),
@@ -1872,16 +1902,16 @@ export function buildQAEngineerAnimationClips(): THREE.AnimationClip[] {
         'Leg_Left',
         [0, 2.2],
         [
-          [-1.38, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
       quatTrack(
         'Leg_Right',
         [0, 2.2],
         [
-          [-1.38, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
     ]),
@@ -2607,7 +2637,7 @@ export function buildQAEngineerAnimationClips(): THREE.AnimationClip[] {
         [0, 0.65],
         [
           [0, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
       quatTrack(
@@ -2615,7 +2645,7 @@ export function buildQAEngineerAnimationClips(): THREE.AnimationClip[] {
         [0, 0.65],
         [
           [0, 0, 0],
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
         ]
       ),
     ]),
@@ -2667,7 +2697,7 @@ export function buildQAEngineerAnimationClips(): THREE.AnimationClip[] {
         'Leg_Left',
         [0, 0.65],
         [
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
           [0, 0, 0],
         ]
       ),
@@ -2675,7 +2705,7 @@ export function buildQAEngineerAnimationClips(): THREE.AnimationClip[] {
         'Leg_Right',
         [0, 0.65],
         [
-          [-1.38, 0, 0],
+          [-0.58, 0, 0],
           [0, 0, 0],
         ]
       ),

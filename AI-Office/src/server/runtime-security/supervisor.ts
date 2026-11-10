@@ -8,12 +8,15 @@ import { SyntheticApprovals, type ApprovalController, type ApprovalRequest } fro
 import { requireSecurity, SecurityFailure, type AttemptContext, type SyntheticContextAuthority } from "./context.js";
 import { FixtureAttemptJournal, isTerminal, type AttemptRecord, type ObservedOutcome } from "./journal.js";
 import { HostPathPolicy, type SyntheticRequest } from "./policy.js";
+import { createExecutionAdmissionBoundary, requireExecutionAdmission, type ExecutionAdmission } from "../attempt-control/execution-admission.js";
+import { createOutputPublicationBoundary, denyOutputPublication, type OutputPublication, type PublicationDenial } from "../attempt-control/output-publication.js";
 
 const probePath = fileURLToPath(new URL("../../../tests/integration/runtime-security/probes/dummy.mjs", import.meta.url));
 const MessageSchema = z.strictObject({ type: z.enum(["ready", "completed", "cancelled", "descendant", "descendant-exited", "canary"]),
   nonce: z.uuid(), pid: z.int().positive(), canaryReadable: z.boolean().optional(), environmentKeys: z.array(z.string().max(100)).max(32).optional() });
 export type ProbeMessage = z.infer<typeof MessageSchema>;
 export type ProbeResult = Readonly<{ record: AttemptRecord; pid: number | null; stdout: string; stderr: string;
+  publication: PublicationDenial;
   outputTruncated: boolean; forced: boolean; descendants: readonly number[]; descendantsStopped: boolean;
   messages: readonly ProbeMessage[] }>;
 type Run = {
@@ -40,13 +43,15 @@ export class SyntheticSecurityHarness {
   private queue: Promise<unknown> = Promise.resolve();
   private closing = false;
   private constructor(readonly authority: SyntheticContextAuthority, readonly journal: FixtureAttemptJournal,
-    private readonly probeHash: string, private readonly beforeSpawn?: () => Promise<void>) {
+    private readonly probeHash: string, private readonly beforeSpawn?: () => Promise<void>,
+    private readonly admission: ExecutionAdmission = createExecutionAdmissionBoundary().api,
+    private readonly publication: OutputPublication = createOutputPublicationBoundary().api) {
     this.policy = new HostPathPolicy(authority);
     const pair = SyntheticApprovals.create(authority); this.approvals = pair.approvals; this.controller = pair.controller;
   }
-  static async create(authority: SyntheticContextAuthority, beforeSpawn?: () => Promise<void>) {
+  static async create(authority: SyntheticContextAuthority, beforeSpawn?: () => Promise<void>, admission?: ExecutionAdmission, publication?: OutputPublication) {
     const hash = await SyntheticSecurityHarness.hashProbe();
-    return new SyntheticSecurityHarness(authority, await FixtureAttemptJournal.open(authority.boundary.canonicalPath), hash, beforeSpawn);
+    return new SyntheticSecurityHarness(authority, await FixtureAttemptJournal.open(authority.boundary.canonicalPath), hash, beforeSpawn, admission, publication);
   }
   private static async hashProbe() {
     const info = await lstat(probePath);
@@ -57,6 +62,7 @@ export class SyntheticSecurityHarness {
     const task = this.queue.then(fn); this.queue = task.catch(() => undefined); return task;
   }
   async register(context: AttemptContext, idempotencyKey: string) {
+    await requireExecutionAdmission(this.admission, undefined, context);
     return this.serial(async () => {
       requireSecurity(!this.closing, "HARNESS_CLOSING"); await this.authority.assert(context);
       const record = await this.journal.create(context, idempotencyKey);
@@ -65,6 +71,7 @@ export class SyntheticSecurityHarness {
   }
   private owns(context: AttemptContext) { requireSecurity(this.contexts.get(context.attemptId) === context, "REGISTERED_CONTEXT_REQUIRED"); }
   async requestApproval(context: AttemptContext, input: unknown, lifetimeMs?: number): Promise<ApprovalRequest> {
+    await requireExecutionAdmission(this.admission, input, context);
     return this.serial(async () => {
       this.owns(context); requireSecurity(!this.closing && !this.cancelled.has(context.attemptId), "ATTEMPT_CANCELLED_OR_CLOSING");
       requireSecurity((await this.journal.read(context.attemptId)).phase === "CREATED", "ATTEMPT_NOT_FRESH");
@@ -74,6 +81,7 @@ export class SyntheticSecurityHarness {
     });
   }
   async decide(context: AttemptContext, controller: ApprovalController, response: unknown) {
+    await requireExecutionAdmission(this.admission, response, context);
     return this.serial(async () => {
       this.owns(context); requireSecurity(!this.closing && !this.cancelled.has(context.attemptId), "ATTEMPT_CANCELLED_OR_CLOSING");
       requireSecurity((await this.journal.read(context.attemptId)).phase === "APPROVAL_PENDING", "NO_PENDING_APPROVAL");
@@ -83,6 +91,7 @@ export class SyntheticSecurityHarness {
   }
 
   async dispatch(context: AttemptContext, input: unknown, requestId: string) {
+    await requireExecutionAdmission(this.admission, input, context);
     return this.serial(async () => {
       this.owns(context); requireSecurity(!this.closing && !this.cancelled.has(context.attemptId), "ATTEMPT_CANCELLED_OR_CLOSING");
       requireSecurity(!this.runs.has(context.attemptId) && (await this.journal.read(context.attemptId)).phase === "APPROVAL_GRANTED", "DUPLICATE_OR_UNAPPROVED_DISPATCH");
@@ -186,9 +195,13 @@ export class SyntheticSecurityHarness {
       const phase = run.completed && code === 0 ? "COMPLETED" : code !== 0 && !run.forced ? "FAILED" : "INTERRUPTED";
       record = await this.journal.transition(run.context.attemptId, phase, undefined, outcome);
     }
-    run.resolve(Object.freeze({ record, pid: run.pid, stdout: run.stdout.toString("utf8"), stderr: run.stderr.toString("utf8"),
+    // Collection and lifecycle journaling are internal diagnostics/safety, not publication.
+    // Fence the existing producer-to-caller release without decoding or forwarding denied text.
+    const publication = denyOutputPublication(this.publication, undefined, run.context);
+    const messages = Object.freeze(run.messages.map(({ type, nonce, pid }) => Object.freeze({ type, nonce, pid })));
+    run.resolve(Object.freeze({ record, pid: run.pid, stdout: "", stderr: "", publication,
       outputTruncated: run.truncated, forced: run.forced, descendants: Object.freeze([...run.descendants]), descendantsStopped,
-      messages: Object.freeze([...run.messages]) }));
+      messages }));
   }
   async cancel(context: AttemptContext): Promise<AttemptRecord> {
     this.owns(context); this.cancelled.add(context.attemptId); this.approvals.revoke(context);

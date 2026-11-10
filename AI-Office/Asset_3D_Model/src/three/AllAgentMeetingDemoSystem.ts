@@ -36,6 +36,7 @@ import { BackendCharacterRuntimeInstance } from './BackendCharacterSystem';
 import { DatabaseCharacterRuntimeInstance } from './DatabaseCharacterSystem';
 import { ResearchCharacterRuntimeInstance } from './ResearchCharacterSystem';
 import { QACharacterRuntimeInstance } from './QACharacterSystem';
+import { DevOpsCharacterRuntimeInstance } from './DevOpsCharacterSystem';
 
 export type MeetingDemoPhase =
   | 'INACTIVE'
@@ -92,6 +93,7 @@ export interface AllAgentMeetingCharacterRefs {
   databaseAgent: DatabaseCharacterRuntimeInstance;
   researchAgent: ResearchCharacterRuntimeInstance;
   qaAgent?: QACharacterRuntimeInstance;
+  devopsAgent?: DevOpsCharacterRuntimeInstance;
   onStopRoomAutoDemos?: () => void;
   onRestoreRoomCharacters?: () => void;
   onStatusChange?: (status: AllAgentMeetingDemoStatus) => void;
@@ -157,6 +159,7 @@ const SPEAKER_ROTATION_ORDER: HubMeetingSeatId[] = [
   'HUB_MEETING_SEAT_07',
   'HUB_MEETING_SEAT_08',
   'HUB_MEETING_SEAT_09',
+  'HUB_MEETING_SEAT_10',
 ];
 
 export function createAllAgentMeetingDemoSystem(
@@ -389,17 +392,38 @@ export function createAllAgentMeetingDemoSystem(
           hips: qa.rig.hips,
           torso: qa.rig.torso,
           head: qa.rig.head,
-          leftArm: qa.rig.armLeft,
-          rightArm: qa.rig.armRight,
-          leftLeg: qa.rig.legLeft,
-          rightLeg: qa.rig.legRight,
+          leftArm: qa.rig.leftArm,
+          rightArm: qa.rig.rightArm,
+          leftLeg: qa.rig.leftLeg,
+          rightLeg: qa.rig.rightLeg,
           backpack: qa.rig.backpackGroup,
           hideAllHandheldProps: () => {
-            Object.values(qa.rig.propsById).forEach((p) => {
+            Object.values(qa.rig.propMap).forEach((p) => {
               p.visible = false;
             });
-            Object.values(qa.rig.indicatorsById).forEach((ind) => {
-              ind.visible = false;
+          },
+          standingHipsY: 0.9,
+        };
+      }
+      case 'devops_engineer_agent':
+      case 'devops_agent': {
+        const devops = refs.devopsAgent;
+        if (!devops) return null;
+        return {
+          posNode: devops.runtimeRoot,
+          yawNode: devops.characterRoot,
+          roomOffset: [24, 0, 0],
+          hips: devops.model.hips,
+          torso: devops.model.torso,
+          head: devops.model.head,
+          leftArm: devops.model.leftArm,
+          rightArm: devops.model.rightArm,
+          leftLeg: devops.model.leftLeg,
+          rightLeg: devops.model.rightLeg,
+          backpack: devops.model.backpackGroup,
+          hideAllHandheldProps: () => {
+            Object.values(devops.model.propNodes).forEach((p) => {
+              p.visible = false;
             });
           },
           standingHipsY: 0.9,

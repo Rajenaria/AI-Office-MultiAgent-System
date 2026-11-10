@@ -1,32 +1,23 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { listenHttp } from "./http.js";
-import { WorkspaceManager } from "./workspace/manager.js";
-import { ProjectRegistry, type FaultHook } from "./workspace/registry.js";
 import { hasCode, safeFailure, WorkspaceFailure } from "./workspace/errors.js";
-import { ProjectStateService } from "./state/service.js";
-import type { StateFault } from "./state/storage.js";
+import { composeBackendHost, createBackendShutdown, type BackendHostOptions } from "./host.js";
 
 // Backend-only development port. Conflict is fatal; never try a different port.
 export const DEFAULT_PORT = 43123;
-export async function startBackend(options: { dataRoot: string; port?: number; fault?: FaultHook;
-  fixtureState?: { root: string; demoHttp?: boolean; fault?: StateFault };
-  developmentOrigin?: string; bootstrapToken?: string }) {
-  const registry = await ProjectRegistry.acquire(options.dataRoot, options.fault);
-  let manager: WorkspaceManager | undefined;
+export async function startBackend(options: BackendHostOptions & { port?: number; developmentOrigin?: string; bootstrapToken?: string }) {
+  if (options.developmentOrigin && !options.fixtureState) throw new WorkspaceFailure("ACCESS_DENIED", "DEVELOPMENT_ORIGIN_REQUIRES_FIXTURE_MODE", 403);
+  const host = await composeBackendHost(options);
+  const manager = host.manager;
   try {
-    if (options.developmentOrigin && !options.fixtureState) throw new WorkspaceFailure("ACCESS_DENIED", "DEVELOPMENT_ORIGIN_REQUIRES_FIXTURE_MODE", 403);
-    const state = options.fixtureState ? await ProjectStateService.forFixtures(registry, options.fixtureState.root, options.fixtureState.fault) : undefined;
-    manager = new WorkspaceManager(registry, options.fault, state);
-    const ownedManager = manager;
     const http = await listenHttp(manager, options.port ?? DEFAULT_PORT, options.fixtureState?.demoHttp === true,
       { ...(options.developmentOrigin ? { origin: options.developmentOrigin } : {}),
         ...(options.bootstrapToken ? { bootstrapToken: options.bootstrapToken } : {}) });
-    let closePromise: Promise<void> | undefined;
     return { url: http.url, bootstrapToken: http.bootstrapToken, manager,
-      close: () => closePromise ??= (async () => { await http.close(); await ownedManager.close(); })() };
+      close: createBackendShutdown(() => http.close(), () => host.close()) };
   } catch (error) {
-    if (manager) await manager.close(); else await registry.close();
+    await host.close();
     if (hasCode(error, "EADDRINUSE")) throw new WorkspaceFailure("BACKEND_UNAVAILABLE", "PORT_IN_USE", 503);
     throw error;
   }
