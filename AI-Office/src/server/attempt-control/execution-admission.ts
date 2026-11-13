@@ -1,12 +1,14 @@
 import { randomUUID } from "node:crypto";
 import { createHostPrincipalBoundary } from "./host-principal.js";
+import { assessHostRuntimeCapabilities, type HostRuntimeCapabilityAssessment } from "./platform-capabilities.js";
 
 export type AdmissionDenial = Readonly<{ admitted: false; executionAuthority: false;
   reasonCode: "ADMISSION_NOT_AUTHORIZED"; correlationId: string }>;
 type AuditReason = "AUTHENTICATION_REQUIRED" | "AUTHENTICATION_SOURCE_UNAVAILABLE" | "HOST_CONTEXT_INVALID" |
   "ADMISSION_DEPENDENCY_UNAVAILABLE" | "ADMISSION_NOT_AUTHORIZED" | "ADMISSION_INVALIDATED" | "ADMISSION_CLOSED" | "ADMISSION_CANCELLED";
 export type AdmissionAudit = Readonly<{ correlationId: string; reason: AuditReason; boundaryGeneration: number;
-  workspace: "NOT_EVALUATED"; repository: "NOT_EVALUATED"; executionAuthority: false }>;
+  workspace: "NOT_EVALUATED"; repository: "NOT_EVALUATED"; executionAuthority: false;
+  platformCapabilities: HostRuntimeCapabilityAssessment }>;
 // Trusted composition dependency only. Unknown results/throws cannot create a positive path.
 export type AdmissionAuthentication = Readonly<{ authenticate(evidence?: unknown): unknown }>;
 export type ExecutionAdmission = Readonly<{
@@ -28,10 +30,14 @@ export class AdmissionRejected extends Error {
 export function createExecutionAdmissionBoundary(authentication: AdmissionAuthentication = createHostPrincipalBoundary().api) {
   const audits = new WeakMap<object, AdmissionAudit>();
   let closed = false, generation = 1;
+  // Existing admission already denies all paths. Every owned denial now assesses
+  // host platform prerequisites as well; original caller shape/reasons and PI08
+  // lifecycle ordering stay intact. This does not instantiate native enforcement.
   const deny = (reason: AuditReason): AdmissionDenial => {
     const denial = publicDenial();
     audits.set(denial, Object.freeze({ correlationId: denial.correlationId, reason, boundaryGeneration: generation,
-      workspace: "NOT_EVALUATED", repository: "NOT_EVALUATED", executionAuthority: false }));
+      workspace: "NOT_EVALUATED", repository: "NOT_EVALUATED", executionAuthority: false,
+      platformCapabilities: assessHostRuntimeCapabilities() }));
     return denial;
   };
   const admit: Admit = async (_request, evidence, signal) => {
