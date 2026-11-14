@@ -19,6 +19,17 @@ section { background: #fff; border: 1px solid #d5dce4; border-radius: 6px; paddi
 .inline-form p { flex-basis: 100%; }
 label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0; }
 input { display: block; width: 100%; border: 1px solid #8c99a8; border-radius: 4px; padding: 10px; margin-top: 6px; font: inherit; font-weight: 400; }
+select, textarea { display: block; width: 100%; border: 1px solid #8c99a8; border-radius: 4px; padding: 10px; margin-top: 6px; font: inherit; font-weight: 400; background: #fff; }
+textarea { resize: vertical; }
+.planning-panel { grid-column: 1 / -1; }
+.transfer-panel { margin: 18px 0; padding: 14px; border: 1px solid #d5dce4; border-radius: 4px; background: #f7f9fc; }
+.replace-confirmation { display: flex; align-items: flex-start; gap: 10px; }
+.replace-confirmation input { width: auto; margin: 4px 0 0; flex: 0 0 auto; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); padding: 0; border: 0; }
+.planning-grid { display: grid; grid-template-columns: minmax(220px, 1fr) minmax(280px, 2fr); gap: 24px; margin: 20px 0; }
+.planning-grid .record-list button { text-align: left; }
+.planning-grid button[aria-pressed="true"] { background: #1a385b; outline: 2px solid #b87912; outline-offset: 2px; }
+select:focus-visible, textarea:focus-visible { outline: 3px solid #b87912; outline-offset: 3px; }
 button { border: 1px solid #344c68; border-radius: 4px; padding: 9px 12px; background: #344c68; color: #fff; font: inherit; font-size: 13px; cursor: pointer; }
 button:disabled { opacity: .5; cursor: default; }
 button:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid #b87912; outline-offset: 3px; }
@@ -36,3 +47,4 @@ dt { color: #526170; } dd { margin: 0; overflow-wrap: anywhere; }
 pre { white-space: pre-wrap; max-height: 340px; overflow: auto; background: #fff; border: 1px solid #dbe1e9; padding: 12px; }
 footer { border-top: 1px solid #d5dce4; padding-top: 14px; }
 @media (max-width: 720px) { .shell { padding: 16px; } main { grid-template-columns: 1fr; } header { align-items: start; flex-direction: column; } dl { grid-template-columns: 110px minmax(0, 1fr); } }
+@media (max-width: 720px) { .planning-grid { grid-template-columns: 1fr; } }

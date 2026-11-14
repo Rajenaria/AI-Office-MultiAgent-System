@@ -3,10 +3,11 @@ import { ApiClient } from "./api.js";
 import { ShellController } from "./workspace/controller.js";
 import { ActivityPanel, BrainPanel } from "./components/ProjectPanels.js";
 import { SkillMetadataPanel } from "./components/SkillMetadataPanel.js";
+import { TaskPlanningPanel } from "./components/TaskPlanningPanel.js";
 
 export default function App() {
   const [controller] = useState(() => new ShellController(new ApiClient()));
-  const state = useSyncExternalStore(controller.subscribe, controller.getState);
+  const state = useSyncExternalStore(controller.subscribe, controller.getState, controller.getState);
   const [passphrase, setPassphrase] = useState("");
   const [folder, setFolder] = useState("");
   useEffect(() => { void controller.checkHealth(); return () => controller.stop(); }, [controller]);
@@ -63,6 +64,7 @@ export default function App() {
         </div>}
         {workspace && <button onClick={() => { void controller.detach(); }} disabled={!canCommand}>Close workspace</button>}
       </section>
+      <TaskPlanningPanel state={state} />
       <ActivityPanel state={state} />
       <BrainPanel state={state} controller={controller} />
       <SkillMetadataPanel state={state} />
